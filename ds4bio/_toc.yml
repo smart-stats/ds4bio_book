@@ -6,4 +6,8 @@ root: intro
 chapters:
 - file: preamble.md
 - file: basic_python.ipynb
+  sections:
+    - file: python_programming.ipynb
+    - file functions.ipynb
+    
 

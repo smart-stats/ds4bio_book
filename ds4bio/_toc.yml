@@ -5,4 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: preamble.md
-- file: basic_python.md
+- file: basic_python.ipynb
+

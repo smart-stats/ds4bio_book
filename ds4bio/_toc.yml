@@ -3,11 +3,10 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: preamble.md
-- file: basic_python.ipynb
-  sections:
+chapters: 
+    - file: ds_python.md
+    - file: basic_python.ipynb
     - file: python_programming.ipynb
-    - file functions.ipynb
-    
+    - file: functions.ipynb
+
 

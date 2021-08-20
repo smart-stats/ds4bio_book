@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: 01_intro.md
+chapters: 
+  - file: o2-ds_python.md
+  - file: 03-basic_python.ipynb
+  - file: 04-python_programming.ipynb
+  - file: 05-functions.ipynb
+  - file: 06-data_cleaning.ipynb
+
+
+

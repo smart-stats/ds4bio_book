@@ -2,9 +2,9 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: 01_intro.md
+root: 01-intro
 chapters: 
-  - file: o2-ds_python.md
+  - file: 02-ds_python.md
   - file: 03-basic_python.ipynb
   - file: 04-python_programming.ipynb
   - file: 05-functions.ipynb
@@ -12,3 +12,4 @@ chapters:
 
 
 
+ 

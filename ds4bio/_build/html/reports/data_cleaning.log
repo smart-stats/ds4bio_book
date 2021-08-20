@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+t1l1.plot.bar(x='roi',y='comp')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m/tmp/ipykernel_26208/2373766321.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mt1l1[0m[0;34m.[0m[0mplot[0m[0;34m.[0m[0mbar[0m[0;34m([0m[0mx[0m[0;34m=[0m[0;34m'roi'[0m[0;34m,[0m[0my[0m[0;34m=[0m[0;34m'comp'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/miniconda3/envs/ds4bio/lib/python3.9/site-packages/pandas/plotting/_core.py[0m in [0;36mbar[0;34m(self, x, y, **kwargs)[0m
+[1;32m   1128[0m         [0mother[0m [0maxis[0m [0mrepresents[0m [0ma[0m [0mmeasured[0m [0mvalue[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1129[0m         """
+[0;32m-> 1130[0;31m         [0;32mreturn[0m [0mself[0m[0;34m([0m[0mkind[0m[0;34m=[0m[0;34m"bar"[0m[0;34m,[0m [0mx[0m[0;34m=[0m[0mx[0m[0;34m,[0m [0my[0m[0;34m=[0m[0my[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1131[0m [0;34m[0m[0m
+[1;32m   1132[0m     @Appender(
+
+[0;32m~/miniconda3/envs/ds4bio/lib/python3.9/site-packages/pandas/plotting/_core.py[0m in [0;36m__call__[0;34m(self, *args, **kwargs)[0m
+[1;32m    890[0m [0;34m[0m[0m
+[1;32m    891[0m     [0;32mdef[0m [0m__call__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 892[0;31m         [0mplot_backend[0m [0;34m=[0m [0m_get_plot_backend[0m[0;34m([0m[0mkwargs[0m[0;34m.[0m[0mpop[0m[0;34m([0m[0;34m"backend"[0m[0;34m,[0m [0;32mNone[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    893[0m [0;34m[0m[0m
+[1;32m    894[0m         x, y, kind, kwargs = self._get_call_args(
+
+[0;32m~/miniconda3/envs/ds4bio/lib/python3.9/site-packages/pandas/plotting/_core.py[0m in [0;36m_get_plot_backend[0;34m(backend)[0m
+[1;32m   1812[0m         [0;32mreturn[0m [0m_backends[0m[0;34m[[0m[0mbackend[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1813[0m [0;34m[0m[0m
+[0;32m-> 1814[0;31m     [0mmodule[0m [0;34m=[0m [0m_load_backend[0m[0;34m([0m[0mbackend[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1815[0m     [0m_backends[0m[0;34m[[0m[0mbackend[0m[0;34m][0m [0;34m=[0m [0mmodule[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1816[0m     [0;32mreturn[0m [0mmodule[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/miniconda3/envs/ds4bio/lib/python3.9/site-packages/pandas/plotting/_core.py[0m in [0;36m_load_backend[0;34m(backend)[0m
+[1;32m   1752[0m             [0mmodule[0m [0;34m=[0m [0mimportlib[0m[0;34m.[0m[0mimport_module[0m[0;34m([0m[0;34m"pandas.plotting._matplotlib"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1753[0m         [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1754[0;31m             raise ImportError(
+[0m[1;32m   1755[0m                 [0;34m"matplotlib is required for plotting when the "[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1756[0m                 [0;34m'default backend "matplotlib" is selected.'[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: matplotlib is required for plotting when the default backend "matplotlib" is selected.
+ImportError: matplotlib is required for plotting when the default backend "matplotlib" is selected.
+

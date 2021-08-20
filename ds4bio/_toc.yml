@@ -4,9 +4,12 @@
 format: jb-book
 root: intro
 chapters: 
-    - file: ds_python.md
-    - file: basic_python.ipynb
-    - file: python_programming.ipynb
-    - file: functions.ipynb
+  - file: ds_python.md
+    sections: 
+      - file: basic_python.ipynb
+      - file: python_programming.ipynb
+      - file: functions.ipynb
+  - file: data_cleaning.ipynb
+
 
 

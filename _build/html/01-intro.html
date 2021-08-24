@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome! &#8212; Data science for Bio/medical applications using python</title>
+    <title>Welcome! &#8212; Data science and AI for Bio/medical applications using python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -74,7 +74,7 @@
       <img src="_static/dasl.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Data science for Bio/medical applications using python</h1>
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -111,8 +111,28 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="06-python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="06-data_cleaning.html">
    Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-binary_classification.html">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-pytorch_regression.html">
+   Pytorch by example, linear regression
   </a>
  </li>
 </ul>
@@ -197,6 +217,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git-github">
+   Git, github
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -208,6 +241,35 @@
   <div class="section" id="welcome">
 <h1>Welcome!<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
 <p>This is a book for the Data Science for Bio/medical class.</p>
+<div class="section" id="git-github">
+<h2>Git, github<a class="headerlink" href="#git-github" title="Permalink to this headline">¶</a></h2>
+<p>For this class, we’ll be using the version control system git and git hosting service github.
+For git, you work in a <em>repository</em>, which is basically a project directory on your
+computer with some extra files that help git work. Git is then used for <em>version control</em>
+so that you keep track of states of your project. Github, is a hosting service for
+git repositories. Typically, you have your repository on your computer and you coordinate
+it with the one on the server. Github is just one of several hosting services, bitbucket
+is another, or you could even relatively easily start your own. However, github has front
+end web services that allows you to interact with your remote repository easily. This is
+very convenient.</p>
+<p>I’m not going to recreate git / github tutorials here; <a class="reference external" href="https://seankross.com/the-unix-workbench/git-and-github.html">here’s one I recommend</a> by Sean Kross. Instead, I’m going to go through a typical git / github workflow.</p>
+<ol class="simple">
+<li><p><strong>Initialization</strong> I almost always initialize my git repository on github with a <code class="docutils literal notranslate"><span class="pre">readme.md</span></code> file.</p></li>
+<li><p><strong>Clone</strong> I typically <em>clone</em> the repository to my local computer using the command line or a local git gui that works with github, like <a class="reference external" href="https://desktop.github.com/">this one</a>. Note that you only have to clone the repo once. After it’s cloned
+you have a full local copy of the repository.</p></li>
+<li><p><strong>add</strong> new files to track and <strong>stage</strong> them after I’ve worked with them.</p></li>
+<li><p><strong>commit</strong> the changes to the local repository with a meaningful commit message.</p></li>
+<li><p><strong>push</strong> the changes to the repository.</p></li>
+<li><p>If there’s changes on the remote repository not represented in my local repository, I <strong>pull</strong> those changes to my local repo.</p></li>
+</ol>
+<p>For larger projects, you’re likely working with multiple people, some of whom you’ve given access to your remote repository and
+some of whom you have not. The ones who can’t directly push to the remote repo might have their own version of the
+code and their own version on github. If they think you should incorporate those changes, they might issue a <strong>pull request</strong> to
+you. You can then opt to pull their changes into your repo on github, then pull them from github to your local repo. One of the
+reasons why services like github and bitbucket are so popular is that they make this coordination fairly easy, along with having
+nice project messaging and management tools.</p>
+<p>In our class, we use github classroom. For github classroom, you’ll get a link to a repo to put your submission files into. When you push to the remote repository, you’ll have submitted. But, up to the due date you can make changes an push again.</p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>

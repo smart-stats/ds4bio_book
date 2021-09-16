@@ -114,8 +114,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="06-python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="06-data_cleaning.html">
    Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis in Seaborn
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,10 +265,7 @@
                 
   <div class="section" id="continuous-prediction-with-regression">
 <h1>Continuous prediction with regression<a class="headerlink" href="#continuous-prediction-with-regression" title="Permalink to this headline">¶</a></h1>
-<p>The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,
-$<span class="math notranslate nohighlight">\(
-\sum_{i=1}^n (Y_i - \hat \mu_i)^2.
-\)</span>$</p>
+<p>The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
 <p>If we were to dived this by <span class="math notranslate nohighlight">\(n\)</span>, it would be the average of the squared errors, or the <em>mean squared error</em> (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.</p>
 <p>What’s left is to figure out how to come up with <span class="math notranslate nohighlight">\(\hat \mu_i\)</span>, our predictions for the observation <span class="math notranslate nohighlight">\(Y_i\)</span>.</p>
 <p>Consider the previous lecture’s example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values. For</p>
@@ -389,7 +396,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f6b8837d1f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f26641c9e50&gt;
 </pre></div>
 </div>
 <img alt="_images/08-regression_3_1.png" src="_images/08-regression_3_1.png" />
@@ -401,38 +408,35 @@ $<span class="math notranslate nohighlight">\(
 \sum_{v=1}^V (PD_v - \beta_0 - \beta_1 T2_v)^2
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(v\)</span> stands for voxel and <span class="math notranslate nohighlight">\(PD_v\)</span> for the PD value at voxel <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(T2_v\)</span> as the T2 value at voxel <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> are parameters that we have to learn.</p>
-<p>A general equation for fitting a line to data is
-$<span class="math notranslate nohighlight">\(
+<p>A general equation for fitting a line to data is</p>
+<div class="math notranslate nohighlight">
+\[
 \sum_{i=1}^n (Y_i - \beta_0 - \beta_1 X_i)^2
-\)</span><span class="math notranslate nohighlight">\(
-where we want to use \)</span>X_i<span class="math notranslate nohighlight">\( to predict \)</span>Y_i$.</p>
-<p>It turns out that <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> have optimal solutions that we can write down. We get
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where we want to use <span class="math notranslate nohighlight">\(X_i\)</span> to predict <span class="math notranslate nohighlight">\(Y_i\)</span>.</p>
+<p>It turns out that <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> have optimal solutions that we can write down. We get</p>
+<div class="math notranslate nohighlight">
+\[
 \hat \beta_1 = Cor(X, Y) \frac{SD_Y}{SD_X}
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>Cor(X, Y)<span class="math notranslate nohighlight">\( is the (Pearson) **correlation** between \)</span>X<span class="math notranslate nohighlight">\( and \)</span>Y<span class="math notranslate nohighlight">\( and \)</span>SD_X<span class="math notranslate nohighlight">\( is the **standard deviation** of \)</span>X<span class="math notranslate nohighlight">\( (and \)</span>SD_Y<span class="math notranslate nohighlight">\( is for \)</span>Y<span class="math notranslate nohighlight">\(). The intercept satisfies
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Cor(X, Y)\)</span> is the (Pearson) <strong>correlation</strong> between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(SD_X\)</span> is the <strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(X\)</span> (and <span class="math notranslate nohighlight">\(SD_Y\)</span> is for <span class="math notranslate nohighlight">\(Y\)</span>). The intercept satisfies</p>
+<div class="math notranslate nohighlight">
+\[
 \hat \beta_0 = \bar Y - \bar X \hat \beta_1
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\bar X<span class="math notranslate nohighlight">\( and \)</span>\bar Y$ are the means.</p>
-<p>Notice this latter equation reorganized is just
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar X\)</span> and <span class="math notranslate nohighlight">\(\bar Y\)</span> are the means.</p>
+<p>Notice this latter equation reorganized is just</p>
+<div class="math notranslate nohighlight">
+\[
 \bar Y = \hat \beta_0 + \bar X \hat \beta_1
-\)</span><span class="math notranslate nohighlight">\(
-pointing out that the fitted line has to go through the point \)</span>(\bar X, \bar Y)$.</p>
+\]</div>
+<p>pointing out that the fitted line has to go through the point <span class="math notranslate nohighlight">\((\bar X, \bar Y)\)</span>.</p>
 <div class="section" id="some-definitions">
 <h2>Some definitions<a class="headerlink" href="#some-definitions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The <strong>covariance</strong> is defined as
-$<span class="math notranslate nohighlight">\(Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)\)</span>$</p></li>
-<li><p>The <strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(SD_X\)</span>,
-$<span class="math notranslate nohighlight">\(
-\sqrt{Cov(X, X)}
-\)</span>$</p></li>
-<li><p>The Pearson <strong>correlation</strong> is defined as
-$<span class="math notranslate nohighlight">\(
-\frac{Cov(X, Y)}{SD_X \times SD_Y}
-\)</span>$</p></li>
+<li><p>The <strong>covariance</strong> is defined as  <span class="math notranslate nohighlight">\(Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)\)</span></p></li>
+<li><p>The <strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(SD_X\)</span>, <span class="math notranslate nohighlight">\(\sqrt{Cov(X, X)}\)</span></p></li>
+<li><p>The Pearson <strong>correlation</strong> is defined as <span class="math notranslate nohighlight">\(\frac{Cov(X, Y)}{SD_X \times SD_Y}\)</span></p></li>
 </ul>
 <p>The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say “correlation” without further context, it’s understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, <span class="math notranslate nohighlight">\(Cov(X, X)\)</span>, is simply the square of the standard deviation and has units of X squared.</p>
 <div class="cell docutils container">
@@ -460,7 +464,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.35237708948180796, 0.6908273911949133]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.30075187468148745, 0.7772984317518223]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -483,7 +487,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.690827391194913, intercept=0.35237708948180824, rvalue=0.7816092853756903, pvalue=3.05779753098256e-17, stderr=0.0632406552599649, intercept_stderr=0.05757401827060751)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7772984317518221, intercept=0.30075187468148745, rvalue=0.7730224139396459, pvalue=1.1301492378344652e-14, stderr=0.07851856186781342, intercept_stderr=0.06892245422475271)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -514,7 +518,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.1631475612559831, 0.2825251064381276]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.20984502662412524, 0.1310223156393363]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.

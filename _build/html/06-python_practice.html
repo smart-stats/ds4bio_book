@@ -122,6 +122,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis in Seaborn
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="07-binary_classification.html">
    Introduction to binary classification
   </a>
@@ -291,7 +296,7 @@
 </div>
 </div>
 </div>
-<p>Let’s create our own version of a conjugate number, adapted from <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here</a>.</p>
+<p>Let’s create our own version of a complex number, adapted from <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">mycomplex</span><span class="p">:</span>
@@ -327,7 +332,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">real</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="n">imag</span>
 
-    <span class="k">def</span> <span class="nf">conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># note this doesn&#39;t modify self and creates a new object</span>
+    <span class="k">def</span> <span class="nf">conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># note this doesn&#39;t modify self and returns a new object</span>
         <span class="k">return</span><span class="p">(</span><span class="n">mycomplex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

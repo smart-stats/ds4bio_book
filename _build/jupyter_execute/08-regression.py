@@ -3,10 +3,7 @@
 
 # # Continuous prediction with regression
 # 
-# The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words, 
-# $$
-# \sum_{i=1}^n (Y_i - \hat \mu_i)^2.
-# $$
+# The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  $\sum_{i=1}^n (Y_i - \hat \mu_i)^2.$
 # 
 # If we were to dived this by $n$, it would be the average of the squared errors, or the *mean squared error* (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.  
 # 
@@ -51,39 +48,39 @@ sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions')
 # where $v$ stands for voxel and $PD_v$ for the PD value at voxel $v$, $T2_v$ as the T2 value at voxel $v$ and $\beta_0$ and $\beta_1$ are parameters that we have to learn. 
 # 
 # A general equation for fitting a line to data is
+# 
 # $$
 # \sum_{i=1}^n (Y_i - \beta_0 - \beta_1 X_i)^2
 # $$
+# 
 # where we want to use $X_i$ to predict $Y_i$. 
 # 
 # It turns out that $\beta_0$ and $\beta_1$ have optimal solutions that we can write down. We get
+# 
 # $$
 # \hat \beta_1 = Cor(X, Y) \frac{SD_Y}{SD_X}
 # $$
+# 
 # where $Cor(X, Y)$ is the (Pearson) **correlation** between $X$ and $Y$ and $SD_X$ is the **standard deviation** of $X$ (and $SD_Y$ is for $Y$). The intercept satisfies
+# 
 # $$
 # \hat \beta_0 = \bar Y - \bar X \hat \beta_1
 # $$
+# 
 # where $\bar X$ and $\bar Y$ are the means. 
 # 
 # Notice this latter equation reorganized is just
+# 
 # $$
 # \bar Y = \hat \beta_0 + \bar X \hat \beta_1
 # $$
+# 
 # pointing out that the fitted line has to go through the point $(\bar X, \bar Y)$. 
 # 
 # ## Some definitions
-# * The **covariance** is defined as 
-# $$Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)$$
-# * The **standard deviation** of $X$ is $SD_X$, 
-# $$
-# \sqrt{Cov(X, X)}
-# $$
-# * The Pearson **correlation** is defined as 
-# $$
-# \frac{Cov(X, Y)}{SD_X \times SD_Y}
-# $$
-# 
+# * The **covariance** is defined as  $Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)$
+# * The **standard deviation** of $X$ is $SD_X$, $\sqrt{Cov(X, X)}$
+# * The Pearson **correlation** is defined as $\frac{Cov(X, Y)}{SD_X \times SD_Y}$
 # 
 # The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say "correlation" without further context, it's understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, $Cov(X, X)$, is simply the square of the standard deviation and has units of X squared.
 

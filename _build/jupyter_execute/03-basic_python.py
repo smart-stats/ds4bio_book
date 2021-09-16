@@ -73,9 +73,10 @@ a = 5 < 4  # sets a to False
 b = 5 == 5 # sets b to True
 print(a or b)
 print(a and b)
+print(not a)
 
 
-# Don't define new variables called `TRUE` or `FALSE` or `tRuE` or `FaLsE`, or whatever, even though you can. Just get used to typing True and False the way python likes and don't use similar named things for other reasons.
+# Don't define new variables called `TRUE` or `FALSE` or `tRuE` or `FaLsE`, or whatever, even though you can. Just get used to typing True and False the way python likes and don't use similar named things for other reasons. Als, python as bitwise logical operators `|`, `&` and `~`. On Boolean values, they work the same but differ in other circumstances. So, if you are unfamliar with bitwise operations, it's probably better to stick to the word logical operators above. 
 
 # ## Data structures
 # Python has some more advanced data structures that build on its primitive types. 

@@ -24,12 +24,12 @@ you have a full local copy of the repository.
 5. **push** the changes to the repository.
 6. If there's changes on the remote repository not represented in my local repository, I **pull** those changes to my local repo.
 
-For larger projects, you're likely working with multiple people, some of whom you've given access to your remote repository and
+For larger projects, you're likely  working with multiple people, some of whom you've given access to your remote repository and
 some of whom you have not. The ones who can't directly push to the remote repo might have their own version of the
 code and their own version on github. If they think you should incorporate those changes, they might issue a **pull request** to
 you. You can then opt to pull their changes into your repo on github, then pull them from github to your local repo. One of the
 reasons why services like github and bitbucket are so popular is that they make this coordination fairly easy, along with having
 nice project messaging and management tools. 
 
-In our class, we use github classroom. For github classroom, you'll get a link to a repo to put your submission files into. When you push to the remote repository, you'll have submitted. But, up to the due date you can make changes an push again.
+In our class, we use github classroom. For github classroom, you'll get a link to a repo to put your submission files into. When you push to the remote repository, you'll have submitted. *But, up to the due date you can make changes an push again.* 
 

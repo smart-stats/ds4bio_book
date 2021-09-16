@@ -10,6 +10,7 @@ chapters:
   - file: 05-functions.ipynb
   - file: 06-python_practice.ipynb
   - file: 06-data_cleaning.ipynb
+  - file: EDA.ipynb
   - file: 07-binary_classification.ipynb
   - file: 08-regression.ipynb
   - file: 09-pytorch_regression.ipynb

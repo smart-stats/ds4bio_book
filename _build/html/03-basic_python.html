@@ -112,8 +112,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="06-python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="06-data_cleaning.html">
    Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis in Seaborn
   </a>
  </li>
  <li class="toctree-l1">
@@ -358,17 +368,19 @@ o
 <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span> <span class="c1"># sets b to True</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">or</span> <span class="n">b</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="ow">not</span> <span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 False
+True
 </pre></div>
 </div>
 </div>
 </div>
-<p>Don’t define new variables called <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> or <code class="docutils literal notranslate"><span class="pre">tRuE</span></code> or <code class="docutils literal notranslate"><span class="pre">FaLsE</span></code>, or whatever, even though you can. Just get used to typing True and False the way python likes and don’t use similar named things for other reasons.</p>
+<p>Don’t define new variables called <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> or <code class="docutils literal notranslate"><span class="pre">tRuE</span></code> or <code class="docutils literal notranslate"><span class="pre">FaLsE</span></code>, or whatever, even though you can. Just get used to typing True and False the way python likes and don’t use similar named things for other reasons. Als, python as bitwise logical operators <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code>. On Boolean values, they work the same but differ in other circumstances. So, if you are unfamliar with bitwise operations, it’s probably better to stick to the word logical operators above.</p>
 <div class="section" id="data-structures">
 <h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <p>Python has some more advanced data structures that build on its primitive types.</p>

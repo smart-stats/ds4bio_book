@@ -32,7 +32,7 @@ print(x.imag)
 print(x.conjugate())
 
 
-# Let's create our own version of a conjugate number, adapted from [here](https://docs.python.org/3/tutorial/classes.html).
+# Let's create our own version of a complex number, adapted from [here](https://docs.python.org/3/tutorial/classes.html).
 
 # In[3]:
 
@@ -64,7 +64,7 @@ class mycomplex:
         self.r = real
         self.i = imag
 
-    def conjugate(self): # note this doesn't modify self and creates a new object
+    def conjugate(self): # note this doesn't modify self and returns a new object
         return(mycomplex(self.r, -self.i))
 
     def print(self):

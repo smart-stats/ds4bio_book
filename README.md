@@ -1,5 +1,5 @@
 # ds4bio_book
 Files for the Data Science in Python for Biomedical Applications book.
 
-The repo is [here](https://github.com/smart-stats/ds4bio_book) now.
+The live version of the book is [here](https://bcaffo.github.io/ds4bio_book/_build/html/index.html) now.
 

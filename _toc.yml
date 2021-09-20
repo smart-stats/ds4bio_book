@@ -12,7 +12,14 @@ chapters:
   - file: 06-data_cleaning.ipynb
   - file: EDA.ipynb
   - file: 07-binary_classification.ipynb
+  - file: regression_through_the_origin.ipynb
   - file: 08-regression.ipynb
+  - file: logistic.ipynb
+  - file: linearSeparable.ipynb
+  - file: linearSeparableSMF.ipynb
+  - file: regression_examples.ipynb
+  - file: linearModels_FFTs.ipynb
   - file: 09-pytorch_regression.ipynb
   
+
  

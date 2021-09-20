@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regression and FFTs &#8212; Data science and AI for Bio/medical applications using python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pytorch by example, linear regression" href="09-pytorch_regression.html" />
+    <link rel="prev" title="Linear models: a classic example" href="regression_examples.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/dasl.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-ds_python.html">
+   Basic python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-basic_python.html">
+   Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-python_programming.html">
+   Python programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data_cleaning.html">
+   Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis in Seaborn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-binary_classification.html">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
+   Regression through the origin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic.html">
+   Logistic regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparable.html">
+   Linear separable models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparableSMF.html">
+   Linear separable models with SMF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_examples.html">
+   Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-pytorch_regression.html">
+   Pytorch by example, linear regression
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/linearModels_FFTs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/bcaffo/ds4bio_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/bcaffo/ds4bio_book/issues/new?title=Issue%20on%20page%20%2FlinearModels_FFTs.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bcaffo/ds4bio_book/master?urlpath=tree/ds4bio/linearModels_FFTs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/bcaffo/ds4bme_intro/blob/master/notebooks/LinearModels_and_FFTs.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="regression-and-ffts">
+<h1>Regression and FFTs<a class="headerlink" href="#regression-and-ffts" title="Permalink to this headline">¶</a></h1>
+<p>Recall regression through the origin. If <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span> are <span class="math notranslate nohighlight">\(n\)</span>-vectors of the same length, the minimizer of
+$<span class="math notranslate nohighlight">\(
+||y - \beta x ||^2
+\)</span><span class="math notranslate nohighlight">\(
+is \)</span>\hat \beta = &lt;x, y&gt; / ||x||^2<span class="math notranslate nohighlight">\(. Note, if \)</span>||x|| = 1<span class="math notranslate nohighlight">\( then the estimate is just \)</span>\hat \beta = &lt;x, y&gt;<span class="math notranslate nohighlight">\(. Now consider a second variable, \)</span>w<span class="math notranslate nohighlight">\(, such that \)</span>&lt;x, w&gt; = 0<span class="math notranslate nohighlight">\( and \)</span>||w|| = 1<span class="math notranslate nohighlight">\(. Consider now the least squares model
+\)</span><span class="math notranslate nohighlight">\(
+||y - \beta x - \gamma w||^2.
+\)</span><span class="math notranslate nohighlight">\(
+We argued that the best estimate for \)</span>\beta<span class="math notranslate nohighlight">\( now first gets rid of \)</span>w<span class="math notranslate nohighlight">\( be regressing it out of \)</span>y<span class="math notranslate nohighlight">\( and \)</span>x<span class="math notranslate nohighlight">\(. So, consider that
+\)</span><span class="math notranslate nohighlight">\(
+||y - &lt;w, y&gt; w - \beta (x - &lt;w, x&gt; w)||^2 =
+||y - &lt;w, y&gt; w - \beta x||^2. 
+\)</span><span class="math notranslate nohighlight">\(
+Thus, now the best estimate of \)</span>\beta<span class="math notranslate nohighlight">\( is
+\)</span><span class="math notranslate nohighlight">\(
+&lt;y - &lt;w, y&gt; w, x&gt; = &lt;y, x&gt;.
+\)</span><span class="math notranslate nohighlight">\(
+Or, in other words, if \)</span>x<span class="math notranslate nohighlight">\( and \)</span>w<span class="math notranslate nohighlight">\( are orthogonal then the coefficient estimate for \)</span>x<span class="math notranslate nohighlight">\( with \)</span>w<span class="math notranslate nohighlight">\( included is the same as the coefficient of \)</span>x$ by itself. This extends to more than two regressors.</p>
+<p>If you have a collection of <span class="math notranslate nohighlight">\(n\)</span> mutually orthogonal vectors of norm one, they are called an orthonormal basis. For an orthonomal basis, 1. the coefficients are just the inner products between the regressors and the outcome and 2. inclusion or exclusion of other elemenents of the basis doesn’t change a basis elements estimated coefficients.</p>
+<p>It’s important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(e^{-2\pi i m k / n}\)</span> for <span class="math notranslate nohighlight">\(m=0,\ldots, n-1\)</span> for a particular value of <span class="math notranslate nohighlight">\(k\)</span>. Vectors like this are orthogonal for different values of <span class="math notranslate nohighlight">\(k\)</span> and all have norm 1. We have already seen that the Fourier coefficient is
+$<span class="math notranslate nohighlight">\(
+f_k = &lt;y, x&gt; = \sum_{m=0}^{n-1} y_m e^{-2\pi i m k / n} = 
+\sum_{m=0}^{n-1} y_m \cos(-2\pi m k / n) + i \sum_{m=0}^{n-1} y_m \sin(-2\pi m k / n) 
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>y_m<span class="math notranslate nohighlight">\( is element \)</span>m<span class="math notranslate nohighlight">\( of \)</span>y<span class="math notranslate nohighlight">\(. Thus, the Fourier coefficients are exactly just least squares coefficients applied in the complex space.  Thus we have that 
+\)</span><span class="math notranslate nohighlight">\(
+f_k = a_k + i b_k
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>a_k<span class="math notranslate nohighlight">\( and \)</span>b_k$ are the coefficients from linear models with just the sine and cosine terms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_716</span><span class="o">/</span><span class="mf">782749274.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;statsmodels&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv&#39;</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Province/State</th>
+      <th>Country/Region</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>1/22/20</th>
+      <th>1/23/20</th>
+      <th>1/24/20</th>
+      <th>1/25/20</th>
+      <th>1/26/20</th>
+      <th>1/27/20</th>
+      <th>1/28/20</th>
+      <th>1/29/20</th>
+      <th>1/30/20</th>
+      <th>1/31/20</th>
+      <th>2/1/20</th>
+      <th>2/2/20</th>
+      <th>2/3/20</th>
+      <th>2/4/20</th>
+      <th>2/5/20</th>
+      <th>2/6/20</th>
+      <th>2/7/20</th>
+      <th>2/8/20</th>
+      <th>2/9/20</th>
+      <th>2/10/20</th>
+      <th>2/11/20</th>
+      <th>2/12/20</th>
+      <th>2/13/20</th>
+      <th>2/14/20</th>
+      <th>2/15/20</th>
+      <th>2/16/20</th>
+      <th>2/17/20</th>
+      <th>2/18/20</th>
+      <th>2/19/20</th>
+      <th>2/20/20</th>
+      <th>2/21/20</th>
+      <th>2/22/20</th>
+      <th>2/23/20</th>
+      <th>2/24/20</th>
+      <th>2/25/20</th>
+      <th>2/26/20</th>
+      <th>...</th>
+      <th>8/19/20</th>
+      <th>8/20/20</th>
+      <th>8/21/20</th>
+      <th>8/22/20</th>
+      <th>8/23/20</th>
+      <th>8/24/20</th>
+      <th>8/25/20</th>
+      <th>8/26/20</th>
+      <th>8/27/20</th>
+      <th>8/28/20</th>
+      <th>8/29/20</th>
+      <th>8/30/20</th>
+      <th>8/31/20</th>
+      <th>9/1/20</th>
+      <th>9/2/20</th>
+      <th>9/3/20</th>
+      <th>9/4/20</th>
+      <th>9/5/20</th>
+      <th>9/6/20</th>
+      <th>9/7/20</th>
+      <th>9/8/20</th>
+      <th>9/9/20</th>
+      <th>9/10/20</th>
+      <th>9/11/20</th>
+      <th>9/12/20</th>
+      <th>9/13/20</th>
+      <th>9/14/20</th>
+      <th>9/15/20</th>
+      <th>9/16/20</th>
+      <th>9/17/20</th>
+      <th>9/18/20</th>
+      <th>9/19/20</th>
+      <th>9/20/20</th>
+      <th>9/21/20</th>
+      <th>9/22/20</th>
+      <th>9/23/20</th>
+      <th>9/24/20</th>
+      <th>9/25/20</th>
+      <th>9/26/20</th>
+      <th>9/27/20</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>Afghanistan</td>
+      <td>33.93911</td>
+      <td>67.709953</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>37599</td>
+      <td>37856</td>
+      <td>37894</td>
+      <td>37953</td>
+      <td>37999</td>
+      <td>38054</td>
+      <td>38070</td>
+      <td>38113</td>
+      <td>38129</td>
+      <td>38140</td>
+      <td>38143</td>
+      <td>38162</td>
+      <td>38165</td>
+      <td>38196</td>
+      <td>38243</td>
+      <td>38288</td>
+      <td>38304</td>
+      <td>38324</td>
+      <td>38398</td>
+      <td>38494</td>
+      <td>38520</td>
+      <td>38544</td>
+      <td>38572</td>
+      <td>38606</td>
+      <td>38641</td>
+      <td>38716</td>
+      <td>38772</td>
+      <td>38815</td>
+      <td>38855</td>
+      <td>38872</td>
+      <td>38883</td>
+      <td>38919</td>
+      <td>39044</td>
+      <td>39074</td>
+      <td>39096</td>
+      <td>39145</td>
+      <td>39170</td>
+      <td>39186</td>
+      <td>39192</td>
+      <td>39227</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>41.15330</td>
+      <td>20.168300</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7812</td>
+      <td>7967</td>
+      <td>8119</td>
+      <td>8275</td>
+      <td>8427</td>
+      <td>8605</td>
+      <td>8759</td>
+      <td>8927</td>
+      <td>9083</td>
+      <td>9195</td>
+      <td>9279</td>
+      <td>9380</td>
+      <td>9513</td>
+      <td>9606</td>
+      <td>9728</td>
+      <td>9844</td>
+      <td>9967</td>
+      <td>10102</td>
+      <td>10255</td>
+      <td>10406</td>
+      <td>10553</td>
+      <td>10704</td>
+      <td>10860</td>
+      <td>11021</td>
+      <td>11185</td>
+      <td>11353</td>
+      <td>11520</td>
+      <td>11672</td>
+      <td>11816</td>
+      <td>11948</td>
+      <td>12073</td>
+      <td>12226</td>
+      <td>12385</td>
+      <td>12535</td>
+      <td>12666</td>
+      <td>12787</td>
+      <td>12921</td>
+      <td>13045</td>
+      <td>13153</td>
+      <td>13259</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>Algeria</td>
+      <td>28.03390</td>
+      <td>1.659600</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>39847</td>
+      <td>40258</td>
+      <td>40667</td>
+      <td>41068</td>
+      <td>41460</td>
+      <td>41858</td>
+      <td>42228</td>
+      <td>42619</td>
+      <td>43016</td>
+      <td>43403</td>
+      <td>43781</td>
+      <td>44146</td>
+      <td>44494</td>
+      <td>44833</td>
+      <td>45158</td>
+      <td>45469</td>
+      <td>45773</td>
+      <td>46071</td>
+      <td>46364</td>
+      <td>46653</td>
+      <td>46938</td>
+      <td>47216</td>
+      <td>47488</td>
+      <td>47752</td>
+      <td>48007</td>
+      <td>48254</td>
+      <td>48496</td>
+      <td>48734</td>
+      <td>48966</td>
+      <td>49194</td>
+      <td>49413</td>
+      <td>49623</td>
+      <td>49826</td>
+      <td>50023</td>
+      <td>50214</td>
+      <td>50400</td>
+      <td>50579</td>
+      <td>50754</td>
+      <td>50914</td>
+      <td>51067</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>42.50630</td>
+      <td>1.521800</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1024</td>
+      <td>1024</td>
+      <td>1045</td>
+      <td>1045</td>
+      <td>1045</td>
+      <td>1060</td>
+      <td>1060</td>
+      <td>1098</td>
+      <td>1098</td>
+      <td>1124</td>
+      <td>1124</td>
+      <td>1124</td>
+      <td>1176</td>
+      <td>1184</td>
+      <td>1199</td>
+      <td>1199</td>
+      <td>1215</td>
+      <td>1215</td>
+      <td>1215</td>
+      <td>1261</td>
+      <td>1261</td>
+      <td>1301</td>
+      <td>1301</td>
+      <td>1344</td>
+      <td>1344</td>
+      <td>1344</td>
+      <td>1438</td>
+      <td>1438</td>
+      <td>1483</td>
+      <td>1483</td>
+      <td>1564</td>
+      <td>1564</td>
+      <td>1564</td>
+      <td>1681</td>
+      <td>1681</td>
+      <td>1753</td>
+      <td>1753</td>
+      <td>1836</td>
+      <td>1836</td>
+      <td>1836</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>Angola</td>
+      <td>-11.20270</td>
+      <td>17.873900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>2015</td>
+      <td>2044</td>
+      <td>2068</td>
+      <td>2134</td>
+      <td>2171</td>
+      <td>2222</td>
+      <td>2283</td>
+      <td>2332</td>
+      <td>2415</td>
+      <td>2471</td>
+      <td>2551</td>
+      <td>2624</td>
+      <td>2654</td>
+      <td>2729</td>
+      <td>2777</td>
+      <td>2805</td>
+      <td>2876</td>
+      <td>2935</td>
+      <td>2965</td>
+      <td>2981</td>
+      <td>3033</td>
+      <td>3092</td>
+      <td>3217</td>
+      <td>3279</td>
+      <td>3335</td>
+      <td>3388</td>
+      <td>3439</td>
+      <td>3569</td>
+      <td>3675</td>
+      <td>3789</td>
+      <td>3848</td>
+      <td>3901</td>
+      <td>3991</td>
+      <td>4117</td>
+      <td>4236</td>
+      <td>4363</td>
+      <td>4475</td>
+      <td>4590</td>
+      <td>4672</td>
+      <td>4718</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 254 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)</span>
+<span class="c1">## Like an idiot, I&#39;m using x in a different sense here than in the text, which I figured out well after I had done everything</span>
+<span class="n">x</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;Country/Region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Italy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;Province/State&quot;</span><span class="p">,</span> <span class="s2">&quot;Country/Region&quot;</span><span class="p">,</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="s2">&quot;Long&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="c1">## convert from tuple to array</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+<span class="c1">## get case counts instead of cumulative counts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="c1">## get the first non zero entry</span>
+<span class="n">x</span> <span class="o">=</span>  <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span>  <span class="mi">0</span><span class="p">))</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a54a05c0&gt;]
+</pre></div>
+</div>
+<img alt="_images/linearModels_FFTs_4_1.png" src="_images/linearModels_FFTs_4_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">lowess</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">nonparametric</span><span class="o">.</span><span class="n">lowess</span>
+<span class="n">xhat</span> <span class="o">=</span> <span class="n">lowess</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span><span class="n">return_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xhat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a55bbd68&gt;]
+</pre></div>
+</div>
+<img alt="_images/linearModels_FFTs_5_1.png" src="_images/linearModels_FFTs_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## We&#39;re interested in the residual</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">xhat</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a9403780&gt;]
+</pre></div>
+</div>
+<img alt="_images/linearModels_FFTs_6_1.png" src="_images/linearModels_FFTs_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Create 4 elements</span>
+<span class="c1">## Orthonormal basis (note dividing by sqrt(n/2) makes them norm 1)</span>
+<span class="n">c5</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="n">n</span>  <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">c20</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">s5</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">5</span>  <span class="o">/</span> <span class="n">n</span>  <span class="p">)</span><span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">s20</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">/</span> <span class="n">n</span>  <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Verify that they are orthonormal mean 0</span>
+<span class="p">[</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">c5</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c20</span> <span class="o">*</span> <span class="n">c20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span> <span class="o">*</span> <span class="n">s5</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s20</span> <span class="o">*</span> <span class="n">s20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">s5</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">s20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">c20</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span> <span class="o">*</span> <span class="n">s20</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.992007221626409e-16,
+ -6.800116025829084e-16,
+ -2.220446049250313e-16,
+ 8.278100427361323e-15,
+ 0.9999999999999998,
+ 1.0000000000000002,
+ 1.0,
+ 0.9999999999999997,
+ -3.447762908503904e-17,
+ 6.938893903907228e-17,
+ 3.5041414214731503e-16,
+ -5.574967570920464e-16]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> 
+<span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">imag</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a53b8358&gt;]
+</pre></div>
+</div>
+<img alt="_images/linearModels_FFTs_9_1.png" src="_images/linearModels_FFTs_9_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c20</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s20</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7023.0638714666065,
+ 3129.666929693342,
+ -2734.541573653142,
+ -1381.5328656452866]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sreg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">c5</span><span class="p">,</span> <span class="n">c20</span><span class="p">,</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s20</span><span class="p">]</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fit</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147,  3129.66692969, -2734.54157365, -1381.53286565])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">c5</span><span class="p">,</span> <span class="n">s5</span><span class="p">]</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fit</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147, -2734.54157365])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">real</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">)</span> 
+<span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">real</span><span class="p">[</span><span class="n">test</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">test</span><span class="p">],</span> <span class="mi">5</span> <span class="o">/</span> <span class="n">n</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([115, 125]),),
+ array([7023.06387147, 7023.06387147]),
+ array([-0.02074689,  0.02074689]),
+ 0.02074688796680498]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">.</span><span class="n">imag</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2734.54157365, -2734.54157365])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="regression_examples.html" title="previous page">Linear models: a classic example</a>
+    <a class='right-next' id="next-link" href="09-pytorch_regression.html" title="next page">Pytorch by example, linear regression</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Brian Caffo<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

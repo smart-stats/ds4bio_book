@@ -15,6 +15,7 @@ chapters:
   - file: regression_through_the_origin.ipynb
   - file: 08-regression.ipynb
   - file: logistic.ipynb
+  - file: ml.ipynb
   - file: linearSeparable.ipynb
   - file: linearSeparableSMF.ipynb
   - file: regression_examples.ipynb

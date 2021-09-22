@@ -3,17 +3,13 @@
 
 # # Continuous prediction with regression
 # 
-# The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  $\sum_{i=1}^n (Y_i - \hat \mu_i)^2.$
+# Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  $\sum_{i=1}^n (Y_i - \hat \mu_i)^2.$
 # 
 # If we were to dived this by $n$, it would be the average of the squared errors, or the *mean squared error* (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.  
 # 
-# What's left is to figure out how to come up with $\hat \mu_i$, our predictions for the observation $Y_i$. 
+# What's left is to figure out how to come up with $\hat \mu_i$, our predictions for the observation $Y_i$. We previously considered just a rescaled version of $X$, our predictor, using regression through the origin. In this module, we'll try a slightly more complex model that includes a location (intercept) shift and a scale factor (slope). The consequence will be to fit the best line, in a certain sense, through our $X$, $Y$ paired data.
 # 
-# Consider the previous lecture's example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values. For 
-# 
-# 
-# 
-# 
+# To tie ourselves down with an example, consider the previous lecture's example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values. 
 
 # In[1]:
 

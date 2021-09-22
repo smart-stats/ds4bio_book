@@ -308,14 +308,16 @@ P(Y_i = 1 ~|~ X_i)
 <p>As for getting the probabilities from <span class="math notranslate nohighlight">\([0,1]\)</span> to <span class="math notranslate nohighlight">\((-\infty, \infty)\)</span>, we need a function, preferably a monotonic one. The generally agreed upon choice is the logit (natural log of the odds) function. The logit function of a probability is defined as</p>
 <div class="math notranslate nohighlight">
 \[
-\eta = \mathrm{logit}(p) = \log\{p / (1 - p\}
+\eta = \mathrm{logit}(p) = \log\{p / (1 - p)\}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(p\)</span> is the probability and <span class="math notranslate nohighlight">\(O = p/(1-p)\)</span> is called the <strong>odds</strong>. Note, you can go backwards from odds to probability with the function <span class="math notranslate nohighlight">\(p = O / (1 + O)\)</span>. Odds are exactly as used in gambling. If the odds of bet at 1 to 99, then you are saying the probability is <span class="math notranslate nohighlight">\(1 / (99 + 1) = 1\%\)</span>.</p>
-<p>You can go backwards from the logit function to the probability with the expit function. That is, if <span class="math notranslate nohighlight">\(\eta\)</span> is defined as above, then
-$<span class="math notranslate nohighlight">\(
+<p>Why use odds? There’s a couple of reasons why odds are uniquely interprettable. First, there are specific study designs where odds make more sense than probabilities, particularly retrospective ones. Secondly, odds are unique in binomial models where they work out to be particularly tractible to work with. Finally, odds have a unique gambling interpretation. That is, it gives the ratio of a  one dollar risk to the return in a fair bet. (A fair bet is where the expected return is 0.) So, when a horse track gives the odds on a horse to be 99 to 1, they are saying that you would get $99 dollars if you bet one dollar and the horse won. This is an implied probability of 99 / (99 + 1) = 99% that the horse loses and 1% probability that the horse wins. Note they don’t usually express it as a fraction, they usually espress it as value to 1 or 1 to value. So they would say 99 to 1 (odds against) or 1 to 99 (odds for) so you can easily see how much you’d win for a dollar bet.</p>
+<p>You can go backwards from the logit function to the probability with the expit function. That is, if <span class="math notranslate nohighlight">\(\eta\)</span> is defined as above, then</p>
+<div class="math notranslate nohighlight">
+\[
 p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
-\)</span>$
-This is sometimes called the <strong>expit</strong> function or <strong>sigmoid</strong>.</p>
+\]</div>
+<p>This is sometimes called the <strong>expit</strong> function or <strong>sigmoid</strong>.</p>
 <p>We model the log of the odds as linear. This is called <strong>logistic regression</strong>.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -323,17 +325,19 @@ This is sometimes called the <strong>expit</strong> function or <strong>sigmoid<
 = \beta_0 + \beta_1 X.
 \]</div>
 <p>The nice part about this model is that <span class="math notranslate nohighlight">\(e^\beta_1\)</span> has the nice interpretation of the odds ratio associated with a one unit change in <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p>This is great, but we still need a function of the probabilities to optimize. We’ll use the <strong>cross entropy</strong>.
-$<span class="math notranslate nohighlight">\(
+<p>This is great, but we still need a function of the probabilities to optimize. We’ll use the <strong>cross entropy</strong>.</p>
+<div class="math notranslate nohighlight">
+\[
 -\sum_{i=1}^n \left[Y_i \log\{P(Y_i = 1 ~|~ X_i)\} + (1 - Y_i) \log\{1 - P(Y_i = 1 ~|~ X_i)\}\right].
-\)</span><span class="math notranslate nohighlight">\(
-This function has the interpretation of being the negative of the log of the probabilities assuming the \)</span>Y_i$ are independent. This model doesn’t have to hold for the minimization to be useful.</p>
-<p>Plugging our logit model in, the cross entropy now looks like
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>This function has the interpretation of being the negative of the log of the probabilities assuming the <span class="math notranslate nohighlight">\(Y_i\)</span> are independent. This model doesn’t have to hold for the minimization to be useful.</p>
+<p>Plugging our logit model in, the cross entropy now looks like</p>
+<div class="math notranslate nohighlight">
+\[
 -\sum_{i=1}^n \left[
   Y_i \eta_i + \log\left\{\frac{1}{1 + e^\eta_i} \right\} \right].
-\)</span>$
-This is the function that we minimize to perform logistic regression. Later on, we’ll worry about minimizing this function. However, today, let’s fit logistic regression to some data.</p>
+\]</div>
+<p>This is the function that we minimize to perform logistic regression. Later on, we’ll worry about how to minimize this function. However, today, let’s fit logistic regression to some data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -402,7 +406,7 @@ This is the function that we minimize to perform logistic regression. Later on, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.3611395897397296, 2.009191393522844]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.623799299169886, 2.226603899169934]
 </pre></div>
 </div>
 </div>
@@ -454,7 +458,7 @@ This is the function that we minimize to perform logistic regression. Later on, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.704, 0.533, 0.917])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.633, 0.562, 0.714])
 </pre></div>
 </div>
 </div>

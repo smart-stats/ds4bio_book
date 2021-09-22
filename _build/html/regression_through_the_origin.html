@@ -291,13 +291,21 @@ l = \sum_i ( Y_i - \beta X_i)^2 = || Y - \beta X||^2.
 <p>Taking a derivative of <span class="math notranslate nohighlight">\(l\)</span> with respect to <span class="math notranslate nohighlight">\(\beta\)</span> yields</p>
 <div class="math notranslate nohighlight">
 \[
-l' = \sum_i 2 (Y_i - \beta X_i) X_i.
+l' = - \sum_i 2 (Y_i - \beta X_i) X_i.
 \]</div>
 <p>If we set this equal to zero and solve for beta we obtain the classic solution:</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}
+\[S
+\frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}.
 \]</div>
+<p>Note further, if we take a second derivative we get</p>
+<div class="math notranslate nohighlight">
+\[
+l'' = \sum_i 2 x_i^2  
+\]</div>
+<p>which is strictly positive unless all of the <span class="math notranslate nohighlight">\(x_i\)</span> are zero (a case of zero variation in the predictor where regresssion is uninteresting). Regression through the origin is a very useful version of regression, but it’s quite limited in its application. Rarely do we want to fit a line that is forced to go through the origin, or stated equivalently, rarely do we want a prediction algorithm for
+<span class="math notranslate nohighlight">\(Y\)</span> that is simply a scale change of <span class="math notranslate nohighlight">\(X\)</span>. Typically, we at least also want an intercept. In the example that follows, we’ll address this by centering the data so that the origin is the mean of the <span class="math notranslate nohighlight">\(Y\)</span> and the mean of the <span class="math notranslate nohighlight">\(X\)</span>. As it turns out, this is the same as fitting the intercept, but we’ll do that more formally in the next section.</p>
+<p>First let’s load the necessary packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -307,6 +315,7 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </div>
 </div>
 </div>
+<p>Now let’s download and read in the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
@@ -433,6 +442,7 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </table>
 </div></div></div>
 </div>
+<p>It’s almost always a good idea to plot the data before fitting the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">T2</span>
@@ -442,12 +452,13 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d6d258580&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d19e6a490&gt;]
 </pre></div>
 </div>
-<img alt="_images/regression_through_the_origin_4_1.png" src="_images/regression_through_the_origin_4_1.png" />
+<img alt="_images/regression_through_the_origin_6_1.png" src="_images/regression_through_the_origin_6_1.png" />
 </div>
 </div>
+<p>Now, let’s center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span>, is right at (0, 0).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -457,12 +468,13 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d6c9fdfd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d1960cf40&gt;]
 </pre></div>
 </div>
-<img alt="_images/regression_through_the_origin_5_1.png" src="_images/regression_through_the_origin_5_1.png" />
+<img alt="_images/regression_through_the_origin_8_1.png" src="_images/regression_through_the_origin_8_1.png" />
 </div>
 </div>
+<p>Here’s our slope estimate according to our formula.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="p">)</span>
@@ -476,6 +488,7 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </div>
 </div>
 </div>
+<p>Let’s plot it so to see how it did. It looks good. Now let’s see if we can do a line that doesn’t necessarily have to go through the origin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
@@ -485,10 +498,10 @@ l' = \sum_i 2 (Y_i - \beta X_i) X_i.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d6c976ca0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5d19586d30&gt;]
 </pre></div>
 </div>
-<img alt="_images/regression_through_the_origin_7_1.png" src="_images/regression_through_the_origin_7_1.png" />
+<img alt="_images/regression_through_the_origin_12_1.png" src="_images/regression_through_the_origin_12_1.png" />
 </div>
 </div>
 </div>

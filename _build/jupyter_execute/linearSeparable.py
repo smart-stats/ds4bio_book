@@ -40,12 +40,6 @@
 
 # Let's look at the voxel-level data that we've been working with. First let's load the data.
 
-# In[ ]:
-
-
-
-
-
 # In[1]:
 
 

@@ -19,15 +19,19 @@
 # As for getting the probabilities from $[0,1]$ to $(-\infty, \infty)$, we need a function, preferably a monotonic one. The generally agreed upon choice is the logit (natural log of the odds) function. The logit function of a probability is defined as
 # 
 # $$
-# \eta = \mathrm{logit}(p) = \log\{p / (1 - p\}
+# \eta = \mathrm{logit}(p) = \log\{p / (1 - p)\}
 # $$
 # 
 # where $p$ is the probability and $O = p/(1-p)$ is called the **odds**. Note, you can go backwards from odds to probability with the function $p = O / (1 + O)$. Odds are exactly as used in gambling. If the odds of bet at 1 to 99, then you are saying the probability is $1 / (99 + 1) = 1\%$. 
 # 
+# Why use odds? There's a couple of reasons why odds are uniquely interprettable. First, there are specific study designs where odds make more sense than probabilities, particularly retrospective ones. Secondly, odds are unique in binomial models where they work out to be particularly tractible to work with. Finally, odds have a unique gambling interpretation. That is, it gives the ratio of a  one dollar risk to the return in a fair bet. (A fair bet is where the expected return is 0.) So, when a horse track gives the odds on a horse to be 99 to 1, they are saying that you would get $99 dollars if you bet one dollar and the horse won. This is an implied probability of 99 / (99 + 1) = 99% that the horse loses and 1% probability that the horse wins. Note they don't usually express it as a fraction, they usually espress it as value to 1 or 1 to value. So they would say 99 to 1 (odds against) or 1 to 99 (odds for) so you can easily see how much you'd win for a dollar bet. 
+# 
 # You can go backwards from the logit function to the probability with the expit function. That is, if $\eta$ is defined as above, then
+# 
 # $$
 # p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 # $$
+# 
 # This is sometimes called the **expit** function or **sigmoid**.
 # 
 # 
@@ -41,17 +45,21 @@
 # The nice part about this model is that $e^\beta_1$ has the nice interpretation of the odds ratio associated with a one unit change in $X$.
 # 
 # This is great, but we still need a function of the probabilities to optimize. We'll use the **cross entropy**. 
+# 
 # $$
 # -\sum_{i=1}^n \left[Y_i \log\{P(Y_i = 1 ~|~ X_i)\} + (1 - Y_i) \log\{1 - P(Y_i = 1 ~|~ X_i)\}\right].
 # $$
+# 
 # This function has the interpretation of being the negative of the log of the probabilities assuming the $Y_i$ are independent. This model doesn't have to hold for the minimization to be useful. 
 # 
 # Plugging our logit model in, the cross entropy now looks like
+# 
 # $$
 # -\sum_{i=1}^n \left[
 #   Y_i \eta_i + \log\left\{\frac{1}{1 + e^\eta_i} \right\} \right].
 # $$
-# This is the function that we minimize to perform logistic regression. Later on, we'll worry about minimizing this function. However, today, let's fit logistic regression to some data.
+# 
+# This is the function that we minimize to perform logistic regression. Later on, we'll worry about how to minimize this function. However, today, let's fit logistic regression to some data.
 # 
 
 # In[1]:

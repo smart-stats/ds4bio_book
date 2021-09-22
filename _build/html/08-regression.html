@@ -295,10 +295,10 @@
                 
   <div class="section" id="continuous-prediction-with-regression">
 <h1>Continuous prediction with regression<a class="headerlink" href="#continuous-prediction-with-regression" title="Permalink to this headline">¶</a></h1>
-<p>The last time we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
+<p>Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
 <p>If we were to dived this by <span class="math notranslate nohighlight">\(n\)</span>, it would be the average of the squared errors, or the <em>mean squared error</em> (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.</p>
-<p>What’s left is to figure out how to come up with <span class="math notranslate nohighlight">\(\hat \mu_i\)</span>, our predictions for the observation <span class="math notranslate nohighlight">\(Y_i\)</span>.</p>
-<p>Consider the previous lecture’s example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values. For</p>
+<p>What’s left is to figure out how to come up with <span class="math notranslate nohighlight">\(\hat \mu_i\)</span>, our predictions for the observation <span class="math notranslate nohighlight">\(Y_i\)</span>. We previously considered just a rescaled version of <span class="math notranslate nohighlight">\(X\)</span>, our predictor, using regression through the origin. In this module, we’ll try a slightly more complex model that includes a location (intercept) shift and a scale factor (slope). The consequence will be to fit the best line, in a certain sense, through our <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> paired data.</p>
+<p>To tie ourselves down with an example, consider the previous lecture’s example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -426,7 +426,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7ff2585ca6a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fa09c477520&gt;
 </pre></div>
 </div>
 <img alt="_images/08-regression_3_1.png" src="_images/08-regression_3_1.png" />
@@ -494,7 +494,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.3353306134156803, 0.7533578816150961]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.3320777767428524, 0.8291377443803011]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -517,7 +517,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7533578816150958, intercept=0.33533061341568043, rvalue=0.7724639538468983, pvalue=4.813816340470158e-16, stderr=0.0724895648848394, intercept_stderr=0.06786686734366668)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.8291377443803012, intercept=0.3320777767428522, rvalue=0.8117298880795079, pvalue=5.199691883206303e-18, stderr=0.07130230072002239, intercept_stderr=0.0625745098937513)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -548,7 +548,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.21509246685056851, 0.09434088115878002]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.18316419697628258, 0.1980694555577968]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.

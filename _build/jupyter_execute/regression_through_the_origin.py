@@ -19,8 +19,8 @@
 # 
 # If we set this equal to zero and solve for beta we obtain the classic solution:
 # 
-# $$S
-# \frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{<Y, X>}{||X||^2}.
+# $$
+# \hat \beta = \frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{<Y, X>}{||X||^2}.
 # $$
 # 
 # Note further, if we take a second derivative we get

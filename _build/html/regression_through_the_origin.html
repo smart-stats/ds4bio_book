@@ -160,7 +160,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearSeparableSMF.html">
-   Linear separable models with SMF
+   Interpretation of linear regression coefficients.
   </a>
  </li>
  <li class="toctree-l1">
@@ -300,8 +300,8 @@ l' = - \sum_i 2 (Y_i - \beta X_i) X_i.
 \]</div>
 <p>If we set this equal to zero and solve for beta we obtain the classic solution:</p>
 <div class="math notranslate nohighlight">
-\[S
-\frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}.
+\[
+\hat \beta = \frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}.
 \]</div>
 <p>Note further, if we take a second derivative we get</p>
 <div class="math notranslate nohighlight">
@@ -457,7 +457,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f888d3c7550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f62348d8460&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_6_1.png" src="_images/regression_through_the_origin_6_1.png" />
@@ -473,7 +473,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f888cafb100&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f623400a040&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_8_1.png" src="_images/regression_through_the_origin_8_1.png" />
@@ -503,7 +503,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f888cae4df0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6233ff3d60&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_12_1.png" src="_images/regression_through_the_origin_12_1.png" />

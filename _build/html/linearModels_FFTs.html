@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Pytorch by example, linear regression" href="09-pytorch_regression.html" />
-    <link rel="prev" title="Linear models: a classic example" href="regression_examples.html" />
+    <link rel="prev" title="Regression interpretation" href="regression_interpretation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -166,6 +166,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -372,7 +377,6 @@ f_k = a_k + i b_k
       <th>1/26/20</th>
       <th>1/27/20</th>
       <th>...</th>
-      <th>9/13/21</th>
       <th>9/14/21</th>
       <th>9/15/21</th>
       <th>9/16/21</th>
@@ -382,6 +386,7 @@ f_k = a_k + i b_k
       <th>9/20/21</th>
       <th>9/21/21</th>
       <th>9/22/21</th>
+      <th>9/23/21</th>
     </tr>
   </thead>
   <tbody>
@@ -398,7 +403,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>154094</td>
       <td>154180</td>
       <td>154283</td>
       <td>154361</td>
@@ -408,6 +412,7 @@ f_k = a_k + i b_k
       <td>154585</td>
       <td>154712</td>
       <td>154757</td>
+      <td>154800</td>
     </tr>
     <tr>
       <th>1</th>
@@ -422,7 +427,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>157436</td>
       <td>158431</td>
       <td>159423</td>
       <td>160365</td>
@@ -432,6 +436,7 @@ f_k = a_k + i b_k
       <td>163404</td>
       <td>164276</td>
       <td>165096</td>
+      <td>165864</td>
     </tr>
     <tr>
       <th>2</th>
@@ -446,7 +451,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>200301</td>
       <td>200528</td>
       <td>200770</td>
       <td>200989</td>
@@ -456,6 +460,7 @@ f_k = a_k + i b_k
       <td>201766</td>
       <td>201948</td>
       <td>202122</td>
+      <td>202283</td>
     </tr>
     <tr>
       <th>3</th>
@@ -470,7 +475,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>15096</td>
       <td>15099</td>
       <td>15108</td>
       <td>15113</td>
@@ -480,6 +484,7 @@ f_k = a_k + i b_k
       <td>15140</td>
       <td>15140</td>
       <td>15153</td>
+      <td>15156</td>
     </tr>
     <tr>
       <th>4</th>
@@ -494,7 +499,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>50738</td>
       <td>51047</td>
       <td>51407</td>
       <td>51827</td>
@@ -504,10 +508,11 @@ f_k = a_k + i b_k
       <td>52644</td>
       <td>52968</td>
       <td>53387</td>
+      <td>53840</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 614 columns</p>
+<p>5 rows × 615 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -525,7 +530,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc5f543910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e1bba880&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_4_1.png" src="_images/linearModels_FFTs_4_1.png" />
@@ -544,7 +549,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc5ece3040&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e13590d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_6_1.png" src="_images/linearModels_FFTs_6_1.png" />
@@ -559,7 +564,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc5ec46b80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e12be9d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_7_1.png" src="_images/linearModels_FFTs_7_1.png" />
@@ -614,18 +619,18 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.7763568394002505e-15,
- -4.163336342344337e-16,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.220446049250313e-15,
+ 5.551115123125783e-17,
  0.0,
- -6.689093723366568e-15,
- 1.0,
+ -5.273559366969494e-16,
  1.0,
  1.0000000000000002,
- 1.0000000000000004,
- -1.3877787807814457e-17,
- 2.706168622523819e-16,
- -2.3071822230491534e-16,
- 1.6046192152785466e-16]
+ 1.0,
+ 1.0,
+ -6.245004513516506e-17,
+ 2.5326962749261384e-16,
+ -4.2327252813834093e-16,
+ 2.47198095326695e-16]
 </pre></div>
 </div>
 </div>
@@ -642,7 +647,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdc5ea85250&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e10fa2b0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_12_1.png" src="_images/linearModels_FFTs_12_1.png" />
@@ -660,10 +665,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-122321.23192612399,
- -19854.09302843738,
- -90543.46016843051,
- -5434.237738349892]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-119930.24270617244,
+ -17397.06673835203,
+ -92556.047490262,
+ -7057.0467861115885]
 </pre></div>
 </div>
 </div>
@@ -678,8 +683,8 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1117970.80294121,   -27509.77870307,  -170414.50540574,
-           7914.53113058])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1116634.63215756,   -23715.34055318,  -200526.34415318,
+           6563.35318005])
 </pre></div>
 </div>
 </div>
@@ -693,7 +698,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1117970.80294121,  -170414.50540574])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1116634.63215756,  -200526.34415318])
 </pre></div>
 </div>
 </div>
@@ -709,7 +714,7 @@ f_k = a_k + i b_k
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([], dtype=int64),),
  array([], dtype=float64),
  array([], dtype=float64),
- 0.008319467554076539]
+ 0.008305647840531562]
 </pre></div>
 </div>
 </div>
@@ -753,7 +758,7 @@ f_k = a_k + i b_k
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="regression_examples.html" title="previous page">Linear models: a classic example</a>
+    <a class='left-prev' id="prev-link" href="regression_interpretation.html" title="previous page">Regression interpretation</a>
     <a class='right-next' id="next-link" href="09-pytorch_regression.html" title="next page">Pytorch by example, linear regression</a>
 
         </div>

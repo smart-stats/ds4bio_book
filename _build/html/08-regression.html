@@ -160,12 +160,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearSeparableSMF.html">
-   Linear separable models with SMF
+   Interpretation of linear regression coefficients.
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1">
@@ -431,7 +436,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f385c1225e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f5c0c5617c0&gt;
 </pre></div>
 </div>
 <img alt="_images/08-regression_3_1.png" src="_images/08-regression_3_1.png" />
@@ -499,7 +504,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.2804790559676378, 0.7802565680958952]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.3153918867076003, 0.7754319762770973]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -522,7 +527,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7802565680958949, intercept=0.2804790559676378, rvalue=0.8366574114011271, pvalue=3.074319803836381e-20, stderr=0.06062118074291994, intercept_stderr=0.058451412157440555)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7754319762770969, intercept=0.31539188670760043, rvalue=0.7974907342608865, pvalue=3.998481052663588e-16, stderr=0.0722107527022834, intercept_stderr=0.07046795028512932)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -553,7 +558,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.16638278976674598, 0.23740601281294282]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.21230190161189014, 0.12506358318725072]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.

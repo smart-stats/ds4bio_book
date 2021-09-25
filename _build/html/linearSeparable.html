@@ -54,7 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Linear separable models with SMF" href="linearSeparableSMF.html" />
+    <link rel="next" title="Interpretation of linear regression coefficients." href="linearSeparableSMF.html" />
     <link rel="prev" title="Maximum Likelihood" href="ml.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -160,12 +160,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearSeparableSMF.html">
-   Linear separable models with SMF
+   Interpretation of linear regression coefficients.
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1">
@@ -333,46 +338,20 @@
 <p>Let’s look at the voxel-level data that we’ve been working with. First let’s load the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import sklearn.linear_model as lm
-import sklearn as skl
-import statsmodels.formula.api as smf
-import statsmodels as sm
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">skl</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">statsmodels</span> <span class="k">as</span> <span class="nn">sm</span>
 
-## this sets some style parameters
-sns.set()
+<span class="c1">## this sets some style parameters</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
-## Download in the data if it&#39;s not already there
-! if [ ! -e oasis.csv ]; \
-then wget https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv; \
-fi;
-
-## Read in the data and display a few rows
-dat = pd.read_csv(&quot;oasis.csv&quot;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-09-22 19:56:06--  https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
-Length: 22274 (22K) [text/plain]
-Saving to: ‘oasis.csv’
-
-
-oasis.csv             0%[                    ]       0  --.-KB/s               
-oasis.csv           100%[===================&gt;]  21.75K  --.-KB/s    in 0.008s  
-
-2021-09-22 19:56:06 (2.55 MB/s) - ‘oasis.csv’ saved [22274/22274]
+<span class="c1">## Read in the data</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -399,29 +378,29 @@ oasis.csv           100%[===================&gt;]  21.75K  --.-KB/s    in 0.008s
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.784   
-Dependent Variable: PD               AIC:                66.9299 
-Date:               2021-09-22 19:56 BIC:                85.4698 
-No. Observations:   75               Log-Likelihood:     -25.465 
-Df Model:           7                F-statistic:        39.31   
-Df Residuals:       67               Prob (F-statistic): 2.48e-21
-R-squared:          0.804            Scale:              0.12925 
+Model:              OLS              Adj. R-squared:     0.714   
+Dependent Variable: PD               AIC:                80.4812 
+Date:               2021-09-24 20:59 BIC:                99.0211 
+No. Observations:   75               Log-Likelihood:     -32.241 
+Df Model:           7                F-statistic:        27.39   
+Df Residuals:       67               Prob (F-statistic): 2.38e-17
+R-squared:          0.741            Scale:              0.15484 
 ------------------------------------------------------------------
                Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept      0.1995    0.1396   1.4290  0.1577  -0.0792   0.4782
-FLAIR          0.0018    0.0909   0.0194  0.9846  -0.1796   0.1831
-T1            -0.2478    0.0986  -2.5144  0.0143  -0.4446  -0.0511
-T2             0.6053    0.0968   6.2515  0.0000   0.4121   0.7986
-FLAIR_10      -0.2391    0.3260  -0.7334  0.4659  -0.8899   0.4117
-T1_10          0.3112    0.1932   1.6108  0.1119  -0.0744   0.6967
-T2_10          0.0495    0.2910   0.1702  0.8654  -0.5312   0.6303
-FLAIR_20       2.0178    0.6979   2.8912  0.0052   0.6248   3.4109
+Intercept      0.2616    0.1526   1.7142  0.0911  -0.0430   0.5662
+FLAIR         -0.0396    0.0974  -0.4062  0.6859  -0.2340   0.1548
+T1            -0.1791    0.0890  -2.0125  0.0482  -0.3568  -0.0015
+T2             0.6783    0.0947   7.1600  0.0000   0.4892   0.8674
+FLAIR_10      -0.2368    0.3753  -0.6309  0.5302  -0.9859   0.5123
+T1_10          0.1425    0.1771   0.8049  0.4237  -0.2109   0.4960
+T2_10          0.0915    0.3269   0.2798  0.7805  -0.5611   0.7440
+FLAIR_20       1.8368    0.7604   2.4156  0.0184   0.3190   3.3545
 -----------------------------------------------------------------
-Omnibus:              1.265        Durbin-Watson:           2.000
-Prob(Omnibus):        0.531        Jarque-Bera (JB):        0.685
-Skew:                 0.167        Prob(JB):                0.710
-Kurtosis:             3.327        Condition No.:           38   
+Omnibus:               1.120        Durbin-Watson:          2.363
+Prob(Omnibus):         0.571        Jarque-Bera (JB):       0.625
+Skew:                  -0.194       Prob(JB):               0.732
+Kurtosis:              3.222        Condition No.:          39   
 =================================================================
 </pre></div>
 </div>
@@ -456,7 +435,7 @@ Kurtosis:             3.327        Condition No.:           38
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.245666
+         Current function value: 0.240651
          Iterations 8
 </pre></div>
 </div>
@@ -481,16 +460,16 @@ Kurtosis:             3.327        Condition No.:           38
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 22 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6452</td>  
+  <th>Date:</th>            <td>Fri, 24 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6528</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>19:56:06</td>     <th>  Log-Likelihood:    </th> <td> -18.425</td> 
+  <th>Time:</th>                <td>20:59:59</td>     <th>  Log-Likelihood:    </th> <td> -18.049</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.926</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>5.948e-12</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>3.993e-12</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -498,28 +477,28 @@ Kurtosis:             3.327        Condition No.:           38
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>   -6.2474</td> <td>    2.210</td> <td>   -2.827</td> <td> 0.005</td> <td>  -10.578</td> <td>   -1.917</td>
+  <th>const</th>    <td>   -4.8969</td> <td>    1.928</td> <td>   -2.540</td> <td> 0.011</td> <td>   -8.676</td> <td>   -1.118</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    3.2947</td> <td>    1.379</td> <td>    2.390</td> <td> 0.017</td> <td>    0.593</td> <td>    5.997</td>
+  <th>FLAIR</th>    <td>    2.3828</td> <td>    1.186</td> <td>    2.008</td> <td> 0.045</td> <td>    0.057</td> <td>    4.708</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    2.1040</td> <td>    1.082</td> <td>    1.944</td> <td> 0.052</td> <td>   -0.017</td> <td>    4.225</td>
+  <th>T1</th>       <td>    2.4417</td> <td>    1.107</td> <td>    2.206</td> <td> 0.027</td> <td>    0.272</td> <td>    4.611</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    1.4139</td> <td>    0.990</td> <td>    1.428</td> <td> 0.153</td> <td>   -0.527</td> <td>    3.355</td>
+  <th>T2</th>       <td>    1.4010</td> <td>    1.109</td> <td>    1.264</td> <td> 0.206</td> <td>   -0.772</td> <td>    3.574</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>    8.3876</td> <td>    3.843</td> <td>    2.183</td> <td> 0.029</td> <td>    0.856</td> <td>   15.919</td>
+  <th>FLAIR_10</th> <td>   10.0331</td> <td>    4.123</td> <td>    2.434</td> <td> 0.015</td> <td>    1.953</td> <td>   18.113</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>    3.5353</td> <td>    2.156</td> <td>    1.640</td> <td> 0.101</td> <td>   -0.690</td> <td>    7.761</td>
+  <th>T1_10</th>    <td>    1.8223</td> <td>    1.732</td> <td>    1.052</td> <td> 0.293</td> <td>   -1.572</td> <td>    5.216</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>   -3.6273</td> <td>    3.102</td> <td>   -1.170</td> <td> 0.242</td> <td>   -9.706</td> <td>    2.452</td>
+  <th>T2_10</th>    <td>   -4.3413</td> <td>    3.227</td> <td>   -1.345</td> <td> 0.178</td> <td>  -10.665</td> <td>    1.983</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -18.5510</td> <td>    8.057</td> <td>   -2.302</td> <td> 0.021</td> <td>  -34.343</td> <td>   -2.759</td>
+  <th>FLAIR_20</th> <td>  -25.2851</td> <td>   10.102</td> <td>   -2.503</td> <td> 0.012</td> <td>  -45.085</td> <td>   -5.485</td>
 </tr>
 </table></div></div>
 </div>
@@ -571,7 +550,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.245666
+         Current function value: 0.240651
          Iterations 8
 </pre></div>
 </div>
@@ -587,16 +566,16 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 22 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6452</td>  
+  <th>Date:</th>            <td>Fri, 24 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6528</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>19:56:06</td>     <th>  Log-Likelihood:    </th> <td> -18.425</td> 
+  <th>Time:</th>                <td>20:59:59</td>     <th>  Log-Likelihood:    </th> <td> -18.049</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.926</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>5.948e-12</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>3.993e-12</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -604,28 +583,28 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>   -6.2474</td> <td>    2.210</td> <td>   -2.827</td> <td> 0.005</td> <td>  -10.578</td> <td>   -1.917</td>
+  <th>Intercept</th> <td>   -4.8969</td> <td>    1.928</td> <td>   -2.540</td> <td> 0.011</td> <td>   -8.676</td> <td>   -1.118</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    3.2947</td> <td>    1.379</td> <td>    2.390</td> <td> 0.017</td> <td>    0.593</td> <td>    5.997</td>
+  <th>FLAIR</th>     <td>    2.3828</td> <td>    1.186</td> <td>    2.008</td> <td> 0.045</td> <td>    0.057</td> <td>    4.708</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    2.1040</td> <td>    1.082</td> <td>    1.944</td> <td> 0.052</td> <td>   -0.017</td> <td>    4.225</td>
+  <th>T1</th>        <td>    2.4417</td> <td>    1.107</td> <td>    2.206</td> <td> 0.027</td> <td>    0.272</td> <td>    4.611</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    1.4139</td> <td>    0.990</td> <td>    1.428</td> <td> 0.153</td> <td>   -0.527</td> <td>    3.355</td>
+  <th>T2</th>        <td>    1.4010</td> <td>    1.109</td> <td>    1.264</td> <td> 0.206</td> <td>   -0.772</td> <td>    3.574</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>    8.3876</td> <td>    3.843</td> <td>    2.183</td> <td> 0.029</td> <td>    0.856</td> <td>   15.919</td>
+  <th>FLAIR_10</th>  <td>   10.0331</td> <td>    4.123</td> <td>    2.434</td> <td> 0.015</td> <td>    1.953</td> <td>   18.113</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>    3.5353</td> <td>    2.156</td> <td>    1.640</td> <td> 0.101</td> <td>   -0.690</td> <td>    7.761</td>
+  <th>T1_10</th>     <td>    1.8223</td> <td>    1.732</td> <td>    1.052</td> <td> 0.293</td> <td>   -1.572</td> <td>    5.216</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>   -3.6273</td> <td>    3.102</td> <td>   -1.170</td> <td> 0.242</td> <td>   -9.706</td> <td>    2.452</td>
+  <th>T2_10</th>     <td>   -4.3413</td> <td>    3.227</td> <td>   -1.345</td> <td> 0.178</td> <td>  -10.665</td> <td>    1.983</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -18.5510</td> <td>    8.057</td> <td>   -2.302</td> <td> 0.021</td> <td>  -34.343</td> <td>   -2.759</td>
+  <th>FLAIR_20</th>  <td>  -25.2851</td> <td>   10.102</td> <td>   -2.503</td> <td> 0.012</td> <td>  -45.085</td> <td>   -5.485</td>
 </tr>
 </table></div></div>
 </div>
@@ -658,7 +637,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="ml.html" title="previous page">Maximum Likelihood</a>
-    <a class='right-next' id="next-link" href="linearSeparableSMF.html" title="next page">Linear separable models with SMF</a>
+    <a class='right-next' id="next-link" href="linearSeparableSMF.html" title="next page">Interpretation of linear regression coefficients.</a>
 
         </div>
         

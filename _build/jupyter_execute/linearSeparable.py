@@ -60,11 +60,8 @@ import statsmodels as sm
 ## this sets some style parameters
 sns.set()
 
-## Download in the data if it's not already there
-get_ipython().system(' if [ ! -e oasis.csv ]; then wget https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv; fi;')
-
-## Read in the data and display a few rows
-dat = pd.read_csv("oasis.csv")
+## Read in the data
+dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 
 
 # Let's first try to fit the proton density data from the other imaging data. I'm going to use the `statsmodels` version of linear models since it has a nice format for dataframes.

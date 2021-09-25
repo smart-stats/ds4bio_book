@@ -19,6 +19,7 @@ chapters:
   - file: linearSeparable.ipynb
   - file: linearSeparableSMF.ipynb
   - file: regression_examples.ipynb
+  - file: regression_interpretation.ipynb
   - file: linearModels_FFTs.ipynb
   - file: 09-pytorch_regression.ipynb
   

@@ -6,7 +6,7 @@ root: 01-intro
 chapters: 
   - file: 02-ds_python.md
   - file: 03-basic_python.ipynb
-  - file: 04-python_programming.ipynb
+ - file: 04-python_programming.ipynb
   - file: 05-functions.ipynb
   - file: 06-python_practice.ipynb
   - file: 06-data_cleaning.ipynb
@@ -25,6 +25,6 @@ chapters:
   - file: basic_regression_pytorch.ipynb
   - file: logistic_regression_pytorch.ipynb
   - file: 09-pytorch_regression.ipynb
-  
+ 
 
  

@@ -348,6 +348,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14087</span><span class="o">/</span><span class="mf">657523754.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">## this sets some style parameters</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,8 +489,7 @@
 Name: FLAIR, dtype: object
 </pre></div>
 </div>
-<img alt="_images/binary_classification_5_1.png" src="_images/binary_classification_5_1.png" />
-</div>
+<img alt="_images/binary_classification_5_1.svg" src="_images/binary_classification_5_1.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -497,9 +510,7 @@ Name: FLAIR, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_6_0.png" src="_images/binary_classification_6_0.png" />
-<img alt="_images/binary_classification_6_1.png" src="_images/binary_classification_6_1.png" />
-</div>
+<img alt="_images/binary_classification_6_0.svg" src="_images/binary_classification_6_0.svg" /><img alt="_images/binary_classification_6_1.svg" src="_images/binary_classification_6_1.svg" /></div>
 </div>
 </div>
 <div class="section" id="classification">
@@ -615,10 +626,10 @@ However, I’m going to break the data into a training and testing set. The reas
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.419322</td>
+      <td>1.4632</td>
+      <td>0.724138</td>
+      <td>0.75</td>
       <td>0.692308</td>
-      <td>0.571429</td>
-      <td>0.833333</td>
     </tr>
   </tbody>
 </table>
@@ -635,8 +646,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_12_0.png" src="_images/binary_classification_12_0.png" />
-</div>
+<img alt="_images/binary_classification_12_0.svg" src="_images/binary_classification_12_0.svg" /></div>
 </div>
 <p>OK, so out plot has better sensitivity than specificity and a test set accuracy of around 68%. The lower specificity is because there’s a lower percentage of blue below the line than orange above the line. Recall,  we’re saying above the threshold is a lesion and orange is the distribution for voxels with lesions.</p>
 <p>So, for this algorithm, the high sensitivity says that all else being equal, if you declare a voxel as not being a lesion, it probably isn’t. In other words, if you’re out in the lower part of the orange distribution, there’s a lot of blue there.</p>
@@ -667,8 +677,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_15_0.png" src="_images/binary_classification_15_0.png" />
-</div>
+<img alt="_images/binary_classification_15_0.svg" src="_images/binary_classification_15_0.svg" /></div>
 </div>
 </div>
 </div>

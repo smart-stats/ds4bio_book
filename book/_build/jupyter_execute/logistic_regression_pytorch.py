@@ -29,21 +29,21 @@ dat = dat.assign(x = (dat.PD - np.mean(dat.PD)) / np.std(dat.PD))
 dat.head()
 
 
-# In[2]:
+# In[114]:
 
 
 fit = smf.logit('y ~ x', data = dat).fit()
 fit.summary()
 
 
-# In[3]:
+# In[115]:
 
 
 # The in sample predictions
 yhat = 1 / (1 + np.exp(-fit.fittedvalues))
 
 
-# In[4]:
+# In[116]:
 
 
 n = dat.shape[0]
@@ -68,7 +68,7 @@ ytraining = ytraining.unsqueeze(1)
  ]
 
 
-# In[5]:
+# In[117]:
 
 
 ## Doing it more now the pytorch docs recommend
@@ -115,7 +115,7 @@ for t in range(100000):
   optimizer.step()
 
 
-# In[6]:
+# In[118]:
 
 
 ytest = model(xtraining)
@@ -124,7 +124,7 @@ plt.plot(yhat, ytest,  ".")
 plt.plot([0, 1], [0, 1], linewidth=2)
 
 
-# In[7]:
+# In[119]:
 
 
 for param in model.parameters():  

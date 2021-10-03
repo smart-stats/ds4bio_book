@@ -66,7 +66,7 @@ F
 
 # Let's give a more realistic example. Consider two cosine waves, one fast, one slow. Let's add them together and see if the FFT can figure out what we've done.
 
-# In[3]:
+# In[ ]:
 
 
 fig, axs = plt.subplots(2, 2)
@@ -80,7 +80,7 @@ plt.plot(t, c2)
 plt.show
 
 
-# In[4]:
+# In[ ]:
 
 
 x = c1 + .5 * c2
@@ -88,7 +88,7 @@ plt.plot(t, x)
 plt.show
 
 
-# In[5]:
+# In[ ]:
 
 
 a = np.fft.fft(x)
@@ -101,7 +101,7 @@ np.where(b > 1e-5)
 # ### Some notes
 # We can go backwards from the Fourier coefficients to the signal using the inverse transform. Also, for real signals sometimes people will multiply the signal by $(-1)^t$ in order for the plot of the norm of the coeficients (the power spectrum as its called) to look nicer.
 
-# In[6]:
+# In[ ]:
 
 
 ## Plotting the spectrum so that it's in the middle
@@ -111,7 +111,7 @@ plt.plot(b)
 plt.show()
 
 
-# In[7]:
+# In[ ]:
 
 
 ## demonstrating going backwards
@@ -126,7 +126,7 @@ plt.show()
 # 
 # Filtering is the process of allowing certain frequency bands to be retained while others to be discarded. Imagine in our case that we want the low frequency band to pass and to get rid of the higher frequency. In this case we want a low pass filter. There's a lot of ways to filter signals, but let's just do it by simple thresholding. The slightly tricky thing about this in practical problems, is making sure that you're filtering at the frequencies that you want to. As an example, we have 1,000 time points. Say one time point is 1/100 of a second so that we have ten second of data. We have two cosine functions, one that is at 5 oscillations per 10 seconds (0.5 Hz) and one at 20 oscillations per 10 seconds (2 hz). Let's filter out anything ove 0.5 Hz.
 
-# In[8]:
+# In[ ]:
 
 
 ## demonstrating hard filtering

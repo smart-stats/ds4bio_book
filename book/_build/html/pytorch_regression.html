@@ -370,13 +370,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.0226869583129883
-199 0.04264160245656967
-299 0.002207789570093155
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 3.357172966003418
+199 0.07470852136611938
+299 0.003078622743487358
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399 0.00014898160588927567
-499 1.0925414244411513e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399 0.00018624494259711355
+499 1.532040369056631e-05
 </pre></div>
 </div>
 </div>
@@ -384,22 +384,31 @@
 <p>Let’s update that example for our setting using the voxel level data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import torch
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import sklearn.linear_model as lm
-## this sets some style parameters
-sns.set()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
+<span class="c1">## this sets some style parameters</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
-## Download in the data if it&#39;s not already there
-! if [ ! -e oasis.csv ]; \
-  then wget https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv; \
-fi;
+<span class="c1">## Read in the data and display a few rows</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14306</span><span class="o">/</span><span class="mf">1121265309.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
 
-## Read in the data and display a few rows
-dat = pd.read_csv(&quot;oasis.csv&quot;)
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
 </div>
@@ -439,10 +448,10 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([79, 7]),
- torch.Size([79, 1]),
- torch.Size([21, 7]),
- torch.Size([21, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([75, 7]),
+ torch.Size([75, 1]),
+ torch.Size([25, 7]),
+ torch.Size([25, 1])]
 </pre></div>
 </div>
 </div>
@@ -485,11 +494,11 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 30.66546058654785
-199 26.462284088134766
-299 25.034069061279297
-399 24.22446060180664
-499 23.64529037475586
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 31.615375518798828
+199 28.612531661987305
+299 27.466083526611328
+399 26.587757110595703
+499 25.88320541381836
 </pre></div>
 </div>
 </div>
@@ -505,7 +514,7 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fd701837f70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff1e9f789b0&gt;
 </pre></div>
 </div>
 <img alt="_images/pytorch_regression_8_1.png" src="_images/pytorch_regression_8_1.png" />

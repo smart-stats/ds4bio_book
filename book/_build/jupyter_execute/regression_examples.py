@@ -14,14 +14,14 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
 
-# In[2]:
+# In[45]:
 
 
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/swiss.csv")
 dat.head()
 
 
-# In[3]:
+# In[49]:
 
 
 y = dat.Fertility
@@ -31,7 +31,7 @@ yhat = fit.predict(x)
 [fit.intercept_, fit.coef_]
 
 
-# In[4]:
+# In[50]:
 
 
 x2 = x
@@ -40,13 +40,13 @@ fit2 = LinearRegression().fit(x2, y)
 yhat2 = fit2.predict(x2)
 
 
-# In[5]:
+# In[51]:
 
 
 plt.plot(yhat, yhat2)
 
 
-# In[6]:
+# In[53]:
 
 
 x3 = x2.drop(['Agriculture'], axis = 1)

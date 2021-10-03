@@ -26,7 +26,7 @@ sns.set()
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 
 
-# In[2]:
+# In[4]:
 
 
 results = smf.ols('PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20', data = dat).fit()
@@ -35,7 +35,7 @@ print(results.summary2())
 
 # The interpretation of the FLAIR coefficient is as follows. We estimate an expected 0.0160 decrease in proton density per 1 unit change in FLAIR - *with all of the remaining model terms held constant*. The latter statements is important to remember. That is, it's improtant to remember that coefficients are adjusted for the linear associations with other variables. One way to think about this is that both the PD and FLAIR variables have had the linear association with the other variables removed before relating them. The same is true for the other variables. The coefficient for T1 is interpreted similarly, it's the relationship between PD and T1 where the linear associations with the other variables had been removed from them both. Let's show this for the FLAIR variable.
 
-# In[3]:
+# In[29]:
 
 
 

@@ -15,29 +15,25 @@ import statsmodels as sm
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
-## Download in the data if it's not already there
-get_ipython().system(' if [ ! -e oasis.csv ];  then wget https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv; fi;')
-
 ## Read in the data and display a few rows
-dat = pd.read_csv("oasis.csv")
+dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 dat.head(4)
 
 
-# In[2]:
+# In[193]:
 
 
 sns.scatterplot(dat['T2'], dat['PD'])
 
 
-# In[3]:
+# In[226]:
 
 
 fit = smf.ols('PD ~ T2', data = dat).fit()
 fit.summary()
 
 
-# In[4]:
+# In[228]:
 
 
 # The in sample predictions
@@ -53,7 +49,7 @@ sns.scatterplot(yhat, dat['PD'])
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[5]:
+# In[221]:
 
 
 n = dat.shape[0]
@@ -78,7 +74,7 @@ ytraining = ytraining.unsqueeze(1)
  ]
 
 
-# In[6]:
+# In[ ]:
 
 
 ## Show that linear regression is a pytorch 
@@ -114,7 +110,7 @@ for t in range(10000):
   optimizer.step()
 
 
-# In[7]:
+# In[229]:
 
 
 ytest = model(xtraining).detach().numpy().reshape(-1)
@@ -122,7 +118,7 @@ sns.scatterplot(ytest, yhat)
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[8]:
+# In[215]:
 
 
 for param in model.parameters():

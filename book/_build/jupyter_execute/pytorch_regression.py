@@ -79,14 +79,11 @@ import sklearn.linear_model as lm
 ## this sets some style parameters
 sns.set()
 
-## Download in the data if it's not already there
-get_ipython().system(' if [ ! -e oasis.csv ];   then wget https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv; fi;')
-
 ## Read in the data and display a few rows
-dat = pd.read_csv("oasis.csv")
+dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 
 
-# In[3]:
+# In[ ]:
 
 
 trainFraction = .75
@@ -119,7 +116,7 @@ ytesting = y[~sample]
 ]
 
 
-# In[5]:
+# In[ ]:
 
 
 ## Define the model

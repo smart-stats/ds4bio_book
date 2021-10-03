@@ -96,12 +96,12 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="ds_python.html">
-   Basic python
+   Python background
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="basic_python.html">
-   Basics
+   Python basics
   </a>
  </li>
  <li class="toctree-l1">
@@ -370,13 +370,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 3.357172966003418
-199 0.07470852136611938
-299 0.003078622743487358
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.2705650329589844
+199 0.0391131266951561
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399 0.00018624494259711355
-499 1.532040369056631e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>299 0.0016054667066782713
+399 9.398791007697582e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>499 6.2021977100812364e-06
 </pre></div>
 </div>
 </div>
@@ -395,20 +397,6 @@
 
 <span class="c1">## Read in the data and display a few rows</span>
 <span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14306</span><span class="o">/</span><span class="mf">1121265309.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
 </div>
@@ -448,10 +436,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([75, 7]),
- torch.Size([75, 1]),
- torch.Size([25, 7]),
- torch.Size([25, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([66, 7]),
+ torch.Size([66, 1]),
+ torch.Size([34, 7]),
+ torch.Size([34, 1])]
 </pre></div>
 </div>
 </div>
@@ -494,11 +482,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 31.615375518798828
-199 28.612531661987305
-299 27.466083526611328
-399 26.587757110595703
-499 25.88320541381836
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 20.850032806396484
+199 18.625391006469727
+299 17.620149612426758
+399 16.993959426879883
+499 16.519813537597656
 </pre></div>
 </div>
 </div>
@@ -514,7 +502,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff1e9f789b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x796af2c1c880&gt;
 </pre></div>
 </div>
 <img alt="_images/pytorch_regression_8_1.png" src="_images/pytorch_regression_8_1.png" />

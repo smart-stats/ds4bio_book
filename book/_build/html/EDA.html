@@ -99,12 +99,12 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="ds_python.html">
-   Basic python
+   Python background
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="basic_python.html">
-   Basics
+   Python basics
   </a>
  </li>
  <li class="toctree-l1">
@@ -328,20 +328,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14031</span><span class="o">/</span><span class="mf">1056350929.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">## this sets some style parameters</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>First let’s download the data. Then we’ll read it in and drop some columns that aren’t needed for this analysis.</p>
 <div class="cell docutils container">
@@ -475,7 +461,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2, 3, 4, 5, 6, 7]), &lt;a list of 8 Text xticklabel objects&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2, 3, 4, 5, 6, 7]),
+ [Text(0, 0, &#39;CSF&#39;),
+  Text(1, 0, &#39;Diencephalon_L&#39;),
+  Text(2, 0, &#39;Diencephalon_R&#39;),
+  Text(3, 0, &#39;Mesencephalon&#39;),
+  Text(4, 0, &#39;Metencephalon&#39;),
+  Text(5, 0, &#39;Myelencephalon&#39;),
+  Text(6, 0, &#39;Telencephalon_L&#39;),
+  Text(7, 0, &#39;Telencephalon_R&#39;)])
 </pre></div>
 </div>
 <img alt="_images/EDA_9_1.png" src="_images/EDA_9_1.png" />
@@ -586,7 +580,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5591b69630&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x79d86c300880&gt;
 </pre></div>
 </div>
 <img alt="_images/EDA_12_1.png" src="_images/EDA_12_1.png" />
@@ -606,7 +600,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f558f1c7e80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x79d86b563790&gt;]
 </pre></div>
 </div>
 <img alt="_images/EDA_15_1.png" src="_images/EDA_15_1.png" />
@@ -625,7 +619,18 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([12.8 , 12.85, 12.9 , 12.95, 13.  , 13.05, 13.1 , 13.15, 13.2 ,
-        13.25, 13.3 ]), &lt;a list of 11 Text xticklabel objects&gt;)
+        13.25, 13.3 ]),
+ [Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;),
+  Text(0, 0, &#39;&#39;)])
 </pre></div>
 </div>
 <img alt="_images/EDA_17_1.png" src="_images/EDA_17_1.png" />
@@ -644,10 +649,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f558ee5b3c8&gt;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
 </pre></div>
 </div>
-<img alt="_images/EDA_19_1.png" src="_images/EDA_19_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x79d86b4d4f70&gt;]
+</pre></div>
+</div>
+<img alt="_images/EDA_19_2.png" src="_images/EDA_19_2.png" />
 </div>
 </div>
 </div>

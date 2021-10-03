@@ -83,7 +83,7 @@ sns.set()
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 
 
-# In[ ]:
+# In[3]:
 
 
 trainFraction = .75
@@ -116,7 +116,7 @@ ytesting = y[~sample]
 ]
 
 
-# In[ ]:
+# In[5]:
 
 
 ## Define the model

@@ -45,7 +45,7 @@ import matplotlib.pyplot as plt
 
 # Now let's download and read in the data.
 
-# In[21]:
+# In[2]:
 
 
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
@@ -54,7 +54,7 @@ dat.head()
 
 # It's almost always a good idea to plot the data before fitting the model.
 
-# In[25]:
+# In[3]:
 
 
 x = dat.T2
@@ -64,7 +64,7 @@ plt.plot(x, y, 'o')
 
 # Now, let's center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both $Y$ and $X$, is right at (0, 0). 
 
-# In[26]:
+# In[4]:
 
 
 x = x - np.mean(x)
@@ -74,7 +74,7 @@ plt.plot(x, y, 'o')
 
 # Here's our slope estimate according to our formula.
 
-# In[27]:
+# In[5]:
 
 
 b = sum(y * x) / sum(x ** 2 )
@@ -83,7 +83,7 @@ b
 
 # Let's plot it so to see how it did. It looks good. Now let's see if we can do a line that doesn't necessarily have to go through the origin.
 
-# In[28]:
+# In[6]:
 
 
 plt.plot(x, y, 'o')

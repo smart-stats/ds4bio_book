@@ -20,20 +20,20 @@ dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/
 dat.head(4)
 
 
-# In[193]:
+# In[2]:
 
 
 sns.scatterplot(dat['T2'], dat['PD'])
 
 
-# In[226]:
+# In[3]:
 
 
 fit = smf.ols('PD ~ T2', data = dat).fit()
 fit.summary()
 
 
-# In[228]:
+# In[4]:
 
 
 # The in sample predictions
@@ -49,7 +49,7 @@ sns.scatterplot(yhat, dat['PD'])
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[221]:
+# In[5]:
 
 
 n = dat.shape[0]
@@ -74,7 +74,7 @@ ytraining = ytraining.unsqueeze(1)
  ]
 
 
-# In[ ]:
+# In[6]:
 
 
 ## Show that linear regression is a pytorch 
@@ -110,7 +110,7 @@ for t in range(10000):
   optimizer.step()
 
 
-# In[229]:
+# In[7]:
 
 
 ytest = model(xtraining).detach().numpy().reshape(-1)
@@ -118,7 +118,7 @@ sns.scatterplot(ytest, yhat)
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[215]:
+# In[8]:
 
 
 for param in model.parameters():

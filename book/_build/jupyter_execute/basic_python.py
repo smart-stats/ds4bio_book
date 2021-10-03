@@ -3,7 +3,7 @@
 
 # <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/basic_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-# # Basics
+# # Python basics
 # In this section, we will cover some basic python concepts. Python is an extremely quick language to learn, but like most programming languages, can take a long time to master. In this class, we'll focus on a different style of programming than typical software development, programming with data. This will but less of a burden on us to be expert software developers in python, but some amount of base language knowledge is unavoidable. So, let's get started learning some of the python programming basics. I'm going to assume you've programmed before in some language. If that isn't the case, consider starting with a basic programming course of study before trying this book.
 # 
 # A great resource for learning basic python is the python.org documentation [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html). My favorite programming resource of all time is the "Learn X in Y" tutorials. Here's one for python [https://learnxinyminutes.com/docs/python/](https://learnxinyminutes.com/docs/python/).

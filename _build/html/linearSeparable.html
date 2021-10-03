@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -74,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/dasl.png" class="logo" alt="logo">
       
       
@@ -83,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -166,11 +170,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_interpretation.html">
-   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1">
@@ -285,7 +284,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aside-different-python-packages">
@@ -355,6 +354,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_26238</span><span class="o">/</span><span class="mf">881723864.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">skl</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
 <div class="cell docutils container">
@@ -378,29 +391,29 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.714   
-Dependent Variable: PD               AIC:                80.4812 
-Date:               2021-09-24 20:59 BIC:                99.0211 
-No. Observations:   75               Log-Likelihood:     -32.241 
-Df Model:           7                F-statistic:        27.39   
-Df Residuals:       67               Prob (F-statistic): 2.38e-17
-R-squared:          0.741            Scale:              0.15484 
+Model:              OLS              Adj. R-squared:     0.773   
+Dependent Variable: PD               AIC:                72.6331 
+Date:               2019-09-23 19:22 BIC:                91.2790 
+No. Observations:   76               Log-Likelihood:     -28.317 
+Df Model:           7                F-statistic:        37.44   
+Df Residuals:       68               Prob (F-statistic): 6.19e-21
+R-squared:          0.794            Scale:              0.13787 
 ------------------------------------------------------------------
                Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept      0.2616    0.1526   1.7142  0.0911  -0.0430   0.5662
-FLAIR         -0.0396    0.0974  -0.4062  0.6859  -0.2340   0.1548
-T1            -0.1791    0.0890  -2.0125  0.0482  -0.3568  -0.0015
-T2             0.6783    0.0947   7.1600  0.0000   0.4892   0.8674
-FLAIR_10      -0.2368    0.3753  -0.6309  0.5302  -0.9859   0.5123
-T1_10          0.1425    0.1771   0.8049  0.4237  -0.2109   0.4960
-T2_10          0.0915    0.3269   0.2798  0.7805  -0.5611   0.7440
-FLAIR_20       1.8368    0.7604   2.4156  0.0184   0.3190   3.3545
+Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
+FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
+T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
+T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
+FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
+T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
+T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
+FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
 -----------------------------------------------------------------
-Omnibus:               1.120        Durbin-Watson:          2.363
-Prob(Omnibus):         0.571        Jarque-Bera (JB):       0.625
-Skew:                  -0.194       Prob(JB):               0.732
-Kurtosis:              3.222        Condition No.:          39   
+Omnibus:               4.022        Durbin-Watson:          2.111
+Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
+Skew:                  -0.238       Prob(JB):               0.142
+Kurtosis:              4.003        Condition No.:          41   
 =================================================================
 </pre></div>
 </div>
@@ -421,8 +434,8 @@ Kurtosis:              3.222        Condition No.:          39
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
-  x = pd.concat(x[::order], 1)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
 </pre></div>
 </div>
 </div>
@@ -435,7 +448,7 @@ Kurtosis:              3.222        Condition No.:          39
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.240651
+         Current function value: 0.253784
          Iterations 8
 </pre></div>
 </div>
@@ -451,25 +464,25 @@ Kurtosis:              3.222        Condition No.:          39
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Fri, 24 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6528</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>20:59:59</td>     <th>  Log-Likelihood:    </th> <td> -18.049</td> 
+  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>3.993e-12</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -477,28 +490,28 @@ Kurtosis:              3.222        Condition No.:          39
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>   -4.8969</td> <td>    1.928</td> <td>   -2.540</td> <td> 0.011</td> <td>   -8.676</td> <td>   -1.118</td>
+  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    2.3828</td> <td>    1.186</td> <td>    2.008</td> <td> 0.045</td> <td>    0.057</td> <td>    4.708</td>
+  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    2.4417</td> <td>    1.107</td> <td>    2.206</td> <td> 0.027</td> <td>    0.272</td> <td>    4.611</td>
+  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    1.4010</td> <td>    1.109</td> <td>    1.264</td> <td> 0.206</td> <td>   -0.772</td> <td>    3.574</td>
+  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>   10.0331</td> <td>    4.123</td> <td>    2.434</td> <td> 0.015</td> <td>    1.953</td> <td>   18.113</td>
+  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>    1.8223</td> <td>    1.732</td> <td>    1.052</td> <td> 0.293</td> <td>   -1.572</td> <td>    5.216</td>
+  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>   -4.3413</td> <td>    3.227</td> <td>   -1.345</td> <td> 0.178</td> <td>  -10.665</td> <td>    1.983</td>
+  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -25.2851</td> <td>   10.102</td> <td>   -2.503</td> <td> 0.012</td> <td>  -45.085</td> <td>   -5.485</td>
+  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
 </table></div></div>
 </div>
@@ -550,32 +563,32 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.240651
+         Current function value: 0.241546
          Iterations 8
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Fri, 24 Sep 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6528</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>20:59:59</td>     <th>  Log-Likelihood:    </th> <td> -18.049</td> 
+  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>3.993e-12</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -583,28 +596,28 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>   -4.8969</td> <td>    1.928</td> <td>   -2.540</td> <td> 0.011</td> <td>   -8.676</td> <td>   -1.118</td>
+  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    2.3828</td> <td>    1.186</td> <td>    2.008</td> <td> 0.045</td> <td>    0.057</td> <td>    4.708</td>
+  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    2.4417</td> <td>    1.107</td> <td>    2.206</td> <td> 0.027</td> <td>    0.272</td> <td>    4.611</td>
+  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    1.4010</td> <td>    1.109</td> <td>    1.264</td> <td> 0.206</td> <td>   -0.772</td> <td>    3.574</td>
+  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>   10.0331</td> <td>    4.123</td> <td>    2.434</td> <td> 0.015</td> <td>    1.953</td> <td>   18.113</td>
+  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>    1.8223</td> <td>    1.732</td> <td>    1.052</td> <td> 0.293</td> <td>   -1.572</td> <td>    5.216</td>
+  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>   -4.3413</td> <td>    3.227</td> <td>   -1.345</td> <td> 0.178</td> <td>  -10.665</td> <td>    1.983</td>
+  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -25.2851</td> <td>   10.102</td> <td>   -2.503</td> <td> 0.012</td> <td>  -45.085</td> <td>   -5.485</td>
+  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
 </table></div></div>
 </div>
@@ -634,16 +647,36 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ml.html" title="previous page">Maximum Likelihood</a>
-    <a class='right-next' id="next-link" href="linearSeparableSMF.html" title="next page">Interpretation of linear regression coefficients.</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="ml.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Maximum Likelihood</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="linearSeparableSMF.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Interpretation of linear regression coefficients.</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

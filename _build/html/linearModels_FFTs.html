@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,20 +42,20 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Pytorch by example, linear regression" href="09-pytorch_regression.html" />
-    <link rel="prev" title="Regression interpretation" href="regression_interpretation.html" />
+    <link rel="prev" title="Linear models: a classic example" href="regression_examples.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -74,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/dasl.png" class="logo" alt="logo">
       
       
@@ -83,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -166,11 +170,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_interpretation.html">
-   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -339,6 +338,20 @@ f_k = a_k + i b_k
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_26149</span><span class="o">/</span><span class="mf">2331829312.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -377,6 +390,8 @@ f_k = a_k + i b_k
       <th>1/26/20</th>
       <th>1/27/20</th>
       <th>...</th>
+      <th>9/12/21</th>
+      <th>9/13/21</th>
       <th>9/14/21</th>
       <th>9/15/21</th>
       <th>9/16/21</th>
@@ -385,8 +400,6 @@ f_k = a_k + i b_k
       <th>9/19/21</th>
       <th>9/20/21</th>
       <th>9/21/21</th>
-      <th>9/22/21</th>
-      <th>9/23/21</th>
     </tr>
   </thead>
   <tbody>
@@ -403,6 +416,8 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>153990</td>
+      <td>154094</td>
       <td>154180</td>
       <td>154283</td>
       <td>154361</td>
@@ -411,8 +426,6 @@ f_k = a_k + i b_k
       <td>154487</td>
       <td>154585</td>
       <td>154712</td>
-      <td>154757</td>
-      <td>154800</td>
     </tr>
     <tr>
       <th>1</th>
@@ -427,6 +440,8 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>157026</td>
+      <td>157436</td>
       <td>158431</td>
       <td>159423</td>
       <td>160365</td>
@@ -435,8 +450,6 @@ f_k = a_k + i b_k
       <td>162953</td>
       <td>163404</td>
       <td>164276</td>
-      <td>165096</td>
-      <td>165864</td>
     </tr>
     <tr>
       <th>2</th>
@@ -451,6 +464,8 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>200068</td>
+      <td>200301</td>
       <td>200528</td>
       <td>200770</td>
       <td>200989</td>
@@ -459,8 +474,6 @@ f_k = a_k + i b_k
       <td>201600</td>
       <td>201766</td>
       <td>201948</td>
-      <td>202122</td>
-      <td>202283</td>
     </tr>
     <tr>
       <th>3</th>
@@ -475,6 +488,8 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>15083</td>
+      <td>15096</td>
       <td>15099</td>
       <td>15108</td>
       <td>15113</td>
@@ -483,8 +498,6 @@ f_k = a_k + i b_k
       <td>15124</td>
       <td>15140</td>
       <td>15140</td>
-      <td>15153</td>
-      <td>15156</td>
     </tr>
     <tr>
       <th>4</th>
@@ -499,6 +512,8 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>50446</td>
+      <td>50738</td>
       <td>51047</td>
       <td>51407</td>
       <td>51827</td>
@@ -507,12 +522,10 @@ f_k = a_k + i b_k
       <td>52307</td>
       <td>52644</td>
       <td>52968</td>
-      <td>53387</td>
-      <td>53840</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 615 columns</p>
+<p>5 rows × 613 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -530,7 +543,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e1bba880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e8f6fe50&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_4_1.png" src="_images/linearModels_FFTs_4_1.png" />
@@ -549,7 +562,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e13590d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e73ed6a0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_6_1.png" src="_images/linearModels_FFTs_6_1.png" />
@@ -564,7 +577,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e12be9d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e735e0d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_7_1.png" src="_images/linearModels_FFTs_7_1.png" />
@@ -619,18 +632,18 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.220446049250313e-15,
- 5.551115123125783e-17,
- 0.0,
- -5.273559366969494e-16,
- 1.0,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.992007221626409e-16,
+ -6.800116025829084e-16,
+ -2.220446049250313e-16,
+ 8.278100427361323e-15,
+ 0.9999999999999998,
  1.0000000000000002,
  1.0,
- 1.0,
- -6.245004513516506e-17,
- 2.5326962749261384e-16,
- -4.2327252813834093e-16,
- 2.47198095326695e-16]
+ 0.9999999999999997,
+ -3.447762908503904e-17,
+ 6.938893903907228e-17,
+ 3.5041414214731503e-16,
+ -5.574967570920464e-16]
 </pre></div>
 </div>
 </div>
@@ -647,7 +660,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc0e10fa2b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a53b8358&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_12_1.png" src="_images/linearModels_FFTs_12_1.png" />
@@ -665,10 +678,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-119930.24270617244,
- -17397.06673835203,
- -92556.047490262,
- -7057.0467861115885]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7023.0638714666065,
+ 3129.666929693342,
+ -2734.541573653142,
+ -1381.5328656452866]
 </pre></div>
 </div>
 </div>
@@ -683,8 +696,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1116634.63215756,   -23715.34055318,  -200526.34415318,
-           6563.35318005])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147,  3129.66692969, -2734.54157365, -1381.53286565])
 </pre></div>
 </div>
 </div>
@@ -698,7 +710,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1116634.63215756,  -200526.34415318])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147, -2734.54157365])
 </pre></div>
 </div>
 </div>
@@ -711,10 +723,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([], dtype=int64),),
- array([], dtype=float64),
- array([], dtype=float64),
- 0.008305647840531562]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([115, 125]),),
+ array([7023.06387147, 7023.06387147]),
+ array([-0.02074689,  0.02074689]),
+ 0.02074688796680498]
 </pre></div>
 </div>
 </div>
@@ -726,7 +738,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([], dtype=float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2734.54157365, -2734.54157365])
 </pre></div>
 </div>
 </div>
@@ -756,16 +768,36 @@ f_k = a_k + i b_k
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="regression_interpretation.html" title="previous page">Regression interpretation</a>
-    <a class='right-next' id="next-link" href="09-pytorch_regression.html" title="next page">Pytorch by example, linear regression</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="regression_examples.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear models: a classic example</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="09-pytorch_regression.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Pytorch by example, linear regression</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

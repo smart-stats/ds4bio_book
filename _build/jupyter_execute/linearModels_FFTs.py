@@ -69,7 +69,7 @@ dat = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/mas
 dat.head()
 
 
-# In[3]:
+# In[4]:
 
 
 ## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)
@@ -85,7 +85,7 @@ plt.plot(y)
 
 # Let's look at a smoothed version of it and then take the residual. The residual is where we'd like to look at some oscillatory behavior.
 
-# In[4]:
+# In[7]:
 
 
 n = y.size
@@ -96,7 +96,7 @@ plt.plot(y)
 plt.plot(yhat)
 
 
-# In[5]:
+# In[8]:
 
 
 ## We're interested in the residual
@@ -106,7 +106,7 @@ plt.plot(e)
 
 # Let's manually create our Fourier bases. We're just going to pick some periods to investigate. We'll pick a fast varying and slow varying.
 
-# In[6]:
+# In[12]:
 
 
 
@@ -118,7 +118,7 @@ s5  = np.sin(-2 * np.pi * t * 5  / n  )/ np.sqrt(n /2)
 s20 = np.sin(-2 * np.pi * t * 20 / n  ) / np.sqrt(n /2)
 
 
-# In[7]:
+# In[14]:
 
 
 fig, axs = plt.subplots(2, 2)
@@ -129,7 +129,7 @@ axs[1,1].plot(t, s20)
 plt.show()
 
 
-# In[8]:
+# In[164]:
 
 
 ## Verify that they are orthonormal mean 0
@@ -149,7 +149,7 @@ plt.show()
 ]
 
 
-# In[9]:
+# In[165]:
 
 
 f = np.fft.fft(e)
@@ -160,7 +160,7 @@ w = w[ind]
 plt.plot(w, f.real**2 + f.imag**2)
 
 
-# In[10]:
+# In[166]:
 
 
 [
@@ -171,7 +171,7 @@ plt.plot(w, f.real**2 + f.imag**2)
 ] 
 
 
-# In[11]:
+# In[167]:
 
 
 sreg = linear_model.LinearRegression()
@@ -180,7 +180,7 @@ fit = sreg.fit(x, y)
 fit.coef_ * np.sqrt(n/2)
 
 
-# In[12]:
+# In[168]:
 
 
 x=np.c_[c5, s5]
@@ -188,14 +188,14 @@ fit = sreg.fit(x, y)
 fit.coef_ * np.sqrt(n/2)
 
 
-# In[13]:
+# In[169]:
 
 
 test = np.where( np.abs(f.real / np.sum(c5 * y) / np.sqrt(n / 2) - 1) < 1e-5) 
 [test, f.real[test], w[test], 5 / n]
 
 
-# In[14]:
+# In[170]:
 
 
 f.imag[test]

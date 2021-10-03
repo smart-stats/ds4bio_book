@@ -136,7 +136,7 @@ sns.lineplot(xplot, p)
 
 # Now let's evaluate the test set.
 
-# In[7]:
+# In[10]:
 
 
 ## This predicts the classes using a 50% probability cutoff
@@ -151,7 +151,7 @@ specificity = np.mean(yhat_test[ytest == 0] == ytest[ytest == 0])
 np.round([accuracy, sensitivity, specificity], 3)
 
 
-# In[8]:
+# In[13]:
 
 
 from sklearn.metrics import accuracy_score, roc_curve, auc

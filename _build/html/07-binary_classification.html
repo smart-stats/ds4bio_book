@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -72,6 +72,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/dasl.png" class="logo" alt="logo">
       
       
@@ -81,7 +85,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -164,11 +168,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_interpretation.html">
-   Regression interpretation
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,7 +282,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
@@ -325,6 +324,18 @@
 <span class="c1">## this sets some style parameters</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25631</span><span class="o">/</span><span class="mf">657523754.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">## this sets some style parameters</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
 </pre></div>
 </div>
 </div>
@@ -455,8 +466,7 @@
 Name: FLAIR, dtype: object
 </pre></div>
 </div>
-<img alt="_images/07-binary_classification_5_1.png" src="_images/07-binary_classification_5_1.png" />
-</div>
+<img alt="_images/07-binary_classification_5_1.svg" src="_images/07-binary_classification_5_1.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -477,9 +487,7 @@ Name: FLAIR, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07-binary_classification_6_0.png" src="_images/07-binary_classification_6_0.png" />
-<img alt="_images/07-binary_classification_6_1.png" src="_images/07-binary_classification_6_1.png" />
-</div>
+<img alt="_images/07-binary_classification_6_0.svg" src="_images/07-binary_classification_6_0.svg" /><img alt="_images/07-binary_classification_6_1.svg" src="_images/07-binary_classification_6_1.svg" /></div>
 </div>
 </div>
 <div class="section" id="classification">
@@ -596,9 +604,9 @@ However, I’m going to break the data into a training and testing set. The reas
     <tr>
       <th>0</th>
       <td>1.4632</td>
-      <td>0.736842</td>
-      <td>0.625</td>
-      <td>0.818182</td>
+      <td>0.724138</td>
+      <td>0.75</td>
+      <td>0.692308</td>
     </tr>
   </tbody>
 </table>
@@ -615,8 +623,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07-binary_classification_12_0.png" src="_images/07-binary_classification_12_0.png" />
-</div>
+<img alt="_images/07-binary_classification_12_0.svg" src="_images/07-binary_classification_12_0.svg" /></div>
 </div>
 <p>OK, so out plot has better sensitivity than specificity and a test set accuracy of around 68%. The lower specificity is because there’s a lower percentage of blue below the line than orange above the line. Recall,  we’re saying above the threshold is a lesion and orange is the distribution for voxels with lesions.</p>
 <p>So, for this algorithm, the high sensitivity says that all else being equal, if you declare a voxel as not being a lesion, it probably isn’t. In other words, if you’re out in the lower part of the orange distribution, there’s a lot of blue there.</p>
@@ -647,8 +654,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07-binary_classification_15_0.png" src="_images/07-binary_classification_15_0.png" />
-</div>
+<img alt="_images/07-binary_classification_15_0.svg" src="_images/07-binary_classification_15_0.svg" /></div>
 </div>
 </div>
 </div>
@@ -676,16 +682,36 @@ However, I’m going to break the data into a training and testing set. The reas
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="EDA.html" title="previous page">Exploratory data analysis in Seaborn</a>
-    <a class='right-next' id="next-link" href="regression_through_the_origin.html" title="next page">Regression through the origin</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="EDA.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Exploratory data analysis in Seaborn</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="regression_through_the_origin.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Regression through the origin</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

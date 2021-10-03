@@ -1,0 +1,24 @@
+format: jb-book
+root: intro
+chapters: 
+- file: ds_python.md
+- file: basic_python.ipynb
+- file: python_programming.ipynb
+- file: functions.ipynb
+- file: python_practice.ipynb
+- file: data_cleaning.ipynb
+- file: EDA.ipynb
+- file: binary_classification.ipynb
+- file: regression_through_the_origin.ipynb
+- file: regression.ipynb
+- file: logistic.ipynb
+- file: ml.ipynb
+- file: linearSeparable.ipynb
+- file: linearSeparableSMF.ipynb
+- file: regression_examples.ipynb
+- file: regression_interpretation.ipynb
+- file: dft.ipynb
+- file: linearModels_FFTs.ipynb
+- file: basic_regression_pytorch.ipynb
+- file: logistic_regression_pytorch.ipynb
+- file: pytorch_regression.ipynb

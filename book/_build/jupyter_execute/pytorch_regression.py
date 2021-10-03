@@ -65,7 +65,7 @@ for t in range(500):
 
 # Let's update that example for our setting using the voxel level data.
 
-# In[ ]:
+# In[2]:
 
 
 import torch
@@ -84,7 +84,7 @@ get_ipython().system(' if [ ! -e oasis.csv ];   then wget https://raw.githubuser
 dat = pd.read_csv("oasis.csv")
 
 
-# In[ ]:
+# In[3]:
 
 
 trainFraction = .75
@@ -117,7 +117,7 @@ ytesting = y[~sample]
 ]
 
 
-# In[ ]:
+# In[5]:
 
 
 ## Define the model

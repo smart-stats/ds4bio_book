@@ -186,7 +186,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="09-pytorch_regression.html">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
    Pytorch by example, linear regression
   </a>
  </li>
@@ -320,20 +330,6 @@ It allows for a model specification of the form <code class="docutils literal no
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25784</span><span class="o">/</span><span class="mf">2465904262.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="kn">as</span> <span class="nn">lm</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sklearn</span> <span class="kn">as</span> <span class="nn">skl</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> 
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1">## this sets some style parameters</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;statsmodels&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -347,7 +343,7 @@ It allows for a model specification of the form <code class="docutils literal no
 =================================================================
 Model:              OLS              Adj. R-squared:     0.743   
 Dependent Variable: PD               AIC:                95.4183 
-Date:               2021-09-22 19:54 BIC:                116.2597
+Date:               2021-10-03 19:24 BIC:                116.2597
 No. Observations:   100              Log-Likelihood:     -39.709 
 Df Model:           7                F-statistic:        41.98   
 Df Residuals:       92               Prob (F-statistic): 5.56e-26
@@ -392,7 +388,7 @@ Kurtosis:              3.626        Condition No.:          40
 ================================================================
 Model:              OLS              Adj. R-squared:     -0.010 
 Dependent Variable: PD_adjusted      AIC:                83.4183
-Date:               2021-09-22 20:16 BIC:                88.6286
+Date:               2021-10-03 19:24 BIC:                88.6286
 No. Observations:   100              Log-Likelihood:     -39.709
 Df Model:           1                F-statistic:        0.04730
 Df Residuals:       98               Prob (F-statistic): 0.828  
@@ -400,7 +396,7 @@ R-squared:          0.000            Scale:              0.13219
 ----------------------------------------------------------------
                    Coef.  Std.Err.    t    P&gt;|t|   [0.025 0.975]
 ----------------------------------------------------------------
-Intercept         -0.0000   0.0364 -0.0000 1.0000 -0.0722 0.0722
+Intercept          0.0000   0.0364  0.0000 1.0000 -0.0722 0.0722
 FLAIR_adjusted    -0.0160   0.0737 -0.2175 0.8283 -0.1623 0.1303
 ----------------------------------------------------------------
 Omnibus:              2.142        Durbin-Watson:          2.187

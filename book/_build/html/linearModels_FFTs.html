@@ -54,7 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="basic_regression_pytorch.html" />
+    <link rel="next" title="Basic regression in pytorch" href="basic_regression_pytorch.html" />
     <link rel="prev" title="DFT" href="dft.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -188,7 +188,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="09-pytorch_regression.html">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
    Pytorch by example, linear regression
   </a>
  </li>
@@ -342,21 +352,9 @@ f_k = a_k + i b_k
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25720</span><span class="o">/</span><span class="mf">2331829312.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;statsmodels&#39;
 </pre></div>
 </div>
 </div>
@@ -398,16 +396,16 @@ f_k = a_k + i b_k
       <th>1/26/20</th>
       <th>1/27/20</th>
       <th>...</th>
-      <th>9/13/21</th>
-      <th>9/14/21</th>
-      <th>9/15/21</th>
-      <th>9/16/21</th>
-      <th>9/17/21</th>
-      <th>9/18/21</th>
-      <th>9/19/21</th>
-      <th>9/20/21</th>
-      <th>9/21/21</th>
-      <th>9/22/21</th>
+      <th>9/23/21</th>
+      <th>9/24/21</th>
+      <th>9/25/21</th>
+      <th>9/26/21</th>
+      <th>9/27/21</th>
+      <th>9/28/21</th>
+      <th>9/29/21</th>
+      <th>9/30/21</th>
+      <th>10/1/21</th>
+      <th>10/2/21</th>
     </tr>
   </thead>
   <tbody>
@@ -424,16 +422,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>154094</td>
-      <td>154180</td>
-      <td>154283</td>
-      <td>154361</td>
-      <td>154487</td>
-      <td>154487</td>
-      <td>154487</td>
-      <td>154585</td>
-      <td>154712</td>
-      <td>154757</td>
+      <td>154800</td>
+      <td>154960</td>
+      <td>154960</td>
+      <td>154960</td>
+      <td>155072</td>
+      <td>155093</td>
+      <td>155128</td>
+      <td>155174</td>
+      <td>155191</td>
+      <td>155191</td>
     </tr>
     <tr>
       <th>1</th>
@@ -448,16 +446,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>157436</td>
-      <td>158431</td>
-      <td>159423</td>
-      <td>160365</td>
-      <td>161324</td>
-      <td>162173</td>
-      <td>162953</td>
-      <td>163404</td>
-      <td>164276</td>
-      <td>165096</td>
+      <td>165864</td>
+      <td>166690</td>
+      <td>167354</td>
+      <td>167893</td>
+      <td>168188</td>
+      <td>168782</td>
+      <td>169462</td>
+      <td>170131</td>
+      <td>170778</td>
+      <td>171327</td>
     </tr>
     <tr>
       <th>2</th>
@@ -472,16 +470,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>200301</td>
-      <td>200528</td>
-      <td>200770</td>
-      <td>200989</td>
-      <td>201224</td>
-      <td>201425</td>
-      <td>201600</td>
-      <td>201766</td>
-      <td>201948</td>
-      <td>202122</td>
+      <td>202283</td>
+      <td>202449</td>
+      <td>202574</td>
+      <td>202722</td>
+      <td>202877</td>
+      <td>203045</td>
+      <td>203198</td>
+      <td>203359</td>
+      <td>203517</td>
+      <td>203657</td>
     </tr>
     <tr>
       <th>3</th>
@@ -496,16 +494,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>15096</td>
-      <td>15099</td>
-      <td>15108</td>
-      <td>15113</td>
-      <td>15124</td>
-      <td>15124</td>
-      <td>15124</td>
-      <td>15140</td>
-      <td>15140</td>
-      <td>15153</td>
+      <td>15156</td>
+      <td>15167</td>
+      <td>15167</td>
+      <td>15167</td>
+      <td>15189</td>
+      <td>15192</td>
+      <td>15209</td>
+      <td>15222</td>
+      <td>15222</td>
+      <td>15222</td>
     </tr>
     <tr>
       <th>4</th>
@@ -520,20 +518,20 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>50738</td>
-      <td>51047</td>
-      <td>51407</td>
-      <td>51827</td>
-      <td>52208</td>
-      <td>52307</td>
-      <td>52307</td>
-      <td>52644</td>
-      <td>52968</td>
-      <td>53387</td>
+      <td>53840</td>
+      <td>54280</td>
+      <td>54795</td>
+      <td>55121</td>
+      <td>55583</td>
+      <td>56040</td>
+      <td>56583</td>
+      <td>56583</td>
+      <td>58076</td>
+      <td>58603</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 614 columns</p>
+<p>5 rows × 624 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -551,7 +549,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e708b370&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0ccae969d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_4_1.png" src="_images/linearModels_FFTs_4_1.png" />
@@ -563,14 +561,14 @@ f_k = a_k + i b_k
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">lowess</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">nonparametric</span><span class="o">.</span><span class="n">lowess</span>
-<span class="n">yhat</span> <span class="o">=</span> <span class="n">lowess</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">frac</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span><span class="n">return_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">lowess</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span><span class="n">return_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7068730&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0cca5e3c40&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_6_1.png" src="_images/linearModels_FFTs_6_1.png" />
@@ -585,7 +583,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e6fcc550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0cca55b490&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_7_1.png" src="_images/linearModels_FFTs_7_1.png" />
@@ -641,7 +639,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0., -0.,  0., -0.,  1.,  1.,  1.,  1., -0.,  0., -0.,  0.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0., -0., -0., -0.,  1.,  1.,  1.,  1., -0., -0.,  0., -0.])
 </pre></div>
 </div>
 </div>
@@ -659,7 +657,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7153190&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0cca3fd9d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_14_1.png" src="_images/linearModels_FFTs_14_1.png" />
@@ -678,10 +676,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-122321.23192612399,
- -19854.09302843738,
- -90543.46016843051,
- -5434.237738349892]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-92501.10836269316,
+ -2972.6755196281297,
+ -117995.76932260978,
+ -7620.517442393081]
 </pre></div>
 </div>
 </div>
@@ -696,7 +694,8 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147,  3129.66692969, -2734.54157365, -1381.53286565])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1069381.66736319,    -2017.13826728,  -473240.07224103,
+           8788.04148139])
 </pre></div>
 </div>
 </div>
@@ -710,7 +709,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147, -2734.54157365])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1069381.66736319,  -473240.07224103])
 </pre></div>
 </div>
 </div>
@@ -723,10 +722,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([115, 125]),),
- array([7023.06387147, 7023.06387147]),
- array([-0.02074689,  0.02074689]),
- 0.02074688796680498]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([], dtype=int64),),
+ array([], dtype=float64),
+ array([], dtype=float64),
+ 0.008183306055646482]
 </pre></div>
 </div>
 </div>
@@ -738,7 +737,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2734.54157365, -2734.54157365])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([], dtype=float64)
 </pre></div>
 </div>
 </div>
@@ -787,7 +786,7 @@ f_k = a_k + i b_k
         <a class="right-next" href="basic_regression_pytorch.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">&lt;no title&gt;</p>
+                <p class="prevnext-title">Basic regression in pytorch</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

@@ -188,7 +188,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="09-pytorch_regression.html">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
    Pytorch by example, linear regression
   </a>
  </li>
@@ -364,25 +374,11 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25758</span><span class="o">/</span><span class="mf">635260525.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="kn">as</span> <span class="nn">lm</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">sklearn</span> <span class="kn">as</span> <span class="nn">skl</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">statsmodels</span> <span class="kn">as</span> <span class="nn">sm</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;statsmodels&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
@@ -401,29 +397,29 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.773   
-Dependent Variable: PD               AIC:                72.6331 
-Date:               2019-09-23 19:22 BIC:                91.2790 
-No. Observations:   76               Log-Likelihood:     -28.317 
-Df Model:           7                F-statistic:        37.44   
-Df Residuals:       68               Prob (F-statistic): 6.19e-21
-R-squared:          0.794            Scale:              0.13787 
+Model:              OLS              Adj. R-squared:     0.796   
+Dependent Variable: PD               AIC:                51.8504 
+Date:               2021-10-03 19:23 BIC:                70.3903 
+No. Observations:   75               Log-Likelihood:     -17.925 
+Df Model:           7                F-statistic:        42.35   
+Df Residuals:       67               Prob (F-statistic): 3.39e-22
+R-squared:          0.816            Scale:              0.10571 
 ------------------------------------------------------------------
                Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
-FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
-T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
-T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
-FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
-T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
-T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
-FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
+Intercept      0.1194    0.1326   0.9008  0.3709  -0.1452   0.3840
+FLAIR          0.0235    0.0796   0.2959  0.7682  -0.1353   0.1824
+T1            -0.2699    0.0843  -3.2032  0.0021  -0.4381  -0.1017
+T2             0.5409    0.0804   6.7323  0.0000   0.3806   0.7013
+FLAIR_10      -0.0951    0.3183  -0.2989  0.7659  -0.7304   0.5401
+T1_10          0.2957    0.1745   1.6945  0.0948  -0.0526   0.6441
+T2_10          0.0189    0.2715   0.0695  0.9448  -0.5231   0.5608
+FLAIR_20       1.9181    0.6458   2.9699  0.0041   0.6290   3.2071
 -----------------------------------------------------------------
-Omnibus:               4.022        Durbin-Watson:          2.111
-Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
-Skew:                  -0.238       Prob(JB):               0.142
-Kurtosis:              4.003        Condition No.:          41   
+Omnibus:               0.407        Durbin-Watson:          2.036
+Prob(Omnibus):         0.816        Jarque-Bera (JB):       0.260
+Skew:                  -0.144       Prob(JB):               0.878
+Kurtosis:              2.982        Condition No.:          40   
 =================================================================
 </pre></div>
 </div>
@@ -444,8 +440,8 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
-  return ptp(axis=axis, out=out, **kwargs)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/codespace/.conda/envs/ds4bio/lib/python3.9/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
+  x = pd.concat(x[::order], 1)
 </pre></div>
 </div>
 </div>
@@ -458,7 +454,7 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.253784
+         Current function value: 0.254547
          Iterations 8
 </pre></div>
 </div>
@@ -474,25 +470,25 @@ Kurtosis:              4.003        Condition No.:          41
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
+  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6289</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
+  <th>Time:</th>                <td>19:23:53</td>     <th>  Log-Likelihood:    </th> <td> -19.091</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.445</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>1.722e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -500,28 +496,28 @@ Kurtosis:              4.003        Condition No.:          41
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
+  <th>const</th>    <td>   -3.3547</td> <td>    1.936</td> <td>   -1.733</td> <td> 0.083</td> <td>   -7.149</td> <td>    0.439</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
+  <th>FLAIR</th>    <td>    1.9020</td> <td>    1.239</td> <td>    1.535</td> <td> 0.125</td> <td>   -0.526</td> <td>    4.330</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
+  <th>T1</th>       <td>    2.7529</td> <td>    1.150</td> <td>    2.393</td> <td> 0.017</td> <td>    0.498</td> <td>    5.007</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
+  <th>T2</th>       <td>    2.3898</td> <td>    1.144</td> <td>    2.089</td> <td> 0.037</td> <td>    0.148</td> <td>    4.632</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
+  <th>FLAIR_10</th> <td>    8.5731</td> <td>    3.932</td> <td>    2.180</td> <td> 0.029</td> <td>    0.866</td> <td>   16.280</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
+  <th>T1_10</th>    <td>    0.2804</td> <td>    1.939</td> <td>    0.145</td> <td> 0.885</td> <td>   -3.519</td> <td>    4.080</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
+  <th>T2_10</th>    <td>   -5.1341</td> <td>    3.461</td> <td>   -1.483</td> <td> 0.138</td> <td>  -11.917</td> <td>    1.649</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
+  <th>FLAIR_20</th> <td>  -23.2445</td> <td>    8.437</td> <td>   -2.755</td> <td> 0.006</td> <td>  -39.780</td> <td>   -6.709</td>
 </tr>
 </table></div></div>
 </div>
@@ -573,32 +569,32 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.241546
+         Current function value: 0.254547
          Iterations 8
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
+  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6289</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
+  <th>Time:</th>                <td>19:23:53</td>     <th>  Log-Likelihood:    </th> <td> -19.091</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.445</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>1.722e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -606,28 +602,28 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
+  <th>Intercept</th> <td>   -3.3547</td> <td>    1.936</td> <td>   -1.733</td> <td> 0.083</td> <td>   -7.149</td> <td>    0.439</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
+  <th>FLAIR</th>     <td>    1.9020</td> <td>    1.239</td> <td>    1.535</td> <td> 0.125</td> <td>   -0.526</td> <td>    4.330</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
+  <th>T1</th>        <td>    2.7529</td> <td>    1.150</td> <td>    2.393</td> <td> 0.017</td> <td>    0.498</td> <td>    5.007</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
+  <th>T2</th>        <td>    2.3898</td> <td>    1.144</td> <td>    2.089</td> <td> 0.037</td> <td>    0.148</td> <td>    4.632</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
+  <th>FLAIR_10</th>  <td>    8.5731</td> <td>    3.932</td> <td>    2.180</td> <td> 0.029</td> <td>    0.866</td> <td>   16.280</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
+  <th>T1_10</th>     <td>    0.2804</td> <td>    1.939</td> <td>    0.145</td> <td> 0.885</td> <td>   -3.519</td> <td>    4.080</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
+  <th>T2_10</th>     <td>   -5.1341</td> <td>    3.461</td> <td>   -1.483</td> <td> 0.138</td> <td>  -11.917</td> <td>    1.649</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
+  <th>FLAIR_20</th>  <td>  -23.2445</td> <td>    8.437</td> <td>   -2.755</td> <td> 0.006</td> <td>  -39.780</td> <td>   -6.709</td>
 </tr>
 </table></div></div>
 </div>

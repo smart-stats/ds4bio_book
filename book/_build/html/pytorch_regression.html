@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="logistic_regression_pytorch.html" />
+    <link rel="prev" title="Logistic regression in pytorch" href="logistic_regression_pytorch.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -182,6 +182,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="linearModels_FFTs.html">
    Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -359,16 +369,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_27214</span><span class="o">/</span><span class="mf">3019827070.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">torch</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># H is hidden dimension; D_out is output dimension.</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.0747294425964355
+199 0.03381668031215668
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>299 0.0010593271581456065
+399 3.9188704249681905e-05
+499 1.5537893887085374e-06
 </pre></div>
 </div>
 </div>
@@ -398,7 +405,7 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
@@ -431,10 +438,10 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([75, 7]),
- torch.Size([75, 1]),
- torch.Size([25, 7]),
- torch.Size([25, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([80, 7]),
+ torch.Size([80, 1]),
+ torch.Size([20, 7]),
+ torch.Size([20, 1])]
 </pre></div>
 </div>
 </div>
@@ -477,11 +484,11 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 31.615375518798828
-199 28.612531661987305
-299 27.466083526611328
-399 26.587757110595703
-499 25.88320541381836
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 29.259735107421875
+199 25.00836944580078
+299 23.992202758789062
+399 23.417325973510742
+499 22.948328018188477
 </pre></div>
 </div>
 </div>
@@ -497,7 +504,7 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff1e9f789b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f10525eef70&gt;
 </pre></div>
 </div>
 <img alt="_images/pytorch_regression_8_1.png" src="_images/pytorch_regression_8_1.png" />
@@ -539,7 +546,7 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">&lt;no title&gt;</p>
+                <p class="prevnext-title">Logistic regression in pytorch</p>
             </div>
         </a>
     </div>

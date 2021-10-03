@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <a href="https://colab.research.google.com/github/bcaffo/ds4bme_intro/blob/master/notebooks/basicRegressionNN.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/basic_regression_pytorch.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 # # Basic regression in pytorch
 
@@ -24,20 +24,20 @@ dat = pd.read_csv("oasis.csv")
 dat.head(4)
 
 
-# In[193]:
+# In[2]:
 
 
 sns.scatterplot(dat['T2'], dat['PD'])
 
 
-# In[226]:
+# In[3]:
 
 
 fit = smf.ols('PD ~ T2', data = dat).fit()
 fit.summary()
 
 
-# In[228]:
+# In[4]:
 
 
 # The in sample predictions
@@ -53,7 +53,7 @@ sns.scatterplot(yhat, dat['PD'])
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[221]:
+# In[5]:
 
 
 n = dat.shape[0]
@@ -78,7 +78,7 @@ ytraining = ytraining.unsqueeze(1)
  ]
 
 
-# In[ ]:
+# In[6]:
 
 
 ## Show that linear regression is a pytorch 
@@ -114,7 +114,7 @@ for t in range(10000):
   optimizer.step()
 
 
-# In[229]:
+# In[7]:
 
 
 ytest = model(xtraining).detach().numpy().reshape(-1)
@@ -122,7 +122,7 @@ sns.scatterplot(ytest, yhat)
 plt.plot([-1, 3], [-1, 3], linewidth=2)
 
 
-# In[215]:
+# In[8]:
 
 
 for param in model.parameters():

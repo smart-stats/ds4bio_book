@@ -66,7 +66,7 @@ dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/
 
 # Let's first try to fit the proton density data from the other imaging data. I'm going to use the `statsmodels` version of linear models since it has a nice format for dataframes.
 
-# In[ ]:
+# In[2]:
 
 
 trainFraction = .75
@@ -76,14 +76,14 @@ trainingDat = dat[sample]
 testingDat = dat[~sample]
 
 
-# In[26]:
+# In[3]:
 
 
 results = smf.ols('PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20', data = trainingDat).fit()
 print(results.summary2())
 
 
-# In[27]:
+# In[4]:
 
 
 x = dat[['FLAIR','T1', 'T2', 'FLAIR_10', 'T1_10', 'T2_10', 'FLAIR_20']]
@@ -97,13 +97,13 @@ ytraining = y[sample]
 ytesting = y[~sample]
 
 
-# In[28]:
+# In[5]:
 
 
 fit = sm.discrete.discrete_model.Logit(ytraining, xtraining).fit()
 
 
-# In[13]:
+# In[6]:
 
 
 fit.summary()
@@ -121,7 +121,7 @@ fit.summary()
 # 
 # 
 
-# In[22]:
+# In[7]:
 
 
 phatTesting = fit.predict(xtesting)
@@ -153,7 +153,7 @@ plt.show()
 # Consider the following which uses the formula API
 # 
 
-# In[17]:
+# In[8]:
 
 
 results = smf.logit(formula = 'GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20', data = trainingDat).fit()

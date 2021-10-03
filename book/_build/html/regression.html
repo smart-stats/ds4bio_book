@@ -322,7 +322,8 @@
         
               <div>
                 
-  <div class="section" id="continuous-prediction-with-regression">
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="continuous-prediction-with-regression">
 <h1>Continuous prediction with regression<a class="headerlink" href="#continuous-prediction-with-regression" title="Permalink to this headline">¶</a></h1>
 <p>Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
 <p>If we were to dived this by <span class="math notranslate nohighlight">\(n\)</span>, it would be the average of the squared errors, or the <em>mean squared error</em> (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.</p>
@@ -455,7 +456,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f8befadabe0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f6b504c5b80&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_3_1.png" src="_images/regression_3_1.png" />
@@ -523,7 +524,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.33497802314270075, 0.742546554974926]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.30358713534332604, 0.7832293226295436]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/codespace/.conda/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -546,7 +547,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7425465549749258, intercept=0.33497802314270086, rvalue=0.7960809781315216, pvalue=1.3600275296422054e-15, stderr=0.07056157726628651, intercept_stderr=0.06148158014553117)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7832293226295437, intercept=0.30358713534332593, rvalue=0.8168829736956977, pvalue=7.091380837204495e-19, stderr=0.06517644777305776, intercept_stderr=0.06228155121181064)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/codespace/.conda/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
@@ -577,7 +578,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.16249889731505224, 0.22959217204960122]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.18483552823320376, 0.18334535519516512]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/codespace/.conda/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.

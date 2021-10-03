@@ -322,7 +322,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/bcaffo/ds4bme_intro/blob/master/notebooks/notebook5.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <div class="section" id="linear-separable-models">
 <h1>Linear separable models<a class="headerlink" href="#linear-separable-models" title="Permalink to this headline">¶</a></h1>
 <p>We’ve now covered two ways to do prediction with a single variable, classification using logistic regression and prediction using a line and least squares. What if we have several predictiors?</p>
@@ -397,29 +397,29 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.796   
-Dependent Variable: PD               AIC:                51.8504 
-Date:               2021-10-03 19:23 BIC:                70.3903 
-No. Observations:   75               Log-Likelihood:     -17.925 
-Df Model:           7                F-statistic:        42.35   
-Df Residuals:       67               Prob (F-statistic): 3.39e-22
-R-squared:          0.816            Scale:              0.10571 
+Model:              OLS              Adj. R-squared:     0.695   
+Dependent Variable: PD               AIC:                85.2139 
+Date:               2021-10-03 20:14 BIC:                103.8598
+No. Observations:   76               Log-Likelihood:     -34.607 
+Df Model:           7                F-statistic:        25.41   
+Df Residuals:       68               Prob (F-statistic): 1.11e-16
+R-squared:          0.723            Scale:              0.16268 
 ------------------------------------------------------------------
-               Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
+                Coef.   Std.Err.     t     P&gt;|t|    [0.025  0.975]
 ------------------------------------------------------------------
-Intercept      0.1194    0.1326   0.9008  0.3709  -0.1452   0.3840
-FLAIR          0.0235    0.0796   0.2959  0.7682  -0.1353   0.1824
-T1            -0.2699    0.0843  -3.2032  0.0021  -0.4381  -0.1017
-T2             0.5409    0.0804   6.7323  0.0000   0.3806   0.7013
-FLAIR_10      -0.0951    0.3183  -0.2989  0.7659  -0.7304   0.5401
-T1_10          0.2957    0.1745   1.6945  0.0948  -0.0526   0.6441
-T2_10          0.0189    0.2715   0.0695  0.9448  -0.5231   0.5608
-FLAIR_20       1.9181    0.6458   2.9699  0.0041   0.6290   3.2071
+Intercept       0.3492    0.1620   2.1557  0.0346   0.0260  0.6725
+FLAIR          -0.0733    0.1013  -0.7234  0.4719  -0.2755  0.1289
+T1             -0.1273    0.0979  -1.2997  0.1981  -0.3227  0.0681
+T2              0.6626    0.0929   7.1341  0.0000   0.4773  0.8480
+FLAIR_10       -0.4603    0.3794  -1.2131  0.2293  -1.2174  0.2968
+T1_10           0.1094    0.1990   0.5499  0.5842  -0.2877  0.5066
+T2_10           0.0275    0.3461   0.0794  0.9369  -0.6631  0.7181
+FLAIR_20        2.2175    0.8746   2.5353  0.0135   0.4721  3.9628
 -----------------------------------------------------------------
-Omnibus:               0.407        Durbin-Watson:          2.036
-Prob(Omnibus):         0.816        Jarque-Bera (JB):       0.260
-Skew:                  -0.144       Prob(JB):               0.878
-Kurtosis:              2.982        Condition No.:          40   
+Omnibus:              0.441        Durbin-Watson:           2.079
+Prob(Omnibus):        0.802        Jarque-Bera (JB):        0.149
+Skew:                 0.095        Prob(JB):                0.928
+Kurtosis:             3.104        Condition No.:           43   
 =================================================================
 </pre></div>
 </div>
@@ -454,8 +454,8 @@ Kurtosis:              2.982        Condition No.:          40
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.254547
-         Iterations 8
+         Current function value: 0.208373
+         Iterations 9
 </pre></div>
 </div>
 </div>
@@ -470,25 +470,25 @@ Kurtosis:              2.982        Condition No.:          40
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    76</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    68</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6289</td>  
+  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6992</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>19:23:53</td>     <th>  Log-Likelihood:    </th> <td> -19.091</td> 
+  <th>Time:</th>                <td>20:14:57</td>     <th>  Log-Likelihood:    </th> <td> -15.836</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.445</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -52.653</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>1.722e-11</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.716e-13</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -496,30 +496,30 @@ Kurtosis:              2.982        Condition No.:          40
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>   -3.3547</td> <td>    1.936</td> <td>   -1.733</td> <td> 0.083</td> <td>   -7.149</td> <td>    0.439</td>
+  <th>const</th>    <td>   -6.8236</td> <td>    2.692</td> <td>   -2.535</td> <td> 0.011</td> <td>  -12.099</td> <td>   -1.548</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    1.9020</td> <td>    1.239</td> <td>    1.535</td> <td> 0.125</td> <td>   -0.526</td> <td>    4.330</td>
+  <th>FLAIR</th>    <td>    3.5229</td> <td>    1.622</td> <td>    2.172</td> <td> 0.030</td> <td>    0.345</td> <td>    6.701</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    2.7529</td> <td>    1.150</td> <td>    2.393</td> <td> 0.017</td> <td>    0.498</td> <td>    5.007</td>
+  <th>T1</th>       <td>    2.8454</td> <td>    1.366</td> <td>    2.084</td> <td> 0.037</td> <td>    0.169</td> <td>    5.522</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    2.3898</td> <td>    1.144</td> <td>    2.089</td> <td> 0.037</td> <td>    0.148</td> <td>    4.632</td>
+  <th>T2</th>       <td>    2.4310</td> <td>    1.335</td> <td>    1.821</td> <td> 0.069</td> <td>   -0.185</td> <td>    5.047</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>    8.5731</td> <td>    3.932</td> <td>    2.180</td> <td> 0.029</td> <td>    0.866</td> <td>   16.280</td>
+  <th>FLAIR_10</th> <td>   13.9627</td> <td>    5.297</td> <td>    2.636</td> <td> 0.008</td> <td>    3.581</td> <td>   24.345</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>    0.2804</td> <td>    1.939</td> <td>    0.145</td> <td> 0.885</td> <td>   -3.519</td> <td>    4.080</td>
+  <th>T1_10</th>    <td>    2.2173</td> <td>    2.018</td> <td>    1.099</td> <td> 0.272</td> <td>   -1.739</td> <td>    6.173</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>   -5.1341</td> <td>    3.461</td> <td>   -1.483</td> <td> 0.138</td> <td>  -11.917</td> <td>    1.649</td>
+  <th>T2_10</th>    <td>   -9.7383</td> <td>    4.519</td> <td>   -2.155</td> <td> 0.031</td> <td>  -18.596</td> <td>   -0.881</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -23.2445</td> <td>    8.437</td> <td>   -2.755</td> <td> 0.006</td> <td>  -39.780</td> <td>   -6.709</td>
+  <th>FLAIR_20</th> <td>  -27.4127</td> <td>    9.874</td> <td>   -2.776</td> <td> 0.005</td> <td>  -46.765</td> <td>   -8.061</td>
 </tr>
-</table></div></div>
+</table><br/><br/>Possibly complete quasi-separation: A fraction 0.13 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
 </div>
 <p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
 <p>In other words, consider the triplets
@@ -569,32 +569,32 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.254547
-         Iterations 8
+         Current function value: 0.208373
+         Iterations 9
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    76</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    68</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6289</td>  
+  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.6992</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>19:23:53</td>     <th>  Log-Likelihood:    </th> <td> -19.091</td> 
+  <th>Time:</th>                <td>20:14:57</td>     <th>  Log-Likelihood:    </th> <td> -15.836</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.445</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -52.653</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>1.722e-11</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.716e-13</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -602,30 +602,30 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>   -3.3547</td> <td>    1.936</td> <td>   -1.733</td> <td> 0.083</td> <td>   -7.149</td> <td>    0.439</td>
+  <th>Intercept</th> <td>   -6.8236</td> <td>    2.692</td> <td>   -2.535</td> <td> 0.011</td> <td>  -12.099</td> <td>   -1.548</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    1.9020</td> <td>    1.239</td> <td>    1.535</td> <td> 0.125</td> <td>   -0.526</td> <td>    4.330</td>
+  <th>FLAIR</th>     <td>    3.5229</td> <td>    1.622</td> <td>    2.172</td> <td> 0.030</td> <td>    0.345</td> <td>    6.701</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    2.7529</td> <td>    1.150</td> <td>    2.393</td> <td> 0.017</td> <td>    0.498</td> <td>    5.007</td>
+  <th>T1</th>        <td>    2.8454</td> <td>    1.366</td> <td>    2.084</td> <td> 0.037</td> <td>    0.169</td> <td>    5.522</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    2.3898</td> <td>    1.144</td> <td>    2.089</td> <td> 0.037</td> <td>    0.148</td> <td>    4.632</td>
+  <th>T2</th>        <td>    2.4310</td> <td>    1.335</td> <td>    1.821</td> <td> 0.069</td> <td>   -0.185</td> <td>    5.047</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>    8.5731</td> <td>    3.932</td> <td>    2.180</td> <td> 0.029</td> <td>    0.866</td> <td>   16.280</td>
+  <th>FLAIR_10</th>  <td>   13.9627</td> <td>    5.297</td> <td>    2.636</td> <td> 0.008</td> <td>    3.581</td> <td>   24.345</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>    0.2804</td> <td>    1.939</td> <td>    0.145</td> <td> 0.885</td> <td>   -3.519</td> <td>    4.080</td>
+  <th>T1_10</th>     <td>    2.2173</td> <td>    2.018</td> <td>    1.099</td> <td> 0.272</td> <td>   -1.739</td> <td>    6.173</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>   -5.1341</td> <td>    3.461</td> <td>   -1.483</td> <td> 0.138</td> <td>  -11.917</td> <td>    1.649</td>
+  <th>T2_10</th>     <td>   -9.7383</td> <td>    4.519</td> <td>   -2.155</td> <td> 0.031</td> <td>  -18.596</td> <td>   -0.881</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -23.2445</td> <td>    8.437</td> <td>   -2.755</td> <td> 0.006</td> <td>  -39.780</td> <td>   -6.709</td>
+  <th>FLAIR_20</th>  <td>  -27.4127</td> <td>    9.874</td> <td>   -2.776</td> <td> 0.005</td> <td>  -46.765</td> <td>   -8.061</td>
 </tr>
-</table></div></div>
+</table><br/><br/>Possibly complete quasi-separation: A fraction 0.13 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
 </div>
 </div>
 </div>

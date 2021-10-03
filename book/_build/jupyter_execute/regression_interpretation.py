@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression_interpretation.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# 
 # # Regression interpretation
 # 
 # Let's consider how adjustment works in regression by considering a so called ANCOVA (analysis of covariance) setting. Imagine, there's treatment variable that we're ineterested in, $T_i$, and a regression variable that we have to adjust for, $X_i$. Consider this specific variation of this setting: 

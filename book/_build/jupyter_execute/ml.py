@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/ml.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# 
 # # Maximum Likelihood
 # 
 # How do we get the loss function that we use for logistic regression? It relies on a statistical argument called maximum likelihood (ML). Sadly, ML is used to be represent maximum likelihood and machine learning, both important topics in data science. So you'll just kind of have to get used to which one is being used via the context. 

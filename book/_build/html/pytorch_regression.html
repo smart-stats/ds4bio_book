@@ -306,7 +306,8 @@
         
               <div>
                 
-  <div class="section" id="pytorch-by-example-linear-regression">
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/pytorch_regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="pytorch-by-example-linear-regression">
 <h1>Pytorch by example, linear regression<a class="headerlink" href="#pytorch-by-example-linear-regression" title="Permalink to this headline">¶</a></h1>
 <p>This example from the pytorch documentation <a class="reference external" href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html">here</a> displays generating random y ad x dat and fitting a multi-layer neural network.</p>
 <div class="cell docutils container">
@@ -369,13 +370,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.0747294425964355
-199 0.03381668031215668
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.0226869583129883
+199 0.04264160245656967
+299 0.002207789570093155
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>299 0.0010593271581456065
-399 3.9188704249681905e-05
-499 1.5537893887085374e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399 0.00014898160588927567
+499 1.0925414244411513e-05
 </pre></div>
 </div>
 </div>
@@ -438,10 +439,10 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([80, 7]),
- torch.Size([80, 1]),
- torch.Size([20, 7]),
- torch.Size([20, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([79, 7]),
+ torch.Size([79, 1]),
+ torch.Size([21, 7]),
+ torch.Size([21, 1])]
 </pre></div>
 </div>
 </div>
@@ -484,11 +485,11 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 29.259735107421875
-199 25.00836944580078
-299 23.992202758789062
-399 23.417325973510742
-499 22.948328018188477
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 30.66546058654785
+199 26.462284088134766
+299 25.034069061279297
+399 24.22446060180664
+499 23.64529037475586
 </pre></div>
 </div>
 </div>
@@ -504,7 +505,7 @@ dat = pd.read_csv(&quot;oasis.csv&quot;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f10525eef70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fd701837f70&gt;
 </pre></div>
 </div>
 <img alt="_images/pytorch_regression_8_1.png" src="_images/pytorch_regression_8_1.png" />

@@ -54,8 +54,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pytorch by example, linear regression" href="09-pytorch_regression.html" />
-    <link rel="prev" title="Linear models: a classic example" href="regression_examples.html" />
+    <link rel="next" title="&lt;no title&gt;" href="basic_regression_pytorch.html" />
+    <link rel="prev" title="FFT" href="dft.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -170,6 +170,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="regression_examples.html">
    Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   FFT
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -341,14 +351,14 @@ f_k = a_k + i b_k
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_26149</span><span class="o">/</span><span class="mf">2331829312.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_4806</span><span class="o">/</span><span class="mf">2331829312.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
 </div>
@@ -390,7 +400,6 @@ f_k = a_k + i b_k
       <th>1/26/20</th>
       <th>1/27/20</th>
       <th>...</th>
-      <th>9/12/21</th>
       <th>9/13/21</th>
       <th>9/14/21</th>
       <th>9/15/21</th>
@@ -400,6 +409,7 @@ f_k = a_k + i b_k
       <th>9/19/21</th>
       <th>9/20/21</th>
       <th>9/21/21</th>
+      <th>9/22/21</th>
     </tr>
   </thead>
   <tbody>
@@ -416,7 +426,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>153990</td>
       <td>154094</td>
       <td>154180</td>
       <td>154283</td>
@@ -426,6 +435,7 @@ f_k = a_k + i b_k
       <td>154487</td>
       <td>154585</td>
       <td>154712</td>
+      <td>154757</td>
     </tr>
     <tr>
       <th>1</th>
@@ -440,7 +450,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>157026</td>
       <td>157436</td>
       <td>158431</td>
       <td>159423</td>
@@ -450,6 +459,7 @@ f_k = a_k + i b_k
       <td>162953</td>
       <td>163404</td>
       <td>164276</td>
+      <td>165096</td>
     </tr>
     <tr>
       <th>2</th>
@@ -464,7 +474,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>200068</td>
       <td>200301</td>
       <td>200528</td>
       <td>200770</td>
@@ -474,6 +483,7 @@ f_k = a_k + i b_k
       <td>201600</td>
       <td>201766</td>
       <td>201948</td>
+      <td>202122</td>
     </tr>
     <tr>
       <th>3</th>
@@ -488,7 +498,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>15083</td>
       <td>15096</td>
       <td>15099</td>
       <td>15108</td>
@@ -498,6 +507,7 @@ f_k = a_k + i b_k
       <td>15124</td>
       <td>15140</td>
       <td>15140</td>
+      <td>15153</td>
     </tr>
     <tr>
       <th>4</th>
@@ -512,7 +522,6 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>50446</td>
       <td>50738</td>
       <td>51047</td>
       <td>51407</td>
@@ -522,10 +531,11 @@ f_k = a_k + i b_k
       <td>52307</td>
       <td>52644</td>
       <td>52968</td>
+      <td>53387</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 613 columns</p>
+<p>5 rows × 614 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -543,7 +553,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e8f6fe50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e708b370&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_4_1.png" src="_images/linearModels_FFTs_4_1.png" />
@@ -562,7 +572,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e73ed6a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7068730&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_6_1.png" src="_images/linearModels_FFTs_6_1.png" />
@@ -577,7 +587,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e735e0d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e6fcc550&gt;]
 </pre></div>
 </div>
 <img alt="_images/linearModels_FFTs_7_1.png" src="_images/linearModels_FFTs_7_1.png" />
@@ -611,10 +621,11 @@ f_k = a_k + i b_k
 <img alt="_images/linearModels_FFTs_10_0.png" src="_images/linearModels_FFTs_10_0.png" />
 </div>
 </div>
+<p>Let’s verify that they are indeed orthonormal. That is, we want to show that <span class="math notranslate nohighlight">\(&lt;x_i, x_j&gt; = I(i =j)\)</span>. We also show that they are all mean 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Verify that they are orthonormal mean 0</span>
-<span class="p">[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Verify that they are orthonormal mean 0, round to 6 decimal places</span>
+<span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span> <span class="p">[</span>
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span><span class="p">),</span>
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c20</span><span class="p">),</span>
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span><span class="p">),</span>
@@ -627,27 +638,17 @@ f_k = a_k + i b_k
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">s20</span><span class="p">),</span>
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c5</span> <span class="o">*</span> <span class="n">c20</span><span class="p">),</span>
  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s5</span> <span class="o">*</span> <span class="n">s20</span><span class="p">),</span>
-<span class="p">]</span>
+<span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.992007221626409e-16,
- -6.800116025829084e-16,
- -2.220446049250313e-16,
- 8.278100427361323e-15,
- 0.9999999999999998,
- 1.0000000000000002,
- 1.0,
- 0.9999999999999997,
- -3.447762908503904e-17,
- 6.938893903907228e-17,
- 3.5041414214731503e-16,
- -5.574967570920464e-16]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0., -0.,  0., -0.,  1.,  1.,  1.,  1., -0.,  0., -0.,  0.])
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s take the FFT, the fast (discrete) Fourier transform th way one would normally do it. First, we use FFT in numpy. Then, there’s a convenient method, <code class="docutils literal notranslate"><span class="pre">fftfreq</span></code>, which gives the associated frequencies with each element of the transform. Finally, we plot the spectral density, which is the sum of the real and complex Fourier coefficients. Sorting the elements first is necessary to connect the dots on the plot. Interestingly, once we remove the trend from the Italy data, there’s some very noticeable spikes in the spectral density, which implies large coefficients on that specific frequency. This is possibly some reporting issue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -660,12 +661,13 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86a53b8358&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7153190&gt;]
 </pre></div>
 </div>
-<img alt="_images/linearModels_FFTs_12_1.png" src="_images/linearModels_FFTs_12_1.png" />
+<img alt="_images/linearModels_FFTs_14_1.png" src="_images/linearModels_FFTs_14_1.png" />
 </div>
 </div>
+<p>Now let’s manually find the coefficients using our constructed bases and the formula that the coefficients.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
@@ -678,10 +680,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7023.0638714666065,
- 3129.666929693342,
- -2734.541573653142,
- -1381.5328656452866]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-122321.23192612399,
+ -19854.09302843738,
+ -90543.46016843051,
+ -5434.237738349892]
 </pre></div>
 </div>
 </div>
@@ -775,19 +777,19 @@ f_k = a_k + i b_k
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="regression_examples.html" title="previous page">
+        <a class="left-prev" href="dft.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Linear models: a classic example</p>
+                <p class="prevnext-title">FFT</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="09-pytorch_regression.html" title="next page">
+        <a class="right-next" href="basic_regression_pytorch.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Pytorch by example, linear regression</p>
+                <p class="prevnext-title">&lt;no title&gt;</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

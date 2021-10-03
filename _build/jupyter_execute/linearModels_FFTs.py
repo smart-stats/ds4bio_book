@@ -62,14 +62,14 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 
 
-# In[2]:
+# In[16]:
 
 
 dat = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
 dat.head()
 
 
-# In[4]:
+# In[17]:
 
 
 ## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)
@@ -85,7 +85,7 @@ plt.plot(y)
 
 # Let's look at a smoothed version of it and then take the residual. The residual is where we'd like to look at some oscillatory behavior.
 
-# In[7]:
+# In[18]:
 
 
 n = y.size
@@ -96,7 +96,7 @@ plt.plot(y)
 plt.plot(yhat)
 
 
-# In[8]:
+# In[19]:
 
 
 ## We're interested in the residual
@@ -106,7 +106,7 @@ plt.plot(e)
 
 # Let's manually create our Fourier bases. We're just going to pick some periods to investigate. We'll pick a fast varying and slow varying.
 
-# In[12]:
+# In[20]:
 
 
 
@@ -118,7 +118,7 @@ s5  = np.sin(-2 * np.pi * t * 5  / n  )/ np.sqrt(n /2)
 s20 = np.sin(-2 * np.pi * t * 20 / n  ) / np.sqrt(n /2)
 
 
-# In[14]:
+# In[21]:
 
 
 fig, axs = plt.subplots(2, 2)
@@ -129,11 +129,13 @@ axs[1,1].plot(t, s20)
 plt.show()
 
 
-# In[164]:
+# Let's verify that they are indeed orthonormal. That is, we want to show that $<x_i, x_j> = I(i =j)$. We also show that they are all mean 0.
+
+# In[29]:
 
 
-## Verify that they are orthonormal mean 0
-[
+## Verify that they are orthonormal mean 0, round to 6 decimal places
+np.around( [
  np.sum(c5),
  np.sum(c20),
  np.sum(s5),
@@ -146,10 +148,12 @@ plt.show()
  np.sum(c5 * s20),
  np.sum(c5 * c20),
  np.sum(s5 * s20),
-]
+], 6)
 
 
-# In[165]:
+# Let's take the FFT, the fast (discrete) Fourier transform th way one would normally do it. First, we use FFT in numpy. Then, there's a convenient method, `fftfreq`, which gives the associated frequencies with each element of the transform. Finally, we plot the spectral density, which is the sum of the real and complex Fourier coefficients. Sorting the elements first is necessary to connect the dots on the plot. Interestingly, once we remove the trend from the Italy data, there's some very noticeable spikes in the spectral density, which implies large coefficients on that specific frequency. This is possibly some reporting issue.
+
+# In[30]:
 
 
 f = np.fft.fft(e)
@@ -160,7 +164,9 @@ w = w[ind]
 plt.plot(w, f.real**2 + f.imag**2)
 
 
-# In[166]:
+# Now let's manually find the coefficients using our constructed bases and the formula that the coefficients.
+
+# In[31]:
 
 
 [

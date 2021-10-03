@@ -57,10 +57,10 @@ import sklearn as skl
 import statsmodels.formula.api as smf
 import statsmodels as sm
 
-## this sets some style parameters
+## this sets some style parameters  
 sns.set()
 
-## Read in the data
+## Read in the data 
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 
 

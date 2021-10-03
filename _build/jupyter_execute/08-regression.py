@@ -29,7 +29,7 @@ dat.head(4)
 
 # Let's look at the non-smoothed data (omitting the `_10` and `_20`) using a pair plot. I'm color coding by whether or not the specific voxel is a lesion.
 
-# In[2]:
+# In[ ]:
 
 
 sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions')
@@ -80,7 +80,7 @@ sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions')
 # 
 # The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say "correlation" without further context, it's understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, $Cov(X, X)$, is simply the square of the standard deviation and has units of X squared.
 
-# In[3]:
+# In[ ]:
 
 
 x = dat['T2']
@@ -104,7 +104,7 @@ sns.scatterplot(xtrain, ytrain)
 sns.lineplot(xtrain, beta0 + beta1 * xtrain)
 
 
-# In[4]:
+# In[ ]:
 
 
 print(st.linregress(x = xtrain, y = ytrain))
@@ -113,7 +113,7 @@ sns.regplot(xtrain, ytrain)
 
 # Let's now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of $\beta_0$ and $\beta_1$. We'll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.
 
-# In[5]:
+# In[ ]:
 
 
 yhat_test = beta0 + beta1 * xtest

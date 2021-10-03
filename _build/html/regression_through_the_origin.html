@@ -173,6 +173,16 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   FFT
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="linearModels_FFTs.html">
    Regression and FFTs
   </a>
@@ -323,6 +333,18 @@ l'' = \sum_i 2 x_i^2
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5014</span><span class="o">/</span><span class="mf">1751986130.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now let’s download and read in the data.</p>
 <div class="cell docutils container">
@@ -461,7 +483,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7b2452640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f12ead02ef0&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_6_1.png" src="_images/regression_through_the_origin_6_1.png" />
@@ -477,7 +499,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7b235f100&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f12eace7e80&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_8_1.png" src="_images/regression_through_the_origin_8_1.png" />
@@ -492,7 +514,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7831514763656
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7831514763655998
 </pre></div>
 </div>
 </div>
@@ -507,7 +529,7 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa7b2346cd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f12ead7c1d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/regression_through_the_origin_12_1.png" src="_images/regression_through_the_origin_12_1.png" />

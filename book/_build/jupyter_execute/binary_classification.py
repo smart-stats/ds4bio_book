@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Introduction to binary classification
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/binary_classification.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
+# # Introduction to binary classification
+# 
 # The data we're going to be working with for this example is the `oasis` data from Elizabeth Sweeney's R package. The data contain MR (magnetic resonance) images for lesion segmentation in multiple sclerosis (MS). MS is a disorder primarily caused by whtie matter lesions. This dataset is a collection of voxels from an image with radiologists labeling of whether or not a white matter lesion exists at that location. 
 
 # In[1]:

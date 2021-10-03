@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to binary classification &#8212; Data science and AI for Bio/medical applications using python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regression through the origin" href="regression_through_the_origin.html" />
+    <link rel="prev" title="Exploratory data analysis in Seaborn" href="EDA.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/dasl.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ds_python.html">
+   Basic python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_python.html">
+   Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_programming.html">
+   Python programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_cleaning.html">
+   Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis in Seaborn
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
+   Regression through the origin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic.html">
+   Logistic regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml.html">
+   Maximum Likelihood
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparable.html">
+   Linear separable models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparableSMF.html">
+   Interpretation of linear regression coefficients.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_examples.html">
+   Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   DFT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearModels_FFTs.html">
+   Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-pytorch_regression.html">
+   Pytorch by example, linear regression
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/binary_classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/smart-stats/ds4bio_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fbinary_classification.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/binary_classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification">
+   Classification
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definitions">
+     Definitions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-binary-classification">
+<h1>Introduction to binary classification<a class="headerlink" href="#introduction-to-binary-classification" title="Permalink to this headline">¶</a></h1>
+<p>The data we’re going to be working with for this example is the <code class="docutils literal notranslate"><span class="pre">oasis</span></code> data from Elizabeth Sweeney’s R package. The data contain MR (magnetic resonance) images for lesion segmentation in multiple sclerosis (MS). MS is a disorder primarily caused by whtie matter lesions. This dataset is a collection of voxels from an image with radiologists labeling of whether or not a white matter lesion exists at that location.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1">## this sets some style parameters</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FLAIR</th>
+      <th>PD</th>
+      <th>T1</th>
+      <th>T2</th>
+      <th>FLAIR_10</th>
+      <th>PD_10</th>
+      <th>T1_10</th>
+      <th>T2_10</th>
+      <th>FLAIR_20</th>
+      <th>PD_20</th>
+      <th>T1_20</th>
+      <th>T2_20</th>
+      <th>GOLD_Lesions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.143692</td>
+      <td>1.586219</td>
+      <td>-0.799859</td>
+      <td>1.634467</td>
+      <td>0.437568</td>
+      <td>0.823800</td>
+      <td>-0.002059</td>
+      <td>0.573663</td>
+      <td>0.279832</td>
+      <td>0.548341</td>
+      <td>0.219136</td>
+      <td>0.298662</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.652552</td>
+      <td>1.766672</td>
+      <td>-1.250992</td>
+      <td>0.921230</td>
+      <td>0.663037</td>
+      <td>0.880250</td>
+      <td>-0.422060</td>
+      <td>0.542597</td>
+      <td>0.422182</td>
+      <td>0.549711</td>
+      <td>0.061573</td>
+      <td>0.280972</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.036099</td>
+      <td>0.262042</td>
+      <td>-0.858565</td>
+      <td>-0.058211</td>
+      <td>-0.044280</td>
+      <td>-0.308569</td>
+      <td>0.014766</td>
+      <td>-0.256075</td>
+      <td>-0.136532</td>
+      <td>-0.350905</td>
+      <td>0.020673</td>
+      <td>-0.259914</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.037692</td>
+      <td>0.011104</td>
+      <td>-1.228796</td>
+      <td>-0.470222</td>
+      <td>-0.013971</td>
+      <td>-0.000498</td>
+      <td>-0.395575</td>
+      <td>-0.221900</td>
+      <td>0.000807</td>
+      <td>-0.003085</td>
+      <td>-0.193249</td>
+      <td>-0.139284</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that we loaded <code class="docutils literal notranslate"><span class="pre">pandas</span></code> first. The various columns are voxel values from different kinds of MR images of the same patient. FLAIR (fluid attenuated inversion recovery), PD (proton density), T1 and T2. The latter two aren’t acronyms, but instead named for the specific part of the <em>relaxation time</em> of the MR signal. Roughly, the relaxation time is related to the signal produced by protons snapping back into alignment in a strong magnetic field (recall <em>magnetic</em> resonance imaging). The <code class="docutils literal notranslate"><span class="pre">_10</span></code> and <code class="docutils literal notranslate"><span class="pre">_20</span></code> ending variables are local averages of the neighboring voxels. We’re trying to predict <code class="docutils literal notranslate"><span class="pre">GOLD_Lesions</span></code>, which is the radiologist standard of whether or not there is a lesion at this voxel. (A voxel is a three dimensional pixel.)</p>
+<p>Note here we are doing <em>voxelwise segmentation</em> that is trying to predict whether there is a lesion at each specific voxel. This can be viewed as an image processing problem. Other classification problem consider, for example, whether a patient has any lesions (and then where as a followup). Approaching the problem that way is a <em>image  level</em> segmentation approach.</p>
+<p>Let’s plot it. I’m showing a couple of ways. I’ve been testing out plotting libraries in python, and I think that I like ‘seaborn’ (the second plot) the best. In the seaborn plots, I show both the marginal plot (without considering the gold standard) and then stratified by whether or not there was a lesion at that voxel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">FLAIR</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GOLD_Lesions
+0    AxesSubplot(0.125,0.125;0.775x0.755)
+1    AxesSubplot(0.125,0.125;0.775x0.755)
+Name: FLAIR, dtype: object
+</pre></div>
+</div>
+<img alt="_images/binary_classification_5_1.png" src="_images/binary_classification_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">FLAIR</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">GOLD_Lesions</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">FLAIR</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">GOLD_Lesions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">FLAIR</span>
+
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Marginal&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/binary_classification_6_0.png" src="_images/binary_classification_6_0.png" />
+<img alt="_images/binary_classification_6_1.png" src="_images/binary_classification_6_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h1>
+<p>Let’s try creating the simplest possible classifier, a threshold. So here we want to pick the value of the threshold so that lower values are classified <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">0</span></code> (i.e. no lesion) and higher values are <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">1</span></code> (lesion at this voxel). We want to do this on labeled voxels so that we can pick a meaningful threshold on voxels without a gold standard labeling. That is, for new patients we want to automatically label their images one voxel at a time with a simple thresholding rule. We’re going to use our <strong>training data</strong> where we know the truth to develop the threshold.</p>
+<p><em>Note the idea behind doing this is only useful if the new images without the gold standard are in the same units as the old one, which is not usually the case for MRIs. The technique for trying to make images comparable is called normalization</em>.</p>
+<p>Let’s first just try each of the datapoints itself as a threshold and pick which one does best.
+However, I’m going to break the data into a training and testing set. The reason for this is that I want to make sure that I don’t overfit. That is, we’re going to test our algorithm on a dataset that wasn’t used to train the algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">FLAIR</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">GOLD_Lesions</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">trainFraction</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
+
+<span class="c1">## Build a training and testing set</span>
+<span class="c1">## Prob of being in the train set is trainFraction</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
+
+<span class="c1">## Get the training and testing sets</span>
+<span class="n">xtrain</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span> <span class="n">sample</span><span class="p">]</span>
+<span class="n">ytrain</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span> <span class="n">sample</span><span class="p">]</span>
+<span class="n">xtest</span> <span class="o">=</span>  <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">sample</span><span class="p">]</span>
+<span class="n">ytest</span> <span class="o">=</span>  <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">sample</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Starting values, just set it to </span>
+<span class="c1">## 0 so that it improves on the first</span>
+<span class="c1">## try</span>
+<span class="n">bestAccuracySoFar</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">xtrain</span><span class="p">):</span>
+  <span class="c1">## Strictly greater than the threshold is</span>
+  <span class="c1">## our algorithm</span>
+  <span class="n">predictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">xtrain</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">)</span>
+  <span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ytrain</span> <span class="o">==</span> <span class="n">predictions</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">&gt;</span> <span class="n">bestAccuracySoFar</span><span class="p">):</span>
+    <span class="n">bestThresholdSoFar</span> <span class="o">=</span> <span class="n">t</span> 
+    <span class="n">bestAccuracySoFar</span> <span class="o">=</span> <span class="n">accuracy</span> 
+
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">bestThresholdSoFar</span>
+  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s test our our “algorithm”, on the test set. We’ll look at the test set accuracy, but also how it breaks up into the sensisitivity and specificity.</p>
+<div class="section" id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<p>test set <strong>accuracy</strong> = proportion of correct classifications on the test data</p>
+<p>test set <strong>sensitivity</strong> = proportion declared diseased among those that are actually diseased. (In this case lesion = disease)</p>
+<p>test set <strong>specificity</strong> = proportion declared not diseased among those that are actually not diseased.</p>
+<p>To interpret the sensitivity and specificity, imagine setting the threshold nearly to zero. Then we’ll declare almost every voxel a lesion and we’ll have nearly 100% sensitivity and nearly 0% specificity. If we declare a voxel as a lesion it’s not that interesting. If we declare a voxel as not lesions, then it’s probably not a lesion.</p>
+<p>If we set the threshold really high, then we’ll have nearly 0% sensitivity and 100% specificity. If we say a voxel is not lesioned, it’s not that informative, since we declare nearly everything not a lesion. But if we declare a voxel a lesion, it usually is.</p>
+<p>So, if you have a high sensitivity, it’s good for ruling diseases out. If you have a high specificity it’s good for ruling diseases in. If you have a high both? Then you have a very good test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Let&#39;s test it out on the test set</span>
+<span class="n">testPredictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">xtest</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+
+<span class="c1">## The test set accuracy</span>
+<span class="n">testAccuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">testPredictions</span> <span class="o">==</span> <span class="n">ytest</span><span class="p">)</span>
+
+<span class="c1">## Let&#39;s see how it specifically does on the</span>
+<span class="c1">## set of instances where ytest == 0 and ytest == 1</span>
+<span class="c1">## The % it gets correct on ytest == 0 is called</span>
+<span class="c1">## the specificity and the percent correct when </span>
+<span class="c1">## ytest == 1 is called the sensitivity.</span>
+<span class="n">sub0</span> <span class="o">=</span> <span class="n">ytest</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">sub1</span> <span class="o">=</span> <span class="n">ytest</span> <span class="o">==</span> <span class="mi">1</span>
+
+<span class="n">testSpec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ytest</span><span class="p">[</span><span class="n">sub0</span><span class="p">]</span> <span class="o">==</span> <span class="n">testPredictions</span><span class="p">[</span><span class="n">sub0</span><span class="p">])</span>
+<span class="n">testSens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ytest</span><span class="p">[</span><span class="n">sub1</span><span class="p">]</span> <span class="o">==</span> <span class="n">testPredictions</span><span class="p">[</span><span class="n">sub1</span><span class="p">])</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+ 
+ <span class="s1">&#39;Threshold&#39;</span><span class="p">:</span> <span class="n">threshold</span><span class="p">,</span>
+ <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">testAccuracy</span><span class="p">,</span> 
+ <span class="s1">&#39;Specificity&#39;</span><span class="p">:</span> <span class="n">testSpec</span><span class="p">,</span> 
+ <span class="s1">&#39;Sensitivity&#39;</span><span class="p">:</span> <span class="n">testSens</span><span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Threshold</th>
+      <th>Accuracy</th>
+      <th>Specificity</th>
+      <th>Sensitivity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.4632</td>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>0.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/binary_classification_12_0.png" src="_images/binary_classification_12_0.png" />
+</div>
+</div>
+<p>OK, so out plot has better sensitivity than specificity and a test set accuracy of around 68%. The lower specificity is because there’s a lower percentage of blue below the line than orange above the line. Recall,  we’re saying above the threshold is a lesion and orange is the distribution for voxels with lesions.</p>
+<p>So, for this algorithm, the high sensitivity says that all else being equal, if you declare a voxel as not being a lesion, it probably isn’t. In other words, if you’re out in the lower part of the orange distribution, there’s a lot of blue there.</p>
+<p>However, all else isn’t equal. Most voxels aren’t lesions. This factors into our discussion in a way that we’ll discuss later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">xtest</span><span class="p">)</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span>
+         <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ROC curve (area = </span><span class="si">%0.2f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver operating characteristic example&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/binary_classification_15_0.png" src="_images/binary_classification_15_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="EDA.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Exploratory data analysis in Seaborn</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="regression_through_the_origin.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Regression through the origin</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Brian Caffo<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

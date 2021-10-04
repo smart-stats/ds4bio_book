@@ -22,3 +22,4 @@ chapters:
 - file: basic_regression_pytorch.ipynb
 - file: logistic_regression_pytorch.ipynb
 - file: pytorch_regression.ipynb
+- file: convnet_classifier_pytorch.ipynb

@@ -1,0 +1,71 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+## this sets some style parameters
+sns.set()
+
+
+## Reading it in, keeping only volume
+df = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/kirby21.csv")
+df = df.drop(['Unnamed: 0', 'rawid', 'min', 'max', 'mean', 'std'],\
+             axis = 1)
+df.head(4)
+
+
+
+
+## Extract the Type 1 Level 1 data
+t1l1 = df.loc[(df.type == 1) & (df.level == 1)]
+## Create a new column based on ICV
+t1l1 = t1l1.assign(icv = sum(t1l1.volume))
+
+## create a composition variable
+t1l1 = t1l1.assign(comp = lambda x: x.volume / x.tbv)
+
+## get the mean of the composition variable across
+## subjects by ROI
+summary = t1l1[['roi', 'comp']].groupby('roi', as_index=False).mean()
+print(summary)
+
+g = sns.barplot(x='roi', y = 'comp', data = summary)
+## this is the matplotlib command for rotating 
+## axis tick labels by 90 degrees.
+plt.xticks(rotation = 90)
+
+t1l1pivot = t1l1.pivot(index = 'id', columns = 'roi', values = 'volume')
+t1l1pivot.head(4)
+
+
+
+t1l1pivot.plot(kind='bar', stacked=True, legend= False)
+plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+
+
+
+
+sns.scatterplot(x = 'Telencephalon_L', y = 'Telencephalon_R', data = t1l1pivot)
+plt.xticks(rotation = 90)
+
+#plot an identity line from the data min to the data max
+x1 = min([t1l1pivot.Telencephalon_L.min(), t1l1pivot.Telencephalon_R.min()])
+x2 = max([t1l1pivot.Telencephalon_L.max(), t1l1pivot.Telencephalon_R.max()])
+plt.plot([x1, x2], [x1 , x2])
+
+
+
+t1l1pivot = t1l1pivot.assign(Tel_logmean = lambda x: (np.log(x.Telencephalon_L) * .5 +  np.log(x.Telencephalon_R)* .5))
+t1l1pivot = t1l1pivot.assign(Tel_logdiff = lambda x: (np.log(x.Telencephalon_R) -  np.log(x.Telencephalon_L)))
+sns.scatterplot(x = 'Tel_logmean', y = 'Tel_logdiff', data = t1l1pivot)
+plt.axhline(0, color='green')
+plt.xticks(rotation = 90)
+
+
+
+x = np.arange(0, .1, .001)
+ex = np.exp(x)
+
+sns.lineplot(x, ex)
+plt.plot(x, x + 1)
+
+

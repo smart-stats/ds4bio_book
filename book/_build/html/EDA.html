@@ -202,6 +202,11 @@
    Pytorch by example, linear regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet example
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -319,7 +324,7 @@
 <p>Let’s start with loading up some libraries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -332,11 +337,13 @@
 <p>First let’s download the data. Then we’ll read it in and drop some columns that aren’t needed for this analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Reading it in, keeping only volume</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Reading it in, keeping only volume</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/kirby21.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="s1">&#39;rawid&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">],</span>\
              <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -416,7 +423,7 @@
 <p>Let’s look at the Type 1 Level 1 data and create a variable called <code class="docutils literal notranslate"><span class="pre">comp</span></code> which is brain composition, defined as the regional volumes over total brain volume. We’ll do this by selecting <code class="docutils literal notranslate"><span class="pre">roi</span></code> and comp then grouping by <code class="docutils literal notranslate"><span class="pre">roi</span></code> and taking the mean of the compostions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Extract the Type 1 Level 1 data</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Extract the Type 1 Level 1 data</span>
 <span class="n">t1l1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="c1">## Create a new column based on ICV</span>
 <span class="n">t1l1</span> <span class="o">=</span> <span class="n">t1l1</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">icv</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">t1l1</span><span class="o">.</span><span class="n">volume</span><span class="p">))</span>
@@ -426,7 +433,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## create a composition variable</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## create a composition variable</span>
 <span class="n">t1l1</span> <span class="o">=</span> <span class="n">t1l1</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">comp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">volume</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">tbv</span><span class="p">)</span>
 
 <span class="c1">## get the mean of the composition variable across</span>
@@ -453,7 +460,7 @@
 <p>OK, let’s try our first plot, a seaborn bar plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;roi&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;comp&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">summary</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;roi&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;comp&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">summary</span><span class="p">)</span>
 <span class="c1">## this is the matplotlib command for rotating </span>
 <span class="c1">## axis tick labels by 90 degrees.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
@@ -461,15 +468,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2, 3, 4, 5, 6, 7]),
- [Text(0, 0, &#39;CSF&#39;),
-  Text(1, 0, &#39;Diencephalon_L&#39;),
-  Text(2, 0, &#39;Diencephalon_R&#39;),
-  Text(3, 0, &#39;Mesencephalon&#39;),
-  Text(4, 0, &#39;Metencephalon&#39;),
-  Text(5, 0, &#39;Myelencephalon&#39;),
-  Text(6, 0, &#39;Telencephalon_L&#39;),
-  Text(7, 0, &#39;Telencephalon_R&#39;)])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2, 3, 4, 5, 6, 7]), &lt;a list of 8 Text xticklabel objects&gt;)
 </pre></div>
 </div>
 <img alt="_images/EDA_9_1.png" src="_images/EDA_9_1.png" />
@@ -478,8 +477,9 @@
 <p>Unfortunately, seaborn doesn’t have a stakced bar chart. However, pandas does have one built in. To do this, however, we have to create a version of the data with ROIs as the columns. This is done with a pivot statement.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span> <span class="o">=</span> <span class="n">t1l1</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;roi&#39;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">&#39;volume&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span> <span class="o">=</span> <span class="n">t1l1</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;roi&#39;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">&#39;volume&#39;</span><span class="p">)</span>
 <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
@@ -574,13 +574,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x79d86c300880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5591b69630&gt;
 </pre></div>
 </div>
 <img alt="_images/EDA_12_1.png" src="_images/EDA_12_1.png" />
@@ -589,18 +589,19 @@
 <p>Let’s do some scatterplots. Let’s look at bilateral symmetry in the telencephalon.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Telencephalon_L&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Telencephalon_R&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Telencephalon_L&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Telencephalon_R&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
 
 <span class="c1">#plot an identity line from the data min to the data max</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">t1l1pivot</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="o">.</span><span class="n">min</span><span class="p">()])</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">t1l1pivot</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">x1</span> <span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
+
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x79d86b563790&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f558f1c7e80&gt;]
 </pre></div>
 </div>
 <img alt="_images/EDA_15_1.png" src="_images/EDA_15_1.png" />
@@ -609,28 +610,18 @@
 <p>This plot has the issue that there’s a lot of blank space. This is often addressed via a mean difference plot. This plot shows (X+Y) / 2 versus (X-y). This is basically just rotating the plot above by 45 degrees to get rid of all of the blank space around the diagonal line. Alternatively, you could plot (log(x) + log(y)) / 2 versus log(X) - log(Y). This plots the log of the geometric mean of the two observations versus the log of their ratio. Sometimes people use log base 2 or log base 10.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Tel_logmean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="p">)</span> <span class="o">*</span> <span class="mf">.5</span> <span class="o">+</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="p">)</span><span class="o">*</span> <span class="mf">.5</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1l1pivot</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Tel_logmean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="p">)</span> <span class="o">*</span> <span class="mf">.5</span> <span class="o">+</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="p">)</span><span class="o">*</span> <span class="mf">.5</span><span class="p">))</span>
 <span class="n">t1l1pivot</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Tel_logdiff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="p">)</span> <span class="o">-</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="p">)))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Tel_logmean&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Tel_logdiff&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">t1l1pivot</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([12.8 , 12.85, 12.9 , 12.95, 13.  , 13.05, 13.1 , 13.15, 13.2 ,
-        13.25, 13.3 ]),
- [Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;)])
+        13.25, 13.3 ]), &lt;a list of 11 Text xticklabel objects&gt;)
 </pre></div>
 </div>
 <img alt="_images/EDA_17_1.png" src="_images/EDA_17_1.png" />
@@ -640,23 +631,20 @@
 <p>Also, in case you don’t believe me, here’s a plot of <span class="math notranslate nohighlight">\(e^x\)</span> versus <span class="math notranslate nohighlight">\(1+x\)</span> for values up to 0.1. This is obtained as the Taylor expasion for <span class="math notranslate nohighlight">\(e^x\)</span> around 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.001</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.001</span><span class="p">)</span>
 <span class="n">ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ex</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  warnings.warn(
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f558ee5b3c8&gt;]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x79d86b4d4f70&gt;]
-</pre></div>
-</div>
-<img alt="_images/EDA_19_2.png" src="_images/EDA_19_2.png" />
+<img alt="_images/EDA_19_1.png" src="_images/EDA_19_1.png" />
 </div>
 </div>
 </div>

@@ -38,7 +38,7 @@ else:
 # ```
 # Here's an example (note this is just equal to the statement `(a < 0) - (a > 0)`
 
-# In[2]:
+# In[3]:
 
 
 a = 5
@@ -55,7 +55,7 @@ print(a)
 
 # `for` and `while` loops can be used for iteration. Here's some examples
 
-# In[3]:
+# In[8]:
 
 
 for i in range(4) :
@@ -63,7 +63,7 @@ for i in range(4) :
  
 
 
-# In[4]:
+# In[7]:
 
 
 x = 4
@@ -74,7 +74,7 @@ while x > 0 :
 
 # Note `for` loops can iterate over list-like structures.
 
-# In[5]:
+# In[9]:
 
 
 for w in 'word':
@@ -83,7 +83,7 @@ for w in 'word':
 
 # The range function is useful for creating a structure to loop over. It creates a data type that can be iterated over, but isn't itself a list. So if you want a list out of it, you have to convert it.
 
-# In[6]:
+# In[16]:
 
 
 a = range(3)

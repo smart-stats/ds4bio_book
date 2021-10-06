@@ -22,7 +22,7 @@
 # Note, the adjusted estimated treatment effect is the difference between the two parallel sloped lines. The unadjusted estimated treatment effect is the difference between the two horizontal lines. Let's look at how adjustment changes things depending on the setting. First we'll do our imports and then define a function that will make our plot for us and fit the ANCOVA model.
 # 
 
-# In[1]:
+# In[140]:
 
 
 import pandas as pd
@@ -36,7 +36,7 @@ import copy
 sns.set()
 
 
-# In[2]:
+# In[172]:
 
 
 def myplot(x, y, t):
@@ -76,7 +76,7 @@ def myplot(x, y, t):
 
 # Let's consider out model with $\beta_0 = 0$, $\beta_1 = 1$ and $\beta_2 = 4$. So the treated have an intercept 4 units higher. Let's consider simulating from this model where the treatment is randomized.
 
-# In[3]:
+# In[174]:
 
 
 n = 100
@@ -95,7 +95,7 @@ myplot(x, y, t)
 
 # Notice that the marginal means (horizontal lines) are about 4 units appart, same as the lines. This is due to the randomization. A goal of randomization is to make our inference for the treatment unrelated to whether or not we adjust for the confounding variable ($X$). So, we get (up to random error) the ssame answer whether we adjust for $X$ or not. Let's consider a different setting.
 
-# In[4]:
+# In[177]:
 
 
 myplot(x + t * 4, y, t)
@@ -103,7 +103,7 @@ myplot(x + t * 4, y, t)
 
 # Now notice that there is a large unadjusted difference (difference between the horizontal lines) whereas there is not much of a difference between the lines. That is, when adjusting for $X$, the relationship goes away. Of note, treatment assignment is highly related to the $X$ variable. Orange dots tend to have a larger $X$ value than the blue. Because of this, there's pratically no area of overlap between the orange and the blue to directly compare them. The adjusted model is all model, extrapolating the blue line up to the orange and the orange down to the blue assuming that they're parallel.
 
-# In[5]:
+# In[186]:
 
 
 myplot(x + t * 4, y  - t * 4, t)
@@ -111,7 +111,7 @@ myplot(x + t * 4, y  - t * 4, t)
 
 # Above notice that the result is the reverse. There's little association marginally, but a large one when conditioning. Let's look at one final case.
 
-# In[6]:
+# In[180]:
 
 
 myplot(x + t * 6, y  - t * 2, t)

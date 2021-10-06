@@ -7,7 +7,7 @@
 # 
 # The kind of programming we've seen so far in python isn't how typical data programmming in python goes. Instead, we tend to rely a lot of modules that add methods to our complex data science objects. Most python objects are class objects that come with a variety of convenient methods associated with them. If you're working in a good coding environment, then it should have some method autocompletion for your objects, which helps prevent typos and can speed up work. Let's look at methods associated with a list object. Note that some methods change the object itself while others return things without changing the object.
 
-# In[1]:
+# In[22]:
 
 
 pets = ['frogs', 'cats', 'dogs', 'hamsters']
@@ -25,7 +25,7 @@ print(pets.count("horses")) #counts the number of times the string horses is in 
 
 # A useful working example is working with imaginary numbers.
 
-# In[2]:
+# In[19]:
 
 
 x = 10 + 5j
@@ -36,7 +36,7 @@ print(x.conjugate())
 
 # Let's create our own version of a complex number, adapted from [here](https://docs.python.org/3/tutorial/classes.html).
 
-# In[3]:
+# In[46]:
 
 
 class mycomplex:
@@ -58,7 +58,7 @@ y.print()
 
 # Let's now create a version that doesn't modify the object when we conjugate. 
 
-# In[4]:
+# In[48]:
 
 
 class mycomplex:

@@ -202,6 +202,11 @@
    Pytorch by example, linear regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet example
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -357,7 +362,7 @@
 <p>Let’s look at the voxel-level data that we’ve been working with. First let’s load the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -378,7 +383,7 @@
 <p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
@@ -389,7 +394,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -397,29 +402,29 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.758   
-Dependent Variable: PD               AIC:                74.4449 
-Date:               2021-10-03 18:27 BIC:                93.6005 
-No. Observations:   81               Log-Likelihood:     -29.222 
-Df Model:           7                F-statistic:        36.88   
-Df Residuals:       73               Prob (F-statistic): 1.60e-21
-R-squared:          0.780            Scale:              0.13367 
+Model:              OLS              Adj. R-squared:     0.773   
+Dependent Variable: PD               AIC:                72.6331 
+Date:               2019-09-23 19:22 BIC:                91.2790 
+No. Observations:   76               Log-Likelihood:     -28.317 
+Df Model:           7                F-statistic:        37.44   
+Df Residuals:       68               Prob (F-statistic): 6.19e-21
+R-squared:          0.794            Scale:              0.13787 
 ------------------------------------------------------------------
                Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept      0.2609    0.1381   1.8887  0.0629  -0.0144   0.5362
-FLAIR         -0.0098    0.0878  -0.1119  0.9112  -0.1847   0.1651
-T1            -0.2060    0.0837  -2.4624  0.0162  -0.3727  -0.0393
-T2             0.6022    0.0839   7.1814  0.0000   0.4351   0.7694
-FLAIR_10      -0.3202    0.3385  -0.9460  0.3473  -0.9949   0.3544
-T1_10          0.2274    0.1549   1.4680  0.1464  -0.0813   0.5362
-T2_10          0.1619    0.2833   0.5715  0.5694  -0.4028   0.7266
-FLAIR_20       1.8537    0.6629   2.7962  0.0066   0.5324   3.1749
+Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
+FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
+T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
+T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
+FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
+T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
+T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
+FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
 -----------------------------------------------------------------
-Omnibus:               3.934        Durbin-Watson:          2.141
-Prob(Omnibus):         0.140        Jarque-Bera (JB):       3.427
-Skew:                  -0.308       Prob(JB):               0.180
-Kurtosis:              3.798        Condition No.:          39   
+Omnibus:               4.022        Durbin-Watson:          2.111
+Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
+Skew:                  -0.238       Prob(JB):               0.142
+Kurtosis:              4.003        Condition No.:          41   
 =================================================================
 </pre></div>
 </div>
@@ -427,7 +432,7 @@ Kurtosis:              3.798        Condition No.:          39
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">]]</span>
 <span class="c1">## Add the intercept column</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -440,29 +445,29 @@ Kurtosis:              3.798        Condition No.:          39
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.9/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
-  x = pd.concat(x[::order], 1)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">discrete_model</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">ytraining</span><span class="p">,</span> <span class="n">xtraining</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">discrete_model</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">ytraining</span><span class="p">,</span> <span class="n">xtraining</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.187878
-         Iterations 9
+         Current function value: 0.253784
+         Iterations 8
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -470,25 +475,25 @@ Kurtosis:              3.798        Condition No.:          39
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    81</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    73</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.7282</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>18:27:47</td>     <th>  Log-Likelihood:    </th> <td> -15.218</td> 
+  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -55.991</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>6.666e-15</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -496,30 +501,30 @@ Kurtosis:              3.798        Condition No.:          39
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>   -3.9213</td> <td>    2.068</td> <td>   -1.896</td> <td> 0.058</td> <td>   -7.974</td> <td>    0.132</td>
+  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    1.1751</td> <td>    1.457</td> <td>    0.807</td> <td> 0.420</td> <td>   -1.680</td> <td>    4.030</td>
+  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    5.0436</td> <td>    2.086</td> <td>    2.418</td> <td> 0.016</td> <td>    0.955</td> <td>    9.132</td>
+  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    5.3243</td> <td>    2.158</td> <td>    2.467</td> <td> 0.014</td> <td>    1.094</td> <td>    9.555</td>
+  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>    7.2936</td> <td>    4.359</td> <td>    1.673</td> <td> 0.094</td> <td>   -1.250</td> <td>   15.837</td>
+  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>    1.0436</td> <td>    1.714</td> <td>    0.609</td> <td> 0.542</td> <td>   -2.315</td> <td>    4.402</td>
+  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>   -7.3990</td> <td>    4.553</td> <td>   -1.625</td> <td> 0.104</td> <td>  -16.322</td> <td>    1.524</td>
+  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -24.6879</td> <td>   11.051</td> <td>   -2.234</td> <td> 0.025</td> <td>  -46.348</td> <td>   -3.028</td>
+  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
-</table><br/><br/>Possibly complete quasi-separation: A fraction 0.11 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
+</table></div></div>
 </div>
 <p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
 <p>In other words, consider the triplets
@@ -530,7 +535,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 <p>Necessarily, the sensitivity and specificity</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phatTesting</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phatTesting</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
 
 <span class="c1">## See here for plotting</span>
 <span class="c1">## https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python</span>
@@ -562,39 +567,39 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 <p>Consider the following which uses the formula API</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.187878
-         Iterations 9
+         Current function value: 0.241546
+         Iterations 8
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    81</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    73</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 03 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.7282</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>18:27:47</td>     <th>  Log-Likelihood:    </th> <td> -15.218</td> 
+  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -55.991</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>6.666e-15</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -602,30 +607,30 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>   -3.9213</td> <td>    2.068</td> <td>   -1.896</td> <td> 0.058</td> <td>   -7.974</td> <td>    0.132</td>
+  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    1.1751</td> <td>    1.457</td> <td>    0.807</td> <td> 0.420</td> <td>   -1.680</td> <td>    4.030</td>
+  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    5.0436</td> <td>    2.086</td> <td>    2.418</td> <td> 0.016</td> <td>    0.955</td> <td>    9.132</td>
+  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    5.3243</td> <td>    2.158</td> <td>    2.467</td> <td> 0.014</td> <td>    1.094</td> <td>    9.555</td>
+  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>    7.2936</td> <td>    4.359</td> <td>    1.673</td> <td> 0.094</td> <td>   -1.250</td> <td>   15.837</td>
+  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>    1.0436</td> <td>    1.714</td> <td>    0.609</td> <td> 0.542</td> <td>   -2.315</td> <td>    4.402</td>
+  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>   -7.3990</td> <td>    4.553</td> <td>   -1.625</td> <td> 0.104</td> <td>  -16.322</td> <td>    1.524</td>
+  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -24.6879</td> <td>   11.051</td> <td>   -2.234</td> <td> 0.025</td> <td>  -46.348</td> <td>   -3.028</td>
+  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
-</table><br/><br/>Possibly complete quasi-separation: A fraction 0.11 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
+</table></div></div>
 </div>
 </div>
 </div>

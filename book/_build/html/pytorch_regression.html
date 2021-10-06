@@ -52,6 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Convnet example" href="convnet_classifier_pytorch.html" />
     <link rel="prev" title="Logistic regression in pytorch" href="logistic_regression_pytorch.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -199,6 +200,11 @@
    Pytorch by example, linear regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet example
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -312,7 +318,7 @@
 <p>This example from the pytorch documentation <a class="reference external" href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html">here</a> displays generating random y ad x dat and fitting a multi-layer neural network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># N is batch size; D_in is input dimension;</span>
@@ -370,15 +376,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 2.2705650329589844
-199 0.0391131266951561
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>299 0.0016054667066782713
-399 9.398791007697582e-05
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>499 6.2021977100812364e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 1.9933761358261108
+199 0.020633060485124588
+299 0.00045402691466733813
+399 1.4306728189694695e-05
+499 5.802120313092018e-07
 </pre></div>
 </div>
 </div>
@@ -386,7 +388,7 @@
 <p>Let’s update that example for our setting using the voxel level data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -403,7 +405,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
@@ -414,7 +416,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;PD&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;PD&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1">##pytorch wants type as float</span>
@@ -436,17 +438,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([66, 7]),
- torch.Size([66, 1]),
- torch.Size([34, 7]),
- torch.Size([34, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([75, 7]),
+ torch.Size([75, 1]),
+ torch.Size([25, 7]),
+ torch.Size([25, 1])]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Define the model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Define the model</span>
 <span class="c1">## Dimension of the hidden layer</span>
 <span class="n">H</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -459,13 +461,14 @@
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span>
 <span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
@@ -482,18 +485,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 20.850032806396484
-199 18.625391006469727
-299 17.620149612426758
-399 16.993959426879883
-499 16.519813537597656
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 31.615375518798828
+199 28.612531661987305
+299 27.466083526611328
+399 26.587757110595703
+499 25.88320541381836
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## try prediction</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## try prediction</span>
 <span class="n">ytesting_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">ytesting_pred</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
@@ -502,7 +505,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x796af2c1c880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ff1e9f789b0&gt;
 </pre></div>
 </div>
 <img alt="_images/pytorch_regression_8_1.png" src="_images/pytorch_regression_8_1.png" />
@@ -548,6 +551,15 @@
             </div>
         </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="convnet_classifier_pytorch.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Convnet example</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         

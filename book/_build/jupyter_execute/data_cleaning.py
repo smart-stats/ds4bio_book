@@ -9,7 +9,7 @@
 # The first thing we'll try is loading some data and plotting it. To do this, we'll need some packages. Let's load up pandas, a package for data management, and matplotlib. The python command for this is `import`.
 # 
 
-# In[1]:
+# In[11]:
 
 
 import pandas as pd
@@ -79,7 +79,7 @@ t1l1
 # 
 # Pandas has built in methods for plotting. Later on, we'll try different plotting packages. 
 
-# In[8]:
+# In[12]:
 
 
 t1l1.plot.bar(x='roi',y='comp')
@@ -87,7 +87,7 @@ t1l1.plot.bar(x='roi',y='comp')
 
 # In colab, you have to install packages it doesn't have everytime you reconnect the runtime. I've commented this out here, since plotly is already installed locally for me. To install in colab, use a `!` in front of the unix command. In this case we're using the python package management system `pip` to install plotly, an interactive graphing envinronment. 
 
-# In[9]:
+# In[14]:
 
 
 #!pip install plotly==4.0.0
@@ -95,7 +95,7 @@ t1l1.plot.bar(x='roi',y='comp')
 
 # We can create an interactive plot with `plotly`. This is a professionally developed package that makes interactive plotting very easy. Also, it renders nicely within colab or jupyter notebooks. For plotly graphics, I would suggest assigning the graph to a variable then calling that variable to show the plot. This way you can modify the plot later if you'd like.
 
-# In[10]:
+# In[15]:
 
 
 import plotly.express as px

@@ -18,7 +18,7 @@ print(pow(5, 3))
 # Note our function has a mandatory arugment, `x`, and an optional arugment, `n`, that takes the default value 2. Consider this example
 # to think about how python evaluates function arguments. These are all the same.
 
-# In[2]:
+# In[4]:
 
 
 print(pow(3, 2))
@@ -29,7 +29,7 @@ print(pow(n = 2, x = 3))
 
 # You can look here, [https://docs.python.org/3/tutorial/controlflow.html](https://docs.python.org/3/tutorial/controlflow.html), to study the rules. It doesn't make a lot of sense to get to cute with your function calling arguments. I try to obey both the order and the naming. I argue that this is the way to go since usually functions are written with some sensible ordering of arguments and naming removes all doubt. Python has a special variable for variable length arguments. Here's an example.
 
-# In[3]:
+# In[5]:
 
 
 def concat(*args, sep="/"):
@@ -41,7 +41,7 @@ print(concat("a", "b", "c", sep = ":"))
 
 # Lambda can be used to create short, unnamed functions. This has a lot of uses that we'll see later. 
 
-# In[4]:
+# In[6]:
 
 
 f = lambda x: x ** 2
@@ -50,7 +50,7 @@ print(f(5))
 
 # Here's an example useage where we use lambda to make specific "raise to the power" functions.
 
-# In[5]:
+# In[7]:
 
 
 def makepow(n):

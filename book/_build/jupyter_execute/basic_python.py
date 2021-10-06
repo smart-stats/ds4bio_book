@@ -12,7 +12,7 @@
 # 
 # If you want an easy repl environment to program in, try [https://replit.com/](https://replit.com/). For an easy notebook solution to try out, look at google colab, [https://colab.research.google.com](https://colab.research.google.com) .
 
-# In[1]:
+# In[11]:
 
 
 print(type(10))
@@ -24,7 +24,7 @@ print(type(True))
 
 # These types are our basic building blocks. There's some other important basic types that build on these. We'll cover these later, but to give you a teaser:
 
-# In[2]:
+# In[4]:
 
 
 print(type([1, 2]))
@@ -34,7 +34,7 @@ print(type({1, 2}))
 
 # Types can be converted from one to another. For example, we might want to change our 10 into different types. Here's some examples of converting the integer 10 into a float. First, we use the `float` function. Next we define a variable `a` that takes the integer value 10, then use a method associated with `a` to convert the type. If you're unfamiliar with the second notation, don't worry about that now, you'll get very used to it as we work more in python.
 
-# In[3]:
+# In[9]:
 
 
 print(type(float(10)))
@@ -44,7 +44,7 @@ print(type( a.__float__() ))
 
 # Python's repl does all of the basic numerical calculations that you'd like. It does dynamic typing so that you can do things like add ints and floats. Here we show the basic operators, and note `#` is a comment in python.
 
-# In[4]:
+# In[13]:
 
 
 print(10 + 10.0) ## addition, in this case an int and float
@@ -57,7 +57,7 @@ print(10.1 % 2)  ## modulo
 
 # Strings are easy to work with in python. Type `print("Hello World")` in the repl just to get that out of the way. Otherwise, `+` concatenates strings and brackets reference string elements. Here's some examples. Remember counting starts at 0 and negative numbers count from the back.
 
-# In[5]:
+# In[16]:
 
 
 word = "ds4bio"
@@ -68,7 +68,7 @@ print(word[-1])
 
 # The strings `True` and `False` are reserved for the respective Boolean values. The operators `==`, `>`, `<`, `>=`, `<=` and `!=` are the testing operators while `and`, `or` and `is` are Boolean operators. Here are some examples.  
 
-# In[6]:
+# In[3]:
 
 
 a = 5 < 4  # sets a to False
@@ -91,7 +91,7 @@ print(not a)
 # First, let's look at some list operations.
 # 
 
-# In[7]:
+# In[20]:
 
 
 dat = [1, 4, 8, 10] # define a list
@@ -110,7 +110,7 @@ print(dat4)
 
 # Now, let's look at dictionaries. 
 
-# In[8]:
+# In[26]:
 
 
 dict = {"a" : 1, "b" : 2} # Create a dictionary of two elements named a and b taking values 1 and 2 respectively

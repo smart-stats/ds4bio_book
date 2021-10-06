@@ -7,7 +7,7 @@
 # 
 # The data we're going to be working with for this example is the `oasis` data from Elizabeth Sweeney's R package. The data contain MR (magnetic resonance) images for lesion segmentation in multiple sclerosis (MS). MS is a disorder primarily caused by whtie matter lesions. This dataset is a collection of voxels from an image with radiologists labeling of whether or not a white matter lesion exists at that location. 
 
-# In[1]:
+# In[16]:
 
 
 import numpy as np
@@ -19,7 +19,7 @@ sns.set()
 from sklearn.metrics import accuracy_score, roc_curve, auc
 
 
-# In[2]:
+# In[17]:
 
 
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
@@ -32,13 +32,13 @@ dat.head(4)
 # 
 # Let's plot it. I'm showing a couple of ways. I've been testing out plotting libraries in python, and I think that I like 'seaborn' (the second plot) the best. In the seaborn plots, I show both the marginal plot (without considering the gold standard) and then stratified by whether or not there was a lesion at that voxel.
 
-# In[3]:
+# In[18]:
 
 
 dat.groupby('GOLD_Lesions').FLAIR.hist(alpha= .5)
 
 
-# In[4]:
+# In[19]:
 
 
 
@@ -68,7 +68,7 @@ plt.show()
 # However, I'm going to break the data into a training and testing set. The reason for this is that I want to make sure that I don't overfit. That is, we're going to test our algorithm on a dataset that wasn't used to train the algorithm. 
 # 
 
-# In[5]:
+# In[20]:
 
 
 x = dat.FLAIR
@@ -87,7 +87,7 @@ xtest =  x[~sample]
 ytest =  y[~sample]
 
 
-# In[6]:
+# In[21]:
 
 
 ## Starting values, just set it to 
@@ -126,7 +126,7 @@ threshold = bestThresholdSoFar
 # 
 # 
 
-# In[7]:
+# In[22]:
 
 
 ## Let's test it out on the test set
@@ -155,7 +155,7 @@ pd.DataFrame({
 
 
 
-# In[8]:
+# In[23]:
 
 
 sns.kdeplot(x0, shade = True, label = 'Gold Std = 0')
@@ -173,14 +173,14 @@ plt.show()
 # 
 # 
 
-# In[9]:
+# In[24]:
 
 
 fpr, tpr, thresholds = roc_curve(ytest, xtest)
 roc_auc = auc(fpr, tpr)
 
 
-# In[10]:
+# In[25]:
 
 
 plt.figure()

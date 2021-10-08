@@ -19,6 +19,7 @@ chapters:
 - file: regression_interpretation.ipynb
 - file: dft.ipynb
 - file: linearModels_FFTs.ipynb
+- file: nns.ipynb
 - file: basic_regression_pytorch.ipynb
 - file: logistic_regression_pytorch.ipynb
 - file: pytorch_regression.ipynb

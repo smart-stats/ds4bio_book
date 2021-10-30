@@ -7,6 +7,7 @@ chapters:
 - file: functions.ipynb
 - file: python_practice.ipynb
 - file: data_cleaning.ipynb
+- file: sqlite.ipynb
 - file: EDA.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb

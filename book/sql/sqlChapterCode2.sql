@@ -3,10 +3,8 @@
 .import county_annual.csv annual
 .import land_area.csv land
 .tables
-
-.mode column
 pragma table_info(population);
-.mode column
 pragma table_info(annual);
-.mode column
 pragma table_info(land);
+select BUYER_COUNTY, BUYER_STATE, STATE, COUNTY, year, population from population limit 5;
+select * from annual where countyfips = "NA" limit 10;

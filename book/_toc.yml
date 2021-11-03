@@ -8,6 +8,7 @@ chapters:
 - file: python_practice.ipynb
 - file: data_cleaning.ipynb
 - file: sqlite.ipynb
+- file: pysqlite.ipynb
 - file: EDA.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
@@ -21,8 +22,8 @@ chapters:
 - file: dft.ipynb
 - file: linearModels_FFTs.ipynb
 - file: nns.ipynb
+- file: pytorch_regression.ipynb
 - file: basic_regression_pytorch.ipynb
 - file: logistic_regression_pytorch.ipynb
-- file: pytorch_regression.ipynb
 - file: convnet_classifier_pytorch.ipynb
 - file: convolutions.ipynb

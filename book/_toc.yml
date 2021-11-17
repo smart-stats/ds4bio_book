@@ -10,6 +10,8 @@ chapters:
 - file: sqlite.ipynb
 - file: pysqlite.ipynb
 - file: EDA.ipynb
+- file: rBasic.ipynb
+- file: rTidyverse.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb

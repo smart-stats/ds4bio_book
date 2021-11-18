@@ -12,6 +12,8 @@ chapters:
 - file: EDA.ipynb
 - file: rBasic.ipynb
 - file: rTidyverse.ipynb
+- file: rFromPython.ipynb
+- file: pythonFromR.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb

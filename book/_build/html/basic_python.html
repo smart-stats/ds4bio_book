@@ -126,8 +126,38 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="sqlite.html">
+   SQL via sqlite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pysqlite.html">
+   sqlite in python
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="EDA.html">
    Exploratory data analysis in Seaborn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rBasic.html">
+   Base R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rTidyverse.html">
+   R tidyverse quick example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rFromPython.html">
+   R from python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pythonFromR.html">
+   Python from R
   </a>
  </li>
  <li class="toctree-l1">
@@ -191,6 +221,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
+   Pytorch by example
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="basic_regression_pytorch.html">
    Basic regression in pytorch
   </a>
@@ -198,11 +233,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="logistic_regression_pytorch.html">
    Logistic regression in pytorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pytorch_regression.html">
-   Pytorch by example
   </a>
  </li>
  <li class="toctree-l1">
@@ -323,6 +353,13 @@
   <a class="reference internal nav-link" href="#data-structures">
    Data structures
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mutable-in-immutable-entities">
+     Mutable in immutable entities
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -509,6 +546,47 @@ True
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: 1, &#39;b&#39;: 2}
 1
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mutable-in-immutable-entities">
+<h3>Mutable in immutable entities<a class="headerlink" href="#mutable-in-immutable-entities" title="Permalink to this headline">¶</a></h3>
+<p>When working with objects in python, mutable and immutable elements act differently. Lists are mutable. So, below, the element <code class="docutils literal notranslate"><span class="pre">y</span></code> gets appended along with <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1">## Notice y has the appended element</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1">## let&#39;s try again, as of now x = [10, 20] </span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">11</span>
+<span class="c1">## Now x = [21, 20], but did y change?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 20]
+[21, 20]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Things like numbers and strings are immutable. Notice that changing <code class="docutils literal notranslate"><span class="pre">y</span></code> does not change <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(20, 10)
+</pre></div>
+</div>
 </div>
 </div>
 </div>

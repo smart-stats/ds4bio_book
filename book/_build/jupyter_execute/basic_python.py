@@ -117,3 +117,32 @@ dict = {"a" : 1, "b" : 2} # Create a dictionary of two elements named a and b ta
 print(dict)
 print(dict['a'])          # reference the element named a
 
+
+# ### Mutable in immutable entities
+# 
+# When working with objects in python, mutable and immutable elements act differently. Lists are mutable. So, below, the element `y` gets appended along with `x`.
+
+# In[10]:
+
+
+x = [10]
+y = x
+x.append(20)
+## Notice y has the appended element
+print(y)
+## let's try again, as of now x = [10, 20] 
+x[0] = x[0] + 11
+## Now x = [21, 20], but did y change?
+print(y)
+
+
+# Things like numbers and strings are immutable. Notice that changing `y` does not change `x`.
+
+# In[7]:
+
+
+x = 10
+y = x
+x = x + 10
+print((x, y))
+

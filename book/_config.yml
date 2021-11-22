@@ -35,7 +35,3 @@ sphinx:
   config:
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
-    - https://cdnjs.cloudflare.com/ajax/libs/vega/5.21.0/vega.min.js
-    - https://cdnjs.cloudflare.com/ajax/libs/vega-lite/5.1.1/vega-lite.min.js
-    - https://cdnjs.cloudflare.com/ajax/libs/vega-embed/6.20.3--canary.795.9a81b8f.0/vega-embed.min.js
-

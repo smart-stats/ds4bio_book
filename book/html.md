@@ -133,7 +133,9 @@ the data and instructions.
 }
 ```
 
-This needs to be embedded into html, plus the vega JS libraries loaded to execute. I have an example [here](assetts/vega1.html).
+This needs to be embedded into html, plus the vega JS libraries loaded to execute. I have an example [here](https://github.com/smart-stats/ds4bio_book/blob/main/book/assetts/vega1.html). The
+output looks like this
 
 ![Graphic](assetts/vega1.png)
 
+Typically, one creates these graphics in one's home analysis language (like python or R). There are several libraries for doing as such. Some of the popular ones include: bookeh, vega, D3js, leaflet, but there are many more. There's also connections to large private efforts including tableau, power bi, google charts and plotly. 

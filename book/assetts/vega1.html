@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/5.21.0/vega.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/5.1.1/vega-lite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/6.20.3--canary.795.9a81b8f.0/vega-embed.min.js"></script>
+        <div id="vis"></div>
+        <script>
+            // Assign the specification to a local variable vlSpec.
+            var vlSpec = {
+                $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+                "data" : {
+                    "values" : [
+                        {"roi" : "CSF"            , "comp" :  7.370845},
+                        {"roi" : "Diencephalon_L" , "comp" :  0.756288},
+                        {"roi" : "Diencephalon_R" , "comp" :  0.763409},
+                        {"roi" : "Mesencephalon"  , "comp" :  0.864718},
+                        {"roi" : "Metencephalon"  , "comp" : 12.488275},
+                        {"roi" : "Myelencephalon" , "comp" :  0.378464},
+                        {"roi" : "Telencephalon_L", "comp" : 42.030477},
+                        {"roi" : "Telencephalon_R", "comp" : 42.718368}
+                    ]
+                },
+                "mark": "bar",
+                "encoding": {
+                "y": {"field": "roi" , "type": "nominal"},
+                "x": {"field": "comp", "type": "quantitative"}
+                }
+            };
+            // Embed the visualization in the container with id `vis`
+            vegaEmbed('#vis', vlSpec);
+        </script>
+    </body>
+</html>
+    

@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear separable models &#8212; Data science and AI for Bio/medical applications using python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Interpretation of linear regression coefficients." href="linearSeparableSMF.html" />
+    <link rel="prev" title="Maximum Likelihood" href="ml.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/dasl.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ds_python.html">
+   Python background
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_python.html">
+   Python basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_programming.html">
+   Python programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_cleaning.html">
+   Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sqlite.html">
+   SQL via sqlite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pysqlite.html">
+   sqlite in python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rBasic.html">
+   Base R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rTidyverse.html">
+   R tidyverse quick example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rFromPython.html">
+   R from python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pythonFromR.html">
+   Python from R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="html.html">
+   HTML, CSS and javascript
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interactive.html">
+   Interactive graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="binary_classification.html">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
+   Regression through the origin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic.html">
+   Logistic regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml.html">
+   Maximum Likelihood
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Linear separable models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparableSMF.html">
+   Interpretation of linear regression coefficients.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_examples.html">
+   Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   DFT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearModels_FFTs.html">
+   Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nns.html">
+   Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
+   Pytorch by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet classifier example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutions.html">
+   Convolutions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/linearSeparable.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/smart-stats/ds4bio_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2FlinearSeparable.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/linearSeparable.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aside-different-python-packages">
+   Aside different python packages
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="linear-separable-models">
+<h1>Linear separable models<a class="headerlink" href="#linear-separable-models" title="Permalink to this headline">¶</a></h1>
+<p>We’ve now covered two ways to do prediction with a single variable, classification using logistic regression and prediction using a line and least squares. What if we have several predictiors?</p>
+<p>In both the logistic and linear regression models, we had a linear predictor, specifically,</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \beta_0 + \beta_1 x_i.
+\]</div>
+<p>In the continuous case, we were modeling the expected value of the outcomes as linear. In the binary case, we were assuming that the naturual logarithm of the odds of a 1 outcome was linear.</p>
+<p>To estimate the unknown parameters, <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> we minimized</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n || y_i - \eta_i||^2 
+\]</div>
+<p>in the linear case and</p>
+<div class="math notranslate nohighlight">
+\[
+-\sum_{i=1}^n \left[
+  Y_i \eta_i + \log\left\{\frac{1}{1 + e^{\eta_i}} \right\} \right].
+\]</div>
+<p>in the binary outcome case (where, recall, <span class="math notranslate nohighlight">\(\eta_i\)</span> depends on the parameters).  We can easily extend these models to multiple predictors by assuming that the impact of the multiple predictors is linear and separable. That is,</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \ldots \beta_{p-1} x_{p-1,i}
+\]</div>
+<p>If we think about this as vectors and matrices, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\eta = X \beta
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is an <span class="math notranslate nohighlight">\(n \times 1\)</span> vector, <span class="math notranslate nohighlight">\(X\)</span> is an <span class="math notranslate nohighlight">\(n \times p\)</span> matrix with <span class="math notranslate nohighlight">\(i,j\)</span> entry <span class="math notranslate nohighlight">\(x_{ij}\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> is a <span class="math notranslate nohighlight">\(p\times 1\)</span> vector with entries <span class="math notranslate nohighlight">\(\beta_j\)</span>.</p>
+<p>Let’s look at the voxel-level data that we’ve been working with. First let’s load the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">lm</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">skl</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">statsmodels</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="c1">## this sets some style parameters  </span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="c1">## Read in the data </span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
+<span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+<span class="n">testingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="o">~</span><span class="n">sample</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
+=================================================================
+Model:              OLS              Adj. R-squared:     0.773   
+Dependent Variable: PD               AIC:                72.6331 
+Date:               2019-09-23 19:22 BIC:                91.2790 
+No. Observations:   76               Log-Likelihood:     -28.317 
+Df Model:           7                F-statistic:        37.44   
+Df Residuals:       68               Prob (F-statistic): 6.19e-21
+R-squared:          0.794            Scale:              0.13787 
+------------------------------------------------------------------
+               Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
+------------------------------------------------------------------
+Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
+FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
+T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
+T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
+FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
+T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
+T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
+FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
+-----------------------------------------------------------------
+Omnibus:               4.022        Durbin-Watson:          2.111
+Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
+Skew:                  -0.238       Prob(JB):               0.142
+Kurtosis:              4.003        Condition No.:          41   
+=================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">]]</span>
+<span class="c1">## Add the intercept column</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">xtraining</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+<span class="n">xtesting</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">sample</span><span class="p">]</span>
+<span class="n">ytraining</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+<span class="n">ytesting</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">sample</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">discrete_model</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">ytraining</span><span class="p">,</span> <span class="n">xtraining</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.253784
+         Iterations 8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Logit Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
+</tr>
+<tr>
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
+</tr>
+<tr>
+  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
+</tr>
+<tr>
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
+</tr>
+<tr>
+  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
+</tr>
+<tr>
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
+</tr>
+<tr>
+  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
+</tr>
+<tr>
+  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
+</tr>
+<tr>
+  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
+</tr>
+<tr>
+  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
+</tr>
+<tr>
+  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
+</tr>
+<tr>
+  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
+</tr>
+<tr>
+  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
+</tr>
+</table></div></div>
+</div>
+<p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
+<p>In other words, consider the triplets
+$<span class="math notranslate nohighlight">\(
+(t, sens(t), spec(t))
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, `sens(t)` is the sensitivity at threshold \)</span>t$, <code class="docutils literal notranslate"><span class="pre">spec(t)</span></code> is the specificity at threshold <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p>
+<p>Necessarily, the sensitivity and specificity</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phatTesting</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
+
+<span class="c1">## See here for plotting</span>
+<span class="c1">## https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">skl</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">ytesting</span><span class="p">,</span> <span class="n">phatTesting</span><span class="p">)</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">skl</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+
+<span class="c1"># method I: plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver Operating Characteristic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;AUC = </span><span class="si">%0.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/linearSeparable_11_0.png" src="_images/linearSeparable_11_0.png" />
+</div>
+</div>
+<div class="section" id="aside-different-python-packages">
+<h2>Aside different python packages<a class="headerlink" href="#aside-different-python-packages" title="Permalink to this headline">¶</a></h2>
+<p>So far we’ve explored several plotting libraries including: default pandas methods, matplotlib, seaborn and plotly. We’ve also looked at several fitting libraries including to some extent numpy, but especially scikitlearn and statsmodels. What’s the difference? Well, these packages are all mantained by different people and have different features and goals. For example, scikitlearn is more expansive than statsmodels, but statsmodels functions more like one is used to with statistical output. Matplotlib is very expansive, but seaborn has nicer default options and is a little easier. So, when doing data science with python, one has to get used to trying out a few packages, weighing the cost and benefits of each, and picking one.</p>
+<p>‘statsmodels’, what we’re using above, has multiple methods for fitting binary models including: <code class="docutils literal notranslate"><span class="pre">sm.Logit</span></code>, <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code>, <code class="docutils literal notranslate"><span class="pre">BinaryModel</span></code> and <code class="docutils literal notranslate"><span class="pre">glm</span></code>. Here I’m just going to use <code class="docutils literal notranslate"><span class="pre">Logit</span></code> which does not use the formula syntax of <code class="docutils literal notranslate"><span class="pre">logit</span></code>. Note, by default, this does not add an intercept this way. So, I’m adding a column of ones, which adds an intercept.</p>
+<p>Consider the following which uses the formula API</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.241546
+         Iterations 8
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>Logit Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
+</tr>
+<tr>
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
+</tr>
+<tr>
+  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
+</tr>
+<tr>
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
+</tr>
+<tr>
+  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
+</tr>
+<tr>
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
+</tr>
+<tr>
+  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
+</tr>
+<tr>
+  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
+</tr>
+<tr>
+  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
+</tr>
+<tr>
+  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
+</tr>
+<tr>
+  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
+</tr>
+<tr>
+  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
+</tr>
+<tr>
+  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
+</tr>
+</table></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="ml.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Maximum Likelihood</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="linearSeparableSMF.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Interpretation of linear regression coefficients.</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Brian Caffo<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

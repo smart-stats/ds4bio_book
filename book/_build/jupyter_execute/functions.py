@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/functions.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/functions.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
 # 
 # # Functions
 # Writing functions are an important aspect of programming. Writing functions helps automate redundant tasks and create more reusable code. Defining functions in python is easy. Let's write a function that raises a number to a power. (This is unnecessary of course.) Don't forget the colon.

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+# 
 # # R from python 
 # 
 # Python has an R api called `Rpy2`. You can install it with `conda install rpy2` or `pip install rpy2`. We'll just cover some really basic examples. 

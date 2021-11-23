@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+# 
 # # sqlite in python
 # 
 # An sqlite3 library ships with python. In this tutorial, we'll discuss how to utilize this library and read sqlite tables into pandas. With this, you can generalize to other python APIs to other databases. First, let's continue on with our work from the previous notebook. A nice little tutorial can be found [here](https://datacarpentry.org/python-ecology-lesson/09-working-with-sql/index.html). 

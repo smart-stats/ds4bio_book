@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/python_programming.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/python_programming.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
 # 
 # # Python programming
 # Try the following requests input from a user using the command `input` then it tests the value of the input using an `if` statement. A couple of things to take note of. First, python uses the white space instead of inclosing the statement in braces or parentheses. Secondly, don't forget the colons after programming statements like `if`, `else`, `for`, `def` and so on. Otherwise, if/else statements work just like you'd expect. 

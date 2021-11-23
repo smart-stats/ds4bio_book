@@ -377,7 +377,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <div class="section" id="continuous-prediction-with-regression">
 <h1>Continuous prediction with regression<a class="headerlink" href="#continuous-prediction-with-regression" title="Permalink to this headline">¶</a></h1>
 <p>Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
@@ -386,7 +386,7 @@
 <p>To tie ourselves down with an example, consider the previous lecture’s example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">st</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -506,7 +506,7 @@
 <p>Let’s look at the non-smoothed data (omitting the <code class="docutils literal notranslate"><span class="pre">_10</span></code> and <code class="docutils literal notranslate"><span class="pre">_20</span></code>) using a pair plot. I’m color coding by whether or not the specific voxel is a lesion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;PD&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">],</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;PD&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">],</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,7 +556,7 @@
 <p>The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say “correlation” without further context, it’s understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, <span class="math notranslate nohighlight">\(Cov(X, X)\)</span>, is simply the square of the standard deviation and has units of X squared.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;T2&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;T2&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;PD&#39;</span><span class="p">]</span>
 <span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">0.75</span>
 
@@ -590,7 +590,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xtrain</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ytrain</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xtrain</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ytrain</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -608,7 +608,7 @@
 <p>Let’s now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>. We’ll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yhat_test</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">xtest</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat_test</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">xtest</span>
 <span class="n">yhat_train</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">xtrain</span>
 
 <span class="c1">## claculate the MSE in the training and test sets</span>
@@ -619,8 +619,6 @@
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">yhat_test</span><span class="p">,</span> <span class="n">ytest</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted value from xtest T2 values&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual PD value from ytest&#39;</span><span class="p">)</span>
-
-
 </pre></div>
 </div>
 </div>

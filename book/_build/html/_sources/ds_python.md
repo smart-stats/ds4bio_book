@@ -9,7 +9,7 @@ programming for data analyses. More pure code editors and integrated development
 writing software.  Here's a list of some of things I've tried and liked.
 
 * **Jupyter and Jupyter labs** These are the most popular notebook solutions for python. You can run them in the cloud or locally, either way they run in a browser as a web page. There are hosted solutions and solutions that run in local virtual environments. This is the solution that we
-use for this class. Personally, I use jupyter lab. Probably the easiest way to get started with jupyter lab is to install [Anaconda navigator](https://docs.anaconda.com/anaconda/navigator/index.html). This will install a jupyter-lab icon that you can click to start. 
+use for this class. Personally, I use jupyter lab. Probably the easiest way to get started with jupyter lab is to install [Anaconda navigator](https://docs.anaconda.com/anaconda/navigator/index.html). This will install a jupyter-lab icon that you can click to start.  Also, you can play around with everything in this document with [binder](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD).
 * **google collaboratory** This is a cloud hosted solution that is about as easy as it gets and is really well done. Files can be stored on google drive. Really a wonderful way to get started in python and notebooks.
 * **repl.it** a cloud IDE and repl for many languages, including python.  Great place to start learning python programming. 
 * **paperspace** Paperspace has hosted jupyter notebooks where you can buy really powerful instances by the minute. It's cost effective solution for running big jobs if you don't have local computing resources. Unlike a lot of other cloud providers, they are very beginner friendly. 

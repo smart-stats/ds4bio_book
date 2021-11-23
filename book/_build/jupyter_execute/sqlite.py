@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+# 
 # # SQL via sqlite
 # 
 # In this page, we'll cover some of the basics of SQL (structured querry language) by working through some examples. SQL is a set of language standards for databases, so we have to choose a specific implementation. We'll use sqlite for this purpose. As its name implies, sqlite is a small implementation of SQL. 

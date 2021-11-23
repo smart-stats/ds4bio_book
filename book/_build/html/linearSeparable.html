@@ -377,7 +377,8 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <div class="section" id="linear-separable-models">
 <h1>Linear separable models<a class="headerlink" href="#linear-separable-models" title="Permalink to this headline">¶</a></h1>
 <p>We’ve now covered two ways to do prediction with a single variable, classification using logistic regression and prediction using a line and least squares. What if we have several predictiors?</p>
@@ -412,7 +413,7 @@
 <p>Let’s look at the voxel-level data that we’ve been working with. First let’s load the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -433,7 +434,7 @@
 <p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
@@ -444,7 +445,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;PD ~ FLAIR + T1 + T2  + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -482,7 +483,7 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T1_10&#39;</span><span class="p">,</span> <span class="s1">&#39;T2_10&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAIR_20&#39;</span><span class="p">]]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">]]</span>
 <span class="c1">## Add the intercept column</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -503,7 +504,7 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">discrete_model</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">ytraining</span><span class="p">,</span> <span class="n">xtraining</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">discrete_model</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">ytraining</span><span class="p">,</span> <span class="n">xtraining</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -517,7 +518,7 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -585,7 +586,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 <p>Necessarily, the sensitivity and specificity</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phatTesting</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phatTesting</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtesting</span><span class="p">)</span>
 
 <span class="c1">## See here for plotting</span>
 <span class="c1">## https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python</span>
@@ -617,7 +618,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 <p>Consider the following which uses the formula API</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>

@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/interactive.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
 # [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
 # 
 # # Interactive graphics
+# 
+# Javascript graphics allows one to put data oriented graphics into web documents (like this book), apps and other reproducible research documents. As mentioned, several well developed APIs have been developed to use Python, R ... as the base language where graphics are output as javascript. Here, we'll go through some examples using [plotly](https://plotly.com/), both because it's a nice library of graphics functions, but also it's what I know sort of well. However, if there's another graphics platform you like, likely there's a python and/or R API written for it.
 # 
 # Consider a dataset that has regional volumes for 20 subjects in a long dataset. I wrote some R code for reading in this dataset which you can follow along [here](https://github.com/bcaffo/MRIcloudTutorial/blob/gh-pages/ggplot/ggplot.Rmd). 
 

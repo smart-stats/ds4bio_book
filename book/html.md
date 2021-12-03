@@ -133,7 +133,7 @@ the data and instructions.
 }
 ```
 
-This needs to be embedded into html, plus the vega JS libraries loaded to execute. I have an example [here](https://github.com/smart-stats/ds4bio_book/blob/main/book/assetts/vega1.html). The
+This needs to be embedded into html, plus the vega JS libraries loaded to execute. I have an example [here](https://smart-stats.github.io/ds4bio_book/book/assetts/vega1.html). The
 output looks like this
 
 ![Graphic](assetts/vega1.png)

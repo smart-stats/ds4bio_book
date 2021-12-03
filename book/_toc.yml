@@ -16,6 +16,7 @@ chapters:
 - file: pythonFromR.ipynb
 - file: html.md
 - file: interactive.ipynb
+- file: dash.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb

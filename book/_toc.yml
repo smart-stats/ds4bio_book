@@ -1,6 +1,7 @@
 format: jb-book
-root: intro
+root: intro.md
 chapters: 
+- file: git.ipynb
 - file: ds_python.md
 - file: basic_python.ipynb
 - file: python_programming.ipynb

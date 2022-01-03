@@ -15030,6 +15030,298 @@ True
 
 </div>
 
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Sets">Sets<a class="anchor-link" href="#Sets">&#182;</a></h3><ul>
+<li>Sets can be created with curly braces</li>
+<li>Sets only have unique values</li>
+<li>Sets can have mixed data types</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">}</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">}</span>
+<span class="n">set3</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set3</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;a&#39;, &#39;b&#39;, &#39;c&#39;}
+{1, &#39;a&#39;}
+{&#39;a&#39;, &#39;b&#39;, &#39;c&#39;}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Tuples">Tuples<a class="anchor-link" href="#Tuples">&#182;</a></h3><ul>
+<li>Tuples are like lists, but immutable</li>
+<li>Here's an example</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;aa&quot;</span> <span class="c1">#Works just fine</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>
+<span class="c1">#tuple1[0] = &quot;aa&quot; #doesn&#39;t work</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&#39;aa&#39;, &#39;b&#39;, &#39;c&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>You can have a list of sets, but not a set of lists</li>
+<li>You can have a list of tuples and a tuple of lists</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">]</span> <span class="c1"># this works</span>
+<span class="c1"># {dat, dat2} # this doesn&#39;t work</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">tuple1</span><span class="p">,</span> <span class="n">tuple1</span><span class="p">])</span> <span class="c1"># this works</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">list1</span><span class="p">,</span> <span class="n">list1</span><span class="p">))</span> <span class="c1"># this works</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;), (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)]
+([&#39;aa&#39;, &#39;b&#39;, &#39;c&#39;], [&#39;aa&#39;, &#39;b&#39;, &#39;c&#39;])
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Dictionaries">Dictionaries<a class="anchor-link" href="#Dictionaries">&#182;</a></h3><ul>
+<li>Dictionaries are like lists, but with label references</li>
+<li>Here let's create a dictionary with 2 elements, one labeled 'a' and one labeled 'b'. </li>
+<li>We reference a dictionary label element with <code>dictionary['label']</code></li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># Create a dictionary of two elements named a and b taking values 1 and 2 respectively</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;a&#39;: 1, &#39;b&#39;: 2}
+1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Discussion,-mutable-in-immutable-entities">Discussion, mutable in immutable entities<a class="anchor-link" href="#Discussion,-mutable-in-immutable-entities">&#182;</a></h3><p>When working with objects in python, mutable and immutable elements act differently. Lists are mutable. So, below, the element <code>y</code> gets appended along with <code>x</code>.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1">## Notice y has the appended element</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1">## let&#39;s try again, as of now x = [10, 20] </span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">11</span>
+<span class="c1">## Now x = [21, 20], but did y change?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[10, 20]
+[21, 20]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Immutable-objects">Immutable objects<a class="anchor-link" href="#Immutable-objects">&#182;</a></h3><ul>
+<li>Things like numbers and strings are immutable. Notice that changing <code>y</code> does not change <code>x</code>.</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(20, 10)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div></section></section>
 </div>
 </div>

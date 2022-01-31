@@ -118,6 +118,31 @@ print(dict)
 print(dict['a'])          # reference the element named a
 
 
+# Sets and tuples are similar to lists, however with some important distinctions. Sets, contain only unique elements and tuples are immutable lists.
+
+# In[ ]:
+
+
+set1 = {"a", "b", "c"}
+set2 = {"a", 1, True}
+set3 = {"a", "b", "c", "c"}
+print(set1)
+print(set2)
+print(set3)
+
+
+# Here's an example to illustrate a tuple.
+
+# In[3]:
+
+
+list1 = ["a", "b", "c"]
+tuple1 = ("a", "b", "c")
+list1[0] = "aa" #Works just fine
+list1
+#tuple1[0] = "aa" #doesn't work
+
+
 # ### Mutable in immutable entities
 # 
 # When working with objects in python, mutable and immutable elements act differently. Lists are mutable. So, below, the element `y` gets appended along with `x`.

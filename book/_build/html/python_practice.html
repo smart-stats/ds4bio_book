@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -98,6 +100,11 @@
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="git.html">
+   Git, github
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ds_python.html">
    Python background
@@ -171,6 +178,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="interactive.html">
    Interactive graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash.html">
+   Dash
   </a>
  </li>
  <li class="toctree-l1">
@@ -357,6 +369,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilizing-python-libraries">
+   Utilizing python libraries
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -397,24 +422,14 @@
 </div>
 </div>
 <p>A useful working example is working with imaginary numbers.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">5</span><span class="n">j</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
-5.0
-(10-5j)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s create our own version of a complex number, adapted from <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here</a>.</p>
+<p>Let’s create our own version of a complex number, adapted from <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here</a>. Complex numbers have two parts, the real part and the “imaginary” part.
+(Note I put imaginary in quotes, since, IMHO, complex numbers and the associated operations are simply an algebraic system, no more or less imaginary than most other algebraic systems. They simply lack the direct real world counting analogy of squaring a whole number. But there are countless algenbraic systems created for a variety of uses, most lacking the direct analogy to counting whole numbers.)
+There’s two popular representations of complex numbers, Cartesian and polar. We’ll use Cartesian and not discuss polar.</p>
+<p>A complex number is represented as <span class="math notranslate nohighlight">\(a + bi\)</span> where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are numbers and <span class="math notranslate nohighlight">\(i\)</span> is the symbol for the complex root of -1, i.e. <span class="math notranslate nohighlight">\(i^2 = -1\)</span>. If <span class="math notranslate nohighlight">\(a + b i \)</span> is a complex number, <span class="math notranslate nohighlight">\(a - bi\)</span> is its so-called conjugate. Conjugates are useful since
+$<span class="math notranslate nohighlight">\(
+(a+bi)(a-bi) = a^2 + abi - abi - b^2 i^2 = a^2 + b^2
+\)</span>$</p>
+<p>Let’s create an object called <code class="docutils literal notranslate"><span class="pre">mycomplex</span></code> and give it a conjugation method and some other stuff.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">mycomplex</span><span class="p">:</span>
@@ -432,12 +447,6 @@
 <span class="n">y</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
 <span class="n">y</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span>
 <span class="n">y</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 5)
-(10, -5)
 </pre></div>
 </div>
 </div>
@@ -464,11 +473,116 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 5)
-(10, 5)
-(10, -5)
+</div>
+<div class="section" id="utilizing-python-libraries">
+<h2>Utilizing python libraries<a class="headerlink" href="#utilizing-python-libraries" title="Permalink to this headline">¶</a></h2>
+<p>We typically load libraries that create useful data structures for us and have useful functions. We’ll use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> a lot next. So, let’s go through another very useful data science library, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<p>First, let’s load up numpy. Here’s three separate ways</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">numpy</span> <span class="pre">import</span> <span class="pre">*</span></code></p></li>
+</ol>
+<p>Option 1. imports numpy, but then you have to type <code class="docutils literal notranslate"><span class="pre">numpy.FUNCTION</span></code> to access <code class="docutils literal notranslate"><span class="pre">FUNCTION</span></code>. The second option (my preferred) shortens this to <code class="docutils literal notranslate"><span class="pre">np.FUNCTION</span></code>. The third loads the numpy functions into the global namespace. This is probably ok for really core packages like numpy. But, otherwise it’s an issue since you typically load many libraries and some may have the same function names.</p>
+<p>Let’s load up numpy and look at some of its capabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">## Numpy has constants</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="c1">## Numpy has a not a number placeholder</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="c1">## Numpy has 1 and 2d arrays</span>
+<span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
+<span class="c1">## Numpy has N-Dimensional arrays</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+nan
+[1 2 3 8]
+&lt;class &#39;numpy.ndarray&#39;&gt;
+[[1 2 3]
+ [4 5 6]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Arrays have operator definitions</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">array</span> <span class="o">+</span> <span class="n">array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">array</span> <span class="o">*</span> <span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2  4  6]
+ [ 8 10 12]]
+[[ 1  4  9]
+ [16 25 36]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at a common use of a library object. Our vector, <code class="docutils literal notranslate"><span class="pre">vector</span></code>, has some data in it. What if we wanted the mean and standard deviation?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.5
+2.692582403567252
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy has a separate data structure for matrices (2D arrays). Let’s creat a matrix like our previous 2D array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mymat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">array</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">mymat</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">mymat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;class &#39;numpy.ndarray&#39;&gt;, &lt;class &#39;numpy.matrix&#39;&gt;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1, 2],
+        [4, 5]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy’s linear algebra functions are spread across sublibraries of numpy. <code class="docutils literal notranslate"><span class="pre">linalg</span></code> is one. Let’s suppose we want the matrix determinant of <code class="docutils literal notranslate"><span class="pre">mymat</span></code>. We have several choices</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.linalg.det(mymat)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy.linalg</span> <span class="pre">as</span> <span class="pre">la</span></code> then <code class="docutils literal notranslate"><span class="pre">la.det(mymat)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">numpy.linalg</span> <span class="pre">import</span> <span class="pre">det</span></code> then <code class="docutils literal notranslate"><span class="pre">det(mymat)</span></code></p></li>
+</ol>
+<p>The first is a little long, but just calls the sublibrary then the function of the sublibrary. The second and third are shorter, where the second gives a named reference to the sublibrary methods while the third loads the function into the namespace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">det</span> 
+<span class="n">det</span><span class="p">(</span><span class="n">mymat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.9999999999999996
+</pre></div>
+</div>
 </div>
 </div>
 </div>

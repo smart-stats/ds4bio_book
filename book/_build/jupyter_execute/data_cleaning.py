@@ -5,6 +5,8 @@
 # 
 # # Data cleaning by example
 
+# We're going to cover data cleaning by an example. Primarily, you're going to work in `pandas`, a library for manipulating tabular data.
+# 
 # ## Imports and files
 # The first thing we'll try is loading some data and plotting it. To do this, we'll need some packages. Let's load up pandas, a package for data management, and matplotlib. The python command for this is `import`.
 # 

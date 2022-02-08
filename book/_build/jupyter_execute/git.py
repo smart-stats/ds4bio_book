@@ -291,6 +291,32 @@ plt.show()
 # ```
 # Start very basic with branches, then when you get the hang of it you can use it like a pro. [Here's more documentation](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
 # 
-# # Clients
+# ## Clients
 # 
 # You can avoid the command line stuff with a git client, of which there are many. It's still good to know the command line options, for remote work if nothing else. I've tried several git clients and my favorite is the github client software and magit in emacs.
+
+# ## Setting up ssh
+# 
+# If you want to connect to a remote repository to github on a unix or linux system, it's probably easiest to set up using so called secure shell. You can also set it up a variety of ways on Windows, but the rules are a little less universal. If you find this very hard to follow, just use a git and github gui (like github desktop, which is what I like to recommend).
+# 
+# Secure shell works as follows. It creates a public key (think like a lock, everyone can see it) and a private key (like the key for the lock, only you have it). When you connect to github, it has your public key and you use the private key to "unlock" it. First, you need a `.ssh` directory from your personal directory. If you don't have that, try `ssh username@server` to a server that you know and it will automatically create one.  
+# 
+# we'll go through [this](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) tutorial.
+# 
+# Then, cd into your `.ssh` director and type the following and follow the instructions
+# ```
+# ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# ```
+# This generates your public/prviate key pair. Then you need to take the public key file, and upload it to github under settings. This is described [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+# 
+# 
+# In some cases I've also had to add this to a file `config` in my `.ssh` directory:
+# ```
+# Host github.com
+#      ForwardX11 no
+#      HostName github.com
+#      User git
+#      IdentityFile ~/.ssh/YOUR_PRIVATE_KEY_FILENAME
+# ```
+# 
+# Once this is setup, then you should be able to push and pull from github from the command line without passwords. 

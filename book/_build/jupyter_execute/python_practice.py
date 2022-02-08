@@ -152,3 +152,10 @@ mymat
 from numpy.linalg import det 
 det(mymat)
 
+
+# In[35]:
+
+
+x = np.array([1.1, 2.1, 3.1, 3.2, 8.6])
+x[1:3]
+

@@ -8,9 +8,9 @@ chapters:
 - file: functions.ipynb
 - file: python_practice.ipynb
 - file: data_cleaning.ipynb
+- file: EDA.ipynb
 - file: sqlite.ipynb
 - file: pysqlite.ipynb
-- file: EDA.ipynb
 - file: rBasic.ipynb
 - file: rTidyverse.ipynb
 - file: rFromPython.ipynb

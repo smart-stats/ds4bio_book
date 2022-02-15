@@ -320,3 +320,16 @@ plt.show()
 # ```
 # 
 # Once this is setup, then you should be able to push and pull from github from the command line without passwords. 
+
+# ## Github pages
+# 
+# It's possible to host web pages on github. By *hosting* I mean serving the web page on the internet so that others can view it. There's a couple of steps to doing this. First, you need an html file to serve. If you look in [the chapter](https://smart-stats.github.io/ds4bio_book/book/_build/html/html.html) on html, there's the code for a basic wepage. Save a web page as say "index.html". You can double check that it works by simply double clicking on the file on your local computer. It should display as a web page in your browser, but it's only viewable by you. Notice the addres begins with `file:///...`. To serve the file so that others can view it, we need it to exist on a server.
+# 
+# Github will serve the file for us, but first we need a repository. Create a public repository; I typically do this on github. Then you need to add an empty file called `.nojekyll`. Don't forget the period at the beginning. This prevents github from thinking you're using the [jekyll framework](https://jekyllrb.com/), which is the default. Since we're serving a basic webpage, we don't need this framework. I create this file on github just by clicking *Add File* then *Create new file*. 
+# 
+# Next we need to tell github that this repo serves web pages. Click on *settings* then *pages* on the left. Then, under *source* choose the branch that you want to serve the pages from. Add your html file, commit and push to github. Give it a few minutes, then your file will be served from 
+# 
+# ```
+# https:///GITHUBUSERNAME.github.io/REPONAME/FILENAME.html
+# ```
+# where here `GITHUBUSERNAME` is either your github username or the organization. `REPONAME` is the name of your repository and `FILENAME.html` is your html file, with the path if it's in subdirectories. As an example, here's a version I did [https://bcaffo.github.io/testHtmlRepo/index.html](https://bcaffo.github.io/testHtmlRepo/index.html). 

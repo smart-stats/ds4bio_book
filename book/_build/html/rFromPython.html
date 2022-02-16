@@ -382,7 +382,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rpy2</span>
 <span class="kn">import</span> <span class="nn">rpy2.rinterface</span> <span class="k">as</span> <span class="nn">ri</span>
 <span class="kn">import</span> <span class="nn">rpy2.robjects</span> <span class="k">as</span> <span class="nn">ro</span>
-<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="kn">import</span> <span class="n">importr</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="k">import</span> <span class="n">importr</span>
 
 <span class="c1">#ri.initr()</span>
 </pre></div>
@@ -456,7 +456,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fishersz</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="s1">&#39;function(r) .5 * log((1 + r) / (1 - r))&#39;</span><span class="p">)</span>
-<span class="n">fishersz</span><span class="p">(</span><span class="mf">.7</span><span class="p">)</span>
+<span class="n">fishersz</span><span class="p">(</span><span class="o">.</span><span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

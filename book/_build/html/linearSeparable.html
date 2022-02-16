@@ -444,7 +444,7 @@
 <p>Let’s first try to fit the proton density data from the other imaging data. I’m going to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> version of linear models since it has a nice format for dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="mf">.75</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainFraction</span> <span class="o">=</span> <span class="o">.</span><span class="mi">75</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
 <span class="n">trainingDat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>

@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Virtual Environments
+# 
+# One of the nicer aspects of python is its virtual environment capabilities. Before we discuss virtual environments, we should discuss the Python installer program (pip). Pip is a little program to help you install python packages. In fact, it makes installing python packages trivial. The packages need to be hosted on the Python Package Index (PyPI). 
+# 
+# Installing pip depends on your system and how you'd like to do it. It's also best to know a little bit about virtual environments before you undertake this task. 
+# 
+# Let's assume you have pip installed and you want to install pandas, usually something like 
+# ```
+# pip install pandas
+# ```
+# just works. However, again, read below before you do this.
+# 
+# 
+# ## Running python
+# 
+# There's a few decisions that you have to make before you start running python. The first is, what sort of development environment will you choose? For me, there's 3 realistic choices
+# 
+# 1. Running python natively on the OS.
+# 2. Running python within its virtual environment 
+# 3. Running python within a conda virtual environment
+# 
+# Option 1 is to simply install (if not already installed) and run python. An example of this would be to install python from the Windows store. However, this approach has some limitations. Often you want different libraries installed for different, and maybe even different versions of python and other software. This is what virtual environments are created for. To create a virtual environment, simply do
+# 
+# ```
+# python -m venv myvenv
+# ```
+# Here python should be python 3. On some systems, the default python is python 3 and on others its python 2. If your default system is python 2, replace the above command with `python3 -m ...`. This should have created a virtual environment in a directory. To activate it, you need to run the command
+# ```
+# myvenv\scripts\activate.bat
+# ```
+# on windows or
+# ```
+# source myvenv/bin/activate
+# ```
+# on unix type systems. Now your command or terminal prompt should look like this
+# ```
+# (myvenv) prompt>
+# ```
+# The little `(myvenv)` reminds you that you're in that enviroment. When you `pip` install programs now, they are installed in your environment, not in your general system. [Here's a nice tutorial](https://docs.python.org/3/tutorial/venv.html) on python venvs.
+# 
+# ## Conda and anaconda
+# 
+# [Conda](https://www.anaconda.com/products/individual) is my preferred solution for managing virtual environments. Conda platform containing miniconda, a command line version of conda, and Anaconda, a graphical variation. I'll show the commands here, but you can do all of these things with Anaconda navigator if you would prefer. On windows, I would just use Anaconda navigator. When working remotely, you typically have to use the command line.
+# 
+# With conda, when you're in a virtual environment, you'll see it named at the prompt. For me, it looks something like this.
+# ```
+# (ds4bio) prompt>
+# ```
+# To create a conda environment you can (either do it in the Anaconda GUI or) type 
+# ```
+# conda create --name myvenv2 
+# ```
+# Then activate that environment by (either clicking on it in the Anaconda GUI or) typing
+# ```
+# conda activate myvenv2
+# ```
+# To deactivate the environment (either select a different environment in Anaconda GUI or) type
+# ```
+# conda deactivate
+# ```
+# 
+# Installs with conda are typically quite easy. Within an activated environment, you can use pip if you want. However, it's probably easier to just use conda. For example
+# ```
+# (myvenv2) prompt> conda install pandas
+# ```
+# installs pandas into myenv2 (which I had already activated). In Anaconda navigator, just navigate to environments, activate the one you want, then search and click to checkmark the package you want to install. The nice thing about conda, is that it installs non-python software as well. For example, if you want to install R into myenv2, try
+# ```
+# (myvenv2) prompt> conda install r-essentials r-base
+# ```
+# (or do it in Anaconda navigator).  In fact, you can create an R environment from the start with 
+# ```
+# prompt> conda create -n r-environment r-essentials r-base
+# ```
+# or Anaconda navigator has an R environment option on creation. 
+# 
+# 
+# ## Further virtualization
+# 
+# If we think of pip < venv < conda in the terms of increasing virtualization and abstraction of your python environment, we should discuss further virtualization. Docker, for example, creates an entirely virtualized computational environment. In short, an entirely new operating system running within your existing operating system. Other variations of this, like virtualbox, create a nice user interface including the OS GUI. 
+# 
+# These solutions virtualize the OS, but not the hardware. There are solutions to virtualize every aspect of the computer, qemu is an example. This could be useful if a sort of extreme variation of reproducibility, down to the bitwise operations, is required.

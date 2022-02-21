@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Base R &#8212; Data science and AI for Bio/medical applications using python</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -55,7 +55,10 @@
     <link rel="next" title="R tidyverse quick example" href="rTidyverse.html" />
     <link rel="prev" title="sqlite in python" href="pysqlite.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -123,6 +126,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="python_practice.html">
    Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="virtual_environments.html">
+   Virtual Environments
   </a>
  </li>
  <li class="toctree-l1">
@@ -402,7 +410,7 @@
                 
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/rBasic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<div class="section" id="base-r">
+<div class="tex2jax_ignore mathjax_ignore section" id="base-r">
 <h1>Base R<a class="headerlink" href="#base-r" title="Permalink to this headline">¶</a></h1>
 <p>R is another data science language more specifically geared towards statistics. R is an implementation of the S language by John Chambers written originally by Ross Ihaka and Robert Gentleman. The R Core Team, R Foundation and almost countless contributors continually improve and maintain R.</p>
 <p>In this course, we’re going to cover very little basic R and focus mainly on the so-called tidyverse. However, a little base R goes a long way. You can install R into jupyter notebooks and then have it as an option. Alternatively, Rstudio is a well known R ide as is ESS in Emacs.</p>
@@ -436,7 +444,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># list out our variables that we&#39;ve created</span>
-<span class="nf">ls</span><span class="p">()</span>
+    <span class="nf">ls</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -506,8 +514,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
     <span class="p">}</span>
     <span class="n">else</span> <span class="p">{</span>
         <span class="nf">print</span><span class="p">(</span><span class="s">&quot;i is large&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
-        
+    <span class="p">}</span>        
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -539,8 +546,8 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">$</span><span class="n">a</span>
 <span class="n">x</span><span class="o">$</span><span class="n">b</span>
-<span class="n">x[[1]]</span>
-<span class="n">x[[2]]</span>
+<span class="n">x</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="n">x</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +567,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <p>Brief technicality, <code class="docutils literal notranslate"><span class="pre">x[1]</span></code> returns a list containing the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> whereas <code class="docutils literal notranslate"><span class="pre">x[[1]]</span></code> returns the entity itself. Let’s create a dataframe. Also note R starts counting at 1 (unlike 0 for python).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="m">3</span> <span class="o">:</span> <span class="m">7</span><span class="p">,</span> <span class="n">letter</span> <span class="o">=</span> <span class="kc">letters</span><span class="n">[3</span> <span class="o">:</span> <span class="m">7</span><span class="n">]</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="m">3</span> <span class="o">:</span> <span class="m">7</span><span class="p">,</span> <span class="n">letter</span> <span class="o">=</span> <span class="kc">letters</span><span class="p">[</span><span class="m">3</span> <span class="o">:</span> <span class="m">7</span><span class="p">])</span>
 <span class="n">x</span>
 </pre></div>
 </div>
@@ -581,9 +588,9 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <p>The <code class="docutils literal notranslate"><span class="pre">$</span></code> operator works on dataframes. In addition, bracket notation works as well.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
-<span class="n">x[1</span> <span class="o">:</span> <span class="m">2</span><span class="p">,</span><span class="n">]</span>
-<span class="n">x[1</span><span class="p">,</span><span class="m">2</span><span class="n">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span> <span class="o">:</span> <span class="m">2</span><span class="p">,]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -629,9 +636,9 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <div class="cell_output docutils container">
 <div class="output text_html"><table>
 <tbody>
-	<tr><td>1</td><td>4</td></tr>
-	<tr><td>2</td><td>5</td></tr>
-	<tr><td>3</td><td>6</td></tr>
+	<tr><td>1</td><td>2</td></tr>
+	<tr><td>3</td><td>4</td></tr>
+	<tr><td>5</td><td>6</td></tr>
 </tbody>
 </table>
 </div><div class="output text_html"><table>
@@ -644,9 +651,9 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x[1</span><span class="p">,</span><span class="n">]</span>
-<span class="n">x[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
-<span class="n">x[1</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,]</span>
+<span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -658,7 +665,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pow</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">x</span> <span class="n">^</span> <span class="n">n</span>
+    <span class="n">x</span> <span class="o">^</span> <span class="n">n</span>
 <span class="p">}</span>
 <span class="nf">pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 <span class="nf">pow</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
@@ -703,10 +710,10 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;c1&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;c1&#39;</span> <span class="ow">not</span> <span class="n">found</span>
 <span class="ne">Traceback</span>:
 
-<span class="mi">1</span><span class="o">.</span> <span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="mi">1</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -718,11 +725,11 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;e&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;e&#39;</span> <span class="ow">not</span> <span class="n">found</span>
 <span class="ne">Traceback</span>:
 
 <span class="mi">1</span><span class="o">.</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>   <span class="c1"># at line 8 of file &lt;text&gt;</span>
+<span class="mi">2</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>   <span class="c1"># at line 8 of file &lt;text&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -798,8 +805,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

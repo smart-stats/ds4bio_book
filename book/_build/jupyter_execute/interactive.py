@@ -27,7 +27,7 @@ dat.head()
 
 # Let's vew individual subjects. The id variable is a numeric variable, so let's create a string version.
 
-# In[3]:
+# In[4]:
 
 
 dat = dat.assign(id_char = dat.id.astype(str))
@@ -67,7 +67,7 @@ fig.show()
 
 # There's a hierarchy of regions in this dataset. Let's visualize a subject's type 1 level 5 data as it exists in the hierarchy.
 
-# In[32]:
+# In[8]:
 
 
 ## load in the hierarchy information
@@ -83,7 +83,7 @@ multilevel_lookup = multilevel_lookup[['roi', 'level4', 'level3', 'level2', 'lev
 multilevel_lookup.head()
 
 
-# In[71]:
+# In[10]:
 
 
 ## Now load in the subject data

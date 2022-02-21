@@ -7,6 +7,7 @@ chapters:
 - file: python_programming.ipynb
 - file: functions.ipynb
 - file: python_practice.ipynb
+- file: virtual_environments.ipynb
 - file: data_cleaning.ipynb
 - file: EDA.ipynb
 - file: sqlite.ipynb

@@ -9,7 +9,7 @@ x = 10
 y
 
 # list out our variables that we've created
-ls()
+    ls()
 
 z = c(1, 5, 8)
 # Most operations are elementwise
@@ -26,8 +26,7 @@ for (i in 1 : 6){
     }
     else {
         print("i is large")
-    }
-        
+    }        
 }
 
 

@@ -546,7 +546,7 @@
   Text(6, 0, &#39;Telencephalon_R&#39;)])
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/EDA_9_1.png" src="_build/jupyter_execute/EDA_9_1.png" />
+<img alt="_images/EDA_9_1.png" src="_images/EDA_9_1.png" />
 </div>
 </div>
 <p>Unfortunately, seaborn doesn’t have a stakced bar chart. However, pandas does have one built in. To do this, however, we have to create a version of the data with ROIs as the columns. This is done with a pivot statement.</p>
@@ -651,7 +651,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7d5d39c4cbe0&gt;
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/EDA_12_1.png" src="_build/jupyter_execute/EDA_12_1.png" />
+<img alt="_images/EDA_12_1.png" src="_images/EDA_12_1.png" />
 </div>
 </div>
 <p>Let’s do some scatterplots. Let’s look at bilateral symmetry in the telencephalon.</p>
@@ -671,7 +671,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7d5d38a2d730&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/EDA_15_1.png" src="_build/jupyter_execute/EDA_15_1.png" />
+<img alt="_images/EDA_15_1.png" src="_images/EDA_15_1.png" />
 </div>
 </div>
 <p>This plot has the issue that there’s a lot of blank space. This is often addressed via a mean difference plot. This plot shows (X+Y) / 2 versus (X-y). This is basically just rotating the plot above by 45 degrees to get rid of all of the blank space around the diagonal line. Alternatively, you could plot (log(x) + log(y)) / 2 versus log(X) - log(Y). This plots the log of the geometric mean of the two observations versus the log of their ratio. Sometimes people use log base 2 or log base 10.</p>
@@ -701,7 +701,7 @@
   Text(0, 0, &#39;&#39;)])
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/EDA_17_1.png" src="_build/jupyter_execute/EDA_17_1.png" />
+<img alt="_images/EDA_17_1.png" src="_images/EDA_17_1.png" />
 </div>
 </div>
 <p>Thus, apparently, the <em>right</em> side is always a little bigger than the <em>left</em> and the scale of the ratio is <span class="math notranslate nohighlight">\(e^{0.02}\)</span> while the scale of the geometric mean is <span class="math notranslate nohighlight">\(e^{13}\)</span>. Note, <span class="math notranslate nohighlight">\(\exp(x) \approx 1 + x\)</span>  for <span class="math notranslate nohighlight">\(x \approx 0\)</span>. So it’s about 2% larger. A note about right versus left in imaging. Often the labels get switched as there are different conventions (is it the right of the subject or the right of the viewer when looking straight at the subject?). Typically, it’s known that some of the areas of subject’s left hemisphere are larger and so it’s probably radiological (right of the viewer) convention here. <a class="reference external" href="https://www.dana.org/uploadedFiles/BAW/Brain_Brief_Right_Brain-Left_Brain_Final.pdf">Here’s</a> a nicely done article about right versus left brain.</p>
@@ -720,7 +720,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f558ee5b3c8&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/EDA_19_1.png" src="_build/jupyter_execute/EDA_19_1.png" />
+<img alt="_images/EDA_19_1.png" src="_images/EDA_19_1.png" />
 </div>
 </div>
 </div>

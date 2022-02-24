@@ -466,7 +466,7 @@ it averages in <span class="math notranslate nohighlight">\((M-1)/2\)</span> on 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7d8b6aa910&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_1_1.png" src="_build/jupyter_execute/convolutions_1_1.png" />
+<img alt="_images/convolutions_1_1.png" src="_images/convolutions_1_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -507,7 +507,7 @@ it averages in <span class="math notranslate nohighlight">\((M-1)/2\)</span> on 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7d8c296d90&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_2_1.png" src="_build/jupyter_execute/convolutions_2_1.png" />
+<img alt="_images/convolutions_2_1.png" src="_images/convolutions_2_1.png" />
 </div>
 </div>
 <p>Let’s show that the first point and end point of the convolution are the averages of <span class="math notranslate nohighlight">\((M-1)/2\)</span> points and and <span class="math notranslate nohighlight">\((M-1)/2+1\)</span> zeros at the beginning or end of the original signal just to show that our intuition is correct.</p>
@@ -552,7 +552,7 @@ it averages in <span class="math notranslate nohighlight">\((M-1)/2\)</span> on 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7d8d062150&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_6_1.png" src="_build/jupyter_execute/convolutions_6_1.png" />
+<img alt="_images/convolutions_6_1.png" src="_images/convolutions_6_1.png" />
 </div>
 </div>
 <p>It should be stated that the convolution operation is multiplication in Fourier space. So, functions like <code class="docutils literal notranslate"><span class="pre">np.convolve</span></code> are performing FFTs in the background. However, if you’re going to do this yourself, make sure to keep track of indices and zero padding. (I.e. the bookkeeping.) Otherwise, the FFT wraps around and you get a little of the end averaged in with the beginning and vice versa. I work out getting the same answer as <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;same&quot;</span></code> below.</p>
@@ -589,7 +589,7 @@ it averages in <span class="math notranslate nohighlight">\((M-1)/2\)</span> on 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7d8d3ded50&gt;]
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_8_1.png" src="_build/jupyter_execute/convolutions_8_1.png" />
+<img alt="_images/convolutions_8_1.png" src="_images/convolutions_8_1.png" />
 </div>
 </div>
 </div>
@@ -636,7 +636,7 @@ X(u, v) / (M_1 M_2)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7d992aff10&gt;
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_10_1.png" src="_build/jupyter_execute/convolutions_10_1.png" />
+<img alt="_images/convolutions_10_1.png" src="_images/convolutions_10_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -680,7 +680,7 @@ X(u, v) / (M_1 M_2)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;32x32&#39;)
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_11_1.png" src="_build/jupyter_execute/convolutions_11_1.png" />
+<img alt="_images/convolutions_11_1.png" src="_images/convolutions_11_1.png" />
 </div>
 </div>
 </div>
@@ -741,7 +741,7 @@ lrelu(x, c) = \left\{
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;LRELU of convolution + bias&#39;)
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_13_1.png" src="_build/jupyter_execute/convolutions_13_1.png" />
+<img alt="_images/convolutions_13_1.png" src="_images/convolutions_13_1.png" />
 </div>
 </div>
 <p>Because of how convolutions work, this will find this eye anywhere in the image. Here we just add another eye somewhere else and repeat the convolution.</p>
@@ -781,7 +781,7 @@ lrelu(x, c) = \left\{
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;LRELU of convolution + bias&#39;)
 </pre></div>
 </div>
-<img alt="_build/jupyter_execute/convolutions_15_2.png" src="_build/jupyter_execute/convolutions_15_2.png" />
+<img alt="_images/convolutions_15_2.png" src="_images/convolutions_15_2.png" />
 </div>
 </div>
 <p>So, we found a custom kernel that highlights this specific feature in images. Convnets layers learn the kernel. That is, CNNs learn the image that gets convolved with the previous layer to produce the next one. <a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">Here’s</a> a really great pictorial guide by Sumit Saha.</p>

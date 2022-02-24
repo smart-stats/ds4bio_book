@@ -453,7 +453,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/nns_1_0.png" src="_build/jupyter_execute/nns_1_0.png" />
+<img alt="_images/nns_1_0.png" src="_images/nns_1_0.png" />
 </div>
 </div>
 <p>To interpret this diagram as a neural network, consider the following rule:</p>
@@ -542,7 +542,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/nns_5_0.png" src="_build/jupyter_execute/nns_5_0.png" />
+<img alt="_images/nns_5_0.png" src="_images/nns_5_0.png" />
 </div>
 </div>
 <p>Usually, the nodes are added in so called layers. <span class="math notranslate nohighlight">\((X_1, X_2)\)</span> is the input layer, <span class="math notranslate nohighlight">\((H_{11}, H_{12})\)</span> is the first hidden layer, <span class="math notranslate nohighlight">\((H_{21}, H_{22})\)</span> is the second hidden layer and <span class="math notranslate nohighlight">\(Y\)</span> is the output layer. Imagine plugging an <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> into this network. It would feed forward through the network as</p>
@@ -579,7 +579,7 @@ a &amp; \text{if $a&gt;0$} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/nns_8_0.png" src="_build/jupyter_execute/nns_8_0.png" />
+<img alt="_images/nns_8_0.png" src="_images/nns_8_0.png" />
 </div>
 </div>
 <p>If a bias term is included, then the fact that the RELU is centered at zero isn’t important, since the intercept term effectively shifts the function around. These kinds of splin terms are incredibly flexible. Just to show you an example, let’s fit the sine function using a collection of shifted RELUs. This is just</p>
@@ -617,7 +617,7 @@ plt.plot(x, yhat);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/nns_10_0.png" src="_build/jupyter_execute/nns_10_0.png" />
+<img alt="_images/nns_10_0.png" src="_images/nns_10_0.png" />
 </div>
 </div>
 <p>This corresponds to a network like depicted below if there were <span class="math notranslate nohighlight">\(d=3\)</span>  hidden nodes, there was a relu activation function at the first layer, then a identity activation function for the output layer and the weights for the first layer are specified.</p>
@@ -647,7 +647,7 @@ plt.plot(x, yhat);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/nns_12_0.png" src="_build/jupyter_execute/nns_12_0.png" />
+<img alt="_images/nns_12_0.png" src="_images/nns_12_0.png" />
 </div>
 </div>
 <p>We can actually fit this function way better using splines and a little bit more care. However, this helps show how even one layer of RELU activated nodes can start to fit complex shapes.</p>

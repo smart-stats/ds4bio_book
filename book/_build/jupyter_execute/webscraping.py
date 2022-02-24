@@ -22,7 +22,7 @@ import pandas as pd
 
 url = 'https://en.wikipedia.org/wiki/List_of_multiple_Olympic_gold_medalists'
 page = rq.get(url)
-## print out the first 200 characters
+## print out the first 200 characters just to see what it looks like
 page.text[0:199]
 
 
@@ -48,8 +48,8 @@ medals.head()
 
 # Now we're in a position to build our plot. Let's look at the count of 4 or more medal winers by sport and games.
 
-# In[72]:
+# In[73]:
 
 
-medals[['Sport', 'Games']].value_counts().plot.bar()
+medals[['Sport', 'Games']].value_counts().plot.bar();
 

@@ -403,7 +403,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://en.wikipedia.org/wiki/List_of_multiple_Olympic_gold_medalists&#39;</span>
 <span class="n">page</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="c1">## print out the first 200 characters</span>
+<span class="c1">## print out the first 200 characters just to see what it looks like</span>
 <span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">199</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -543,15 +543,12 @@
 <p>Now we’re in a position to build our plot. Let’s look at the count of 4 or more medal winers by sport and games.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">medals</span><span class="p">[[</span><span class="s1">&#39;Sport&#39;</span><span class="p">,</span> <span class="s1">&#39;Games&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">medals</span><span class="p">[[</span><span class="s1">&#39;Sport&#39;</span><span class="p">,</span> <span class="s1">&#39;Games&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Sport,Games&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/webscraping_9_1.png" src="_images/webscraping_9_1.png" />
+<img alt="_images/webscraping_9_0.png" src="_images/webscraping_9_0.png" />
 </div>
 </div>
 </div>

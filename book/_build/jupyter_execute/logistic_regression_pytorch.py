@@ -1,0 +1,132 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/logistic_regression_pytorch.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+
+# # Logistic regression in pytorch
+# This is an extension of using pytorch to perform linear regression to using it to perform logistic regression.
+
+# In[113]:
+
+
+import pandas as pd
+import torch
+import statsmodels.formula.api as smf
+import statsmodels as sm
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+## Read in the data and display a few rows
+dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
+dat.head(4)
+
+## Create a binary outcome variable (people will use gold lesions in HW)
+m = np.median(dat.T2)
+dat = dat.assign(y = (dat.T2 > m) * 1 )
+## Create a normalized regression variable
+dat = dat.assign(x = (dat.PD - np.mean(dat.PD)) / np.std(dat.PD))
+dat.head()
+
+
+# In[114]:
+
+
+fit = smf.logit('y ~ x', data = dat).fit()
+fit.summary()
+
+
+# In[115]:
+
+
+# The in sample predictions
+yhat = 1 / (1 + np.exp(-fit.fittedvalues))
+
+
+# In[116]:
+
+
+n = dat.shape[0]
+
+## Get the y and x from 
+xtraining = torch.from_numpy(dat['x'].values)
+ytraining = torch.from_numpy(dat['y'].values)
+
+## PT wants floats
+xtraining = xtraining.float()
+ytraining = ytraining.float()
+
+## Dimension is 1xn not nx1
+## squeeze the second dimension
+xtraining = xtraining.unsqueeze(1)
+ytraining = ytraining.unsqueeze(1)
+
+## Show that everything is the right size
+[xtraining.shape, 
+ ytraining.shape,
+ [n, 1]
+ ]
+
+
+# In[117]:
+
+
+## Doing it more now the pytorch docs recommend
+## Example taken from 
+## https://medium.com/biaslyai/pytorch-linear-and-logistic-regression-models-5c5f0da2cb9
+
+## They recommend creating a class that defines
+## the model
+class LogisticRegression(torch.nn.Module):
+     def __init__(self):
+        super(LogisticRegression, self).__init__()
+        self.linear = torch.nn.Linear(1, 1, bias = True)
+     def forward(self, x):
+        y_pred = torch.sigmoid(self.linear(x))
+        return y_pred
+
+## Then the model is simply  
+model = LogisticRegression()
+
+## MSE is the loss function
+loss_fn = torch.nn.BCELoss()  
+
+## Set the optimizer
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-4)
+
+## Loop over iterations
+for t in range(100000):
+
+  ## Forward propagation
+  y_pred = model(xtraining)
+
+  ## the loss for this interation
+  loss = loss_fn(y_pred, ytraining)
+
+  #print(t, loss.item() / n)
+
+  ## Zero out the gradients before adding them up 
+  optimizer.zero_grad()
+  
+  ## Backprop
+  loss.backward()
+  
+  ## Optimization step
+  optimizer.step()
+
+
+# In[118]:
+
+
+ytest = model(xtraining)
+ytest = ytest.detach().numpy().reshape(-1)
+plt.plot(yhat, ytest,  ".")
+plt.plot([0, 1], [0, 1], linewidth=2)
+
+
+# In[119]:
+
+
+for param in model.parameters():  
+  print(param.data)
+

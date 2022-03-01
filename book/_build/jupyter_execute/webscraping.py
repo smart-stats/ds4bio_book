@@ -48,8 +48,18 @@ medals.head()
 
 # Now we're in a position to build our plot. Let's look at the count of 4 or more medal winers by sport and games.
 
-# In[73]:
+# In[74]:
 
 
 medals[['Sport', 'Games']].value_counts().plot.bar();
+
+
+# ## Selenium
+# 
+# If the page has javacript, your basic web scraping may not work. In this case, you not only need to get and parse the page, but also to interact with the javascript. For this, enter Selenium. This is a python browser that allows you to automate web navigation. For this class, we're going to work on static web pages, so won't need Selenium.
+
+# In[ ]:
+
+
+S
 

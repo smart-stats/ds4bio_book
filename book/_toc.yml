@@ -20,6 +20,7 @@ chapters:
 - file: interactive.ipynb
 - file: webscraping.ipynb
 - file: dash.ipynb
+- file: dash2.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb

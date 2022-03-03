@@ -194,6 +194,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="dash2.html">
+   Dash callbacks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="binary_classification.html">
    Introduction to binary classification
   </a>
@@ -417,12 +422,12 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://en.wikipedia.org/wiki/List_of_multiple_Olympic_gold_medalists&#39;</span>
 <span class="n">page</span> <span class="o">=</span> <span class="n">rq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="c1">## print out the first 200 characters just to see what it looks like</span>
-<span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">199</span><span class="p">]</span>
+<span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="mi">99</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;!DOCTYPE html&gt;\n&lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;\n&lt;head&gt;\n&lt;meta charset=&quot;UTF-8&quot;/&gt;\n&lt;title&gt;List of multiple Olympic gold medalists - Wikipedia&lt;/title&gt;\n&lt;script&gt;document.documentElement.class&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;!DOCTYPE html&gt;\n&lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;\n&lt;head&gt;\n&lt;meta charset=&quot;UTF-8&quot;/&gt;\n&lt;titl&#39;
 </pre></div>
 </div>
 </div>
@@ -432,6 +437,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs4page</span> <span class="o">=</span> <span class="n">bs4</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
 <span class="n">tables</span> <span class="o">=</span> <span class="n">bs4page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s2">&quot;wikitable&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">medals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tables</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -561,19 +573,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/webscraping_9_0.png" src="_images/webscraping_9_0.png" />
+<img alt="_images/webscraping_10_0.png" src="_images/webscraping_10_0.png" />
 </div>
 </div>
 <div class="section" id="selenium">
 <h2>Selenium<a class="headerlink" href="#selenium" title="Permalink to this headline">¶</a></h2>
 <p>If the page has javacript, your basic web scraping may not work. In this case, you not only need to get and parse the page, but also to interact with the javascript. For this, enter Selenium. This is a python browser that allows you to automate web navigation. For this class, we’re going to work on static web pages, so won’t need Selenium.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 

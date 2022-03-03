@@ -9,7 +9,7 @@ import numpy as np
 app = dash.Dash(__name__)
 
 ## Read in our data
-dat = pd.read_csv("../kirby21.csv").drop(['Unnamed: 0'], axis = 1)
+dat = pd.read_csv("kirby21.csv").drop(['Unnamed: 0'], axis = 1)
 dat = dat.assign(id_char = "id_" + dat.id.astype(str))
 fig = px.bar(dat, x = "id_char", y = "volume", color = "roi")
 
@@ -23,5 +23,5 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host = '127.0.0.1')
 

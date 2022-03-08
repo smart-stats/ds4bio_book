@@ -446,14 +446,45 @@
 <p><img alt="Grahpic" src="_images/dashExample2.png" /></p>
 <div class="section" id="diferent-kinds-of-inputs">
 <h2>Diferent kinds of inputs<a class="headerlink" href="#diferent-kinds-of-inputs" title="Permalink to this headline">¶</a></h2>
-<p>Dash has several kinds of inputs. A full list can be found <a class="reference external" href="https://dash.plotly.com/dash-core-components">here</a>. We’ll go over a couple of types here. Try running the following code where you replace the relevant part.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<p>Dash has several kinds of inputs. A full list can be found <a class="reference external" href="https://dash.plotly.com/dash-core-components">here</a>. We’ll go over a couple of types here. Try running the following code to see different kinds of inputs (also in <code class="docutils literal notranslate"><span class="pre">assets/dash/dashApp3.py</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
-     
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Dropdown&quot;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+       <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 3&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+       <span class="p">],</span>
+       <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Checklist&quot;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>       
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+           <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Type 3&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+       <span class="p">]</span>
+    <span class="p">),</span> 
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Slider&quot;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;slider&#39;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Date picker&quot;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerSingle</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-date-picker-single&#39;</span><span class="p">,</span>
+        <span class="n">min_date_allowed</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1995</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="n">max_date_allowed</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span>
+        <span class="n">initial_visible_month</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+    <span class="p">)</span>
+
 <span class="p">])</span>
+
+
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>

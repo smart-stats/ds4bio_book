@@ -55,3 +55,24 @@
 # Again, `127.0.0.1` is the localhost address and `:8050` is the port. You can change the port in the `.run_server` method. But, we want fancier apps that call a server and return calculations back to us (so-called callbacks). 
 # 
 # 
+
+# ## Layout
+# 
+# Dash allows you to add python elements such as headings and divs. However, it also allows you to add markdown, which it will convert for you. For example, try running the app `assets/dash/dashApp4.py`. Here the dcc element
+# 
+# ```
+# app.layout = dcc.Markdown('''
+# # Section 1
+# ## Section 2
+# ### Section 3
+# 
+# 1. Numbered lists
+# 2. Second item
+# 
+# * Bulleted list
+# * Second item
+# ''')
+# ```
+# 
+# is filled with markdown syntax. That is, you can use these elements to put in markdown syntax without having to use HTML code.
+# 

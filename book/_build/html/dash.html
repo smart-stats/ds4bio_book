@@ -382,6 +382,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layout">
+   Layout
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -432,6 +445,24 @@
 <p>The resulting website, running at <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8050/</span></code> looks like this for me:</p>
 <p><img alt="Grahpic" src="_images/dashExample.png" /></p>
 <p>Again, <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> is the localhost address and <code class="docutils literal notranslate"><span class="pre">:8050</span></code> is the port. You can change the port in the <code class="docutils literal notranslate"><span class="pre">.run_server</span></code> method. But, we want fancier apps that call a server and return calculations back to us (so-called callbacks).</p>
+<div class="section" id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<p>Dash allows you to add python elements such as headings and divs. However, it also allows you to add markdown, which it will convert for you. For example, try running the app <code class="docutils literal notranslate"><span class="pre">assets/dash/dashApp4.py</span></code>. Here the dcc element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1"># Section 1</span>
+<span class="s1">## Section 2</span>
+<span class="s1">### Section 3</span>
+
+<span class="s1">1. Numbered lists</span>
+<span class="s1">2. Second item</span>
+
+<span class="s1">* Bulleted list</span>
+<span class="s1">* Second item</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is filled with markdown syntax. That is, you can use these elements to put in markdown syntax without having to use HTML code.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

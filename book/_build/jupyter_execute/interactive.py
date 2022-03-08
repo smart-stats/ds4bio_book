@@ -8,6 +8,7 @@
 # 
 # Javascript graphics allows one to put data oriented graphics into web documents (like this book), apps and other reproducible research documents. As mentioned, several well developed APIs have been developed to use Python, R ... as the base language where graphics are output as javascript. Here, we'll go through some examples using [plotly](https://plotly.com/), both because it's a nice library of graphics functions, but also it's what I know sort of well. However, if there's another graphics platform you like, likely there's a python and/or R API written for it.
 # 
+# ## Using plotly
 # Consider a dataset that has regional volumes for 20 subjects in a long dataset. I wrote some R code for reading in this dataset which you can follow along [here](https://github.com/bcaffo/MRIcloudTutorial/blob/gh-pages/ggplot/ggplot.Rmd). 
 
 # In[2]:
@@ -120,4 +121,26 @@ fig = px.treemap(subjectData,
                  width=800, height=800
                 )
 fig.show()
+
+
+# ## Interactive maps using folium and leaflet
+# 
+# A common form of interactive graphic is a map. There are several mapping libraries for python, including some in plotly. folium is another option that connects to the well known leaflet javascript library. Let's create a quick plot of the Bloomberg School of Public Health Building, which is at longitude and latitude 39.298, -76.590. If you haven't already, pip or conda install folium.
+
+# In[19]:
+
+
+import folium 
+
+m = folium.Map(location = [39.298, -76.590], zoom_start = 16)
+m
+
+
+# You can then add elements to the map. For example, suppose we want a marker on the building saying "my office". It's just that easy! This is truly just the tip of the iceberg of using folium/leaflet.
+
+# In[21]:
+
+
+folium.Marker([39.298, -76.590], popup = "What it says when you click",  tooltip = "What it says when you hover").add_to(m)
+m
 

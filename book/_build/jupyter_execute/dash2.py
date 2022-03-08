@@ -49,3 +49,22 @@
 # 
 # ![Grahpic](assetts/dashExample2.png)
 # 
+
+# ## Diferent kinds of inputs
+# 
+# Dash has several kinds of inputs. A full list can be found [here](https://dash.plotly.com/dash-core-components). We'll go over a couple of types here. Try running the following code where you replace the relevant part. 
+# 
+# ```
+# from dash import Dash, html, dcc
+# 
+# app = Dash(__name__)
+# 
+# app.layout = html.Div([
+#      
+# ])
+# 
+# if __name__ == '__main__':
+#     app.run_server(host = '127.0.0.1')
+# ```
+# 
+# 

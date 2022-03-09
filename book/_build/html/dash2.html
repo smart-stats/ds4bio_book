@@ -392,6 +392,11 @@
    Diferent kinds of inputs
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-callbacks">
+   Multiple callbacks
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -405,7 +410,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="dash-callbacks">
 <h1>Dash callbacks<a class="headerlink" href="#dash-callbacks" title="Permalink to this headline">¶</a></h1>
-<p>Our previous dash application wasn’t that impressive. We’d like to take user input and modify our page. TO do this, we need callbacks. In this example, we create a dropdown menu that selects which graph we’re going to show.</p>
+<p>Our previous dash application wasn’t that impressive. We’d like to take user input and modify our page. To do this, we need callbacks. In this example, we create a dropdown menu that selects which graph we’re going to show.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -421,8 +426,8 @@
             <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
             <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
             <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-            <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
-            <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="p">],</span>
         <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;input-level&#39;</span>
                 <span class="p">),</span>
@@ -490,6 +495,58 @@
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>This looks something like this</p>
+<p><img alt="Graphic" src="_images/dashExample4.png" /></p>
+</div>
+<div class="section" id="multiple-callbacks">
+<h2>Multiple callbacks<a class="headerlink" href="#multiple-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we show how to utilize multiple inputs in one app. We calculate the basal metabolic rate (BMR) from <a class="reference external" href="https://www.calculator.net/bmr-calculator.html">the formulas from this website</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Enter your data to see the results&quot;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Enter your weight in kg&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Enter your height in cm&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Enter your age in years&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Enter your sex&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">},{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;f&#39;</span><span class="p">}],</span>
+                       <span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+                       <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Your estimated basal metabolic rate is: &quot;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;bmr&#39;</span><span class="p">),</span>
+
+<span class="p">])</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span> <span class="o">=</span> <span class="s1">&#39;bmr&#39;</span>   <span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;age&#39;</span>   <span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;sex&#39;</span>   <span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">sex</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sex</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
+        <span class="n">rval</span> <span class="o">=</span> <span class="mf">88.362</span> <span class="o">+</span> <span class="p">(</span><span class="mf">13.397</span> <span class="o">*</span> <span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">4.799</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">5.677</span> <span class="o">*</span> <span class="n">age</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sex</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span>
+        <span class="n">rval</span> <span class="o">=</span> <span class="mf">447.593</span> <span class="o">+</span> <span class="p">(</span><span class="mf">9.247</span> <span class="o">*</span> <span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">3.098</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">4.330</span> <span class="o">*</span> <span class="n">age</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rval</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>which then looks something like this</p>
+<p><img alt="graphic" src="_images/dashExample3.png" /></p>
 </div>
 </div>
 

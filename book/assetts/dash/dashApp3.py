@@ -23,7 +23,7 @@ app.layout = html.Div([
        ]
     ), 
     html.H1("Slider"),
-    dcc.Slider(min = 0, max = 20, step = 5, value = 10, id='slider'),
+    dcc.Slider(min = 0, max = 100, step = 1, value = 10, id='slider'),
     html.H1("Date picker"),
     dcc.DatePickerSingle(
         id='my-date-picker-single',

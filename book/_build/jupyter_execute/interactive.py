@@ -127,18 +127,18 @@ fig.show()
 # 
 # A common form of interactive graphic is a map. There are several mapping libraries for python, including some in plotly. folium is another option that connects to the well known leaflet javascript library. Let's create a quick plot of the Bloomberg School of Public Health Building, which is at longitude and latitude 39.298, -76.590. If you haven't already, pip or conda install folium.
 
-# In[19]:
+# In[27]:
 
 
 import folium 
 
-m = folium.Map(location = [39.298, -76.590], zoom_start = 16)
+m = folium.Map(location = [39.298, -76.590], zoom_start = 15)
 m
 
 
 # You can then add elements to the map. For example, suppose we want a marker on the building saying "my office". It's just that easy! This is truly just the tip of the iceberg of using folium/leaflet.
 
-# In[21]:
+# In[28]:
 
 
 folium.Marker([39.298, -76.590], popup = "What it says when you click",  tooltip = "What it says when you hover").add_to(m)

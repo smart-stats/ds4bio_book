@@ -19,6 +19,7 @@ app.layout = html.Div([
     html.Br(),
     html.H1("Your estimated basal metabolic rate is: "),
     html.H2(id = 'bmr'),
+    html.H2("Calories/day")
 
 ])
 

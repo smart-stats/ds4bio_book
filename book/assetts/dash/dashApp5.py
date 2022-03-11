@@ -19,7 +19,8 @@ app.layout = html.Div([
     html.Br(),
     html.H1("Your estimated basal metabolic rate is: "),
     html.H2(id = 'bmr'),
-    html.H2("Calories/day")
+    html.H2("Calories/day"),
+    html.H3("Note, your BMR may change dramatically depending on many variables and the estimate has uncertainty associated with it")
 
 ])
 
@@ -32,9 +33,11 @@ app.layout = html.Div([
     Input(component_id  = 'gender'   , component_property = 'value')
 )
 def update_output_div(weight, height, age, gender):
-    if gender == 'm':
+    if (weight < 0):
+        rval = "Error please enter a valid weight"
+    elif gender == 'm':
         rval = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
-    if gender == 'f':
+    elif gender == 'f':
         rval = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
     return rval
 

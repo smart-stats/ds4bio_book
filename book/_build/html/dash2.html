@@ -189,6 +189,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="voila.html">
+   Jupyterwidgets and voila
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dash.html">
    Dash
   </a>
@@ -500,7 +505,7 @@
 </div>
 <div class="section" id="multiple-callbacks">
 <h2>Multiple callbacks<a class="headerlink" href="#multiple-callbacks" title="Permalink to this headline">¶</a></h2>
-<p>In this example, we show how to utilize multiple inputs in one app. We calculate the basal metabolic rate (BMR) from <a class="reference external" href="https://www.calculator.net/bmr-calculator.html">the formulas from this website</a>. The app below needs statistical development in a few ways. For example, the formula utilizes gender, but some reading suggest sex might be more appropriate. However, the literature seems somewhat sparse on the relationship between of sex and interactions with hormone therapies in BMRs. Regardless of the inputs, uncertainty is not quantified in the estimates. So, primarily, this app is useful for demonstrating dash development. In the later chapters, we’ll discuss building in specifics and evaluation into prediction apps.</p>
+<p>In this example, we show how to utilize multiple inputs in one app. We calculate the basal metabolic rate (BMR) from <a class="reference external" href="https://www.calculator.net/bmr-calculator.html">the formulas from this website</a>. The app below needs statistical development in a few ways. For example, the formula utilizes gender, but some reading suggest sex might be more appropriate. However, the literature seems somewhat sparse on the relationship between of sex and interactions with hormone therapies in BMRs. Regardless, uncertainty is not quantified in the estimates. So, primarily, this app is useful for demonstrating dash development. In the later chapters, we’ll discuss building in specifics and evaluation into prediction apps.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -533,7 +538,7 @@
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;age&#39;</span>   <span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span>  <span class="o">=</span> <span class="s1">&#39;gender&#39;</span>   <span class="p">,</span> <span class="n">component_property</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">sex</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
         <span class="n">rval</span> <span class="o">=</span> <span class="mf">88.362</span> <span class="o">+</span> <span class="p">(</span><span class="mf">13.397</span> <span class="o">*</span> <span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">4.799</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">5.677</span> <span class="o">*</span> <span class="n">age</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span>

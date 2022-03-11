@@ -125,7 +125,7 @@ fig.show()
 
 # ## Interactive maps using folium and leaflet
 # 
-# A common form of interactive graphic is a map. There are several mapping libraries for python, including some in plotly. folium is another option that connects to the well known leaflet javascript library. Let's create a quick plot of the Bloomberg School of Public Health Building, which is at longitude and latitude 39.298, -76.590. If you haven't already, pip or conda install folium.
+# A common form of interactive graphic is a map. There are several mapping libraries for python, including some in plotly. folium is another option that connects to the well known leaflet javascript library. Let's create a quick plot of the Bloomberg School of Public Health Building, which is at latitude and longitude 39.298, -76.590. If you haven't already, pip or conda install folium.
 
 # In[27]:
 

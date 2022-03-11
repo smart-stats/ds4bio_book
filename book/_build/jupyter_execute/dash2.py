@@ -104,7 +104,7 @@
 
 # ## Multiple callbacks
 # 
-# In this example, we show how to utilize multiple inputs in one app. We calculate the basal metabolic rate (BMR) from [the formulas from this website](https://www.calculator.net/bmr-calculator.html). The app below needs statistical development in a few ways. For example, the formula utilizes gender, but some reading suggest sex might be more appropriate. However, the literature seems somewhat sparse on the relationship between of sex and interactions with hormone therapies in BMRs. Regardless of the inputs, uncertainty is not quantified in the estimates. So, primarily, this app is useful for demonstrating dash development. In the later chapters, we'll discuss building in specifics and evaluation into prediction apps. 
+# In this example, we show how to utilize multiple inputs in one app. We calculate the basal metabolic rate (BMR) from [the formulas from this website](https://www.calculator.net/bmr-calculator.html). The app below needs statistical development in a few ways. For example, the formula utilizes gender, but some reading suggest sex might be more appropriate. However, the literature seems somewhat sparse on the relationship between of sex and interactions with hormone therapies in BMRs. Regardless, uncertainty is not quantified in the estimates. So, primarily, this app is useful for demonstrating dash development. In the later chapters, we'll discuss building in specifics and evaluation into prediction apps. 
 # 
 # ```
 # from dash import Dash, dcc, html, Input, Output
@@ -139,7 +139,7 @@
 #     Input(component_id  = 'age'   , component_property = 'value'),
 #     Input(component_id  = 'gender'   , component_property = 'value')
 # )
-# def update_output_div(weight, height, age, sex):
+# def update_output_div(weight, height, age, gender):
 #     if gender == 'm':
 #         rval = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
 #     if gender == 'f':

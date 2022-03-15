@@ -402,6 +402,11 @@
    Multiple callbacks
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-a-submit-button">
+   Adding a submit button
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -552,6 +557,49 @@
 </div>
 <p>which then looks something like this</p>
 <p><img alt="graphic" src="_images/dashExample3.png" /></p>
+</div>
+<div class="section" id="adding-a-submit-button">
+<h2>Adding a submit button<a class="headerlink" href="#adding-a-submit-button" title="Permalink to this headline">¶</a></h2>
+<p>Let’s talk about how to add a submit button. For this example, we’ll also use a custom library for returning and augmeting maps using dash called dash-leaflet. Notice a couple of things in this app. First, we use a submit button, and there’s no map plotted before we click submit the first time. Secondly, this shows an example of multiple callbacks in one app. Thirdly, we do an instance where we update a javascript graphic using server side calculations. On this final point, it’s probably preferable to actually do this on the client side. Dash does offer some facility for working with client side callbacks. However, we won’t discuss them as they tend to have a higher requirement for understanding the underlying javascript.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash_leaflet</span> <span class="k">as</span> <span class="nn">dl</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">()</span>  
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;textout&#39;</span><span class="p">),</span>
+    <span class="n">dl</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;output-state&quot;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mf">39.298</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mf">76.590</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;zoom&#39;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;submit-button&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;output-state&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;submit-button&#39;</span><span class="p">,</span> <span class="s1">&#39;n_clicks&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;zoom&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">zoom</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n_clicks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dl</span><span class="o">.</span><span class="n">Map</span><span class="p">([</span><span class="n">dl</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">()],</span> 
+                        <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">),</span> 
+                        <span class="n">zoom</span> <span class="o">=</span> <span class="n">zoom</span><span class="p">,</span>
+                        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;75vh&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;display&quot;</span><span class="p">:</span> <span class="s2">&quot;block&quot;</span><span class="p">})</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;textout&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;submit-button&#39;</span><span class="p">,</span> <span class="s1">&#39;n_clicks&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+              <span class="n">State</span><span class="p">(</span><span class="s1">&#39;zoom&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_text</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">zoom</span><span class="p">):</span>    
+        <span class="k">return</span>  <span class="s1">&#39;Lat </span><span class="si">{}</span><span class="s1">, Long </span><span class="si">{}</span><span class="s1">,  zoom </span><span class="si">{}</span><span class="s1">, number of clicks </span><span class="si">{}</span><span class="s1"> times&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">zoom</span><span class="p">,</span> <span class="n">n_clicks</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 

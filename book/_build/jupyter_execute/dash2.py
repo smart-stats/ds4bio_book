@@ -154,3 +154,48 @@
 # which then looks something like this
 # 
 # ![graphic](assetts/dashExample3.png)
+
+# ## Adding a submit button
+# 
+# Let's talk about how to add a submit button. For this example, we'll also use a custom library for returning and augmeting maps using dash called dash-leaflet. Notice a couple of things in this app. First, we use a submit button, and there's no map plotted before we click submit the first time. Secondly, this shows an example of multiple callbacks in one app. Thirdly, we do an instance where we update a javascript graphic using server side calculations. On this final point, it's probably preferable to actually do this on the client side. Dash does offer some facility for working with client side callbacks. However, we won't discuss them as they tend to have a higher requirement for understanding the underlying javascript. 
+# 
+# 
+# ```
+# import dash_leaflet as dl
+# from dash import Dash, html, dcc
+# from dash.dependencies import Input, Output, State
+# import os
+# 
+# app = Dash()  
+# app.layout = html.Div([
+#     html.H1(id = 'textout'),
+#     dl.Map(id = "output-state"),
+#     dcc.Input(id = 'lat', value = 39.298, type = 'number'),
+#     dcc.Input(id = 'long', value = -76.590, type = 'number'),
+#     dcc.Input(id = 'zoom', value = 11, type = 'number'),
+#     html.Button('Submit', id='submit-button')
+# ])
+# 
+# @app.callback(Output('output-state', 'children'),
+#               Input('submit-button', 'n_clicks'),
+#               State('lat', 'value'),
+#               State('long', 'value'),
+#               State('zoom', 'value'))
+# def update_output(n_clicks, lat, long, zoom):
+#     if n_clicks is not None:
+#         return dl.Map([dl.TileLayer()], 
+#                         center = (lat, long), 
+#                         zoom = zoom,
+#                         style={'width': '100%', 'height': '75vh', 'margin': "auto", "display": "block"})
+# 
+# @app.callback(Output('textout', 'children'),
+#               Input('submit-button', 'n_clicks'),
+#               State('lat', 'value'),
+#               State('long', 'value'),
+#               State('zoom', 'value'))
+# def update_text(n_clicks, lat, long, zoom):    
+#         return  'Lat {}, Long {},  zoom {}, number of clicks {} times'.format(lat, long, zoom, n_clicks)
+# 
+# if __name__ == '__main__':
+#     app.run_server(debug = True, host = "127.0.0.1")
+# ```

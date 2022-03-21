@@ -9,7 +9,7 @@
 # 
 # You first need to install jupyter widgets  with pip or conda. Then, restart your runtime and you're off to the races. In the next chapter, we'll introduce a more fully featured client server framework called dash. If you just want a simple app, especially if you want to distribute it as a notebook, voila should be your goto. If you need a full web application, then use dash (or one of the other python web frameworks).
 
-# In[10]:
+# In[2]:
 
 
 import ipywidgets as widgets
@@ -19,7 +19,7 @@ import ipywidgets as widgets
 # 
 # There are integer sliders and float sliders. Let's first figure out integer sliders.
 
-# In[11]:
+# In[3]:
 
 
 
@@ -30,13 +30,13 @@ display(a)
 display(b)
 
 
-# In[13]:
+# In[4]:
 
 
 print([a.value, b.value])
 
 
-# In[14]:
+# In[5]:
 
 
 a1 = widgets.Checkbox(
@@ -55,7 +55,7 @@ display(a1)
 display(a2)
 
 
-# In[17]:
+# In[6]:
 
 
 print([a1.value, a2.value])
@@ -63,7 +63,7 @@ print([a1.value, a2.value])
 
 # ## Showing real time widget interactions
 
-# In[19]:
+# In[7]:
 
 
 a = widgets.IntSlider(description='a')

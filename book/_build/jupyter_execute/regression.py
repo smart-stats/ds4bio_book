@@ -13,7 +13,7 @@
 # 
 # To tie ourselves down with an example, consider the previous lecture's example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values. 
 
-# In[ ]:
+# In[4]:
 
 
 import numpy as np
@@ -31,10 +31,10 @@ dat.head(4)
 
 # Let's look at the non-smoothed data (omitting the `_10` and `_20`) using a pair plot. I'm color coding by whether or not the specific voxel is a lesion.
 
-# In[ ]:
+# In[9]:
 
 
-sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions')
+sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions');
 
 
 # T2 and PD (proton density) look pretty linearly related. Imagine a study where a researcher collected T2 but did not collect PD. Let's try to predict their PD values from the T2 values using a line. We'll use least squares as the loss function. Specifically

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Regression through the origin &#8212; Data science and AI for Bio/medical applications using python</title>
+    <title>Jupyterwidgets and voila &#8212; Data science and AI for Bio/medical applications using python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -54,8 +52,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Continuous prediction with regression" href="regression.html" />
-    <link rel="prev" title="Introduction to binary classification" href="binary_classification.html" />
+    <link rel="next" title="Dash" href="dash.html" />
+    <link rel="prev" title="Webscraping" href="webscraping.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -190,8 +188,8 @@
    Webscraping
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="voila.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Jupyterwidgets and voila
   </a>
  </li>
@@ -210,8 +208,8 @@
    Introduction to binary classification
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
    Regression through the origin
   </a>
  </li>
@@ -331,7 +329,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/regression_through_the_origin.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/voila.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -351,7 +349,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fregression_through_the_origin.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fvoila.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -372,7 +370,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/regression_through_the_origin.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/voila.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -389,6 +387,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sliders">
+   Sliders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#showing-real-time-widget-interactions">
+   Showing real time widget interactions
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -397,228 +413,110 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression_through_the_origin.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="regression-through-the-origin">
-<h1>Regression through the origin<a class="headerlink" href="#regression-through-the-origin" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook, we investigate a simple poblem where we’d like to use one scaled regressor to predict another. That is, let <span class="math notranslate nohighlight">\(Y_1, \ldots Y_n\)</span> be a collection of variables we’d like to predict and <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> be predictors. Consider minimizing</p>
-<div class="math notranslate nohighlight">
-\[
-l = \sum_i ( Y_i - \beta X_i)^2 = || Y - \beta X||^2.
-\]</div>
-<p>Taking a derivative of <span class="math notranslate nohighlight">\(l\)</span> with respect to <span class="math notranslate nohighlight">\(\beta\)</span> yields</p>
-<div class="math notranslate nohighlight">
-\[
-l' = - \sum_i 2 (Y_i - \beta X_i) X_i.
-\]</div>
-<p>If we set this equal to zero and solve for beta we obtain the classic solution:</p>
-<div class="math notranslate nohighlight">
-\[
-\hat \beta = \frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}.
-\]</div>
-<p>Note further, if we take a second derivative we get</p>
-<div class="math notranslate nohighlight">
-\[
-l'' = \sum_i 2 x_i^2  
-\]</div>
-<p>which is strictly positive unless all of the <span class="math notranslate nohighlight">\(x_i\)</span> are zero (a case of zero variation in the predictor where regresssion is uninteresting). Regression through the origin is a very useful version of regression, but it’s quite limited in its application. Rarely do we want to fit a line that is forced to go through the origin, or stated equivalently, rarely do we want a prediction algorithm for
-<span class="math notranslate nohighlight">\(Y\)</span> that is simply a scale change of <span class="math notranslate nohighlight">\(X\)</span>. Typically, we at least also want an intercept. In the example that follows, we’ll address this by centering the data so that the origin is the mean of the <span class="math notranslate nohighlight">\(Y\)</span> and the mean of the <span class="math notranslate nohighlight">\(X\)</span>. As it turns out, this is the same as fitting the intercept, but we’ll do that more formally in the next section.</p>
-<p>First let’s load the necessary packages.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="jupyterwidgets-and-voila">
+<h1>Jupyterwidgets and voila<a class="headerlink" href="#jupyterwidgets-and-voila" title="Permalink to this headline">¶</a></h1>
+<p>A very nice client server web app solution is given by jupyter widgets. This is a simplified framework that allows for widgets and sliders embedded into jupyter notebooks. They also work in google colab. Once you have a working notebook, you can host it on a web site if you’d like using a platform called voila. Or, you can just distribute the notebook as a notebook.</p>
+<p>(Note, it doesn’t work with the published version of the book, since the book is simply running on a web server, not a voila server instance. So, we’ll just show you screenshots.)</p>
+<p>You first need to install jupyter widgets  with pip or conda. Then, restart your runtime and you’re off to the races. In the next chapter, we’ll introduce a more fully featured client server framework called dash. If you just want a simple app, especially if you want to distribute it as a notebook, voila should be your goto. If you need a full web application, then use dash (or one of the other python web frameworks).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now let’s download and read in the data.</p>
+<div class="section" id="sliders">
+<h2>Sliders<a class="headerlink" href="#sliders" title="Permalink to this headline">¶</a></h2>
+<p>There are integer sliders and float sliders. Let’s first figure out integer sliders.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv&quot;</span><span class="p">)</span>
-<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">()</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "80b89a7c146e4ceb8843bdd65c1a9a3f", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "0a96beb040ce479cb1097482f9827c13", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[74, 50]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Check me&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">indent</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;No check me&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">indent</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b712e3af51e242d3aa592e87dff0a164", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a4b4dc9c228544c5b735c5024401af57", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="n">a1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a2</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False, True]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="showing-real-time-widget-interactions">
+<h2>Showing real time widget interactions<a class="headerlink" href="#showing-real-time-widget-interactions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>FLAIR</th>
-      <th>PD</th>
-      <th>T1</th>
-      <th>T2</th>
-      <th>FLAIR_10</th>
-      <th>PD_10</th>
-      <th>T1_10</th>
-      <th>T2_10</th>
-      <th>FLAIR_20</th>
-      <th>PD_20</th>
-      <th>T1_20</th>
-      <th>T2_20</th>
-      <th>GOLD_Lesions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.143692</td>
-      <td>1.586219</td>
-      <td>-0.799859</td>
-      <td>1.634467</td>
-      <td>0.437568</td>
-      <td>0.823800</td>
-      <td>-0.002059</td>
-      <td>0.573663</td>
-      <td>0.279832</td>
-      <td>0.548341</td>
-      <td>0.219136</td>
-      <td>0.298662</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.652552</td>
-      <td>1.766672</td>
-      <td>-1.250992</td>
-      <td>0.921230</td>
-      <td>0.663037</td>
-      <td>0.880250</td>
-      <td>-0.422060</td>
-      <td>0.542597</td>
-      <td>0.422182</td>
-      <td>0.549711</td>
-      <td>0.061573</td>
-      <td>0.280972</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.036099</td>
-      <td>0.262042</td>
-      <td>-0.858565</td>
-      <td>-0.058211</td>
-      <td>-0.044280</td>
-      <td>-0.308569</td>
-      <td>0.014766</td>
-      <td>-0.256075</td>
-      <td>-0.136532</td>
-      <td>-0.350905</td>
-      <td>0.020673</td>
-      <td>-0.259914</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.037692</td>
-      <td>0.011104</td>
-      <td>-1.228796</td>
-      <td>-0.470222</td>
-      <td>-0.013971</td>
-      <td>-0.000498</td>
-      <td>-0.395575</td>
-      <td>-0.221900</td>
-      <td>0.000807</td>
-      <td>-0.003085</td>
-      <td>-0.193249</td>
-      <td>-0.139284</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.580589</td>
-      <td>1.730152</td>
-      <td>-0.860949</td>
-      <td>1.245609</td>
-      <td>0.617957</td>
-      <td>0.866352</td>
-      <td>-0.099919</td>
-      <td>0.384261</td>
-      <td>0.391133</td>
-      <td>0.608826</td>
-      <td>0.071648</td>
-      <td>0.340601</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>It’s almost always a good idea to plot the data before fitting the model.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">T2</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">PD</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">})</span>
+
+<span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]),</span> <span class="n">out</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6726d05b0&gt;]
-</pre></div>
-</div>
-<img alt="_images/regression_through_the_origin_6_1.png" src="_images/regression_through_the_origin_6_1.png" />
-</div>
-</div>
-<p>Now, let’s center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span>, is right at (0, 0).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6725dc6d0&gt;]
-</pre></div>
-</div>
-<img alt="_images/regression_through_the_origin_8_1.png" src="_images/regression_through_the_origin_8_1.png" />
-</div>
-</div>
-<p>Here’s our slope estimate according to our formula.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="p">)</span>
-<span class="n">b</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7831514763656
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s plot it so to see how it did. It looks good. Now let’s see if we can do a line that doesn’t necessarily have to go through the origin.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6725525b0&gt;]
-</pre></div>
-</div>
-<img alt="_images/regression_through_the_origin_12_1.png" src="_images/regression_through_the_origin_12_1.png" />
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1545c843f51a49d397729790890f0fff", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </div>
 </div>
@@ -653,19 +551,19 @@ l'' = \sum_i 2 x_i^2
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="binary_classification.html" title="previous page">
+        <a class="left-prev" href="webscraping.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction to binary classification</p>
+                <p class="prevnext-title">Webscraping</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="regression.html" title="next page">
+        <a class="right-next" href="dash.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Continuous prediction with regression</p>
+                <p class="prevnext-title">Dash</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

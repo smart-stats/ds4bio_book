@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Regression through the origin" href="regression_through_the_origin.html" />
-    <link rel="prev" title="Dash" href="dash.html" />
+    <link rel="prev" title="Dash callbacks" href="dash2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -189,8 +189,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="voila.html">
+   Jupyterwidgets and voila
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dash.html">
    Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash2.html">
+   Dash callbacks
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -553,7 +563,8 @@
 Name: FLAIR, dtype: object
 </pre></div>
 </div>
-<img alt="_images/binary_classification_5_1.svg" src="_images/binary_classification_5_1.svg" /></div>
+<img alt="_images/binary_classification_5_1.png" src="_images/binary_classification_5_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,7 +585,9 @@ Name: FLAIR, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_6_0.svg" src="_images/binary_classification_6_0.svg" /><img alt="_images/binary_classification_6_1.svg" src="_images/binary_classification_6_1.svg" /></div>
+<img alt="_images/binary_classification_6_0.png" src="_images/binary_classification_6_0.png" />
+<img alt="_images/binary_classification_6_1.png" src="_images/binary_classification_6_1.png" />
+</div>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="classification">
@@ -654,7 +667,6 @@ However, I’m going to break the data into a training and testing set. The reas
 <span class="n">testSens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ytest</span><span class="p">[</span><span class="n">sub1</span><span class="p">]</span> <span class="o">==</span> <span class="n">testPredictions</span><span class="p">[</span><span class="n">sub1</span><span class="p">])</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
- 
  <span class="s1">&#39;Threshold&#39;</span><span class="p">:</span> <span class="n">threshold</span><span class="p">,</span>
  <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">testAccuracy</span><span class="p">,</span> 
  <span class="s1">&#39;Specificity&#39;</span><span class="p">:</span> <span class="n">testSpec</span><span class="p">,</span> 
@@ -691,9 +703,9 @@ However, I’m going to break the data into a training and testing set. The reas
     <tr>
       <th>0</th>
       <td>1.4632</td>
-      <td>0.724138</td>
-      <td>0.75</td>
-      <td>0.692308</td>
+      <td>0.777778</td>
+      <td>0.666667</td>
+      <td>0.866667</td>
     </tr>
   </tbody>
 </table>
@@ -710,7 +722,8 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_12_0.svg" src="_images/binary_classification_12_0.svg" /></div>
+<img alt="_images/binary_classification_12_0.png" src="_images/binary_classification_12_0.png" />
+</div>
 </div>
 <p>OK, so out plot has better sensitivity than specificity and a test set accuracy of around 68%. The lower specificity is because there’s a lower percentage of blue below the line than orange above the line. Recall,  we’re saying above the threshold is a lesion and orange is the distribution for voxels with lesions.</p>
 <p>So, for this algorithm, the high sensitivity says that all else being equal, if you declare a voxel as not being a lesion, it probably isn’t. In other words, if you’re out in the lower part of the orange distribution, there’s a lot of blue there.</p>
@@ -741,7 +754,8 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/binary_classification_15_0.svg" src="_images/binary_classification_15_0.svg" /></div>
+<img alt="_images/binary_classification_15_0.png" src="_images/binary_classification_15_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -776,11 +790,11 @@ However, I’m going to break the data into a training and testing set. The reas
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="dash.html" title="previous page">
+        <a class="left-prev" href="dash2.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Dash</p>
+                <p class="prevnext-title">Dash callbacks</p>
             </div>
         </a>
     </div>

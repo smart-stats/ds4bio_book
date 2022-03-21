@@ -191,8 +191,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="voila.html">
+   Jupyterwidgets and voila
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dash.html">
    Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash2.html">
+   Dash callbacks
   </a>
  </li>
  <li class="toctree-l1">
@@ -529,12 +539,12 @@
 <p>Let’s look at the non-smoothed data (omitting the <code class="docutils literal notranslate"><span class="pre">_10</span></code> and <code class="docutils literal notranslate"><span class="pre">_20</span></code>) using a pair plot. I’m color coding by whether or not the specific voxel is a lesion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;PD&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">],</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;PD&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">],</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f0986708eb8&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7a8de9cb65e0&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_3_1.png" src="_images/regression_3_1.png" />

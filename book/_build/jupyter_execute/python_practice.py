@@ -159,3 +159,10 @@ det(mymat)
 x = np.array([1.1, 2.1, 3.1, 3.2, 8.6])
 x[1:3]
 
+
+# ## Building python modules
+# 
+# With very small effort, a set of python functions can be turned into a python library. Let's start with creating a python module, then we'll talk about distributing with pip
+# 
+# 
+# 

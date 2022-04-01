@@ -20,6 +20,7 @@ chapters:
 - file: interactive.ipynb
 - file: webscraping.ipynb
 - file: voila.ipynb
+- file: streamlit.ipynb
 - file: dash.ipynb
 - file: dash2.ipynb
 - file: binary_classification.ipynb

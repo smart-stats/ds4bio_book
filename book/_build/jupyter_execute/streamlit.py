@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Streamlit
+# 
+# ## your first app
+# Streamlit, like voila, panel, shiny and flask, is an alternative to using dash. At this moment, dash seems to be the most popular solution for python dashboarding. However, streamlit seems to be gaining traction. Streamlit is very easy to learn.
+# 
+# For installation, simply do
+# 
+# ```
+# pip install streamlit
+# ```
+# 
+# Now, create a python file. Now create a file, say `app1.py`, with the following code:
+# 
+# ```
+# import streamlit as st
+# 
+# st.write("""
+# # Streamlit can use markdown syntax
+# ## Level 2
+# 
+# + bullet 1
+# + bullet 2
+# """
+# )
+# ```
+# 
+# Now open up a terminal in the directory of your app and type
+# ```
+# streamlit run app1.py
+# ```
+# It should pop up a browser with your app running!
+
+# ## Input / output
+# 
+# Streamlit is very easy for programming I/O. Here's a simple example 
+# 
+# ```
+# import streamlit as st
+# import pandas as pd
+# import numpy as np
+# 
+# cb = st.checkbox("Did you check the box")
+# if cb:
+#     st.write("Yes you did! :-)")
+# else:
+#     st.write("No you didn't :-(")
+# 
+# 
+# rb = st.radio(
+#      "Pick an option",
+#      ('Option 1', 'Option 2', 'Option 3'))
+# st.write("you picked " + rb)
+# 
+# 
+# ## Adding a chart
+# 
+# nsims = st.number_input('Put in a number of sims', value = 10)
+# if nsims < 10 : 
+#     st.write("Pick a bigger number")
+# else :
+#     chart_data = pd.DataFrame(
+#          np.random.randn(np.round(nsims), 2),
+#          columns=['a', 'b'])
+#     st.line_chart(chart_data)
+# ```
+# 
+# simply save this in a file, say `app2.py` and type `streamlit run app2.py`. Also, the app has a button that allows you to deploy it to the streamlit hosting service.
+# 
+# 

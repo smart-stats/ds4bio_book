@@ -172,7 +172,7 @@ plt.plot( [-1, 0, 1], [0, 0, 1], linewidth = 4);
 # being fit with
 # 
 # $$
-# \sum_{i=1}^N \left\{ Y_i - W_{021} - \sum_{j=1}^{d} W_{j21} g(W_{0j1} + W_{1j1} X_i) \right\}^2
+# \sum_{i=1}^N \left\{ Y_i - W_{021} - \sum_{j=1}^{d} W_{j21} g(W_{1j1} X_i- W_{0j1}) \right\}^2
 # $$
 # 
 # where the $W_{kj}$ are the weights for layer $k$. Below, we're just setting $W_{1j1} = 1$ and specifying the $W_{0j1}$ at a sequence of values. 

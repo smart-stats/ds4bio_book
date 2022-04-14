@@ -8,7 +8,7 @@
 # ## Basics
 # Let's start by relating neural networks to regression. Consider a simple case where we have two nodes, $1$ and $X$ pointing to an outcome $Y$. What does this mean? Let's first put some context around the problem. Imagine that we want to use a subject's BMI $X$ to predict their blood pressure, $Y$. This diagram represents that.
 
-# In[84]:
+# In[1]:
 
 
 import networkx as nx
@@ -88,7 +88,7 @@ plt.show()
 # 
 # then minmizing our loss function is identical to maximizing the likelihood for logistic regression. 
 
-# In[27]:
+# In[2]:
 
 
 1 / (1 + np.exp(-(-4 + .1 * 30)))
@@ -98,7 +98,7 @@ plt.show()
 # 
 # Of course, there'd be no point in using NNs for problems that we can just solve with generalized linear models. NNs get better when we add more layers, since then they can discover interactions and non-linearities. Consider the following model. Notice we quit explicitly adding the bias (intercept) term / node. In general assume the bias term is included unless otherwise specified.
 
-# In[43]:
+# In[3]:
 
 
 #plt.figure(figsize=[2, 2])
@@ -157,7 +157,7 @@ plt.show()
 # 
 # Plotted, this is:
 
-# In[55]:
+# In[4]:
 
 
 plt.plot( [-1, 0, 1], [0, 0, 1], linewidth = 4);
@@ -177,7 +177,7 @@ plt.plot( [-1, 0, 1], [0, 0, 1], linewidth = 4);
 # 
 # where the $W_{kj}$ are the weights for layer $k$. Below, we're just setting $W_{1j1} = 1$ and specifying the $W_{0j1}$ at a sequence of values. 
 
-# In[98]:
+# In[6]:
 
 
 ## Generate some data, a sine function on 0,4*pi
@@ -188,8 +188,8 @@ y = np.sin(x) + .2 * np.random.normal(size = n)
 ## Generate the spline regressors
 df = 30
 knots = np.linspace(x.min(), x.max(), df)
-xmat = np.zeros((n, d))
-for i in range(0, d): xmat[:,i] = x$ * (x > knots[i])
+xmat = np.zeros((n, df))
+for i in range(0, df): xmat[:,i] = (x - knots[i]) * (x > knots[i])
 
 ## Fit them
 from sklearn.linear_model import LinearRegression
@@ -202,7 +202,7 @@ plt.plot(x, yhat);
 
 # This corresponds to a network like depicted below if there were $d=3$  hidden nodes, there was a relu activation function at the first layer, then a identity activation function for the output layer and the weights for the first layer are specified.
 
-# In[104]:
+# In[7]:
 
 
 G = nx.DiGraph()

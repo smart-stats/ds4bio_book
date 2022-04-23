@@ -35,11 +35,17 @@ X = X[1 : X.size] - X[0 : (X.size - 1)]
 # $$
 # 
 # rather than
+# 
 # $$
 # \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
 # $$
 # 
-# To get the latter (the unbiased version), set `ddof=1`. Personally, I prefer $N$ as a divisor, though that's a minority opinion. (Between bias or variance of the standard deviation estimate, I'd rather rather have lower variance.)
+# To get the latter (the unbiased version), set `ddof=1`. Personally, I prefer $N$ as a divisor, though that's a minority opinion. (Between bias or variance of the standard deviation estimate, I'd rather rather have lower variance.) To described the code below:
+# 
+# * `X.mean()` gives the mean; since `X` is a numpy object, it has statistical methods defined in the class
+# * `X.std()` gives the (biased version of the) standard deviation
+# * `np.round(A, 2)` rounds the numpy object to two decimal places (useful for printing)
+# * `str` is the python string converter (just to print)
 
 # In[3]:
 

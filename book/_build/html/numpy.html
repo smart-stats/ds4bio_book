@@ -451,11 +451,18 @@ const thebe_selector_output = ".output, .cell_output"
 \[
 \sqrt{\frac{1}{N} \sum_{i=1}^N (X_i - \bar X)^2}
 \]</div>
-<p>rather than
-$<span class="math notranslate nohighlight">\(
+<p>rather than</p>
+<div class="math notranslate nohighlight">
+\[
 \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
-\)</span>$</p>
-<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer <span class="math notranslate nohighlight">\(N\)</span> as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.)</p>
+\]</div>
+<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer <span class="math notranslate nohighlight">\(N\)</span> as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.) To described the code below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X.mean()</span></code> gives the mean; since <code class="docutils literal notranslate"><span class="pre">X</span></code> is a numpy object, it has statistical methods defined in the class</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X.std()</span></code> gives the (biased version of the) standard deviation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.round(A,</span> <span class="pre">2)</span></code> rounds the numpy object to two decimal places (useful for printing)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code> is the python string converter (just to print)</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean         : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span> 

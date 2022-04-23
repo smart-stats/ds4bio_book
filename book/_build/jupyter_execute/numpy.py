@@ -3,7 +3,7 @@
 
 # # Numpy
 # 
-# Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let's load in some data and work with it a bit.
+# Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let's load in some data and work with it a bit. Here we're going to be downloading the cumulative daily case counts of Covid-19 for Italy. (Modify the code in the obvious way to pick another country. The data is from the JHU Covid-19 dashboard, a fantastic data science project from the Center for Systems Science Engineering at JHU.)
 
 # In[1]:
 
@@ -29,13 +29,16 @@ X = X[1 : X.size] - X[0 : (X.size - 1)]
 
 
 # Let's get some basic statistical summaries. Note the default is that the standard deviations uses the formula
+# 
 # $$
 # \sqrt{\frac{1}{N} \sum_{i=1}^N (X_i - \bar X)^2}
 # $$
+# 
 # rather than
 # $$
 # \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
 # $$
+# 
 # To get the latter (the unbiased version), set `ddof=1`. Personally, I prefer $N$ as a divisor, though that's a minority opinion. (Between bias or variance of the standard deviation estimate, I'd rather rather have lower variance.)
 
 # In[3]:
@@ -46,9 +49,11 @@ print("Std (biased) : " + str(np.round(X.std() , 2)))
 
 
 # Numpy has a linear algebra library. Let's calculate a distributed lag model using numpy (typically you would use this with regression software). A distributed lag model is of the form:
+# 
 # $$
 # Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
 # $$
+# 
 # First, let's create the lagged matrix considering 3 lags.
 
 # In[4]:
@@ -82,13 +87,17 @@ Y = np.array(Italy[ 3 : Italy.shape[0]])
 
 
 # The matrix formula for minimizing the least squares regression model,
+# 
 # $$
 # || Y - X \beta||^2
 # $$
+# 
 # is given by
+# 
 # $$
 # \hat \beta = (X' X)^{-1} X' Y
 # $$
+# 
 # Let's do this in numpy. Let's find the estimated regression coefficients using the formula above. We'll use the following functions
 # 
 # * `matmul(A,B)` is the matrix multiplication of `A` and `B`

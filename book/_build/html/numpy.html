@@ -421,7 +421,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="numpy">
 <h1>Numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h1>
-<p>Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let’s load in some data and work with it a bit.</p>
+<p>Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let’s load in some data and work with it a bit. Here we’re going to be downloading the cumulative daily case counts of Covid-19 for Italy. (Modify the code in the obvious way to pick another country. The data is from the JHU Covid-19 dashboard, a fantastic data science project from the Center for Systems Science Engineering at JHU.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -446,15 +446,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Let’s get some basic statistical summaries. Note the default is that the standard deviations uses the formula
-$<span class="math notranslate nohighlight">\(
+<p>Let’s get some basic statistical summaries. Note the default is that the standard deviations uses the formula</p>
+<div class="math notranslate nohighlight">
+\[
 \sqrt{\frac{1}{N} \sum_{i=1}^N (X_i - \bar X)^2}
-\)</span><span class="math notranslate nohighlight">\(
-rather than
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>rather than
+$<span class="math notranslate nohighlight">\(
 \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
-\)</span><span class="math notranslate nohighlight">\(
-To get the latter (the unbiased version), set `ddof=1`. Personally, I prefer \)</span>N$ as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.)</p>
+\)</span>$</p>
+<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer <span class="math notranslate nohighlight">\(N\)</span> as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean         : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span> 
@@ -469,11 +470,12 @@ Std (biased) : 35590.55
 </div>
 </div>
 </div>
-<p>Numpy has a linear algebra library. Let’s calculate a distributed lag model using numpy (typically you would use this with regression software). A distributed lag model is of the form:
-$<span class="math notranslate nohighlight">\(
+<p>Numpy has a linear algebra library. Let’s calculate a distributed lag model using numpy (typically you would use this with regression software). A distributed lag model is of the form:</p>
+<div class="math notranslate nohighlight">
+\[
 Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
-\)</span>$
-First, let’s create the lagged matrix considering 3 lags.</p>
+\]</div>
+<p>First, let’s create the lagged matrix considering 3 lags.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Create a matrix of three lagged versions</span>
@@ -530,15 +532,17 @@ First, let’s create the lagged matrix considering 3 lags.</p>
 </div>
 </div>
 </div>
-<p>The matrix formula for minimizing the least squares regression model,
-$<span class="math notranslate nohighlight">\(
+<p>The matrix formula for minimizing the least squares regression model,</p>
+<div class="math notranslate nohighlight">
+\[
 || Y - X \beta||^2
-\)</span><span class="math notranslate nohighlight">\(
-is given by
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>is given by</p>
+<div class="math notranslate nohighlight">
+\[
 \hat \beta = (X' X)^{-1} X' Y
-\)</span>$
-Let’s do this in numpy. Let’s find the estimated regression coefficients using the formula above. We’ll use the following functions</p>
+\]</div>
+<p>Let’s do this in numpy. Let’s find the estimated regression coefficients using the formula above. We’ll use the following functions</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matmul(A,B)</span></code> is the matrix multiplication of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">A.T</span></code> is the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as <span class="math notranslate nohighlight">\(A'\)</span></p></li>

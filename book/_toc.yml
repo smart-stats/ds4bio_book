@@ -26,6 +26,7 @@ chapters:
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb
+- file: numpy.ipynb
 - file: logistic.ipynb
 - file: ml.ipynb
 - file: linearSeparable.ipynb

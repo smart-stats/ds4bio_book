@@ -41,3 +41,5 @@ chapters:
 - file: logistic_regression_pytorch.ipynb
 - file: convnet_classifier_pytorch.ipynb
 - file: convolutions.ipynb
+- file: autoencoder.ipynb
+

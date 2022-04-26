@@ -124,7 +124,7 @@ np.matmul(np.matmul(np.linalg.inv(np.matmul(X.T, X)), X.T), Y)
 np.linalg.lstsq(X, Y, rcond = None)[0]
 
 
-# Typically, we wouldn't do any of this for this problem, since high level regression models exist already. For exmaple, sklearn's linear_model module)
+# Typically, we wouldn't do any of this for this problem, since high level regression models exist already. For example, sklearn's linear_model module)
 
 # In[14]:
 

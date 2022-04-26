@@ -525,6 +525,7 @@ fix this link!</p>
 \]</div>
 <p>over the weights. This sort of network is called an autoencoder. Notice that the same data is the input and output of the network. This kind of learning is called <strong>unsupervised</strong>, since we’re not trying to use <span class="math notranslate nohighlight">\(x\)</span> to predict an outcome <span class="math notranslate nohighlight">\(y\)</span>. Instead, we’re trying to explore variation and find interesting features in <span class="math notranslate nohighlight">\(x\)</span> as a goal in itself without a “supervising” outcome, <span class="math notranslate nohighlight">\(y\)</span>, to help out.</p>
 <p>Notice overfitting concerns are somewhat different in this network construction. If this model fits well, then it’s suggesting that 2 numbers can explain 8. That is, the network will have reduced the inputs to only two dimensions, that we could visualize for example. That is a form of parsimony that prevents overfitting. The middle layer is called the embedding. It is called this because an autoencoder is a form of non-linear embedding of our data into a lower dimensionional space.</p>
+<p>There’s nothing to prevent us from having convolutional layers if the inputs are images. That’s what we’ll work on here. For convolutional autoencoders, it’s typical to increase the number of channels and decrease the image sizes as one works through the network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
@@ -541,7 +542,7 @@ fix this link!</p>
 </div>
 </div>
 </div>
-<p>Import the image of all of the cryptopunks. Note, the image conversion sets the background to black, which has the negative effect of blending into some of the figure’s black hair.</p>
+<p>Import the image of all of the cryptopunks where we’ll try to fit a convolutional autoencoder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imgURL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/larvalabs/cryptopunks/master/punks.png&quot;</span>

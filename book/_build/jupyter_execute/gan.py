@@ -9,7 +9,7 @@
 # 
 # GANs work by two parts. I'll describe this by imagining breaking our autoencoder into two parts. Recall, our autoencoder diagram as seen below.
 
-# In[8]:
+# In[18]:
 
 
 import networkx as nx
@@ -97,7 +97,7 @@ plt.show()
 
 # Again, consider breaking this digram into two parts. One that takes the embedding and spits out images (a generator) and one that takes in images and spits out guesses as to whether or not they are real (a discriminator). See below where the generator is on the left and the discriminator is on the right.
 
-# In[9]:
+# In[20]:
 
 
 #plt.figure(figsize=[2, 2])
@@ -194,7 +194,7 @@ plt.show()
 # 
 # This sort of approach can be used for data of any type. But, it's fun especially to do it using images. Some of the images generated from GANs are wild in how realistic looking they are. Let's try to create a GAN to generate our cryptopunks.
 
-# In[10]:
+# In[21]:
 
 
 #import argparse
@@ -237,28 +237,29 @@ x_real.shape
 
 # For the generator, we'll use the same construction as the decoding layer from our autoencoder chapter. For the discriminator, let's use the same network we used in our convolutional NN chapter.
 
-# In[11]:
+# In[26]:
 
 
 ## Define our constants
 kernel_size = 5
-generator_input_dim = [24, 1, 1]
+#generator_input_dim = [24, 1, 1]
+generator_input_dim = [12, 3, 3]
 lr = 1e-5
 
 
-# In[12]:
+# In[25]:
 
 
 class create_generator(nn.Module):
     def __init__(self):
         super().__init__()        
-        self.iconv0 = nn.ConvTranspose2d(24, 12, kernel_size+1) 
+#        self.iconv0 = nn.ConvTranspose2d(24, 12, kernel_size+1) 
         self.iconv1 = nn.ConvTranspose2d(12, 6, kernel_size+1, stride = 2)
         self.iconv2 = nn.ConvTranspose2d(6, 3, kernel_size+1, stride = 2)
-        self.pool   = nn.MaxPool2d(2, 2)
+#        self.pool   = nn.MaxPool2d(2, 2)
     def forward(self, x):
-        x = F.relu(self.iconv0(x))
-        x = self.pool(x)
+#        x = F.relu(self.iconv0(x))
+#        x = self.pool(x)
         x = F.relu(self.iconv1(x))
         x = torch.sigmoid(self.iconv2(x))
         return x;
@@ -290,7 +291,7 @@ discriminator = create_discriminator()
 
 # Let's try out our generator. First, we're going to generate n embeddings. Then we'll feed them through the generator to obtain n images. Notice that they don't look so good. This is because we haven't trained out generator yet!
 
-# In[13]:
+# In[27]:
 
 
 test_embedding = torch.randn([5]+generator_input_dim)
@@ -309,7 +310,7 @@ for i in range(5):
   plt.imshow(img)
 
 
-# In[14]:
+# In[28]:
 
 
 ## Define our real and fake labels
@@ -327,13 +328,14 @@ optimizerG = optim.Adam(generator.parameters(), lr=lr)
 loss_function = nn.BCELoss()
 
 
-# In[15]:
+# In[ ]:
 
 
-n_epochs = 10
+n_epochs = 100
 
 for epoch in range(n_epochs):
-    ## Generate data
+    print(epoch, end = ',', flush = True)
+    ## Generate dataS
     embedding = torch.randn([n]+generator_input_dim)
     ## Generate new fake images
     x_fake = generator(embedding)
@@ -375,7 +377,7 @@ for epoch in range(n_epochs):
     optimizerG.step()
 
 
-# In[17]:
+# In[34]:
 
 
 plt.figure(figsize=(10,10))

@@ -8,7 +8,7 @@
 # 
 # In this exercise, we'll build an autoencoder to model the cryptopunks. We'll assume that you've already looked at the chapter on convolutional networks, where we show how we downloaded and process the data. An autoencoder can be thought of as the following. Consider a datset with 8 features and consider a network that has 4 hidden nodes on the first layer, 2 on the second, 4 on the third and 8 on the fourth. See the picture below.
 
-# In[229]:
+# In[1]:
 
 
 import networkx as nx
@@ -106,7 +106,7 @@ plt.show()
 # 
 # There's nothing to prevent us from having convolutional layers if the inputs are images. That's what we'll work on here. For convolutional autoencoders, it's typical to increase the number of channels and decrease the image sizes as one works through the network.
 
-# In[34]:
+# In[2]:
 
 
 import urllib.request
@@ -123,7 +123,7 @@ import torchvision.transforms as transforms
 
 # Import the image of all of the cryptopunks where we'll try to fit a convolutional autoencoder. 
 
-# In[35]:
+# In[3]:
 
 
 imgURL = "https://raw.githubusercontent.com/larvalabs/cryptopunks/master/punks.png"
@@ -134,7 +134,7 @@ imgArray = np.asarray(img)
 
 # Reorder the array. I couldn't get reshape to do this right, but I think this is a one-line command waiting to happen. See if you can figure out a better way. All images are 24x24x3 and there's 10,000 punks. (Supposedly, there will only ever be 10k punks.) Pytorch needs this in a 10,000x3x24x24 array.
 
-# In[65]:
+# In[4]:
 
 
 finalArray = np.empty((10000, 3, 24, 24))
@@ -171,7 +171,7 @@ trainLoader = torch.utils.data.DataLoader(torch.Tensor(x_train), batch_size = 10
 # 
 # 
 
-# In[130]:
+# In[5]:
 
 
 kernel_size = 5
@@ -207,7 +207,7 @@ autoencoder = autoencoder()
 
 # Now we've constructed our network, let's try it out. I'm going to first do the encoder, then the decoder, then through the entire network. We'll check out the dimensions to make sure everything works.
 
-# In[131]:
+# In[6]:
 
 
 
@@ -228,7 +228,7 @@ fedForward = autoencoder.forward(tryItOut)
 print(fedForward.shape)
 
 
-# In[203]:
+# In[7]:
 
 
 test = fedForward.detach().numpy()
@@ -248,14 +248,14 @@ for i in range(5):
 
 # Let' see how we do on our images. We'll run the algorithm for 500 epochs 
 
-# In[ ]:
+# In[12]:
 
 
 #Optimizer
 optimizer = torch.optim.Adam(autoencoder.parameters(), lr = 0.001)
 
 #Epochs
-n_epochs = 500
+n_epochs = 20
 
 autoencoder.train()
 
@@ -273,7 +273,7 @@ for epoch in range(n_epochs):
 
 # Now that we've run it, let's feed a collection of training images through the convnet and see how we did. The top row is the first 5 images of the last training epoch, last batch, and the bottom 5 is those images passed through the algorithm.
 
-# In[209]:
+# In[15]:
 
 
 ## the data from the last iteration is called images
@@ -299,14 +299,14 @@ for i in range(5):
   plt.imshow(img)
 
 
-# In[199]:
+# In[13]:
 
 
 testLoader  = torch.utils.data.DataLoader(torch.Tensor(x_test), batch_size = 100, shuffle = False, num_workers = 1)
 testSample = autoencoder.forward(iter(testLoader).next()).detach().numpy()
 
 
-# In[200]:
+# In[16]:
 
 
 plt.figure(figsize=(10,4))

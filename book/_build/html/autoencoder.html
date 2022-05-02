@@ -56,6 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GANs" href="gan.html" />
     <link rel="prev" title="Convolutions" href="convolutions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -304,6 +305,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Autoencoders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gan.html">
+   GANs
   </a>
  </li>
 </ul>
@@ -581,6 +587,11 @@ fix this link!</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(7438, 3, 24, 24), (2562, 3, 24, 24)]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now let’s create our encoder/decoder. Here we’re going to use a simple approach for just flattening the images, one dense layer, they decoding. Network construction is its own thing in neural networks. The way we’re doing our network is a <em>convolutional autoencoder</em>. Typically, these have the number of channels increase while the image size decreases in each convolutional layer. The middle layer is called the <em>embedding</em>. We have to get the dimensions to match up with a combination of kernels, pooling, and varying the stride length.</p>
 <p>Our network construction is as follows:</p>
@@ -678,7 +689,7 @@ torch.Size([100, 3, 24, 24])
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">autoencoder</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">)</span>
 
 <span class="c1">#Epochs</span>
-<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="n">autoencoder</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 
@@ -692,6 +703,30 @@ torch.Size([100, 3, 24, 24])
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
           
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
 </pre></div>
 </div>
 </div>
@@ -798,6 +833,13 @@ embedding. You could imagine a sender having access to the encoder and the recei
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Convolutions</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="gan.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GANs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

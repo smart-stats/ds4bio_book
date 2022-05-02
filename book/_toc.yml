@@ -42,4 +42,6 @@ chapters:
 - file: convnet_classifier_pytorch.ipynb
 - file: convolutions.ipynb
 - file: autoencoder.ipynb
+- file: gan.ipynb
+
 

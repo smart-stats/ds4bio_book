@@ -9,7 +9,7 @@
 # 
 # GANs work by two parts. I'll describe this by imagining breaking our autoencoder into two parts. Recall, our autoencoder diagram as seen below.
 
-# In[18]:
+# In[1]:
 
 
 import networkx as nx
@@ -97,7 +97,7 @@ plt.show()
 
 # Again, consider breaking this digram into two parts. One that takes the embedding and spits out images (a generator) and one that takes in images and spits out guesses as to whether or not they are real (a discriminator). See below where the generator is on the left and the discriminator is on the right.
 
-# In[20]:
+# In[2]:
 
 
 #plt.figure(figsize=[2, 2])
@@ -194,23 +194,15 @@ plt.show()
 # 
 # This sort of approach can be used for data of any type. But, it's fun especially to do it using images. Some of the images generated from GANs are wild in how realistic looking they are. Let's try to create a GAN to generate our cryptopunks.
 
-# In[21]:
+# In[3]:
 
 
-#import argparse
-#import os
-#import random
-#import torch.utils.data
-#import torchvision.transforms as transforms
-#import torchvision.utils as vutils
-#from IPython.display import HTML
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import urllib.request
 import PIL
 
@@ -237,51 +229,46 @@ x_real.shape
 
 # For the generator, we'll use the same construction as the decoding layer from our autoencoder chapter. For the discriminator, let's use the same network we used in our convolutional NN chapter.
 
-# In[26]:
+# In[4]:
 
 
-## Define our constants
+## Define our constants for our networks
 kernel_size = 5
-#generator_input_dim = [24, 1, 1]
-generator_input_dim = [12, 3, 3]
-lr = 1e-5
+generator_input_dim = [16, 3, 3]
 
 
-# In[25]:
+# In[5]:
 
 
 class create_generator(nn.Module):
     def __init__(self):
         super().__init__()        
-#        self.iconv0 = nn.ConvTranspose2d(24, 12, kernel_size+1) 
-        self.iconv1 = nn.ConvTranspose2d(12, 6, kernel_size+1, stride = 2)
-        self.iconv2 = nn.ConvTranspose2d(6, 3, kernel_size+1, stride = 2)
-#        self.pool   = nn.MaxPool2d(2, 2)
+        self.net = nn.Sequential(
+            nn.ConvTranspose2d(16, 128, 10, 1, bias=False),
+            nn.BatchNorm2d(128),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(128, 3, 4, 2, 1, bias=False), 
+            nn.Sigmoid(),
+        )
     def forward(self, x):
-#        x = F.relu(self.iconv0(x))
-#        x = self.pool(x)
-        x = F.relu(self.iconv1(x))
-        x = torch.sigmoid(self.iconv2(x))
-        return x;
-    
+        return self.net(x)
+ 
 ## Use the discriminator from the convnet chapter
 class create_discriminator(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(3, 6, 5)
         self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-        self.fc1 = nn.Linear(16 * 3 * 3, 64)
-        self.fc2 = nn.Linear(64, 32)
-        self.fc3 = nn.Linear(32, 1)
+        self.conv2 = nn.Conv2d(6, 12, 5)
+        self.fc1 = nn.Linear(12 * 3 * 3, 32)
+        self.fc2 = nn.Linear(32, 1)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = torch.flatten(x, 1) # flatten all dimensions except batch
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = torch.sigmoid(self.fc3(x))
+        x = torch.sigmoid(self.fc2(x))
         return x
     
         
@@ -291,13 +278,11 @@ discriminator = create_discriminator()
 
 # Let's try out our generator. First, we're going to generate n embeddings. Then we'll feed them through the generator to obtain n images. Notice that they don't look so good. This is because we haven't trained out generator yet!
 
-# In[27]:
+# In[6]:
 
 
 test_embedding = torch.randn([5]+generator_input_dim)
-#print(test_embedding.size())
 x_fake = generator(test_embedding)
-#print(x_fake.shape)
 
 ## Plot out the first 5 images, note this isn't very interesting, since
 ## all of the weights haven't been trained
@@ -310,12 +295,12 @@ for i in range(5):
   plt.imshow(img)
 
 
-# In[28]:
+# In[7]:
 
 
-## Define our real and fake labels
-real_label = 1
-fake_label = 0
+# Our label convention, real_label = 1, fake_label = 0
+
+lr = 1e-4
 
 ## y is n real images then n fake images
 y = torch.concat( (torch.ones(n), torch.zeros(n) ) ) 
@@ -328,40 +313,53 @@ optimizerG = optim.Adam(generator.parameters(), lr=lr)
 loss_function = nn.BCELoss()
 
 
-# In[ ]:
+# In[17]:
 
 
-n_epochs = 100
+randomBatchSize = .1
+n_epochs = 300
+trainFraction = .1
 
-for epoch in range(n_epochs):
-    print(epoch, end = ',', flush = True)
-    ## Generate dataS
-    embedding = torch.randn([n]+generator_input_dim)
+for epoch in range(n_epochs):  
+    
+    if (epoch + 1) % 10 == 0:  
+        print(epoch, end = ",")
+        
+    ## Generate the batch sample
+    sample = np.random.uniform(size = n) < trainFraction
+    n_batch = np.sum(sample)
+
+    ## Generate the simulated embedding    
+    embedding = torch.randn([n_batch]+generator_input_dim)
+    
+    
     ## Generate new fake images
     x_fake = generator(embedding)
-
-    ###########################################################################
-    ## TRAIN DISCRIMINATOR                                                   ##
-    ###########################################################################
+    
+    ## train the discriminator
+    ## zero out the gradient
     discriminator.zero_grad()
 
     ## run the generated and fake images through the discriminator
-    yhat_fake = discriminator(x_fake)
-    yhat_real = discriminator(x_real)
-    yhat = torch.concat( (yhat_fake, yhat_real) ).reshape(-1)
+    yhat_fake = discriminator(x_fake.detach())
+    yhat_real = discriminator(x_real[sample,:, :, :])
+    ## Note you have to concatenate them in the same order as 
+    ## the previous cell. Remember we did real then fake
+    yhat = torch.concat( (yhat_real, yhat_fake) ).reshape(-1)
 
-    # Calculate loss on all-real batch
+    ## Calculate loss on all-real batch 
+    y = torch.concat( (torch.ones(n_batch), torch.zeros(n_batch) ) ) 
+
     discriminator_error = loss_function(yhat, y)
 
     # Calculate gradients for D in backward pass
-    discriminator_error.backward()
+    discriminator_error.backward(retain_graph = True)
 
     # Update the discriminator
     optimizerD.step()
 
-    ###########################################################################
-    ## Generator                                                             ##
-    ###########################################################################
+    ## Train the generator
+    ## zero out the gradient
     generator.zero_grad()
     ## The discriminator has been udpated, so push the data through the 
     ## new discriminator
@@ -370,14 +368,14 @@ for epoch in range(n_epochs):
     ## though we're classifying real as 1 and fake as 0
     ## In other words, we want the loss for the generator to be
     ## based on how real-like the generated data is
-    generator_error = loss_function(yhat_fake, torch.ones((n, 1)))
+    generator_error = loss_function( yhat_fake,  torch.ones( (n_batch, 1) ) )
     ## Calculate the backwards error
-    generator_error.backward
+    generator_error.backward(retain_graph = False)
     # Update the discriminator
     optimizerG.step()
 
 
-# In[34]:
+# In[18]:
 
 
 plt.figure(figsize=(10,10))
@@ -386,5 +384,19 @@ for i in range(25):
   plt.xticks([])
   plt.yticks([])
   img = np.transpose(x_fake.detach().numpy()[i,:,:,:], (1, 2, 0))
-  plt.imshow(img)
+  plt.imshow(img)  
+
+
+# For reference, here's a set of real images.
+
+# In[19]:
+
+
+plt.figure(figsize=(10,10))
+for i in range(25): 
+  plt.subplot(5, 5,i+1)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(x_real.detach().numpy()[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)  
 

@@ -43,5 +43,7 @@ chapters:
 - file: convolutions.ipynb
 - file: autoencoder.ipynb
 - file: gan.ipynb
+- file: gpu.ipynb
+
 
 

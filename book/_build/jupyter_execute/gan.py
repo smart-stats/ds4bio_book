@@ -390,14 +390,14 @@ for epoch in range(n_epochs):
 
 # Here's 25 of our generated punks. It's clearly getting there. Notice, some of the punks have an earring. Also, some have a slightly green tinge, presumably because of the green (zombie) punks in the dataset.
 
-# In[20]:
+# In[21]:
 
 
 plt.figure(figsize=(10,10))
 for i in range(25): 
   plt.subplot(5, 5,i+1)
-  plt.xticks([])
-  plt.yticks([])
+#  plt.xticks([])
+#  plt.yticks([])
   img = np.transpose(x_fake.detach().numpy()[i,:,:,:], (1, 2, 0))
   plt.imshow(img)  
 

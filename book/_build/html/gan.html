@@ -870,23 +870,6 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="_images/gan_15_0.png" src="_images/gan_15_0.png" />
 </div>
 </div>
-<p>For reference, here’s a set of real images.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span> 
-  <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-  <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x_real</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">,:,:,:],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/gan_17_0.png" src="_images/gan_17_0.png" />
-</div>
-</div>
 </div>
 </div>
 

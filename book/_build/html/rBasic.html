@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base R &#8212; Data science and AI for Bio/medical applications using python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="R tidyverse quick example" href="rTidyverse.html" />
+    <link rel="prev" title="sqlite in python" href="pysqlite.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/dasl.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="git.html">
+   Git, github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ds_python.html">
+   Python background
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_python.html">
+   Python basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_programming.html">
+   Python programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="virtual_environments.html">
+   Virtual Environments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_cleaning.html">
+   Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sqlite.html">
+   SQL via sqlite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pysqlite.html">
+   sqlite in python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Base R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rTidyverse.html">
+   R tidyverse quick example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rFromPython.html">
+   R from python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pythonFromR.html">
+   Python from R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="html.html">
+   HTML, CSS and javascript
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interactive.html">
+   Interactive graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="webscraping.html">
+   Webscraping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voila.html">
+   Jupyterwidgets and voila
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="streamlit.html">
+   Streamlit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash.html">
+   Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash2.html">
+   Dash callbacks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="binary_classification.html">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
+   Regression through the origin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy.html">
+   Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic.html">
+   Logistic regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml.html">
+   Maximum Likelihood
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparable.html">
+   Linear separable models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparableSMF.html">
+   Interpretation of linear regression coefficients.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_examples.html">
+   Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   DFT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearModels_FFTs.html">
+   Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nns.html">
+   Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
+   Pytorch by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet classifier example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutions.html">
+   Convolutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="autoencoder.html">
+   Autoencoders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gan.html">
+   GANs
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/rBasic.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/smart-stats/ds4bio_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2FrBasic.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/rBasic.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r-installation">
+   R installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-flow">
+   Control flow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-structures">
+   Data structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Base R</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#r-installation">
+   R installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-flow">
+   Control flow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-structures">
+   Data structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/rBasic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="base-r">
+<h1>Base R<a class="headerlink" href="#base-r" title="Permalink to this headline">¶</a></h1>
+<p>R is another data science language more specifically geared towards statistics. R is an implementation of the S language by John Chambers written originally by Ross Ihaka and Robert Gentleman. The R Core Team, R Foundation and almost countless contributors continually improve and maintain R.</p>
+<p>In this course, we’re going to cover very little basic R and focus mainly on the so-called tidyverse. However, a little base R goes a long way. You can install R into jupyter notebooks and then have it as an option. Alternatively, Rstudio is a well known R ide as is ESS in Emacs.</p>
+<div class="section" id="r-installation">
+<h2>R installation<a class="headerlink" href="#r-installation" title="Permalink to this headline">¶</a></h2>
+<p>You can install R from conda environment or directly from <a class="reference external" href="https://cran.r-project.org/">CRAN</a>. If on Windows, make sure to install Rtools as well. On a mac, I always made sure that I had the developer tools installed. On linux it’s a good idea to have all of the dev version of R system dependencies installed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comments in R are the # sign, just like python</span>
+<span class="c1"># Arithmetic works like you would expect</span>
+<span class="m">1</span> <span class="o">+</span> <span class="m">2</span> <span class="o">*</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">7</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign a variable, note y is a separate entity than x (run this same example in python)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="m">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># list out our variables that we&#39;ve created</span>
+    <span class="nf">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>'x'</li>
+	<li>'y'</li>
+</ol>
+</div></div>
+</div>
+<p>Honestly, the <code class="docutils literal notranslate"><span class="pre">c</span></code> function in R is perhaps one of the most important. It concatenates things.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">8</span><span class="p">)</span>
+<span class="c1"># Most operations are elementwise</span>
+<span class="n">z</span> <span class="o">+</span> <span class="m">5</span> <span class="o">*</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>6</li>
+	<li>30</li>
+	<li>48</li>
+</ol>
+</div></div>
+</div>
+<p>But you have to be careful that R will guess what you want to do.
+In this case adding a vector of length 3 + a vector of length 6 just repeats the vector of length 3 twice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">+</span> <span class="nf">c</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>2</li>
+	<li>10</li>
+	<li>16</li>
+	<li>2</li>
+	<li>10</li>
+	<li>16</li>
+</ol>
+</div></div>
+</div>
+<p>R’s Boolean values are <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> and <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">3</span> <span class="o">==</span> <span class="m">4</span>
+<span class="m">3</span> <span class="o">==</span> <span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">FALSE</div><div class="output text_html">TRUE</div></div>
+</div>
+</div>
+<div class="section" id="control-flow">
+<h2>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">¶</a></h2>
+<p>R has for loops, while loops and control flow. The syntax <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">:</span> <span class="pre">b</span></code> creates a vector starting at <code class="docutils literal notranslate"><span class="pre">a</span></code> and ending at <code class="docutils literal notranslate"><span class="pre">b</span></code>. Note R uses functional notation, so indentation doesn’t mean anything and you have to put curly braces for things included in the <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> statements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span> <span class="o">:</span> <span class="m">6</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">&quot;i is small&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">else</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">&quot;i is large&quot;</span><span class="p">)</span>
+    <span class="p">}</span>        
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;i is small&quot;
+[1] &quot;i is small&quot;
+[1] &quot;i is small&quot;
+[1] &quot;i is large&quot;
+[1] &quot;i is large&quot;
+[1] &quot;i is large&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-structures">
+<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<p>R’s generic structure is a list, which can be made with the command <code class="docutils literal notranslate"><span class="pre">list</span></code>, its generic matrix structure is a matrix, which can be made with the command <code class="docutils literal notranslate"><span class="pre">matrix</span></code> and its generic data frame structure is a data frame, which can be made with the command <code class="docutils literal notranslate"><span class="pre">data.frame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="m">1</span> <span class="o">:</span> <span class="m">3</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&quot;character&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="m">1</span> <span class="o">:</span> <span class="m">4</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&quot;character2&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, <code class="docutils literal notranslate"><span class="pre">x</span></code> is a list containing three elements, <code class="docutils literal notranslate"><span class="pre">a</span></code> is a vector, <code class="docutils literal notranslate"><span class="pre">b</span></code> is a string and <code class="docutils literal notranslate"><span class="pre">c</span></code> is itself another list. You can reference elements of <code class="docutils literal notranslate"><span class="pre">x</span></code> with the <code class="docutils literal notranslate"><span class="pre">$</span></code> or brackets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">$</span><span class="n">a</span>
+<span class="n">x</span><span class="o">$</span><span class="n">b</span>
+<span class="n">x</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="n">x</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ol>
+</div><div class="output text_html">'character'</div><div class="output text_html"><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ol>
+</div><div class="output text_html">'character'</div></div>
+</div>
+<p>Brief technicality, <code class="docutils literal notranslate"><span class="pre">x[1]</span></code> returns a list containing the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> whereas <code class="docutils literal notranslate"><span class="pre">x[[1]]</span></code> returns the entity itself. Let’s create a dataframe. Also note R starts counting at 1 (unlike 0 for python).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="m">3</span> <span class="o">:</span> <span class="m">7</span><span class="p">,</span> <span class="n">letter</span> <span class="o">=</span> <span class="kc">letters</span><span class="p">[</span><span class="m">3</span> <span class="o">:</span> <span class="m">7</span><span class="p">])</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
+<tbody>
+	<tr><td>3</td><td>c</td></tr>
+	<tr><td>4</td><td>d</td></tr>
+	<tr><td>5</td><td>e</td></tr>
+	<tr><td>6</td><td>f</td></tr>
+	<tr><td>7</td><td>g</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">$</span></code> operator works on dataframes. In addition, bracket notation works as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span> <span class="o">:</span> <span class="m">2</span><span class="p">,]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol class=list-inline>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+</ol>
+</div><div class="output text_html"><table>
+<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
+<tbody>
+	<tr><td>3</td><td>c</td></tr>
+	<tr><td>4</td><td>d</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html">c
+<details>
+	<summary style=display:list-item;cursor:pointer>
+		<strong>Levels</strong>:
+	</summary>
+	<ol class=list-inline>
+		<li>'c'</li>
+		<li>'d'</li>
+		<li>'e'</li>
+		<li>'f'</li>
+		<li>'g'</li>
+	</ol>
+</details></div></div>
+</div>
+<p>Finally, let’s cover matrices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span> <span class="m">1</span> <span class="o">:</span> <span class="m">6</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span> <span class="m">1</span> <span class="o">:</span> <span class="m">6</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tbody>
+	<tr><td>1</td><td>2</td></tr>
+	<tr><td>3</td><td>4</td></tr>
+	<tr><td>5</td><td>6</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table>
+<tbody>
+	<tr><td>1</td><td>3</td><td>5</td></tr>
+	<tr><td>2</td><td>4</td><td>6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,]</span>
+<span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>R has functions and uses so-called lexical scoping. Arguments can be named or not in function calls. But, just like in python, don’t get too cute with this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pow</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="o">^</span> <span class="n">n</span>
+<span class="p">}</span>
+<span class="nf">pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="nf">pow</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+<span class="nf">pow</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">pow</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">pow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">8</div><div class="output text_html">8</div><div class="output text_html">8</div><div class="output text_html">8</div><div class="output text_html">9</div></div>
+</div>
+<p>Functions can be arguments to functions. The <code class="docutils literal notranslate"><span class="pre">...</span></code> argument is for variable arguments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">doublefunc</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="kc">...</span><span class="p">){</span>
+    <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span> <span class="o">*</span> <span class="m">2</span>
+<span class="p">}</span>
+<span class="nf">doublefunc</span><span class="p">(</span><span class="n">pow</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="nf">doublefunc</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">16</div><div class="output text_html">14.7781121978613</div></div>
+</div>
+<p>Variables within the scope of the environment that they are defined in. Note below, the variable <code class="docutils literal notranslate"><span class="pre">c1</span></code> isn’t found since it’s only defined within <code class="docutils literal notranslate"><span class="pre">f</span></code>’s environment. Similarly, <code class="docutils literal notranslate"><span class="pre">e</span></code> is not found within <code class="docutils literal notranslate"><span class="pre">f</span></code> since it’s only found within the function <code class="docutils literal notranslate"><span class="pre">g</span></code> defined within <code class="docutils literal notranslate"><span class="pre">f</span></code>. Finally, note since <code class="docutils literal notranslate"><span class="pre">c</span></code> is a predefined function I had to define <code class="docutils literal notranslate"><span class="pre">c</span></code> as <code class="docutils literal notranslate"><span class="pre">c1</span></code>. R will let you define <code class="docutils literal notranslate"><span class="pre">c</span></code> no problem, but it creates confusion. Double check whether a variable is already assigned before defining it to avoid confusion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="m">2</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">b</span><span class="p">){</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="m">3</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">d</span><span class="p">){</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="m">4</span>
+        <span class="nf">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="nf">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;c1&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">f</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;e&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>   <span class="c1"># at line 8 of file &lt;text&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="pysqlite.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">sqlite in python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="rTidyverse.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R tidyverse quick example</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Brian Caffo<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

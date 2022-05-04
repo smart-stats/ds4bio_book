@@ -1,0 +1,168 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# <a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/python_practice.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+# 
+# # Python in practice
+# 
+# The kind of programming we've seen so far in python isn't how typical data programmming in python goes. Instead, we tend to rely a lot of modules that add methods to our complex data science objects. Most python objects are class objects that come with a variety of convenient methods associated with them. If you're working in a good coding environment, then it should have some method autocompletion for your objects, which helps prevent typos and can speed up work. Let's look at methods associated with a list object. Note that some methods change the object itself while others return things without changing the object.
+
+# In[1]:
+
+
+pets = ['frogs', 'cats', 'dogs', 'hamsters']
+print(pets)
+pets.sort() #note this changes the pets object
+print(pets)
+pets.reverse()
+print(pets)
+pets.pop()
+print(pets)
+pets.append("horses")
+print(pets)
+print(pets.count("horses")) #counts the number of times the string horses is in the list
+
+
+# A useful working example is working with imaginary numbers.
+
+# Let's create our own version of a complex number, adapted from [here](https://docs.python.org/3/tutorial/classes.html). Complex numbers have two parts, the real part and the "imaginary" part. 
+# (Note I put imaginary in quotes, since, IMHO, complex numbers and the associated operations are simply an algebraic system, no more or less imaginary than most other algebraic systems. They simply lack the direct real world counting analogy of squaring a whole number. But there are countless algenbraic systems created for a variety of uses, most lacking the direct analogy to counting whole numbers.)
+# There's two popular representations of complex numbers, Cartesian and polar. We'll use Cartesian and not discuss polar. 
+# 
+# A complex number is represented as $a + bi$ where $a$ and $b$ are numbers and $i$ is the symbol for the complex root of -1, i.e. $i^2 = -1$. If $a + b i $ is a complex number, $a - bi$ is its so-called conjugate. Conjugates are useful since 
+# $$
+# (a+bi)(a-bi) = a^2 + abi - abi - b^2 i^2 = a^2 + b^2
+# $$
+# 
+# Let's create an object called `mycomplex` and give it a conjugation method and some other stuff.
+
+# In[ ]:
+
+
+class mycomplex:
+    def __init__(self, real, imag):
+        self.r = real
+        self.i = imag
+
+    def conjugate(self): #note this modifies self
+        self.i =  -self.i
+
+    def print(self):
+        print((self.r, self.i))
+
+y = mycomplex(10,5)
+y.print()
+y.conjugate()
+y.print()
+
+
+# Let's now create a version that doesn't modify the object when we conjugate. 
+
+# In[ ]:
+
+
+class mycomplex:
+    def __init__(self, real, imag):
+        self.r = real
+        self.i = imag
+
+    def conjugate(self): # note this doesn't modify self and returns a new object
+        return(mycomplex(self.r, -self.i))
+
+    def print(self):
+        print((self.r, self.i))
+
+y = mycomplex(10,5)
+y.print()
+z = y.conjugate()
+y.print()
+z.print()
+
+
+# ## Utilizing python libraries
+# 
+# We typically load libraries that create useful data structures for us and have useful functions. We'll use `pandas` a lot next. So, let's go through another very useful data science library, `numpy`. 
+# 
+# First, let's load up numpy. Here's three separate ways
+# 
+# 1. `import numpy`
+# 2. `import numpy as np`
+# 3. `from numpy import *`
+# 
+# Option 1. imports numpy, but then you have to type `numpy.FUNCTION` to access `FUNCTION`. The second option (my preferred) shortens this to `np.FUNCTION`. The third loads the numpy functions into the global namespace. This is probably ok for really core packages like numpy. But, otherwise it's an issue since you typically load many libraries and some may have the same function names.
+# 
+# Let's load up numpy and look at some of its capabilities.
+
+# In[11]:
+
+
+import numpy as np
+
+## Numpy has constants
+print(np.pi)
+## Numpy has a not a number placeholder
+print(np.nan)
+## Numpy has 1 and 2d arrays
+vector = np.array([1, 2, 3, 8])
+print(vector)
+print(type(vector))
+## Numpy has N-Dimensional arrays
+array = np.array([ [1, 2, 3], [4, 5, 6]])
+print(array)
+
+
+# In[13]:
+
+
+## Arrays have operator definitions
+print(array + array)
+print(array * array)
+
+
+# Let's look at a common use of a library object. Our vector, `vector`, has some data in it. What if we wanted the mean and standard deviation?
+
+# In[ ]:
+
+
+print(vector.mean())
+print(vector.std())
+
+
+# Numpy has a separate data structure for matrices (2D arrays). Let's creat a matrix like our previous 2D array.
+
+# In[26]:
+
+
+mymat = np.matrix([ [1, 2], [4, 5] ] )
+print( (type(array), type(mymat) ) )
+mymat
+
+
+# Numpy's linear algebra functions are spread across sublibraries of numpy. `linalg` is one. Let's suppose we want the matrix determinant of `mymat`. We have several choices
+# 
+# 1. `np.linalg.det(mymat)`
+# 2. `import numpy.linalg as la` then `la.det(mymat)`
+# 3. `from numpy.linalg import det` then `det(mymat)`
+# 
+# The first is a little long, but just calls the sublibrary then the function of the sublibrary. The second and third are shorter, where the second gives a named reference to the sublibrary methods while the third loads the function into the namespace.
+
+# In[31]:
+
+
+from numpy.linalg import det 
+det(mymat)
+
+
+# In[35]:
+
+
+x = np.array([1.1, 2.1, 3.1, 3.2, 8.6])
+x[1:3]
+
+
+# ## Building python modules
+# 
+# With very small effort, a set of python functions can be turned into a python library. Let's start with creating a python module, then we'll talk about distributing with pip
+# 
+# 
+# 

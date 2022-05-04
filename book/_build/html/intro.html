@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome! &#8212; Data science and AI for Bio/medical applications using python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Git, github" href="git.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/dasl.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 current">
+  <a class="reference internal" href="#">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="git.html">
+   Git, github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ds_python.html">
+   Python background
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_python.html">
+   Python basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_programming.html">
+   Python programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="functions.html">
+   Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_practice.html">
+   Python in practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="virtual_environments.html">
+   Virtual Environments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data_cleaning.html">
+   Data cleaning by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EDA.html">
+   Exploratory data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sqlite.html">
+   SQL via sqlite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pysqlite.html">
+   sqlite in python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rBasic.html">
+   Base R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rTidyverse.html">
+   R tidyverse quick example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rFromPython.html">
+   R from python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pythonFromR.html">
+   Python from R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="html.html">
+   HTML, CSS and javascript
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interactive.html">
+   Interactive graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="webscraping.html">
+   Webscraping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voila.html">
+   Jupyterwidgets and voila
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="streamlit.html">
+   Streamlit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash.html">
+   Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dash2.html">
+   Dash callbacks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="binary_classification.html">
+   Introduction to binary classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_through_the_origin.html">
+   Regression through the origin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression.html">
+   Continuous prediction with regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy.html">
+   Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic.html">
+   Logistic regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml.html">
+   Maximum Likelihood
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparable.html">
+   Linear separable models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearSeparableSMF.html">
+   Interpretation of linear regression coefficients.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_examples.html">
+   Linear models: a classic example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression_interpretation.html">
+   Regression interpretation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dft.html">
+   DFT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearModels_FFTs.html">
+   Regression and FFTs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nns.html">
+   Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pytorch_regression.html">
+   Pytorch by example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_regression_pytorch.html">
+   Basic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression_pytorch.html">
+   Logistic regression in pytorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convnet_classifier_pytorch.html">
+   Convnet classifier example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutions.html">
+   Convolutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="autoencoder.html">
+   Autoencoders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gan.html">
+   GANs
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/smart-stats/ds4bio_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-basic-unix">
+   Some basic unix
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Welcome!</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-basic-unix">
+   Some basic unix
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="welcome">
+<h1>Welcome!<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
+<p>This is a book for the Data Science for Bio/Public Health/medical classes.</p>
+<div class="section" id="markdown">
+<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
+<p>Before getting started, you need to learn some markdown. Markdown is a markup language (like HTML) that is absurdly easy. Every data scientist needs to know markdown. Fortunately, you’re five minutes away from knowing it. A markdown file is a text file that needs to be rendered to look nice. If you want an example, this page was written in markdown. To try it, go to google colab, create a markdown cell and start editing. <a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">Try this cheat sheet</a>.</p>
+</div>
+<div class="section" id="some-basic-unix">
+<h2>Some basic unix<a class="headerlink" href="#some-basic-unix" title="Permalink to this headline">¶</a></h2>
+<p>Some basic unix commands will go a long way in the course, especially for when you’re working on a remote server. On windows, you can actually install a unix environment on so-called services for unix.  So, on windows, you have three options for working with the command line, i) install a linux subsystem and use that, ii) use the DOS command prompt or iii) use powershell. The commands here would only work for option i. However, when I work on a windows system, I tend to just use options ii or iii. Here, we’ll assume you’re working on a linux or unix system, or windows services for linux and you’ll have to read up elsewhere if you want to learn windows proper terminal commands.</p>
+<p>To get a unix terminal, you have several options. Since we’re promoting jupyter and jupyterlab, just open up the terminal on there. (Again, assuming you’re working on a unix/linux system.)</p>
+<p>The first thing you should try is figuring out where you’re at. Do this by typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">pwd</span>
+</pre></div>
+</div>
+<p>This will show you where you are in the directory structure. If you want to see the contents of the directory try these</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span>
+<span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span>
+<span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">alh</span>
+</pre></div>
+</div>
+<p>Adding the flags <code class="docutils literal notranslate"><span class="pre">-a</span></code> lists everything, including directories with a weird character in front. The <code class="docutils literal notranslate"><span class="pre">l</span></code> gives the long format, which gives more information and the <code class="docutils literal notranslate"><span class="pre">h</span></code> changes the filesize lists to a more human readable format.  I also like the option <code class="docutils literal notranslate"><span class="pre">--color</span></code>. <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">you</span> <span class="pre">get</span> <span class="pre">with</span> </code>-alh` is as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="mi">36</span><span class="n">K</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">7</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="o">.</span>
+<span class="n">drwxr</span><span class="o">-</span><span class="n">xrwx</span><span class="o">+</span> <span class="mi">5</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">21</span> <span class="o">..</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">6</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">31</span> <span class="n">book</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">8</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">15</span> <span class="mi">21</span><span class="p">:</span><span class="mi">34</span> <span class="o">.</span><span class="n">git</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>  <span class="mi">171</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="o">.</span><span class="n">gitignore</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>    <span class="mi">0</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span> <span class="o">.</span><span class="n">nojekyll</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>  <span class="mi">444</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">3</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="n">slides</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">7</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">21</span> <span class="o">.</span><span class="n">venv</span>
+<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">2</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">23</span> <span class="o">.</span><span class="n">vscode</span>
+</pre></div>
+</div>
+<p>The  <code class="docutils literal notranslate"><span class="pre">drwxrwxrwx+1</span></code> looking columns give permissions d=directory, r=read, w=write and x=execute, the groups are owner (you), group, everyone. So a file that is
+<code class="docutils literal notranslate"><span class="pre">-rw-------</span></code> can be read and written to by the owner, but cannot be executed by anyone and no one else can read or write to it (except the superuser, who gets to do everything).</p>
+<p>To change a directory, try the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">DIRECTORY</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code> is the name of the directory that you want to change into. You can hit TAB to autocomplete names. The command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">mv</span> <span class="n">PATH_TO_INPUT_FILE</span> <span class="n">PATH_TO_OUTPUT_FILE</span>
+</pre></div>
+</div>
+<p>moves the file. This is also how you rename a file, since you could just do <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">FILENAME1</span> <span class="pre">FILENAME2</span></code> and change the name.</p>
+<p>The unix command for removing things is <code class="docutils literal notranslate"><span class="pre">rm</span></code>. So</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">FILENAME</span>
+</pre></div>
+</div>
+<p>deletes the file. Note linux really deletes things, so do this with some care. You can’t remove directories this way, instead you could do <code class="docutils literal notranslate"><span class="pre">rmdir</span> <span class="pre">DIRECTORY</span></code>, but the directory has to be empty. If you want to use <code class="docutils literal notranslate"><span class="pre">rm</span></code> to remove a directory and its contents, you can do <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">DIRECTORY</span></code>. However, use this with care.</p>
+<p>Finally, I find it very useful to use <code class="docutils literal notranslate"><span class="pre">wget</span></code> to grab files from the internet. So, for example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">URL</span><span class="o">.../</span><span class="n">FILENAME</span>
+</pre></div>
+</div>
+<p>will grab the file from that link. Super useful.</p>
+<p>That’s enough unix to get you started. You’ll find as you use the terminal more and more, you’ll like it better and better. Eventually, you’ll find GUIs kind of frustrating.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="git.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Git, github</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Brian Caffo<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

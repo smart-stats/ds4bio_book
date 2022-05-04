@@ -681,8 +681,13 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([10000, 3, 24, 24])
+</pre></div>
 </div>
-<p>For the generator, we’ll use the same construction as the decoding layer from our autoencoder chapter. For the discriminator, let’s use the same network we used in our convolutional NN chapter.</p>
+</div>
+</div>
+<p>For the generator, we’ll use a similar construction as the decoding layer from our autoencoder chapter. For the discriminator, let’s use a similar network to the one we used in our convolutional NN chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Define our constants for our networks</span>
@@ -773,17 +778,21 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>A couple of details. First, to speed up the algorithm, I’m using random batches of 100. You can do this directly with torch’s dataloader, but I decided just to do it manually. Secondly, you have to run the algorithm for a long time. The code below just says 20, because that was the very last size I used. The results are of 4k epochs or so. Finally, note that we save the networks in progress and I wrote in some code that lets me restart the network with the saved states. So, if my program halts for any reason, I didn’t lose all of its progress.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">randomBatchSize</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
-<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">300</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Change to True / False if you do / do not want </span>
+<span class="c1">## to load the previously saved state dictionaries</span>
+<span class="n">load</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">if</span> <span class="n">load</span><span class="p">:</span>
+    <span class="n">generator</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;generator.pt&quot;</span><span class="p">))</span>
+    <span class="n">discriminator</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;discriminator.pt&quot;</span><span class="p">))</span>
+
+<span class="n">randomBatchSize</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">trainFraction</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
 
-<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>  
-    
-    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
-        <span class="nb">print</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
-        
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>          
     <span class="c1">## Generate the batch sample</span>
     <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">trainFraction</span>
     <span class="n">n_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
@@ -832,15 +841,19 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">generator_error</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
     <span class="c1"># Update the discriminator</span>
     <span class="n">optimizerG</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+        <span class="c1">## print(epoch, end = &quot;,&quot;)</span>
+        <span class="c1">## Save the state dictionary in progress</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">generator</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;generator.pt&quot;</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">discriminator</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;discriminator.pt&quot;</span><span class="p">)</span>
+
+    
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9,19,29,39,49,59,69,79,89,99,109,119,129,139,149,159,169,179,189,199,209,219,229,239,249,259,269,279,289,299,
-</pre></div>
 </div>
-</div>
-</div>
+<p>Here’s 25 of our generated punks. It’s clearly getting there. Notice, some of the punks have an earring. Also, some have a slightly green tinge, presumably because of the green (zombie) punks in the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
@@ -854,7 +867,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/gan_13_0.png" src="_images/gan_13_0.png" />
+<img alt="_images/gan_15_0.png" src="_images/gan_15_0.png" />
 </div>
 </div>
 <p>For reference, here’s a set of real images.</p>
@@ -871,7 +884,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/gan_15_0.png" src="_images/gan_15_0.png" />
+<img alt="_images/gan_17_0.png" src="_images/gan_17_0.png" />
 </div>
 </div>
 </div>

@@ -227,7 +227,7 @@ x_real = torch.tensor(x_real.astype(np.float32))
 x_real.shape
 
 
-# For the generator, we'll use the same construction as the decoding layer from our autoencoder chapter. For the discriminator, let's use the same network we used in our convolutional NN chapter.
+# For the generator, we'll use a similar construction as the decoding layer from our autoencoder chapter. For the discriminator, let's use a similar network to the one we used in our convolutional NN chapter.
 
 # In[4]:
 
@@ -313,18 +313,23 @@ optimizerG = optim.Adam(generator.parameters(), lr=lr)
 loss_function = nn.BCELoss()
 
 
+# A couple of details. First, to speed up the algorithm, I'm using random batches of 100. You can do this directly with torch's dataloader, but I decided just to do it manually. Secondly, you have to run the algorithm for a long time. The code below just says 20, because that was the very last size I used. The results are of 4k epochs or so. Finally, note that we save the networks in progress and I wrote in some code that lets me restart the network with the saved states. So, if my program halts for any reason, I didn't lose all of its progress.
+
 # In[17]:
 
 
+## Change to True / False if you do / do not want 
+## to load the previously saved state dictionaries
+load = True
+if load:
+    generator.load_state_dict(torch.load("generator.pt"))
+    discriminator.load_state_dict(torch.load("discriminator.pt"))
+
 randomBatchSize = .1
-n_epochs = 300
+n_epochs = 20
 trainFraction = .1
 
-for epoch in range(n_epochs):  
-    
-    if (epoch + 1) % 10 == 0:  
-        print(epoch, end = ",")
-        
+for epoch in range(n_epochs):          
     ## Generate the batch sample
     sample = np.random.uniform(size = n) < trainFraction
     n_batch = np.sum(sample)
@@ -373,7 +378,17 @@ for epoch in range(n_epochs):
     generator_error.backward(retain_graph = False)
     # Update the discriminator
     optimizerG.step()
+    
+    if (epoch + 1) % 10 == 0:  
+        ## print(epoch, end = ",")
+        ## Save the state dictionary in progress
+        torch.save(generator.state_dict(), "generator.pt")
+        torch.save(discriminator.state_dict(), "discriminator.pt")
 
+    
+
+
+# Here's 25 of our generated punks. It's clearly getting there. Notice, some of the punks have an earring. Also, some have a slightly green tinge, presumably because of the green (zombie) punks in the dataset.
 
 # In[18]:
 

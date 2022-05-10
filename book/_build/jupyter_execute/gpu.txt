@@ -113,7 +113,7 @@ loss_function = nn.BCELoss()
 ## I want an animation
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from IPython.display import HTML
+from IPython.display import HTML, Image
 
 ## Create a vector to keep track of
 z = torch.randn([1]+generator_input_dim, device = device)

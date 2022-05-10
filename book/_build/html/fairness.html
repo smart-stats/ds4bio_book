@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome! &#8212; Data science and AI for Bio/medical applications using python</title>
+    <title>Explainability and equity &#8212; Data science and AI for Bio/medical applications using python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Git, github" href="git.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -92,8 +91,8 @@ const thebe_selector_output = ".output, .cell_output"
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Welcome!
   </a>
  </li>
@@ -360,9 +359,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/fairness.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -380,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Ffairness.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -396,29 +395,28 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/fairness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#markdown">
-   Markdown
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-basic-unix">
-   Some basic unix
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -426,95 +424,19 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome!</h1>
+                <h1>Explainability and equity</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#markdown">
-   Markdown
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-basic-unix">
-   Some basic unix
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome">
-<h1>Welcome!<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
-<p>This is a book for the Data Science for Bio/Public Health/medical classes.</p>
-<div class="section" id="markdown">
-<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
-<p>Before getting started, you need to learn some markdown. Markdown is a markup language (like HTML) that is absurdly easy. Every data scientist needs to know markdown. Fortunately, you’re five minutes away from knowing it. A markdown file is a text file that needs to be rendered to look nice. If you want an example, this page was written in markdown. To try it, go to google colab, create a markdown cell and start editing. <a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">Try this cheat sheet</a>.</p>
-</div>
-<div class="section" id="some-basic-unix">
-<h2>Some basic unix<a class="headerlink" href="#some-basic-unix" title="Permalink to this headline">¶</a></h2>
-<p>Some basic unix commands will go a long way in the course, especially for when you’re working on a remote server. On windows, you can actually install a unix environment on so-called services for unix.  So, on windows, you have three options for working with the command line, i) install a linux subsystem and use that, ii) use the DOS command prompt or iii) use powershell. The commands here would only work for option i. However, when I work on a windows system, I tend to just use options ii or iii. Here, we’ll assume you’re working on a linux or unix system, or windows services for linux and you’ll have to read up elsewhere if you want to learn windows proper terminal commands.</p>
-<p>To get a unix terminal, you have several options. Since we’re promoting jupyter and jupyterlab, just open up the terminal on there. (Again, assuming you’re working on a unix/linux system.)</p>
-<p>The first thing you should try is figuring out where you’re at. Do this by typing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">pwd</span>
-</pre></div>
-</div>
-<p>This will show you where you are in the directory structure. If you want to see the contents of the directory try these</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span>
-<span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span>
-<span class="n">prompt</span><span class="o">&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">alh</span>
-</pre></div>
-</div>
-<p>Adding the flags <code class="docutils literal notranslate"><span class="pre">-a</span></code> lists everything, including directories with a weird character in front. The <code class="docutils literal notranslate"><span class="pre">l</span></code> gives the long format, which gives more information and the <code class="docutils literal notranslate"><span class="pre">h</span></code> changes the filesize lists to a more human readable format.  I also like the option <code class="docutils literal notranslate"><span class="pre">--color</span></code>. <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">you</span> <span class="pre">get</span> <span class="pre">with</span> </code>-alh` is as follows.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="mi">36</span><span class="n">K</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">7</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="o">.</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xrwx</span><span class="o">+</span> <span class="mi">5</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">21</span> <span class="o">..</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">6</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">31</span> <span class="n">book</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">8</span> <span class="n">codespace</span> <span class="n">root</span>      <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">15</span> <span class="mi">21</span><span class="p">:</span><span class="mi">34</span> <span class="o">.</span><span class="n">git</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>  <span class="mi">171</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="o">.</span><span class="n">gitignore</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>    <span class="mi">0</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span> <span class="o">.</span><span class="n">nojekyll</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span>  <span class="mi">1</span> <span class="n">codespace</span> <span class="n">codespace</span>  <span class="mi">444</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">3</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Feb</span> <span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span> <span class="n">slides</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">7</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">21</span> <span class="o">.</span><span class="n">venv</span>
-<span class="n">drwxrwxrwx</span><span class="o">+</span> <span class="mi">2</span> <span class="n">codespace</span> <span class="n">codespace</span> <span class="mf">4.0</span><span class="n">K</span> <span class="n">Oct</span> <span class="mi">19</span> <span class="mi">15</span><span class="p">:</span><span class="mi">23</span> <span class="o">.</span><span class="n">vscode</span>
-</pre></div>
-</div>
-<p>The  <code class="docutils literal notranslate"><span class="pre">drwxrwxrwx+1</span></code> looking columns give permissions d=directory, r=read, w=write and x=execute, the groups are owner (you), group, everyone. So a file that is
-<code class="docutils literal notranslate"><span class="pre">-rw-------</span></code> can be read and written to by the owner, but cannot be executed by anyone and no one else can read or write to it (except the superuser, who gets to do everything).</p>
-<p>To change a directory, try the following</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">DIRECTORY</span>
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code> is the name of the directory that you want to change into. You can hit TAB to autocomplete names. The command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="o">&gt;</span> <span class="n">mv</span> <span class="n">PATH_TO_INPUT_FILE</span> <span class="n">PATH_TO_OUTPUT_FILE</span>
-</pre></div>
-</div>
-<p>moves the file. This is also how you rename a file, since you could just do <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">FILENAME1</span> <span class="pre">FILENAME2</span></code> and change the name.</p>
-<p>The unix command for removing things is <code class="docutils literal notranslate"><span class="pre">rm</span></code>. So</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">FILENAME</span>
-</pre></div>
-</div>
-<p>deletes the file. Note linux really deletes things, so do this with some care. You can’t remove directories this way, instead you could do <code class="docutils literal notranslate"><span class="pre">rmdir</span> <span class="pre">DIRECTORY</span></code>, but the directory has to be empty. If you want to use <code class="docutils literal notranslate"><span class="pre">rm</span></code> to remove a directory and its contents, you can do <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">DIRECTORY</span></code>. However, use this with care.</p>
-<p>Finally, I find it very useful to use <code class="docutils literal notranslate"><span class="pre">wget</span></code> to grab files from the internet. So, for example,</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">URL</span><span class="o">.../</span><span class="n">FILENAME</span>
-</pre></div>
-</div>
-<p>will grab the file from that link. Super useful.</p>
-<p>That’s enough unix to get you started. You’ll find as you use the terminal more and more, you’ll like it better and better. Eventually, you’ll find GUIs kind of frustrating.</p>
-</div>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="explainability-and-equity">
+<h1>Explainability and equity<a class="headerlink" href="#explainability-and-equity" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -526,29 +448,22 @@ const thebe_selector_output = ".output, .cell_output"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "conda-env-.conda-ds4bio-py"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "conda-env-.conda-ds4bio-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'conda-env-.conda-ds4bio-py'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="git.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Git, github</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             
         </div>

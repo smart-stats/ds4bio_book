@@ -5,3 +5,4 @@
 + [Lecture 5, python functions](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/05_functions.slides.html)
 + [Lecture 6, python in practice](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/06_python_practice.slides.html)
 + [Lecture 7, data Cleaning](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/07_data_cleaning.slides.html)
++ [Lecture 8, EDA](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/08_eda.slides.html)

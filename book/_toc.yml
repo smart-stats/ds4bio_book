@@ -10,6 +10,7 @@ chapters:
 - file: virtual_environments.ipynb
 - file: data_cleaning.ipynb
 - file: EDA.ipynb
+- file: data_structures.ipynb
 - file: sqlite.ipynb
 - file: pysqlite.ipynb
 - file: rBasic.ipynb

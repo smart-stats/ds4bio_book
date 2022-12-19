@@ -14749,7 +14749,7 @@ sqlite&gt; .quit</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="A-more-reaslistic-example">A more reaslistic example<a class="anchor-link" href="#A-more-reaslistic-example">&#182;</a></h2><ul>
+<h2 id="A-more-realistic-example">A more realistic example<a class="anchor-link" href="#A-more-realistic-example">&#182;</a></h2><ul>
 <li>Consider the data Opiods in the US at Open Case Studies</li>
 </ul>
 <p><a href="https://github.com/opencasestudies/ocs-bp-opioid-rural-urban">https://github.com/opencasestudies/ocs-bp-opioid-rural-urban</a></p>
@@ -14993,7 +14993,7 @@ sqlite&gt; select * from annual where BUYER_STATE = "AR" and BUYER_COUNTY = "MON
 
 <pre><code>sqlite&gt; create table land_area as select Areaname, STCOU, LND110210D from land;</code></pre>
 <ul>
-<li>Also, the column there is called <code>STCOU</code>, which we want to rename to <code>coutyfips</code>. 
+<li>Also, the column there is called <code>STCOU</code>, which we want to rename to <code>countyfips</code>. 
 <pre><code>sqlite&gt; alter table land_area rename column STCOU to countyfips;</code></pre>
 </li>
 </ul>

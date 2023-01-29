@@ -7,7 +7,7 @@
 + [Lecture 7, data Cleaning](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/07_data_cleaning.slides.html)
 + [Lecture 8, EDA](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/08_eda.slides.html)
 + [Lecture 10, sqlite](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/10_sqlite.slides.html)
-+ [Lecutre 11, ]
-+ [Lecture 12, ]
-+ [Lecture 13, ]
-+ [Lecture 14, ]
++ [Lecutre 11, pysqlite](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/11_pysqlite.slides.html)
++ [Lecture 12, R basic](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/12_rbasic.slides.html)
++ [Lecture 13, Tidyverse](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/13_rTidyverse.slides.html)
++ [Lecture 14, R from python](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/14_rFromPython.slides.html)

@@ -7,3 +7,7 @@
 + [Lecture 7, data Cleaning](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/07_data_cleaning.slides.html)
 + [Lecture 8, EDA](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/08_eda.slides.html)
 + [Lecture 10, sqlite](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/10_sqlite.slides.html)
++ [Lecutre 11, ]
++ [Lecture 12, ]
++ [Lecture 13, ]
++ [Lecture 14, ]

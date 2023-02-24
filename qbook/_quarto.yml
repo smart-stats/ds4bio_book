@@ -15,6 +15,12 @@ book:
         - unix.qmd
         - git.qmd
     - part: python.qmd
+      chapters:
+        - basic_python.qmd
+        - python_programming.qmd
+	- python_functions.qmd
+        - python_practice.qmd
+	
     - tooling.qmd
     - data.qmd
     - statistics.qmd

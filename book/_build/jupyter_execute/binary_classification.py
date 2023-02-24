@@ -38,8 +38,7 @@ dat.head(4)
 dat.groupby('GOLD_Lesions').FLAIR.hist(alpha= .5)
 
 
-# In[ ]:
-
+# In[4]:
 
 
 x0 = dat.FLAIR[dat.GOLD_Lesions == 0]
@@ -58,6 +57,7 @@ plt.show()
 
 
 
+
 # # Classification
 # 
 # Let's try creating the simplest possible classifier, a threshold. So here we want to pick the value of the threshold so that lower values are classified `GOLD_Lesion == 0` (i.e. no lesion) and higher values are `GOLD_Lesion == 1` (lesion at this voxel). We want to do this on labeled voxels so that we can pick a meaningful threshold on voxels without a gold standard labeling. That is, for new patients we want to automatically label their images one voxel at a time with a simple thresholding rule. We're going to use our **training data** where we know the truth to develop the threshold. 
@@ -68,7 +68,7 @@ plt.show()
 # However, I'm going to break the data into a training and testing set. The reason for this is that I want to make sure that I don't overfit. That is, we're going to test our algorithm on a dataset that wasn't used to train the algorithm. 
 # 
 
-# In[4]:
+# In[5]:
 
 
 x = dat.FLAIR
@@ -87,7 +87,8 @@ xtest =  x[~sample]
 ytest =  y[~sample]
 
 
-# In[5]:
+
+# In[6]:
 
 
 ## Starting values, just set it to 
@@ -126,7 +127,7 @@ threshold = bestThresholdSoFar
 # 
 # 
 
-# In[8]:
+# In[7]:
 
 
 ## Let's test it out on the test set
@@ -154,7 +155,8 @@ pd.DataFrame({
 
 
 
-# In[12]:
+
+# In[8]:
 
 
 sns.kdeplot(x0, shade = True, label = 'Gold Std = 0')
@@ -172,14 +174,14 @@ plt.show()
 # 
 # 
 
-# In[13]:
+# In[9]:
 
 
 fpr, tpr, thresholds = roc_curve(ytest, xtest)
 roc_auc = auc(fpr, tpr)
 
 
-# In[14]:
+# In[10]:
 
 
 plt.figure()

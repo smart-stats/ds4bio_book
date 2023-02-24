@@ -7,8 +7,9 @@ logo: dasl.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-#  execute_notebooks: force
-  execute_notebooks: false
+  execute_notebooks: force
+  timeout: 200
+#  execute_notebooks: false
 
 # Define the name of the latex output file for PDF builds
 latex:

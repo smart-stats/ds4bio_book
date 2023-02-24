@@ -1,0 +1,35 @@
+project:
+  type: book
+
+book:
+  repo-url: https://github.com/smart-stats/ds4bio_book
+  title: "Introductory and intermediate data science for the bio/medical sciences using python"
+  author: "Brian Caffo"
+  date: "2/24/2023"
+  
+  chapters:
+    - index.qmd
+    - part: intro.qmd
+      chapters:
+        - markdown.qmd
+        - unix.qmd
+        - git.qmd
+    - part: python.qmd
+    - tooling.qmd
+    - data.qmd
+    - statistics.qmd
+    - supervised.qmd
+    - unsupervised.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

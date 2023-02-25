@@ -1,8 +1,16 @@
 # Unix
 
-## Some basic unix
-
-Some basic unix commands will go a long way in the course, especially for when you're working on a remote server. On windows, you can actually install a unix environment on so-called services for unix.  So, on windows, you have three options for working with the command line, i) install a linux subsystem and use that, ii) use the DOS command prompt or iii) use powershell. The commands here would only work for option i. However, when I work on a windows system, I tend to just use options ii or iii. Here, we'll assume you're working on a linux or unix system, or windows services for linux and you'll have to read up elsewhere if you want to learn windows proper terminal commands. 
+Some basic unix commands will go a long way, especially
+for when you're working on a remote server. On windows, you can
+actually install a unix environment on so-called services for unix.
+So, on windows, you have three options for working with the command
+line, i) install a linux subsystem and use that, ii) use the DOS
+command prompt or iii) use powershell. The commands here would only
+work for option i. However, when I work on a windows system, I tend to
+just use options ii or iii. Here, we'll assume you're working on a
+linux or unix system, or windows services for linux and you'll have to
+read up elsewhere if you want to learn windows proper terminal
+commands.
 
 To get a unix terminal, you have several options. Since we're promoting jupyter and jupyterlab, just open up the terminal on there. (Again, assuming you're working on a unix/linux system.)
 

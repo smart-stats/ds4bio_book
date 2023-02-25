@@ -1,0 +1,108 @@
+# Markdown
+Before getting started, you need to learn some markdown. Markdown is a
+markup language (like HTML) that is absurdly easy. Every data
+scientist needs to know markdown. Fortunately, you're five minutes
+away from knowing it. A markdown file is a text file that needs to be
+rendered to look nice. If you want an example, this page was written
+in markdown. To try it, go to google colab or a jupyter lab, create a
+markdown cell and start editing. Also, github will markup a markdown
+page so that is a good place to experiment.
+
+As mentioned, markdown is markup language. So, you write in plain text
+and then it needs to be rendered into a pretty document or page.  For
+example, all of these notes were written in markdown, but then
+converted to HTML.  There are different flavors of markdown. So,
+syntax can change a bit.  I'm using the one that works in quarto.
+
+Here's how you section in markdown.
+
+```
+# Top level heading
+## Second level heading
+### Third level heading
+```
+
+and so on. You can can **bold text** and *italicize* text like this:
+
+```
+**bold** text and *italicize*
+```
+
+If you want an ordered list, like this:
+
+1. Item one.
+2. Item two.
+3. Item three.
+
+then you can just do:
+
+```
+1. Item one.
+2. Item two.
+3. Item three.
+```
+
+Note, if you move around the order of the list in the markdown code,
+the markup engine will just reorder them starting at whatever the
+first number is. An unordered lists can be done with asterisks or plus
+signs or dashes. (I tend to use asterisks.) Also, putting brackets with 
+an x makes for a check mark.
+
+* [ ] Pick up broccoli
+* [ ] Pick up oat milk
+* [x] Pick up golden berries
+* [x] Pick up tea
+
+```
+* [ ] Pick up broccoli
+* [ ] Pick up oat milk
+* [x] Pick up golden berries
+* [x] Pick up tea
+```
+
+Inline code, like `lambda x: x ** 2` can be written with backticks
+
+```
+`lambda x: x ** 2`
+```
+
+Block code is written in between three backticks. 
+
+\`\`\`
+
+`like this`
+
+\`\`\`
+
+Links can be done like this  
+
+```
+[Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/).
+```
+
+which renders like this: [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/).
+(Also, that's a real link to a nice MD cheat sheet.) Images can be done like this
+
+```
+![Image alt text](assets/images/book_graphic.png)
+```
+
+If your converter can use mathjax, you can insert LaTeX equations. For example, 
+
+$$
+\int_{-\infty}^\infty (2\pi\sigma^2)^{-1/2} \exp\left\{-\frac{1}{2\sigma^2} (x - \mu)^2\right\} dx = 1
+$$
+
+
+can be written as
+
+```
+$$
+\int_{-\infty}^\infty (2\pi\sigma^2)^{-1/2} \exp\left\{-\frac{1}{2\sigma^2} (x - \mu)^2\right\} dx = 1
+$$
+```
+
+I noticed the github markdown renderer doesn't load mathjax, but most of the data science things
+do, like jupyter-lab, colab and quarto.
+
+That's plenty of markdown to start. Try it out. You'll find that you pick it up really fast.

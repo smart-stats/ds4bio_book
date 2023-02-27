@@ -1,0 +1,230 @@
+---
+jupyter: python3
+---
+
+<a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearModels_FFTs.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
+
+# Regression and FFTs
+
+Recall regression through the origin. If $y$ and $x$ are $n$-vectors of the same length, the minimizer of
+
+$$
+||y - \beta x ||^2
+$$
+
+is $\hat \beta = <x, y> / ||x||^2$. Note, if $||x|| = 1$ then the estimate is just $\hat \beta = <x, y>$. Now consider a second variable, $w$, such that $<x, w> = 0$ and $||w|| = 1$. Consider now the least squares model
+
+$$
+||y - \beta x - \gamma w||^2.
+$$
+
+We argued that the best estimate for $\beta$ now first gets rid of $w$ be regressing it out of $y$ and $x$. So, consider that
+
+$$
+||y - <w, y> w - \beta (x - <w, x> w)||^2 =
+||y - <w, y> w - \beta x||^2. 
+$$
+
+Thus, now the best estimate of $\beta$ is
+
+$$
+<y - <w, y> w, x> = <y, x>.
+$$
+
+Or, in other words, if $x$ and $w$ are orthogonal then the coefficient estimate for $x$ with $w$ included is the same as the coefficient of $x$ by itself. This extends to more than two regressors. 
+
+If you have a collection of $n$ mutually orthogonal vectors of norm one, they are called an orthonormal basis. For an orthonomal basis, 1. the coefficients are just the inner products between the regressors and the outcome and 2. inclusion or exclusion of other elemenents of the basis doesn't change a basis elements estimated coefficients.
+
+It's important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that $x$ is $e^{-2\pi i m k / n}$ for $m=0,\ldots, n-1$ for a particular value of $k$. Vectors like this are orthogonal for different values of $k$ and all have norm 1. We have already seen that the Fourier coefficient is 
+
+$$
+f_k = <y, x> = \sum_{m=0}^{n-1} y_m e^{-2\pi i m k / n} = 
+\sum_{m=0}^{n-1} y_m \cos(-2\pi m k / n) + i \sum_{m=0}^{n-1} y_m \sin(-2\pi m k / n) 
+$$
+
+where $y_m$ is element $m$ of $y$. Thus, the Fourier coefficients are exactly just least squares coefficients applied in the complex space.  Thus we have that 
+
+$$
+f_k = a_k + i b_k
+$$
+
+where $a_k$ and $b_k$ are the coefficients from linear models with just the sine and cosine terms. Of course, we don't actually fit Fourier transforms this way, since there's a much faster way to do, aptly named the fast Fourier transform (FFT). However, knowing how fast discrete Fourier transforms relate to linear models allows us to use them in creative ways, like putting them into models with other covariates, or in logistic regression models.
+
+Let's numerically look at FFTs and linear models using covid case counts in Italy as an example.
+
+```{python}
+#| id: EEsfBUm_Hnfa
+#| id: EEsfBUm_Hnfa
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+```
+
+```{python}
+#| id: oaCy9-V4YtNe
+#| colab: {base_uri: 'https://localhost:8080/', height: 244}
+#| id: oaCy9-V4YtNe
+#| outputId: abc5f9c9-97d5-4923-a8e0-ce1bb0f25de1
+dat = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
+dat.head()
+```
+
+```{python}
+#| id: l73uf3IniLl6
+#| colab: {base_uri: 'https://localhost:8080/', height: 282}
+#| id: l73uf3IniLl6
+#| outputId: 884b3d4d-17db-4934-d918-6eaab05fd18f
+## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)
+y=dat[dat['Country/Region'] == 'Italy'].drop(["Province/State", "Country/Region", "Lat", "Long"], axis=1).unstack()
+## convert from tuple to array
+y = np.asarray(y)  
+## get case counts instead of cumulative counts
+y = y[1 : y.size] - y[0 : (y.size - 1)]
+## get the first non zero entry
+y =  y[np.min(np.where(y !=  0)) : y.size]
+plt.plot(y)
+
+```
+
+Let's look at a smoothed version of it and then take the residual. The residual is where we'd like to look at some oscillatory behavior.
+
+```{python}
+#| id: 4flqXoIrwIkE
+#| colab: {base_uri: 'https://localhost:8080/', height: 282}
+#| id: 4flqXoIrwIkE
+#| outputId: 50c52dd4-6f41-41d2-df77-c340e7d699c8
+n = y.size
+t = np.arange(0, n, 1)
+lowess = sm.nonparametric.lowess
+yhat = lowess(y, t, frac=.05,return_sorted=False)
+plt.plot(y)
+plt.plot(yhat)
+```
+
+```{python}
+#| id: t0pjkISLettX
+#| colab: {base_uri: 'https://localhost:8080/', height: 286}
+#| id: t0pjkISLettX
+#| outputId: a7a95f31-8cba-476a-9dcf-a411f634575e
+## We're interested in the residual
+e = y - yhat
+plt.plot(e)
+```
+
+Let's manually create our Fourier bases. We're just going to pick some periods to investigate. We'll pick a fast varying and slow varying.
+
+```{python}
+#| id: lvD9JeJ1Lk5t
+#| id: lvD9JeJ1Lk5t
+
+## Create 4 elements
+## Orthonormal basis (note dividing by sqrt(n/2) makes them norm 1)
+c5  = np.cos(-2 * np.pi * t * 5 / n  ) / np.sqrt(n /2)
+c20 = np.cos(-2 * np.pi * t * 20 / n ) / np.sqrt(n /2)
+s5  = np.sin(-2 * np.pi * t * 5  / n  )/ np.sqrt(n /2)
+s20 = np.sin(-2 * np.pi * t * 20 / n  ) / np.sqrt(n /2)
+```
+
+```{python}
+fig, axs = plt.subplots(2, 2)
+axs[0,0].plot(t, c5)
+axs[0,1].plot(t, c20)
+axs[1,0].plot(t, s5)
+axs[1,1].plot(t, s20)
+plt.show()
+```
+
+Let's verify that they are indeed orthonormal. That is, we want to show that $<x_i, x_j> = I(i =j)$. We also show that they are all mean 0.
+
+```{python}
+#| id: TYnpYvOYNJ2a
+#| colab: {base_uri: 'https://localhost:8080/', height: 228}
+#| id: TYnpYvOYNJ2a
+#| outputId: 4be183bb-0982-434a-96a6-0090c03dc4ca
+## Verify that they are orthonormal mean 0, round to 6 decimal places
+np.around( [
+ np.sum(c5),
+ np.sum(c20),
+ np.sum(s5),
+ np.sum(s20),
+ np.sum(c5 * c5),
+ np.sum(c20 * c20),
+ np.sum(s5 * s5),
+ np.sum(s20 * s20),
+ np.sum(c5 * s5),
+ np.sum(c5 * s20),
+ np.sum(c5 * c20),
+ np.sum(s5 * s20),
+], 6)
+```
+
+Let's take the FFT, the fast (discrete) Fourier transform th way one would normally do it. First, we use FFT in numpy. Then, there's a convenient method, `fftfreq`, which gives the associated frequencies with each element of the transform. Finally, we plot the spectral density, which is the sum of the real and complex Fourier coefficients. Sorting the elements first is necessary to connect the dots on the plot. Interestingly, once we remove the trend from the Italy data, there's some very noticeable spikes in the spectral density, which implies large coefficients on that specific frequency. This is possibly some reporting issue.
+
+```{python}
+#| id: ukCCrBakax2O
+#| colab: {base_uri: 'https://localhost:8080/', height: 294}
+#| id: ukCCrBakax2O
+#| outputId: 50f08370-19ee-4bf1-b39c-b66bd7d6aeed
+f = np.fft.fft(e)
+w = np.fft.fftfreq(n)
+ind = w.argsort()
+f = f[ind] 
+w = w[ind]
+plt.plot(w, f.real**2 + f.imag**2)
+```
+
+Now let's manually find the coefficients using our constructed bases and the formula that the coefficients.
+
+```{python}
+#| id: W0RDy2kcjGxw
+#| colab: {base_uri: 'https://localhost:8080/', height: 87}
+#| id: W0RDy2kcjGxw
+#| outputId: 5003fd1e-9a2b-4ca2-ff60-a99bc170b8c1
+[
+ np.sum(c5 * e) * np.sqrt(n / 2),
+ np.sum(c20 * e) * np.sqrt(n / 2),
+ np.sum(s5 * e) * np.sqrt(n / 2),
+ np.sum(s20 * e) * np.sqrt(n / 2),
+] 
+```
+
+```{python}
+#| id: 9VffVgrkJTaG
+#| colab: {base_uri: 'https://localhost:8080/', height: 34}
+#| id: 9VffVgrkJTaG
+#| outputId: 2bc28175-c9e0-4e18-d8df-6ee49cd561a1
+sreg = linear_model.LinearRegression()
+x=np.c_[c5, c20, s5, s20]
+fit = sreg.fit(x, y)
+fit.coef_ * np.sqrt(n/2)
+```
+
+```{python}
+#| id: XxYhZB_dNeJ_
+#| colab: {base_uri: 'https://localhost:8080/', height: 34}
+#| id: XxYhZB_dNeJ_
+#| outputId: 7962bf96-2a0d-4756-ee70-eb7e52da7344
+x=np.c_[c5, s5]
+fit = sreg.fit(x, y)
+fit.coef_ * np.sqrt(n/2)
+```
+
+```{python}
+#| id: XlLctyHMii7w
+#| colab: {base_uri: 'https://localhost:8080/', height: 87}
+#| id: XlLctyHMii7w
+#| outputId: 38efc131-3ecb-4252-b07c-0708ec8253d6
+test = np.where( np.abs(f.real / np.sum(c5 * y) / np.sqrt(n / 2) - 1) < 1e-5) 
+[test, f.real[test], w[test], 5 / n]
+```
+
+```{python}
+#| id: U5jQSTNVXfV9
+#| colab: {base_uri: 'https://localhost:8080/', height: 34}
+#| id: U5jQSTNVXfV9
+#| outputId: 562ddc9b-1a9d-4174-c56c-75ed01e5afb3
+f.imag[test]
+```
+

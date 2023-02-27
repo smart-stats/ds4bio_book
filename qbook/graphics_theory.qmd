@@ -1,0 +1,63 @@
+---
+title: "Advanced: theory of graphical display"
+format: html
+---
+
+## Design arguments 
+One of the main design arguments for the graphical display of information is data / ink maximization @tufte1990data. This is the idea that idea that as much of the "ink" (non-background pixels) of the plot as possible should be displaying data. 
+
+Data/ink maximalization has been criticized empirically. For example, @inbar2007minimalism conducted a study with 87 undergraduates and found a clear preference for the non-maximized variations. Another line of argument discusses the "paradox of simplicity" @norman2007simplicity, @eytam2017paradox, whereby we have a strong aesthetic preference for simplicity, but also want flexibility and maximum utility.
+
++ @bertin1983semiology
+
+### Graphical critique
++ @wickham2010graphical
+
+### Theory of graphics
+
++ @cleveland1987research
++ @cleveland1984many
++ @cleveland1980calendar
++ @carswell1992choosing
++ @cleveland1986experiment
++ Magical thinking @diaconis2006theories
+
+## Implementation 
+### Grammar of graphics
++ @wilkinson2012grammar
++ @wilkinson2013grammar
++ @wickham2010layered
+
+### Narative storytelling
+Edward and Jeffrey (@segel2010narrative) argue regarding the use of modern interactive tools in data narrative storytelling. They give seven canonical genres of narrative visulation.
+
+## Graph galleries and further reading
+
+### Further reading  
+
++ Karl Broman on [How to display data badly](https://www.biostat.wisc.edu/~kbroman/presentations/IowaState2013/graphs_combined.pdf)
++ Karl Broman [Data Vizualization](https://kbroman.org/AdvData/19_datavis_notes.pdf)
++ Karl Broman [10 worst plots](https://www.biostat.wisc.edu/~kbroman/topten_worstgraphs/)
++ Karl Broman [Data visualization](https://bookdown.org/martin_monkman/DataScienceResources_book/datavisualization.html)
+
+### Graph galleries
+
++ [R graph gallery](https://r-graph-gallery.com/index.html)
++ [Matplotlib graph gallery](https://matplotlib.org/2.0.2/gallery.html)
++ [Plotly](https://plotly.com/python/)
++ [D3 gallery](https://observablehq.com/@d3/gallery)
++ [Vega gallery](https://vega.github.io/vega/examples/)
++ [Seaborn](https://seaborn.pydata.org/examples/index.html)
+
+### Historically famous graphics
+
++ [https://medium.com/stotle-inc/the-greatest-graph-in-history-1155e0c25671Z](https://medium.com/stotle-inc/the-greatest-graph-in-history-1155e0c25671Z)
++ [https://plotlygraphs.medium.com/seven-modern-remakes-of-the-most-famous-graphs-ever-made-8ef30da1ab00](https://plotlygraphs.medium.com/seven-modern-remakes-of-the-most-famous-graphs-ever-made-8ef30da1ab00)
++ [https://www.datavis.ca/gallery/historical.php](https://www.datavis.ca/gallery/historical.php)
++ [https://towardsdatascience.com/a-short-history-of-data-visualisation-de2f81ed0b23](https://towardsdatascience.com/a-short-history-of-data-visualisation-de2f81ed0b23)
++ [https://www.tableau.com/learn/articles/best-beautiful-data-visualization-examples](https://www.tableau.com/learn/articles/best-beautiful-data-visualization-examples)
+
+### Infographics in the media
++ [https://www.nytimes.com/spotlight/graphics](https://www.nytimes.com/spotlight/graphics)
++ [JHU covid map](https://coronavirus.jhu.edu/map.html)
++ 

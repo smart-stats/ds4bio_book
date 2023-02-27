@@ -1,0 +1,277 @@
+# SQL via sqlite
+
+In this page, we'll cover some of the basics of SQL (structured querry
+language) by working through some examples. SQL is a set of language
+standards for databases, so we have to choose a specific
+implementation. We'll use sqlite for this purpose. As its name
+implies, sqlite is a small implementation of SQL.
+
+In my linux implementation, sqlite3 was
+pre-installed. [Here's](https://www.guru99.com/download-install-sqlite.html)
+a tutorial on installing for windows. Sqlite3 is a single file.
+
+We'll first create a database at the command line. Notice when we
+create a file
+
+```
+command prompt> sqlite3 class.db
+sqlite> create table class(id int primary key, lname text,fname)
+sqlite> insert into class values (1, "Wayne", "Bruce");
+sqlite> insert into class values (2, "Jennifer", "Walters");
+sqlite> .header on
+sqlist> .mode column
+sqlite> select * from class;
+id  lname     fname  
+--  --------  -------
+1   Wayne     Bruce  
+2   Jennifer  Walters
+sqlite> .quit
+```
+
+* The command `sqlite3 class.db` opens up the database, in this case creating a new one, and then enters into th sqlite command line. 
+* The command `create ...` creates our table within our database
+* The `insert ...` commands insert two records
+* The `.header ...` and `.mode ...` commands format output
+* The `select ...` command grabs all records
+* Then `.quit` just quits the commmand line. 
+
+Performing an `ls` in the current working directory now shows the file
+`class.db`.  Everything else we discuss below assumes working in the
+sqlite command prompt.
+
+To work with sqlite, it's nice to work with a development environment
+specifically created for sql. Specifically, one with nice highlighting
+and autocompletion. Since I'm writing these notes in jupyter, I'm just
+pasting code output.
+
+Sqlite has SQL commands, which must be typed with a semicolon at the
+end, and sqlite specific commands, which begin with a period and the
+`pragma` commands, which are also sqlite specific. This is good to
+remember, since some things will be portable to other SQL
+implementations and others not.  ]
+
+## A more reaslistic example
+Let's create and work with a more realistic example. Consider the data
+Opiods in the US at Open Case Studies
+[https://github.com/opencasestudies/ocs-bp-opioid-rural-urban](https://github.com/opencasestudies/ocs-bp-opioid-rural-urban)
+as described
+[here](https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import). Read
+over their writeup, as we're mostly going to be showing how to
+duplicate a lot of their steps in sqlite.
+
+First, you need to download the data, which you could do by right
+clicking and saving the file or with a command:
+
+```
+wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_pop_arcos.csv
+wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/land_area.csv
+wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_annual.csv
+```
+
+Next, let's import them into sqlite
+
+```
+command prompt> sqlite3 opioid.db
+sqlite> .mode csv
+sqlite> .import county_pop_arcos.csv population
+sqlite> .import county_annual.csv annual
+sqlite> .import land_area.csv land
+sqlite> .tables
+annual      land        population
+```
+
+What variables do the tables include? The `pragma` command is unique to sqlite and contains a bunch of helper functions.
+```
+sqlite> pragma table_info(population);
+cid  name          type  notnull  dflt_value  pk
+---  ------------  ----  -------  ----------  --
+0                  TEXT  0                    0 
+1    BUYER_COUNTY  TEXT  0                    0 
+2    BUYER_STATE   TEXT  0                    0 
+3    countyfips    TEXT  0                    0 
+4    STATE         TEXT  0                    0 
+5    COUNTY        TEXT  0                    0 
+6    county_name   TEXT  0                    0 
+7    NAME          TEXT  0                    0 
+8    variable      TEXT  0                    0 
+9    year          TEXT  0                    0 
+10   population    TEXT  0                    0 
+sqlite> pragma table_info(annual);
+cid  name          type  notnull  dflt_value  pk
+---  ------------  ----  -------  ----------  --
+0                  TEXT  0                    0 
+1    BUYER_COUNTY  TEXT  0                    0 
+2    BUYER_STATE   TEXT  0                    0 
+3    year          TEXT  0                    0 
+4    count         TEXT  0                    0 
+5    DOSAGE_UNIT   TEXT  0                    0 
+6    countyfips    TEXT  0                    0
+sqlite> pragma table_info(land)
+cid  name         type  notnull  dflt_value  pk
+---  -----------  ----  -------  ----------  --
+0                 TEXT  0                    0 
+1    Areaname     TEXT  0                    0 
+2    STCOU        TEXT  0                    0 
+3    LND010190F   TEXT  0                    0 
+4    LND010190D   TEXT  0                    0 
+5    LND010190N1  TEXT  0                    0
+```
+(I truncated this latter output at 5.)  
+
+## Working with data
+
+Let's print out a few columns of the population data.
+
+```
+sqlite> select BUYER_COUNTY, BUYER_STATE, STATE, COUNTY, year, population from population limit 5;
+BUYER_COUNTY  BUYER_STATE  STATE  COUNTY  year  population
+------------  -----------  -----  ------  ----  ----------
+AUTAUGA       AL           1      1       2006  51328     
+BALDWIN       AL           1      3       2006  168121    
+BARBOUR       AL           1      5       2006  27861     
+BIBB          AL           1      7       2006  22099     
+BLOUNT        AL           1      9       2006  55485   
+``` 
+
+The `limit 5` prints out five rows. Let's perform some of the
+tasks in [the write
+up](https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import). For
+example, they want to print out some of the missing data in the annual
+dataset.
+
+
+```
+sqlite> select * from annual where countyfips = "NA" limit 10;
+     BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+---  ------------  -----------  ----  -----  -----------  ----------
+188  ADJUNTAS      PR           2006  147    102800       NA        
+189  ADJUNTAS      PR           2007  153    104800       NA        
+190  ADJUNTAS      PR           2008  153    45400        NA        
+191  ADJUNTAS      PR           2009  184    54200        NA        
+192  ADJUNTAS      PR           2010  190    56200        NA        
+193  ADJUNTAS      PR           2011  186    65530        NA        
+194  ADJUNTAS      PR           2012  138    57330        NA        
+195  ADJUNTAS      PR           2013  138    65820        NA        
+196  ADJUNTAS      PR           2014  90     59490        NA        
+197  AGUADA        PR           2006  160    49200        NA   
+```
+
+Here, we used the condition "NA" to test for missingness, since the
+CSV files have the string NA values for missing data. Places other
+than Puerto Rico (PR)? Lets check some
+
+```
+sqlite> select * from annual where countyfips = "NA" and BUYER_STATE != "PR" limit 10;
+       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+-----  ------------  -----------  ----  -----  -----------  ----------
+10072  GUAM          GU           2006  319    265348       NA        
+10073  GUAM          GU           2007  330    275600       NA        
+10074  GUAM          GU           2008  313    286900       NA        
+10075  GUAM          GU           2009  390    355300       NA        
+10076  GUAM          GU           2010  510    413800       NA        
+10077  GUAM          GU           2011  559    475600       NA        
+10078  GUAM          GU           2012  616    564800       NA        
+10079  GUAM          GU           2013  728    623200       NA        
+10080  GUAM          GU           2014  712    558960       NA        
+17430  MONTGOMERY    AR           2006  469    175390       NA     
+```
+
+Inspect the missing data further on your own. It looks like its the
+unincorporated territories and a handful of Arkansas values missing
+`countyfips` (Federal Information Processing Standard). Specifically,
+Montgomery county AR is missing FIPs codes. Since we want to look US
+states in specific, excluding territories, we will just set the
+Montgomery county ones to the correct value 05097 and ignore the other
+missing values.
+
+```
+sqlite> update annual set countyfips = 05097 where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
+sqlite> select * from annual where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
+
+       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+-----  ------------  -----------  ----  -----  -----------  ----------
+17430  MONTGOMERY    AR           2006  469    175390       5097      
+17431  MONTGOMERY    AR           2007  597    241270       5097      
+17432  MONTGOMERY    AR           2008  561    251760       5097      
+17433  MONTGOMERY    AR           2009  554    244160       5097      
+```
+
+Now lets delete rows from the `annual` table that have missing county
+data. Check on these counties before and verify that the've been
+deleted afterwards. Also, we want to grab just three columns from the
+`land` table, so let's create a new one called `land_area`. Also, the
+column there is called `STCOU`, which we want to rename to
+`coutyfips`. (I'm going to stop printing out the results of every
+step, so make sure you're checking your work as you go.)
+
+```
+sqlite> delete from annual where BUYER_COUNTY = "NA"
+sqlite> create table land_area as select Areaname, STCOU, LND110210D from land;
+sqlite> alter table land_area rename column STCOU to countyfips;
+```
+
+Next we want to start joining the tables, so let's left join our table
+and print out the counts to make sure we accounted correctly.
+
+```
+sqlite> create table county_info as select * from population left join land_area using(countyfips);
+sqlite> select count(*) from land;
+3198
+sqlite> select count(*) from land_area;
+3198
+sqlite> select count(*) from county_info;
+28265
+sqlite> select count(*) from population;
+```
+
+## Notes
+
+At this point, hopefully you have enough of a background to finish
+doing the example from Open Case Studies. I have to say, that working
+with SQL is pleasant, but I prefer python as a home base. In addition,
+after working with the data, I want to use plotting and analysis
+tools. In the next chapter, we'll look at using python as a base
+language to interact with an sqlite database.
+
+
+## sqlite in python
+
+An sqlite3 library ships with python.  In this tutorial, we'll discuss how to utilize this library and read sqlite tables into pandas.  With this, you can generalize to other python APIs to other databases.  
+First, let's continue on with our work from the previous notebook.  A
+nice little tutorial can be found
+[here](https://datacarpentry.org/python-ecology-lesson/09-working-with-sql/index.html).
+
+```{python}
+import sqlite3 as sq3
+import pandas as pd
+
+con = sq3.connect("sql/opioid.db")
+# cursor() creates an object that can execute functions in the sqlite cursor
+
+sql = con.cursor()
+
+for row in sql.execute("select * from county_info limit 5;"):
+    print(row)
+
+    
+# you have to close the connection
+con.close
+```
+
+## Reading into pandas
+
+Let's read our sqlite database into pandas. At this point, we can then work on the
+dataset entirely in pandas. This is closest to how I work. I'm typically more comfortable
+working in R or python and so get my data out of database formats and into tidyverse or
+pandas formats as soon as I can.
+
+```{python}
+con = sq3.connect("sql/opioid.db")
+
+county_info = pd.read_sql_query("SELECT * from county_info", con)
+
+# you have to close the connection
+con.close
+
+county_info.head
+```

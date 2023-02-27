@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<style>
+    .bar {
+        border: 2px solid #E8E9F2;
+        width: 20px;
+    }
+</style>
+
+</style>
+<body>
+        <script>
+            const h = 500
+            const w = 500
+
+            // create the background
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width" , h)
+                .attr("height", w);
+            
+            var colorScale = d3.scaleOrdinal(d3['schemeSet1']); 
+
+            const dataloc = "https://raw.githubusercontent.com/smart-stats/advanced_ds4bio_book/main/qbook/assets/kirby_pivot.csv"
+
+            //Note this reads in all of the data as text (so see below)
+            //we parse it to int
+            kirby_pivot = d3.csv(dataloc)
+            
+            
+            //Setting a max height for the sum of the bars
+            const maxSum = 350000
+
+            //Note (0,0) is the upper left hand corner of a d3 plot and
+            //(w,h) is the lower right hand corner
+            let yScale = d3.scaleLinear()
+                        .domain([0, maxSum])
+                        .range([0, h])
+
+            kirby_pivot.then(dat => {
+                const barwidth = 10
+
+                //add the csf
+                svg.selectAll("csf")
+                    .data(dat)
+                    .enter()
+                    .append('rect')
+                    .attr("x", (d, i) => {return i * (barwidth + 5);})
+                    .attr("y", 0)
+                    .attr("height", (d) => {return yScale(d.CSF); })
+                    .attr("width", 10)
+                    .attr("fill", colorScale(0))
+                    .text(d => d.roi)
+
+                // add the left diencephalon
+                svg.selectAll("di_l")
+                    .data(dat)
+                    .enter()
+                    .append('rect')
+                    .attr("x", (d, i) => {return i * (barwidth + 5);})
+                    //start at the csf value
+                    .attr("y", (d) => {return yScale(parseInt(d.CSF))})
+                    //go to the diencephalon value
+                    .attr("height", (d) => {return yScale(parseInt(d.CSF) + parseInt(d.Diencephalon_L)); })
+                    .attr("width", 10)
+                    .attr("fill", colorScale(1))
+                    .text(d => d.roi)
+
+            })
+        </script>
+    </body>
+</html>

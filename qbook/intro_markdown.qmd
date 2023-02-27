@@ -22,7 +22,18 @@ Here's how you section in markdown.
 ### Third level heading
 ```
 
-and so on. You can can **bold text** and *italicize* text like this:
+and so on. It should look something like this, though the
+style can change depending on how it is being rendered.
+
+```{=html}
+<h1> Top level heading </h1>
+<h2> Second level heading </h2>
+<h3> Third level heading </h3>
+```
+
+
+
+You can can **bold text** and *italicize* text like this:
 
 ```
 **bold** text and *italicize*
@@ -48,11 +59,6 @@ first number is. An unordered lists can be done with asterisks or plus
 signs or dashes. (I tend to use asterisks.) Also, putting brackets with 
 an x makes for a check mark.
 
-* [ ] Pick up broccoli
-* [ ] Pick up oat milk
-* [x] Pick up golden berries
-* [x] Pick up tea
-
 ```
 * [ ] Pick up broccoli
 * [ ] Pick up oat milk
@@ -60,7 +66,14 @@ an x makes for a check mark.
 * [x] Pick up tea
 ```
 
-Inline code, like `lambda x: x ** 2` can be written with backticks
+
+* [ ] Pick up broccoli
+* [ ] Pick up oat milk
+* [x] Pick up golden berries
+* [x] Pick up tea
+
+
+Inline code, like `lambda x: x ** 2` can be written with backticks like this:
 
 ```
 `lambda x: x ** 2`
@@ -74,7 +87,7 @@ Block code is written in between three backticks.
 
 \`\`\`
 
-Links can be done like this  
+Links can be done like this:
 
 ```
 [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/).
@@ -87,12 +100,12 @@ which renders like this: [Markdown cheat sheet](https://www.markdownguide.org/ch
 ![Image alt text](assets/images/book_graphic.png)
 ```
 
-If your converter can use mathjax, you can insert LaTeX equations. For example, 
+If your converter can use mathjax, or some other LaTeX math rendering library, 
+you can insert LaTeX equations. For example, 
 
 $$
 \int_{-\infty}^\infty (2\pi\sigma^2)^{-1/2} \exp\left\{-\frac{1}{2\sigma^2} (x - \mu)^2\right\} dx = 1
 $$
-
 
 can be written as
 

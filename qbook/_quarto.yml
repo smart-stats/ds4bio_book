@@ -3,7 +3,7 @@ project:
 
 book:
   repo-url: https://github.com/smart-stats/ds4bio_book
-  title: "Introductory and intermediate data science for the bio/medical sciences using python"
+  title: "Data science and AI for the bio/medical sciences using python"
   author: "Brian Caffo"
   date: "2/24/2023"
   
@@ -11,21 +11,40 @@ book:
     - index.qmd
     - part: intro.qmd
       chapters:
-        - markdown.qmd
-        - unix.qmd
-        - git.qmd
+        - intro_markdown.qmd
+        - intro_unix.qmd
+        - intro_git.qmd
+        - intro_html.qmd
     - part: python.qmd
       chapters:
-        - basic_python.qmd
+        - python_basic.qmd
         - python_programming.qmd
-	- python_functions.qmd
+        - python_functions.qmd
+        - python_virtual_environments.qmd
         - python_practice.qmd
-	
-    - tooling.qmd
-    - data.qmd
+    - part: data.qmd
+      chapters:
+        - data_cleaning_example.qmd
+        - data_sqlite.qmd
+        - data_advanced_databases.qmd
+        - data_webscraping.qmd
+        - data_advanced_webscraping.qmd
+    - part: graphics.qmd
+      chapters:
+        - graphics_eda.qmd
+        - graphics_interactive.qmd
+        - graphics_advanced_interactive.qmd
+        - graphics_theory.qmd
+        - graphics_images.qmd
     - statistics.qmd
     - supervised.qmd
     - unsupervised.qmd
+    - part: nns.qmd
+      chapters:
+        - nns_intro.qmd
+        - nns_basic_regression.qmd
+        - nns_logistic_regression.qmd
+        - nns_pytorch_example.qmd
     - summary.qmd
     - references.qmd
 

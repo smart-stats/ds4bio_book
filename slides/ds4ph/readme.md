@@ -11,3 +11,4 @@
 + [Lecture 12, R basic](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/12_rbasic.slides.html)
 + [Lecture 13, Tidyverse](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/13_rTidyverse.slides.html)
 + [Lecture 14, R from python](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/14_rFromPython.slides.html)
++ [Lecture 15, Interactive](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/15_interactive.slides.html)

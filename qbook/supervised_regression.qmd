@@ -40,13 +40,18 @@ Let's look at the non-smoothed data (omitting the `_10` and `_20`) using a pair 
 sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions');
 ```
 
-T2 and PD (proton density) look pretty linearly related. Imagine a study where a researcher collected T2 but did not collect PD. Let's try to predict their PD values from the T2 values using a line. We'll use least squares as the loss function. Specifically
+T2 and PD (proton density) look pretty linearly related. Imagine a
+study where a researcher collected T2 but did not collect PD. Let's
+try to predict their PD values from the T2 values using a line. We'll
+use least squares as the loss function. Specifically
 
 $$
 \sum_{v=1}^V (PD_v - \beta_0 - \beta_1 T2_v)^2
 $$
 
-where $v$ stands for voxel and $PD_v$ for the PD value at voxel $v$, $T2_v$ as the T2 value at voxel $v$ and $\beta_0$ and $\beta_1$ are parameters that we have to learn. 
+where $v$ stands for voxel and $PD_v$ for the PD value at voxel $v$,
+$T2_v$ as the T2 value at voxel $v$ and $\beta_0$ and $\beta_1$ are
+parameters that we have to learn.
 
 A general equation for fitting a line to data is
 
@@ -56,13 +61,16 @@ $$
 
 where we want to use $X_i$ to predict $Y_i$. 
 
-It turns out that $\beta_0$ and $\beta_1$ have optimal solutions that we can write down. We get
+It turns out that $\beta_0$ and $\beta_1$ have optimal solutions that
+we can write down. We get
 
 $$
 \hat \beta_1 = Cor(X, Y) \frac{SD_Y}{SD_X}
 $$
 
-where $Cor(X, Y)$ is the (Pearson) **correlation** between $X$ and $Y$ and $SD_X$ is the **standard deviation** of $X$ (and $SD_Y$ is for $Y$). The intercept satisfies
+where $Cor(X, Y)$ is the (Pearson) **correlation** between $X$ and $Y$
+and $SD_X$ is the **standard deviation** of $X$ (and $SD_Y$ is for
+$Y$). The intercept satisfies
 
 $$
 \hat \beta_0 = \bar Y - \bar X \hat \beta_1
@@ -83,7 +91,15 @@ pointing out that the fitted line has to go through the point $(\bar X, \bar Y)$
 * The **standard deviation** of $X$ is $SD_X$, $\sqrt{Cov(X, X)}$
 * The Pearson **correlation** is defined as $\frac{Cov(X, Y)}{SD_X \times SD_Y}$
 
-The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say "correlation" without further context, it's understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, $Cov(X, X)$, is simply the square of the standard deviation and has units of X squared.
+The Pearson correlation measures the degree of linear association
+between two variables where neither is thought of as an outcome or
+predictor. It is a unit free quantity. If you just say "correlation"
+without further context, it's understood to mean the Pearson
+correlation. The covariance measures the same thing, though it has the
+units of the units X times the units of Y. The sample standard
+deviation of X has the units of X and measures the spread, or
+variability, of X. The variance, $Cov(X, X)$, is simply the square of
+the standard deviation and has units of X squared.
 
 ```{python}
 #| id: utwhz3-DGbjc

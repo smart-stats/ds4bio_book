@@ -3,11 +3,11 @@ project:
 
 book:
   repo-url: https://github.com/smart-stats/ds4bio_book
-  title: "Data science and AI for the bio/medical sciences using python"
+  title: "Data science and AI for the biological and medical sciences using python"
   author: "Brian Caffo"
   date: "2/24/2023"
   sidebar:
-    title: "DS&AI4BMSUP"
+    title: "DS&AI4B&MSUP"
     logo: assets/images/dasl.png   
     collapse-level: 1
     

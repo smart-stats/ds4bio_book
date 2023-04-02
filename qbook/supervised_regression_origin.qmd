@@ -1,12 +1,12 @@
 ---
 jupyter: python3
 ---
-
-<a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression_through_the_origin.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
-
 # Regression through the origin
 
-In this notebook, we investigate a simple poblem where we'd like to use one scaled regressor to predict another. That is, let $Y_1, \ldots Y_n$ be a collection of variables we'd like to predict and $X_1, \ldots, X_n$ be predictors. Consider minimizing
+In this notebook, we investigate a simple poblem where we'd like to
+use one scaled regressor to predict another. That is, let $Y_1, \ldots
+Y_n$ be a collection of variables we'd like to predict and $X_1,
+\ldots, X_n$ be predictors. Consider minimizing
 
 $$
 l = \sum_i ( Y_i - \beta X_i)^2 = || Y - \beta X||^2.
@@ -30,17 +30,21 @@ $$
 l'' = \sum_i 2 x_i^2  
 $$
 
-which is strictly positive unless all of the $x_i$ are zero (a case of zero variation in the predictor where regresssion is uninteresting). Regression through the origin is a very useful version of regression, but it's quite limited in its application. Rarely do we want to fit a line that is forced to go through the origin, or stated equivalently, rarely do we want a prediction algorithm for
-$Y$ that is simply a scale change of $X$. Typically, we at least also want an intercept. In the example that follows, we'll address this by centering the data so that the origin is the mean of the $Y$ and the mean of the $X$. As it turns out, this is the same as fitting the intercept, but we'll do that more formally in the next section.
+which is strictly positive unless all of the $x_i$ are zero (a case of
+zero variation in the predictor where regresssion is
+uninteresting). Regression through the origin is a very useful version
+of regression, but it's quite limited in its application. Rarely do we
+want to fit a line that is forced to go through the origin, or stated
+equivalently, rarely do we want a prediction algorithm for $Y$ that is
+simply a scale change of $X$. Typically, we at least also want an
+intercept. In the example that follows, we'll address this by
+centering the data so that the origin is the mean of the $Y$ and the
+mean of the $X$. As it turns out, this is the same as fitting the
+intercept, but we'll do that more formally in the next section.
 
 First let's load the necessary packages.
 
 ```{python}
-#| id: SXdTawbDmq7p
-#| colab: {}
-#| colab_type: code
-#| id: SXdTawbDmq7p
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,36 +53,23 @@ import matplotlib.pyplot as plt
 Now let's download and read in the data.
 
 ```{python}
-#| id: z_P87xbFm05p
-#| colab: {base_uri: 'https://localhost:8080/', height: 201}
-#| colab_type: code
-#| id: z_P87xbFm05p
-#| outputId: a2b65327-5b42-4d24-b26a-4fd6c957f94c
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
-dat.head()
+dat.head() 
 ```
 
 It's almost always a good idea to plot the data before fitting the model.
 
 ```{python}
-#| id: YIWNN3y_nBmi
-#| colab: {base_uri: 'https://localhost:8080/', height: 283}
-#| colab_type: code
-#| id: YIWNN3y_nBmi
-#| outputId: 80b6c4d1-301f-46a2-c481-9c4ac2598881
 x = dat.T2
 y = dat.PD
 plt.plot(x, y, 'o')
 ```
 
-Now, let's center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both $Y$ and $X$, is right at (0, 0). 
+Now, let's center the data as we mentioned so that it seems more
+reasonable to have the line go through the origin. Notice here, the
+middle of the data, both $Y$ and $X$, is right at (0, 0).
 
 ```{python}
-#| id: 4eAoOR9SndVn
-#| colab: {base_uri: 'https://localhost:8080/', height: 283}
-#| colab_type: code
-#| id: 4eAoOR9SndVn
-#| outputId: bfa8f7a6-cd13-4af9-cfa0-015f89fb4909
 x = x - np.mean(x)
 y = y - np.mean(y)
 plt.plot(x, y, 'o')
@@ -87,23 +78,14 @@ plt.plot(x, y, 'o')
 Here's our slope estimate according to our formula.
 
 ```{python}
-#| id: QneMf54BpAg0
-#| colab: {base_uri: 'https://localhost:8080/', height: 35}
-#| colab_type: code
-#| id: QneMf54BpAg0
-#| outputId: 0fb08a46-bdae-48b0-822b-3223ee00967d
 b = sum(y * x) / sum(x ** 2 )
 b
 ```
 
-Let's plot it so to see how it did. It looks good. Now let's see if we can do a line that doesn't necessarily have to go through the origin.
+Let's plot it so to see how it did. It looks good. Now let's see if we
+can do a line that doesn't necessarily have to go through the origin.
 
 ```{python}
-#| id: N88itcqLpM20
-#| colab: {base_uri: 'https://localhost:8080/', height: 283}
-#| colab_type: code
-#| id: N88itcqLpM20
-#| outputId: 692e5d49-6eaf-45f7-920b-d0b91384b77b
 plt.plot(x, y, 'o')
 t = np.array([-1.5, 2.5])
 plt.plot(t, t * b)

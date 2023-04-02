@@ -1,3 +1,4 @@
+# Unsupervised learning
 ## PCA
 
 Let $\{X_i\}$ for $i=1,\ldots,n$ be $p$ random vectors with means

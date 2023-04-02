@@ -117,7 +117,7 @@ dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/
 
 ```{python}
 ## Plot the data
-sns.scatterplot('FLAIR', 'GOLD_Lesions', data = dat)
+sns.scatterplot(x = 'FLAIR', y = 'GOLD_Lesions', data = dat)
 ```
 
 Let's now fit the model. Again we're going to split into training and
@@ -138,8 +138,6 @@ ytest =  y[~sample]
 ```
 
 ```{python}
-#| id: Ap2VTA3yr5Nm
-#| id: Ap2VTA3yr5Nm
 lr = lm.LogisticRegression(fit_intercept=True, penalty='none')
 fit = lr.fit(xtrain, ytrain)
 ```
@@ -157,8 +155,8 @@ xplot = np.linspace(-1, 5, n)
 eta = beta0 + beta1 * xplot
 p = 1 / (1 + np.exp(-eta))
 
-sns.scatterplot('FLAIR', 'GOLD_Lesions', data = dat, hue = 'GOLD_Lesions')
-sns.lineplot(xplot, p)
+sns.scatterplot(x = 'FLAIR', y = 'GOLD_Lesions', data = dat, hue = 'GOLD_Lesions')
+sns.lineplot(x = xplot, y = p)
 
 ## Of course, scikit has a predict
 ## function so that you don't have to do this manually
@@ -188,7 +186,7 @@ ptest = fit.predict_proba(xtest)[:, 1]
 fpr, tpr, thresholds = roc_curve(ytest, ptest)
 roc_auc = auc(fpr, tpr)
 plt.figure()
-lw = 2
+lw = 2 
 plt.plot(fpr, tpr, color='darkorange',
          lw=lw, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')

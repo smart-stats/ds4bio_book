@@ -6,7 +6,10 @@ function. A reasonable strategy would be to minimize the squared
 distances between our predictions and the observed values. In other
 words, $\sum_{i=1}^n (Y_i - \hat \mu_i)^2.$
 
-If we were to dived this by $n$, it would be the average of the squared errors, or the *mean squared error* (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.
+If we were to dived this by $n$, it would be the average of the
+squared errors, or the *mean squared error* (MSE). We can use
+minimizing the squared error both as a rule for finding a good
+prediction and as our evaluation strategy for held out data.
 
 What's left is to figure out how to come up with $\hat \mu_i$, our
 predictions for the observation $Y_i$. We previously considered just a
@@ -31,10 +34,12 @@ sns.set()
 
 ## Read in the data and display a few rows
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
-dat.head(4)
+dat.head(4) 
 ```
 
-Let's look at the non-smoothed data (omitting the `_10` and `_20`) using a pair plot. I'm color coding by whether or not the specific voxel is a lesion.
+Let's look at the non-smoothed data (omitting the `_10` and `_20`)
+using a pair plot. I'm color coding by whether or not the specific
+voxel is a lesion.
 
 ```{python}
 sns.pairplot(dat, vars = ['FLAIR', 'PD', 'T1', 'T2'], hue = 'GOLD_Lesions');
@@ -102,11 +107,6 @@ variability, of X. The variance, $Cov(X, X)$, is simply the square of
 the standard deviation and has units of X squared.
 
 ```{python}
-#| id: utwhz3-DGbjc
-#| colab: {base_uri: 'https://localhost:8080/', height: 327}
-#| colab_type: code
-#| id: utwhz3-DGbjc
-#| outputId: b03a6a4c-7333-4239-876a-c7a2a7611b79
 x = dat['T2']
 y = dat['PD']
 trainFraction = 0.75
@@ -122,30 +122,23 @@ ytest =  y[~sample]
 beta1 = st.pearsonr(xtrain, ytrain)[0] * np.std(ytrain) / np.std(xtrain)
 beta0 = np.mean(ytrain) - np.mean(xtrain) * beta1
 print([beta0, beta1])
-
-sns.scatterplot(xtrain, ytrain)
+ 
+sns.scatterplot(x = xtrain, y = ytrain)
 ## add a line
-sns.lineplot(xtrain, beta0 + beta1 * xtrain)
+sns.lineplot(x=xtrain, y=beta0 + beta1 * xtrain)
 ```
 
 ```{python}
-#| id: YS9JVAHlJOvr
-#| colab: {base_uri: 'https://localhost:8080/', height: 347}
-#| colab_type: code
-#| id: YS9JVAHlJOvr
-#| outputId: fdcaa017-cd20-4bb2-b8b0-ac93aabbd503
 print(st.linregress(x = xtrain, y = ytrain))
-sns.regplot(xtrain, ytrain)
+sns.regplot(x=xtrain, y=ytrain)
 ```
 
-Let's now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of $\beta_0$ and $\beta_1$. We'll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.
+Let's now calculate our predictions on the test set. Recall, the test
+set was not used to come up with estimates of $\beta_0$ and
+$\beta_1$. We'll show the training MSE and the testing MSE as well as
+a plot of the test set actual Ys versus the predicted ones.
 
 ```{python}
-#| id: JNG3Y-TlWMha
-#| colab: {base_uri: 'https://localhost:8080/', height: 327}
-#| colab_type: code
-#| id: JNG3Y-TlWMha
-#| outputId: 0cca7673-d231-4bd7-d772-4d20328e334c
 yhat_test = beta0 + beta1 * xtest
 yhat_train = beta0 + beta1 * xtrain
 
@@ -153,8 +146,8 @@ yhat_train = beta0 + beta1 * xtrain
 print([ np.mean( (ytrain - yhat_train) ** 2), 
         np.mean( (ytest -  yhat_test) ** 2 ) ])
 
-
-sns.scatterplot(yhat_test, ytest)
+ 
+sns.scatterplot(x = yhat_test, y = ytest)
 plt.xlabel('Predicted value from xtest T2 values')
 plt.ylabel('Actual PD value from ytest')
 

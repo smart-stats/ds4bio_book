@@ -67,12 +67,17 @@ repo is a locally version controlled system.
 
 ### Adding files
 
-OK, now you want to add some of your files to your repo. You have a directory You can add files with the command
+OK, now you want to add some of your files to your repo. You have a
+directory You can add files with the command
+
 ```
 git add FILENAME
 ```
-The file `FILENAME` is now staged to be part of the repository, but isn't added yet!  Files that you haven't added won't be tracked. This is good, since there's many files, llike log files, that we don't want to track. 
-You only need to add the files once, then they are being tracked. Try it out with a readme markdown file in your repository.
+The file `FILENAME` is now staged to be part of the repository, but isn't 
+added yet!  Files that you haven't added won't be tracked. This is
+good, since there's many files, llike log files, that we don't want to
+track.  You only need to add the files once, then they are being
+tracked. Try it out with a readme markdown file in your repository.
 
 ### Checking status
 One of the most useful git commands is 
@@ -83,11 +88,21 @@ This gives the status of which files are being tracked, which are not and which 
 
 
 ### Commiting changes
-You have to actually commit your changes to the repository to have them represented. Committing changes is a local operation, subsequently, we'll show you how to coordinate with a remote repository. Here's the command I use to commit most often
+
+You have to actually commit your changes to the repository to have
+them represented. Committing changes is a local operation,
+subsequently, we'll show you how to coordinate with a remote
+repository. Here's the command I use to commit most often
+
 ```
 git commit -a -m "COMMIT MESSAGE"
 ``` 
-Here the flag `-a` means commit all files staged for commits. You can also commit individual files or a collection of specific files. The `-m "COMMIT MESSAGE"` is the message associated with your commit. Make your commit messages more informative. If you don't add `-m` github will bring up an editor for you to enter your commit message.
+Here the flag `-a` means commit all files staged for commits. 
+You can also commit individual files or a collection of specific files. 
+The `-m "COMMIT MESSAGE"` is the message associated with your
+commit. Make your commit messages more informative. If you don't add
+`-m` github will bring up an editor for you to enter your commit
+message.
 
 
 ### Remote repositories
@@ -113,7 +128,9 @@ For 2. you use a command like:
 git remote add origin git@github.com:USERNAME/REPONAME.git
 ```
 
-Personally, I find it easier just to create the repo on github and clone it. You can clone over ssh or https, if you don't know what ssh is use https and then switch over to ssh as you learn how to use it.
+Personally, I find it easier just to create the repo on github and
+clone it. You can clone over ssh or https, if you don't know what ssh
+is use https and then switch over to ssh as you learn how to use it.
 
 #### Pushing changes 
 
@@ -123,7 +140,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 #import numpy as np
 #import sklearn as skl
-
+ 
 plt.figure(figsize=[2, 2])
 G = nx.DiGraph()
 
@@ -145,13 +162,19 @@ ax.set_ylim([-.3, 1.3])
 plt.show()
 ```
 
-You push from the repo you're working on to another (remote repo). So, for me, this typically means pushing from my local computer repo to github or to a scientific computing cluster.
+You push from the repo you're working on to another (remote repo). So,
+for me, this typically means pushing from my local computer repo to
+github or to a scientific computing cluster.
 
 ```
 git push origin main
 ```
 
-The above command could be read as "push my new committed changes from my origin to the main branch on my remote repo".  Older repos had the default branch `master` instead of `main`. But, github switched in [2020 or so](https://github.com/github/renaming). So, some older documentation may not have this switch.
+The above command could be read as "push my new committed changes from
+my origin to the main branch on my remote repo".  Older repos had the
+default branch `master` instead of `main`. But, github switched in
+[2020 or so](https://github.com/github/renaming). So, some older
+documentation may not have this switch.
 
 #### Pulling changes
 
@@ -232,7 +255,7 @@ git clone https://github.com/smart-stats/ds4bio_book.git
 ```{python}
 #| echo: false
 plt.figure(figsize=[3, 2])
-G = nx.DiGraph()
+oG = nx.DiGraph()
 
 G.add_node("GH1",    pos = (.5, 1) )
 G.add_node("GH2",    pos = (1.5, 1) )

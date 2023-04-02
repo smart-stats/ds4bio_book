@@ -1,34 +1,41 @@
----
-jupyter: python3
----
-
-<a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/gpu.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
-
 # Parallelism and GPU computing
 
-AI calculations involve quite a few arithmetic calculations. Graphics processing units (GPUs) are computer chips that were designed to parallelize large numbers of small arithmetic calculations. They were designed as such because computer graphics involve rotations, shifts, scaling, etc. of images, are matrix or tensor manipulations, i.e. a large collection of small arithmetic calculations.
+AI calculations involve quite a few arithmetic calculations. Graphics
+processing units (GPUs) are computer chips that were designed to
+parallelize large numbers of small arithmetic calculations. They were
+designed as such because computer graphics involve rotations, shifts,
+scaling, etc. of images, are matrix or tensor manipulations, i.e. a
+large collection of small arithmetic calculations.
 
-This discussion is relevant, since there is a calculus of parallelization on whether or not it will be worth the effort. In fact, in some cases parallelization can slow down computations. For example, parallelizing across a network will only be beneficial if the cumulative cost of the network transfer is less than the cumulative benefit from parallization. For parallelizing lots of small calculations, the data transfer has to be really fast. What could be faster than on the same chip, like a GPU? The effect of GPU paralleziation on AI learning can be quite significant. We give a simple example below where we parallelize the sum of a few thousand numbers, where the acceleration is on the order of 50 to 70%.
+This discussion is relevant, since there is a calculus of
+parallelization on whether or not it will be worth the effort. In
+fact, in some cases parallelization can slow down computations. For
+example, parallelizing across a network will only be beneficial if the
+cumulative cost of the network transfer is less than the cumulative
+benefit from parallization. For parallelizing lots of small
+calculations, the data transfer has to be really fast. What could be
+faster than on the same chip, like a GPU? The effect of GPU
+paralleziation on AI learning can be quite significant. We give a
+simple example below where we parallelize the sum of a few thousand
+numbers, where the acceleration is on the order of 50 to 70%.
 
 ## Getting started
-I don't have a GPU in my personal computer. Some options for trying out GPUs include Google Colab and Paperspace to name two examples. I'm doing this example on Colab
+I don't have a GPU in my personal computer. Some options for trying
+out GPUs include Google Colab and Paperspace to name two examples. I'm
+doing this example on Colab
 
 ```{python}
-#| id: c36c84d2-f951-4197-b765-42c50ae1efb9
-#| colab: {base_uri: 'https://localhost:8080/'}
-#| id: c36c84d2-f951-4197-b765-42c50ae1efb9
-#| outputId: f0cdb0af-887f-4222-8c0f-a736ac2f516b
 import torch
 torch.cuda.is_available()
 ```
 
-By default, calculations will be on the CPU. You have to actually migrate calculations to the GPU. Here I write the code in such a way that it works on the GPU or CPU depending on whether a GPU is available. It's typical to create a variable called "device" that references the GPU.
+By default, calculations will be on the CPU. You have to actually
+migrate calculations to the GPU. Here I write the code in such a way
+that it works on the GPU or CPU depending on whether a GPU is
+available. It's typical to create a variable called "device" that
+references the GPU.
 
 ```{python}
-#| id: c610caeb-4553-4dfd-85fa-e8d3585b2929
-#| colab: {base_uri: 'https://localhost:8080/'}
-#| id: c610caeb-4553-4dfd-85fa-e8d3585b2929
-#| outputId: 5fcd6df6-551f-4bba-c54c-dcaed1d3f954
 if torch.cuda.is_available():
     device = torch.device("cuda:0")
 else :
@@ -36,13 +43,14 @@ else :
 print(device)
 ```
 
-Here the GPU is called `cuda:0` referencing the CUDA API for GPU computing. CUDA is one framework for NVIDIA GPUs. It is very nice, since pytorch and other software have developed high level interfaces. You'll see how fast it is to incorporate GPU computing. Let's look at the reduction in runtime for a very simple example.
+Here the GPU is called `cuda:0` referencing the CUDA API for GPU
+computing. CUDA is one framework for NVIDIA GPUs. It is very nice,
+since pytorch and other software have developed high level
+interfaces. You'll see how fast it is to incorporate GPU
+computing. Let's look at the reduction in runtime for a very simple
+example.
 
 ```{python}
-#| id: 126ca6d3-71ce-442a-a4f5-a02adcdb3a9e
-#| colab: {base_uri: 'https://localhost:8080/'}
-#| id: 126ca6d3-71ce-442a-a4f5-a02adcdb3a9e
-#| outputId: 9e453ea7-9522-499d-aa90-9fd7a6194e40
 import time
 
 for i in range(10):
@@ -70,8 +78,6 @@ for i in range(10):
 Let's redo our GAN example using GPU acceleration. We won't even use random batches, since it runs so much faster.
 
 ```{python}
-#| id: 4tV0_A_Zhnn6
-#| id: 4tV0_A_Zhnn6
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -155,8 +161,6 @@ loss_function = nn.BCELoss()
 ```
 
 ```{python}
-#| id: 2A8DtOISBcmX
-#| id: 2A8DtOISBcmX
 ## I want an animation
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -171,8 +175,6 @@ plt.close(fig)
 ```
 
 ```{python}
-#| id: CPvuMtxZjZVU
-#| id: CPvuMtxZjZVU
 n_epochs = 4000
 
 for epoch in range(n_epochs):          
@@ -227,19 +229,11 @@ for epoch in range(n_epochs):
 ```
 
 ```{python}
-#| id: DM_y2UDtfwby
-#| colab: {base_uri: 'https://localhost:8080/', height: 309}
-#| id: DM_y2UDtfwby
-#| outputId: 686f8b35-faa9-4df3-a5e8-178811b779f4
 ani = animation.ArtistAnimation(fig, ims, interval=50, blit=True,repeat_delay=1000)
 HTML(ani.to_html5_video())
 ```
 
 ```{python}
-#| id: 2jkzmhbhvE9L
-#| colab: {base_uri: 'https://localhost:8080/', height: 578}
-#| id: 2jkzmhbhvE9L
-#| outputId: 64f7b446-8998-4930-a3e7-13288b52fd48
 plt.figure(figsize=(10,10))
 for i in range(25): 
   plt.subplot(5, 5,i+1)

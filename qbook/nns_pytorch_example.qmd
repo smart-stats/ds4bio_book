@@ -1,9 +1,3 @@
----
-jupyter: python3
----
-
-<a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/pytorch_regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
-
 # Pytorch by example
 
 This example from the pytorch documentation [here](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html) displays generating random y ad x dat and fitting a multi-layer neural network. We're going to consider a regression problem, but using a two layer neural network to solve it. Consider something like this. We have 5 inputs; those get passed to 3 hidden nodes, those get RELU'd, which get passed to an output.
@@ -49,11 +43,6 @@ plt.show()
 Below, we create an example. It isn't terribly interesting, since the X and the Y aren't related at all. But, it does show us some useful code.
 
 ```{python}
-#| id: 54gmWH2_GILQ
-#| colab: {base_uri: 'https://localhost:8080/', height: 108}
-#| colab_type: code
-#| id: 54gmWH2_GILQ
-#| outputId: 460f97b3-7974-484e-9ad5-428fb776b4e8
 import torch
 import numpy as np
 import pandas as pd
@@ -119,15 +108,12 @@ for t in range(1000):
 Let's update that example for our setting using the voxel level data.
 
 ```{python}
-#| id: 62iyChkPGwZD
-#| colab: {}
-#| colab_type: code
-#| id: 62iyChkPGwZD
 ## Read in the data and display a few rows
 dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/oasis.csv")
 ```
 
 ```{python}
+#| echo: false
 G = nx.DiGraph()
 G.add_node("PD",     pos = (0, 2) )
 G.add_node("T1",     pos = (1, 2) )
@@ -164,10 +150,6 @@ plt.show()
 Let's set the training fraction at 75% (and thus the testing fraction at 25%). This gives us relatively little data to fit with. Thus, a relatively simple model makes sense.
 
 ```{python}
-#| id: neIwiOlRTIor
-#| colab: {}
-#| colab_type: code
-#| id: neIwiOlRTIor
 trainFraction = .75
 
 sample = np.random.uniform(size = 100) < trainFraction
@@ -178,12 +160,6 @@ testingDat = dat[~sample]
 Next we need to get the data into a pytorch size and fram
 
 ```{python}
-#| id: '-tVT-AsOTPgN'
-#| colab: {base_uri: 'https://localhost:8080/', height: 89}
-#| colab_type: code
-#| id: '-tVT-AsOTPgN'
-#| outputId: 1f938b04-48b9-4fa2-8b94-160c233b8a7e
-#| tags: []
 x = torch.from_numpy(dat[['PD','T1', 'T2', 'T1_10', 'T2_10', ]].values)
 y = torch.from_numpy(dat[['FLAIR']].values)
 
@@ -205,10 +181,6 @@ ytesting = y[~sample]
 ```
 
 ```{python}
-#| id: D2UxGTdkaBdO
-#| colab: {}
-#| colab_type: code
-#| id: D2UxGTdkaBdO
 ## Define the model
 ## Dimension of the hidden layer
 H = 3
@@ -226,11 +198,6 @@ model = torch.nn.Sequential(
 ```
 
 ```{python}
-#| id: lnoPaqh7Rm2M
-#| colab: {base_uri: 'https://localhost:8080/', height: 108}
-#| colab_type: code
-#| id: lnoPaqh7Rm2M
-#| outputId: 9067a2a4-7d16-4efa-8ee0-8ef8d44db9d2
 loss_fn = torch.nn.MSELoss(reduction='sum')
 
 learning_rate = 1e-4
@@ -247,11 +214,6 @@ for t in range(100000):
 ```
 
 ```{python}
-#| id: eZswhY21bcwK
-#| colab: {base_uri: 'https://localhost:8080/', height: 292}
-#| colab_type: code
-#| id: eZswhY21bcwK
-#| outputId: bbefd7ef-cf11-4bd1-9ffc-7e99344e2755
 ## try prediction
 ytesting_pred = model(xtesting)
 a = ytesting_pred.detach().numpy()

@@ -1,4 +1,4 @@
-## Autoencoder 
+## Autoencoder example
 
 Autoencoders are another unsupervised learning technique. Autoencoders
 take in a record and spit out a prediction of the same size. The goal
@@ -13,7 +13,6 @@ below.
 
 ```{python}
 #| echo: false
-
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -168,11 +167,105 @@ converge remains a harder issue than just using PCA
 directly. Furthermore, the autoencoder wouldn't necessarily order the
 PCs similarly.
 
-Finally, we see that a two layer autoencoder -without the constraints-  contains the PCA fit as a special case and spans the same space as the PCA fit. Similarly we see that such a two layer encoder is overspecified, as most NNs are. 
+Finally, we see that a two layer autoencoder -without the constraints-
+contains the PCA fit as a special case and spans the same space as the
+PCA fit. Similarly we see that such a two layer encoder is
+overspecified, as most NNs are.
 
 ### Example on dermamnist
 
 First, let's set up our autoencoder  by defining a python class then initializing it.
+We assume the imports and data loading from the chapter on PCA and ICA.
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg as la
+from sklearn.decomposition import PCA
+import urllib.request
+import PIL
+import numpy as np
+import torch 
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+import torchvision
+import torchvision.transforms as transforms
+import torch.utils.data as data
+from torch.utils.data import TensorDataset, DataLoader
+from sklearn.decomposition import FastICA
+from tqdm import tqdm
+import medmnist
+from medmnist import INFO, Evaluator
+import scipy
+import IPython
+```
+
+```{python}
+#| echo: false
+data_flag = 'dermamnist'
+
+## This defines our NN parameters
+NUM_EPOCHS = 10
+BATCH_SIZE = 128
+lr = 0.001
+
+info = INFO[data_flag]
+task = info['task']
+n_channels = info['n_channels']
+n_classes = len(info['label'])
+
+##https://github.com/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb
+data_flag = 'dermamnist'
+
+data_transform = transforms.Compose([
+  
+  transforms.ToTensor()
+
+])
+DataClass = getattr(medmnist, info['python_class'])
+
+# load the data
+train_dataset = DataClass(split = 'train', transform = data_transform, download = True)
+test_dataset  = DataClass(split = 'test' , transform = data_transform, download = True)
+pil_dataset   = DataClass(split = 'train',                             download = True)
+
+train_loader = data.DataLoader(dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+test_loader = data.DataLoader(dataset=test_dataset, batch_size=2*BATCH_SIZE, shuffle=False)
+
+def loader_to_array(dataloader):
+  ## Read one iteration to get data
+  test_input, test_target = next(iter(dataloader))
+  ## Total number of training images
+  n = np.sum([inputs.shape[0] for inputs, targets in dataloader])
+  ## The dimensions of the images
+  imgdim = (test_input.shape[2], test_input.shape[3])
+  images = np.empty( (n, imgdim[0], imgdim[1], 3))
+
+  ## Read the data from the data loader into our numpy array
+  idx = 0
+  for inputs, targets in dataloader:
+    inputs = inputs.detach().numpy()
+    for j in range(inputs.shape[0]):
+      img = inputs[j,:,:,:]
+      ## get it out of pytorch format
+      img = np.transpose(img, (1, 2, 0))
+      images[idx,:,:,:] = img
+      matrix = images.reshape(n, 3 * np.prod(imgdim))
+      idx += 1
+  return images, matrix
+
+train_images, train_matrix = loader_to_array(train_loader)
+test_images, test_matrix = loader_to_array(test_loader)
+
+## Demean the matrices
+train_mean = train_matrix.mean(0)
+train_matrix = train_matrix - train_mean
+test_mean = test_matrix.mean(0)
+test_matrix = test_matrix - test_mean
+```
+
 
 ```{python}
 kernel_size = 5
@@ -211,7 +304,7 @@ We can try out the autoencoder by
 
 ```{python}
 ## Here's some example data by grabbing one batch
-tryItOut, _ = iter(train_loader).next()
+tryItOut, _ = next(iter(train_loader))
 print(tryItOut.shape)
 
 ## Let's encode that data
@@ -289,7 +382,7 @@ for i in range(5):
 On a test batch
 ```{python}
 
-test_batch, _ = iter(test_loader).next()
+test_batch, _ = next(iter(test_loader))
 x_test = test_batch.detach().numpy()
 testSample = autoencoder.forward(test_batch).detach().numpy()
 

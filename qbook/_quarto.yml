@@ -51,35 +51,32 @@ book:
          - statistics_causal.qmd
     - part: supervised.qmd
       chapters:
-        - supervised_binary_classification.qmd
-        - supervised_regression_origin.qmd
-        - supervised_regression.qmd
-        - supervised_logistic.qmd
-        - supervised_multivariable.qmd
-        - supervised_lm_interpretation.qmd
-        - supervised_example.qmd
-        - supervised_dft.qmd
-        - supervised_lm_fft.qmd
+          - supervised_binary_classification.qmd
+          - supervised_regression_origin.qmd
+          - supervised_regression.qmd
+          - supervised_logistic.qmd
+          - supervised_multivariable.qmd
+          - supervised_dft.qmd
     - part: unsupervised.qmd
       chapters:
         - unsupervised_pca_ica.qmd
-    - part: nns.qmd
+    - part: nns.qmd 
       chapters:
-         - nns_intro.qmd
-         - nns_basic_regression.qmd
-         - nns_logistic_regression.qmd
-         - nns_pytorch_example.qmd
+           - nns_intro.qmd
+           - nns_basic_regression.qmd
+           - nns_logistic_regression.qmd
+           - nns_pytorch_example.qmd
     - part: specialized.qmd
       chapters:
-         - specialized_autoencoder.qmd
-         - specialized_autoencoder2.qmd
-         - specialized_gan.qmd
-         - specialized_gpu.qmd 
+           - specialized_autoencoder.qmd
+           - specialized_autoencoder2.qmd
+           - specialized_gan.qmd
+    #      - specialized_gpu.qmd 
     - part: theory.qmd
       chapters:
-         - theory_explainability.qmd
-         - theory_data_analysis.qmd
-         - theory_measurement.qmd
+          - theory_explainability.qmd
+    #      - theory_data_analysis.qmd
+    #      - theory_measurement.qmd
     - part: summary.qmd
     - references.qmd
     

@@ -1,16 +1,15 @@
----
-jupyter: python3
----
-
-<a href="https://colab.research.google.com/github/bcaffo/ds4ph-bme/blob/master/notebooks/autoencoder.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-fix this link!
-
 # Autoencoders
 
-In this exercise, we'll build an autoencoder to model the cryptopunks. We'll assume that you've already looked at the chapter on convolutional networks, where we show how we downloaded and process the data. An autoencoder can be thought of as the following. Consider a datset with 8 features and consider a network that has 4 hidden nodes on the first layer, 2 on the second, 4 on the third and 8 on the fourth. See the picture below.
+In this exercise, we'll build an autoencoder to model the
+cryptopunks. We'll assume that you've already looked at the chapter on
+convolutional networks, where we show how we downloaded and process
+the data. An autoencoder can be thought of as the following. Consider
+a datset with 8 features and consider a network that has 4 hidden
+nodes on the first layer, 2 on the second, 4 on the third and 8 on the
+fourth. See the picture below.
 
 ```{python}
-#| tags: [hide-input]
+#| echo: false
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -94,21 +93,38 @@ ax.set_ylim([.5, 5.5])
 plt.show()
 ```
 
-Let $\phi$ be the first two layers of the network and $\theta$ be the last two. So, if we wanted to pass a data row, $x_i$ through the network we would do $\theta(\phi(x_i))$. We would call the network $\phi$ as the *encoding* network and $\theta$ as the decoding network. Consider training the network by minimizing
+Let $\phi$ be the first two layers of the network and $\theta$ be the
+last two. So, if we wanted to pass a data row, $x_i$ through the
+network we would do $\theta(\phi(x_i))$. We would call the network
+$\phi$ as the *encoding* network and $\theta$ as the decoding
+network. Consider training the network by minimizing
 
 $$
 \sum_{i=1}^n || x_i - \theta(\phi(x_i)) ||^2
 $$
 
-over the weights. This sort of network is called an autoencoder. Notice that the same data is the input and output of the network. This kind of learning is called **unsupervised**, since we're not trying to use $x$ to predict an outcome $y$. Instead, we're trying to explore variation and find interesting features in $x$ as a goal in itself without a "supervising" outcome, $y$, to help out.
+over the weights. This sort of network is called an
+autoencoder. Notice that the same data is the input and output of the
+network. This kind of learning is called **unsupervised**, since we're
+not trying to use $x$ to predict an outcome $y$. Instead, we're trying
+to explore variation and find interesting features in $x$ as a goal in
+itself without a "supervising" outcome, $y$, to help out.
 
-Notice overfitting concerns are somewhat different in this network construction. If this model fits well, then it's suggesting that 2 numbers can explain 8. That is, the network will have reduced the inputs to only two dimensions, that we could visualize for example. That is a form of parsimony that prevents overfitting. The middle layer is called the embedding. It is called this because an autoencoder is a form of non-linear embedding of our data into a lower dimensionional space.
+Notice overfitting concerns are somewhat different in this network
+construction. If this model fits well, then it's suggesting that 2
+numbers can explain 8. That is, the network will have reduced the
+inputs to only two dimensions, that we could visualize for
+example. That is a form of parsimony that prevents overfitting. The
+middle layer is called the embedding. It is called this because an
+autoencoder is a form of non-linear embedding of our data into a lower
+dimensionional space.
 
-There's nothing to prevent us from having convolutional layers if the inputs are images. That's what we'll work on here. For convolutional autoencoders, it's typical to increase the number of channels and decrease the image sizes as one works through the network.
+There's nothing to prevent us from having convolutional layers if the
+inputs are images. That's what we'll work on here. For convolutional
+autoencoders, it's typical to increase the number of channels and
+decrease the image sizes as one works through the network.
 
 ```{python}
-#| id: Gb6h1y7AQlRM
-#| id: Gb6h1y7AQlRM
 import urllib.request
 import PIL
 import matplotlib.pyplot as plt
@@ -124,10 +140,6 @@ import torchvision.transforms as transforms
 Import the image of all of the cryptopunks where we'll try to fit a convolutional autoencoder. 
 
 ```{python}
-#| id: hOkB7qzARsF-
-#| colab: {base_uri: 'https://localhost:8080/'}
-#| id: hOkB7qzARsF-
-#| outputId: c9b1ddb8-7434-432c-8f8a-ea7f4da872a9
 imgURL = "https://raw.githubusercontent.com/larvalabs/cryptopunks/master/punks.png"
 urllib.request.urlretrieve(imgURL, "cryptoPunksAll.jpg")
 img = PIL.Image.open("cryptoPunksAll.jpg").convert("RGB")
@@ -137,10 +149,6 @@ imgArray = np.asarray(img)
 Reorder the array. I couldn't get reshape to do this right, but I think this is a one-line command waiting to happen. See if you can figure out a better way. All images are 24x24x3 and there's 10,000 punks. (Supposedly, there will only ever be 10k punks.) Pytorch needs this in a 10,000x3x24x24 array.
 
 ```{python}
-#| id: hVeTn6QZjrS2
-#| colab: {base_uri: 'https://localhost:8080/', height: 578}
-#| id: hVeTn6QZjrS2
-#| outputId: 8de5e93b-4a40-44b3-b2df-f4127979f13b
 finalArray = np.empty((10000, 3, 24, 24))
 for i in range(100):
   for j in range(100):
@@ -165,7 +173,15 @@ print([x_train.shape, x_test.shape])
 trainLoader = torch.utils.data.DataLoader(torch.Tensor(x_train), batch_size = 100, shuffle = False, num_workers = 1)
 ```
 
-Now let's create our encoder/decoder. Here we're going to use a simple approach for just flattening the images, one dense layer, they decoding. Network construction is its own thing in neural networks. The way we're doing our network is a *convolutional autoencoder*. Typically, these have the number of channels increase while the image size decreases in each convolutional layer. The middle layer is called the *embedding*. We have to get the dimensions to match up with a combination of kernels, pooling, and varying the stride length. 
+Now let's create our encoder/decoder. Here we're going to use a simple
+approach for just flattening the images, one dense layer, they
+decoding. Network construction is its own thing in neural
+networks. The way we're doing our network is a *convolutional
+autoencoder*. Typically, these have the number of channels increase
+while the image size decreases in each convolutional layer. The middle
+layer is called the *embedding*. We have to get the dimensions to
+match up with a combination of kernels, pooling, and varying the
+stride length.
 
 Our network construction is as follows:
 
@@ -206,7 +222,9 @@ class autoencoder(nn.Module):
 autoencoder = autoencoder()
 ```
 
-Now we've constructed our network, let's try it out. I'm going to first do the encoder, then the decoder, then through the entire network. We'll check out the dimensions to make sure everything works.
+Now we've constructed our network, let's try it out. I'm going to
+first do the encoder, then the decoder, then through the entire
+network. We'll check out the dimensions to make sure everything works.
 
 ```{python}
 
@@ -239,9 +257,6 @@ for i in range(5):
   plt.yticks([])
   img = np.transpose(test[i,:,:,:], (1, 2, 0))
   plt.imshow(img)
-
-
-
 ```
 
 Let' see how we do on our images. We'll run the algorithm for 500 epochs 
@@ -267,7 +282,10 @@ for epoch in range(n_epochs):
           
 ```
 
-Now that we've run it, let's feed a collection of training images through the convnet and see how we did. The top row is the first 5 images of the last training epoch, last batch, and the bottom 5 is those images passed through the algorithm.
+Now that we've run it, let's feed a collection of training images
+through the convnet and see how we did. The top row is the first 5
+images of the last training epoch, last batch, and the bottom 5 is
+those images passed through the algorithm.
 
 ```{python}
 ## the data from the last iteration is called images
@@ -317,10 +335,13 @@ for i in range(5):
   plt.imshow(img)
 ```
 
-Not bad? One way to think about the convolutional autoencoder is as a compression algorithm.
-The data starts out as 24x24x3 = 1,728 floats. In contrast, our middle layer is 12 x 12 x 3 = 432 
-floats (25% of the original size). That is, it requires 75% fewer numbers to store the data as the 
-embedding. You could imagine a sender having access to the encoder and the receiver having access to the decoder and then using the 75% reduction to send the data more efficiently.
+Not bad? One way to think about the convolutional autoencoder is as a
+compression algorithm.  The data starts out as 24x24x3 = 1,728
+floats. In contrast, our middle layer is 12 x 12 x 3 = 432 floats (25%
+of the original size). That is, it requires 75% fewer numbers to store
+the data as the embedding. You could imagine a sender having access to
+the encoder and the receiver having access to the decoder and then
+using the 75% reduction to send the data more efficiently.
 
 
 

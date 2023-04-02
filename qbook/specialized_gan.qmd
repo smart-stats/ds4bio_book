@@ -1,21 +1,21 @@
----
-jupyter:
-  kernelspec:
-    display_name: 'Python [conda env:.conda-ds4bio]'
-    language: python
-    name: conda-env-.conda-ds4bio-py
----
-
 # GANs
 
-GANs, generatlized adversarial networks, are ways to use deep learning to generate data that has very high fidelity to a set of actual data. If you haven't seen some of the generated images from GANs, check them out! We'll try a very simple version where we're going to generate cryptopunks. I drew heavily from [here](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html) for all of the code.
+GANs, generatlized adversarial networks, are ways to use deep learning
+to generate data that has very high fidelity to a set of actual
+data. If you haven't seen some of the generated images from GANs,
+check them out! We'll try a very simple version where we're going to
+generate cryptopunks. I drew heavily from
+[here](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)
+for all of the code.
 
 ## GAN implementations
 
-GANs work by two parts. I'll describe this by imagining breaking our autoencoder into two parts. Recall, our autoencoder diagram as seen below.
+GANs work by two parts. I'll describe this by imagining breaking our
+autoencoder into two parts. Recall, our autoencoder diagram as seen
+below.
 
 ```{python}
-#| tags: [hide-input]
+#| echo: false
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -82,7 +82,6 @@ G.add_edges_from([ ("H33", "H45"),  ("H33", "H46"),  ("H33", "H47"),  ("H33", "H
 G.add_edges_from([ ("H34", "H41"),  ("H34", "H42"),  ("H34", "H43"),  ("H34", "H44")])
 G.add_edges_from([ ("H34", "H45"),  ("H34", "H46"),  ("H34", "H47"),  ("H34", "H48")])
 
-
 #G.add_edges_from([("H11", "H21"), ("H11", "H22"), ("H12", "H21"), ("H12", "H22")])
 #G.add_edges_from([("H21", "Y"), ("H22", "Y")])
 nx.draw(G, 
@@ -99,10 +98,14 @@ ax.set_ylim([.5, 5.5])
 plt.show()
 ```
 
-Again, consider breaking this digram into two parts. One that takes the embedding and spits out images (a generator) and one that takes in images and spits out guesses as to whether or not they are real (a discriminator). See below where the generator is on the left and the discriminator is on the right.
+Again, consider breaking this digram into two parts. One that takes
+the embedding and spits out images (a generator) and one that takes in
+images and spits out guesses as to whether or not they are real (a
+discriminator). See below where the generator is on the left and the
+discriminator is on the right.
 
 ```{python}
-#| tags: [hide-input]
+#| echo: false
 #plt.figure(figsize=[2, 2])
 G = nx.DiGraph()
 
@@ -193,9 +196,20 @@ ax.set_ylim([.5, 5.5])
 plt.show()
 ```
 
-GANs do something like the following. They generate data (H21 and H22 above) using a random number generator. These are passed through the generator to obtain simulated records (H41-H48). These fake records are concatenated with real records to be passed through the discriminator, which tries to guess whether the records are real or fake. The two networks are trained adversarially. That is, the generator has higher loss when it fails to fool the discriminator and the discriminator has higher loss when it fails to discriminate between real and fake records.
+GANs do something like the following. They generate data (H21 and H22
+above) using a random number generator. These are passed through the
+generator to obtain simulated records (H41-H48). These fake records
+are concatenated with real records to be passed through the
+discriminator, which tries to guess whether the records are real or
+fake. The two networks are trained adversarially. That is, the
+generator has higher loss when it fails to fool the discriminator and
+the discriminator has higher loss when it fails to discriminate
+between real and fake records.
 
-This sort of approach can be used for data of any type. But, it's fun especially to do it using images. Some of the images generated from GANs are wild in how realistic looking they are. Let's try to create a GAN to generate our cryptopunks.
+This sort of approach can be used for data of any type. But, it's fun
+especially to do it using images. Some of the images generated from
+GANs are wild in how realistic looking they are. Let's try to create a
+GAN to generate our cryptopunks.
 
 ```{python}
 import torch
@@ -206,6 +220,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import urllib.request
 import PIL
+
 
 ## Read in and organize the data
 imgURL = "https://raw.githubusercontent.com/larvalabs/cryptopunks/master/punks.png"
@@ -228,7 +243,9 @@ x_real = torch.tensor(x_real.astype(np.float32))
 x_real.shape
 ```
 
-For the generator, we'll use a similar construction as the decoding layer from our autoencoder chapter. For the discriminator, let's use a similar network to the one we used in our convolutional NN chapter.
+For the generator, we'll use a similar construction as the decoding
+layer from our autoencoder chapter. For the discriminator, let's use a
+similar network to the one we used in our convolutional NN chapter.
 
 ```{python}
 ## Define our constants for our networks
@@ -273,7 +290,10 @@ generator = create_generator()
 discriminator = create_discriminator()
 ```
 
-Let's try out our generator. First, we're going to generate n embeddings. Then we'll feed them through the generator to obtain n images. Notice that they don't look so good. This is because we haven't trained out generator yet!
+Let's try out our generator. First, we're going to generate n
+embeddings. Then we'll feed them through the generator to obtain n
+images. Notice that they don't look so good. This is because we
+haven't trained out generator yet!
 
 ```{python}
 test_embedding = torch.randn([5]+generator_input_dim)
@@ -306,16 +326,17 @@ optimizerG = optim.Adam(generator.parameters(), lr=lr)
 loss_function = nn.BCELoss()
 ```
 
-A couple of details. First, to speed up the algorithm, I'm using random batches of 100. You can do this directly with torch's dataloader, but I decided just to do it manually. Secondly, you have to run the algorithm for a long time. The code below just says 20, because that was the very last size I used. The results are of 4k epochs or so. Finally, note that we save the networks in progress and I wrote in some code that lets me restart the network with the saved states. So, if my program halts for any reason, I didn't lose all of its progress.
+A couple of details. First, to speed up the algorithm, I'm using
+random batches of 100. You can do this directly with torch's
+dataloader, but I decided just to do it manually. Secondly, you have
+to run the algorithm for a long time. The code below just says 20,
+because that was the very last size I used. The results are of 4k
+epochs or so. Finally, note that we save the networks in progress and
+I wrote in some code that lets me restart the network with the saved
+states. So, if my program halts for any reason, I didn't lose all of
+its progress.
 
 ```{python}
-## Change to True / False if you do / do not want 
-## to load the previously saved state dictionaries
-load = True
-if load:
-    generator.load_state_dict(torch.load("generator.pt"))
-    discriminator.load_state_dict(torch.load("discriminator.pt"))
-
 randomBatchSize = .1
 n_epochs = 20
 trainFraction = .1
@@ -379,7 +400,9 @@ for epoch in range(n_epochs):
     
 ```
 
-Here's 25 of our generated punks. It's clearly getting there. Notice, some of the punks have an earring. Also, some have a slightly green tinge, presumably because of the green (zombie) punks in the dataset.
+Here's 25 of our generated punks. It's clearly getting there. Notice,
+some of the punks have an earring. Also, some have a slightly green
+tinge, presumably because of the green (zombie) punks in the dataset.
 
 ```{python}
 plt.figure(figsize=(10,10))

@@ -1,5 +1,3 @@
-
-
 numpy
 h5py
 bs4
@@ -18,3 +16,6 @@ statmodels
 torch
 torchvision
 pingouin
+tqdm
+medmnist
+audio2numpy

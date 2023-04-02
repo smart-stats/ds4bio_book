@@ -1,4 +1,4 @@
-# Unsupervised learning
+# Unsupervised learning  
 ## PCA
 
 Let $\{X_i\}$ for $i=1,\ldots,n$ be $p$ random vectors with means
@@ -101,7 +101,7 @@ import IPython
 ```{python}
 n = 1000
 mu = (0, 0)
-Sigma = np.matrix([[1, .5], [.5, 1]])
+Sigma = np.array([[1, .5], [.5, 1]])
 X = np.random.multivariate_normal( mean = mu, cov = Sigma, size = n)
 
 plt.scatter(X[:,0], X[:,1])
@@ -131,7 +131,7 @@ pca = PCA(n_components = 2).fit(X)
 print(pca.explained_variance_)
 print(lambda_ )
 ```
-
+ 
 ### Example
 
 Let's consider the melanoma dataset that we looked at before. First we read in the data as we have done before so we don't show that code.
@@ -169,13 +169,13 @@ train_loader = data.DataLoader(dataset=train_dataset, batch_size=BATCH_SIZE, shu
 test_loader = data.DataLoader(dataset=test_dataset, batch_size=2*BATCH_SIZE, shuffle=False)
 ```
 
-Next, let's get the data from the torch dataloader format back into an image array and a matrix with the image part (28, 28, 3) vectorized.
+Next, let's get the data from the torch dataloader format back into an
+image array and a matrix with the image part (28, 28, 3) vectorized.
 
 ```{python}
-
 def loader_to_array(dataloader):
   ## Read one iteration to get data
-  test_input, test_target = iter(dataloader).next()
+  test_input, test_target = next(iter(dataloader))
   ## Total number of training images
   n = np.sum([inputs.shape[0] for inputs, targets in dataloader])
   ## The dimensions of the images
@@ -191,8 +191,8 @@ def loader_to_array(dataloader):
       ## get it out of pytorch format
       img = np.transpose(img, (1, 2, 0))
       images[idx,:,:,:] = img
+      matrix = images.reshape(n, 3 * np.prod(imgdim))
       idx += 1
-  matrix = images.reshape(n, 3 * np.prod(imgdim))
   return images, matrix
 
 train_images, train_matrix = loader_to_array(train_loader)
@@ -204,8 +204,10 @@ train_matrix = train_matrix - train_mean
 test_mean = test_matrix.mean(0)
 test_matrix = test_matrix - test_mean
 ```
-
-Now let's actually perform PCA using scikitlearn. We'll plot the eigenvalues divided by their sums, $\lambda_k / \sum_{k'} \lambda_{k'}$. This is called a scree plot.
+ 
+Now let's actually perform PCA using scikitlearn. We'll plot the
+eigenvalues divided by their sums, $\lambda_k / \sum_{k'}
+\lambda_{k'}$. This is called a scree plot.
 
 ```{python}
 from sklearn.decomposition import PCA
@@ -214,13 +216,17 @@ pca = PCA(n_components = n_comp).fit(train_matrix)
 plt.plot(pca.explained_variance_ratio_)
 ```
 
-Often this is done by plotting the cummulative sum so that you can visualize how much variance is explained by including the top $k$ components. Here I fit 10 components and they explain 85% of the variation.
+Often this is done by plotting the cummulative sum so that you can
+visualize how much variance is explained by including the top $k$
+components. Here I fit 10 components and they explain 85% of the
+variation.
 
 ```{python}
 plt.plot(np.cumsum(pca.explained_variance_ratio_))
 ```
 
-Note that the weights from the eigenvectors, $V$, are images. We can plot these as images.
+Note that the weights from the eigenvectors, $V$, are images. We can
+plot these as images.
 
 ```{python}
 eigen_moles = pca.components_
@@ -300,40 +306,75 @@ for i in range(5):
 
 ## ICA
 
-ICA, independent components analysis, tries to find linear transformations of the data that are statistically independent. Usually, independence is an assumption in ICA, not actually embedded in the loss function. 
+ICA, independent components analysis, tries to find linear
+transformations of the data that are statistically
+independent. Usually, independence is an assumption in ICA, not
+actually embedded in the loss function.
 
-Let $S_t$ be an $\mathbb{R}^p$ collection of $p$ source signals. Assume that the underlying signals are independent, so that $S_t \sim F = F_1 \times F_2 \times \ldots \time f_p$. Assume that the observed data is $X_t = M S_t$ and $X_t \sim G$. It is typically
-assumed that $M$ is invertible so that $S_t = M^{-1} X_t$ and $M$ and $M^{-1}$ are called the mixing and unmixing matrices respectively. Note that, since we observe $X_t$ over many repititions of $t$, we can get an estimate of $G$. Typically, it is also assumed that the $X_t$ are iid over $t$.
+Let $S_t$ be an $\mathbb{R}^p$ collection of $p$ source
+signals. Assume that the underlying signals are independent, so that
+$S_t \sim F = F_1 \times F_2 \times \ldots \time f_p$. Assume that the
+observed data is $X_t = M S_t$ and $X_t \sim G$. It is typically
+assumed that $M$ is invertible so that $S_t = M^{-1} X_t$ and $M$ and
+$M^{-1}$ are called the mixing and unmixing matrices
+respectively. Note that, since we observe $X_t$ over many repititions
+of $t$, we can get an estimate of $G$. Typically, it is also assumed
+that the $X_t$ are iid over $t$.
 
-One way to characterize the estimation problem is to parameterize $F_1$, $F_2$ and $F_3$ and use maximum likelihood, or equivalent [citations]. Another is to minimize some distance between $G$ and $F_1$, $F_2$ and $F_3$. Yet another is to actually maximize independence between the components of $S_t$ using some estimate of independence [cite Matteson]. 
+One way to characterize the estimation problem is to parameterize
+$F_1$, $F_2$ and $F_3$ and use maximum likelihood, or equivalent
+[citations]. Another is to minimize some distance between $G$ and
+$F_1$, $F_2$ and $F_3$. Yet another is to actually maximize
+independence between the components of $S_t$ using some estimate of
+independence [cite Matteson].
 
-The most popular approaches try to find $M^{-1}$ by maximizing non-Gaussianity. The logic goes that 1) interesting features tend to be non-Gaussian and 2) an appeal to the CLT over signals suggest that the mixed signals should be more Gaussian by being linear combinations of independent things. The latter claim is heuristic relative to the formal CLT. However, maximizing non-Gaussian components tends to work well in practice, thus validating the motivation empirically.
+The most popular approaches try to find $M^{-1}$ by maximizing
+non-Gaussianity. The logic goes that 1) interesting features tend to
+be non-Gaussian and 2) an appeal to the CLT over signals suggest that
+the mixed signals should be more Gaussian by being linear combinations
+of independent things. The latter claim is heuristic relative to the
+formal CLT. However, maximizing non-Gaussian components tends to work
+well in practice, thus validating the motivation empirically.
 
-One form of ICA maximizes the kurtosis. If $Y$ is a random variable, then 
-$E[Y^4] - 3 E[Y^2]$ is the kurtosis. One could then find $M^{-1}$ that maximizes the empirical kurtosis of the unmixed signals.
-Another variation of non-Gaussianity maximizes neg-entropy. The neg-entropy of a density $h$ is given by
-$$
-- \int h(y) \log(h(y)) dy = - E_h[\log h(Y)]
-$$
-A well known theorem states that the Gaussian distribution has the largest entropy of all distributions with the same variance. 
-Therefore, to maximize non-Gaussianity, we can minmize entropy, or equivalently maximize neg-entropy. We could subtract the
-entropy of the Gaussian distribution to consider this a cross entropy problem, but that only adds a constant to the loss function.
-The maximization of neg-entropy can be done many ways. We need the following. For a given $M^{-1}$, estimate $G$ from the collection
-$M^{-1} X_t$, then calculate the neg-entropy of $f_j$. Use that to then take an opimization step of $M$ is the right direction. 
-Some versions of estimation use a polynomial expansion of the $f_j$, which then typically only requires higher order moments, like kurtosis.
-Fast ICA is a particular implmementation of maximizing neg-entropy.
+One form of ICA maximizes the kurtosis. If $Y$ is a random variable,
+then $E[Y^4] - 3 E[Y^2]$ is the kurtosis. One could then find $M^{-1}$
+that maximizes the empirical kurtosis of the unmixed signals.  Another
+variation of non-Gaussianity maximizes neg-entropy. The neg-entropy of
+a density $h$ is given by $$
+- \int h(y) \log(h(y)) dy = - E_h[\log h(Y)] $$ A well known theorem
+states that the Gaussian distribution has the largest entropy of all
+distributions with the same variance.  Therefore, to maximize
+non-Gaussianity, we can minmize entropy, or equivalently maximize
+neg-entropy. We could subtract the entropy of the Gaussian
+distribution to consider this a cross entropy problem, but that only
+adds a constant to the loss function.  The maximization of neg-entropy
+can be done many ways. We need the following. For a given $M^{-1}$,
+estimate $G$ from the collection $M^{-1} X_t$, then calculate the
+neg-entropy of $f_j$. Use that to then take an opimization step of $M$
+is the right direction.  Some versions of estimation use a polynomial
+expansion of the $f_j$, which then typically only requires higher
+order moments, like kurtosis.  Fast ICA is a particular
+implmementation of maximizing neg-entropy.
 
-Statistical versions of ICA don't require $M$ to be invertible. Moreover, error terms can be added in which case you can see the connection between ICA and factor analytic models. However, factor analysis  models tend to assume Gaussianity. 
+Statistical versions of ICA don't require $M$ to be
+invertible. Moreover, error terms can be added in which case you can
+see the connection between ICA and factor analytic models. However,
+factor analysis models tend to assume Gaussianity.
 
 ### Example
-Consider an example that PCA would have somewhat of a hard time with. In this case, our data is from a mixture of normals with half from a normal with a strong positive correlation and half with a strong negative correlation. Because the angle between the two is not 90 degrees PCA has no chance. No rotation of the axes satisfies the obvious structure in this data.
+Consider an example that PCA would have somewhat of a hard time
+with. In this case, our data is from a mixture of normals with half
+from a normal with a strong positive correlation and half with a
+strong negative correlation. Because the angle between the two is not
+90 degrees PCA has no chance. No rotation of the axes satisfies the
+obvious structure in this data.
 
 ```{python}
 n = 1000
 
-Sigma = np.matrix([[4, 1.8], [1.8, 1]])
+Sigma = np.array([[4, 1.8], [1.8, 1]])
 a = np.random.multivariate_normal( mean = [0, 0], cov = Sigma, size = int(n/2))
-Sigma = np.matrix([[4, -1.8], [-1.8, 1]])
+Sigma = np.array([[4, -1.8], [-1.8, 1]])
 b = np.random.multivariate_normal( mean = [0, 0], cov = Sigma, size = int(n/2))
 x = np.append( a, b, axis = 0)
 plt.scatter(x[:,0], x[:,1])
@@ -341,7 +382,11 @@ plt.xlim([-6, 6])
 plt.ylim([-6, 6])
 ```
 
-Let's try fast ICA. Notice it comes much closer to discovering the structure we'd like to discover than PCA could. It pulls appart the two components to a fair degree. Also note, there's a random starting point of ICA, so that I get fairly different fits over re-runs of the algorithm. I had to lower the tolerance to get a good fit.
+Let's try fast ICA. Notice it comes much closer to discovering the
+structure we'd like to discover than PCA could. It pulls appart the
+two components to a fair degree. Also note, there's a random starting
+point of ICA, so that I get fairly different fits over re-runs of the
+algorithm. I had to lower the tolerance to get a good fit.
 
 Indpendent components are order invariant and sign invariant.
 
@@ -357,7 +402,12 @@ plt.ylim( [s.min(), s.max()])
 
 ### Cocktail party example
 
-The classic ICA problem is the so called cocktail party problem. In this, you have $p$ sources and $p$ microphones. The microphones each pick up a mixture of signals from the different sources. The goal is to unmix the sources into the components. Independence makes sense in the cocktail party example, since logically conversations would have some independence. 
+The classic ICA problem is the so called cocktail party problem. In
+this, you have $p$ sources and $p$ microphones. The microphones each
+pick up a mixture of signals from the different sources. The goal is
+to unmix the sources into the components. Independence makes sense in
+the cocktail party example, since logically conversations would have
+some independence.
 
 
 
@@ -373,7 +423,7 @@ s1 = s1[0:n,:].mean(axis = 1)
 s2 = s2[0:n,:].mean(axis = 1)
 s3 = s3[0:n,:].mean(axis = 1)
 
-s = np.matrix([s1, s2, s3])
+s = np.array([s1, s2, s3])
 ```
 
 ```{python}
@@ -394,7 +444,7 @@ IPython.display.Audio(s3, rate = i1)
 
 Mix the signals.
 ```{python}
-w = np.matrix( [ [.7, .2, .1], [.1, .7, .2], [.2, .1, .7] ])
+w = np.array( [ [.7, .2, .1], [.1, .7, .2], [.2, .1, .7] ])
 x = np.transpose(np.matmul(w, s))
 ```
 
@@ -419,7 +469,9 @@ Unmixing matrix
 icafit.components_
 ```
 
-Here's a scatterplot matrix where the real component is on the rows and the estimated component is on the columns.
+Here's a scatterplot matrix where the real component is on the rows
+and the estimated component is on the columns.
+
 ```{python}
 hat_s = np.transpose(icafit.transform(x))
 
@@ -432,6 +484,7 @@ for i in range(3):
 ```
 
 We can now play the estimated sources and see how they turned out.
+
 ```{python}
 from scipy.io.wavfile import write
 i = 0
@@ -459,7 +512,8 @@ the sources would not be images. Let's try the other dimension and see
 what we get where subject images are mixtures of source images. This
 is analogous to finding a soure basis of subject images.
 
-This is often done in ICA where people transpose matrices to investigate different problems.
+This is often done in ICA where people transpose matrices to
+investigate different problems.
 
 ```{python}
 transformer = FastICA(n_components=10, random_state=0,whiten='unit-variance', tol = 1e-7)

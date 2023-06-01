@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -544,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There’s nothing to prevent us from having convolutional layers if the inputs are images. That’s what we’ll work on here. For convolutional autoencoders, it’s typical to increase the number of channels and decrease the image sizes as one works through the network.</p>
 <section id="pca-and-autoencoders" class="level3" data-number="37.0.1">
 <h3 data-number="37.0.1" class="anchored" data-anchor-id="pca-and-autoencoders"><span class="header-section-number">37.0.1</span> PCA and autoencoders</h3>
-<p>Without modification, autoencoders can be programmed that span the same space as PCA/SVD <span class="citation" data-cites="plaut2018principal">(<a href="references.html#ref-plaut2018principal" role="doc-biblioref"><strong>plaut2018principal?</strong></a>)</span>. Enforcing the orthogonality requires something like adding Lagrange terms to the loss function. There’s no reason why you would do this, since PCA is well developed and works just fine. However, it does suggest why NNs are such a large class of models.</p>
+<p>Without modification, autoencoders can be programmed that span the same space as PCA/SVD <span class="citation" data-cites="plaut2018principal">(<a href="references.html#ref-plaut2018principal" role="doc-biblioref">Plaut 2018</a>)</span>. Enforcing the orthogonality requires something like adding Lagrange terms to the loss function. There’s no reason why you would do this, since PCA is well developed and works just fine. However, it does suggest why NNs are such a large class of models.</p>
 <p>Let <span class="math inline">\(X_i\)</span> be a collection of features for record <span class="math inline">\(i\)</span>. Then, the SVD approximates the data matrix <span class="math inline">\(X\)</span> with <span class="math inline">\(UV^t\)</span>, where we’ve absorbed the singular values into either <span class="math inline">\(U\)</span> or <span class="math inline">\(V\)</span>. Per record, this model for <span class="math inline">\(K\)</span> components and column <span class="math inline">\(k\)</span> from <span class="math inline">\(V\)</span> of <span class="math inline">\(v_k\)</span>.</p>
 <p><span class="math display">\[
 \hat x_i = \sum_{k=1}^K &lt;x_i, v_k&gt; v_k
@@ -719,6 +738,11 @@ torch.Size([128, 3, 28, 28])</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-plaut2018principal" class="csl-entry" role="listitem">
+Plaut, Elad. 2018. <span>“From Principal Subspaces to Principal Components with Linear Autoencoders.”</span> <em>arXiv Preprint arXiv:1804.10253</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

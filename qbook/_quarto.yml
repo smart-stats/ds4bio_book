@@ -42,6 +42,7 @@ book:
         - graphics_images.qmd
     - part: tooling.qmd
       chapters:
+        - tooling_nlp.qmd
         - tooling_numpy.qmd
         - tooling_streamlit.qmd
         - tooling_dash.qmd
@@ -71,10 +72,11 @@ book:
            - specialized_autoencoder.qmd
            - specialized_autoencoder2.qmd
            - specialized_gan.qmd
+           - specialized_rnns.qmd
     #      - specialized_gpu.qmd 
-    - part: theory.qmd
-      chapters:
-          - theory_explainability.qmd
+#    - part: theory.qmd
+#      chapters:
+#          - theory_explainability.qmd
     #      - theory_data_analysis.qmd
     #      - theory_measurement.qmd
     - part: summary.qmd

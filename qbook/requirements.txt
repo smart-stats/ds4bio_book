@@ -12,6 +12,7 @@ scipy
 scikit-learn
 folium
 networkx
+nltk
 statmodels
 torch
 torchvision

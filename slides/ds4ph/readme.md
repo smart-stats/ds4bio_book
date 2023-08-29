@@ -16,4 +16,5 @@
 + [Lecture ??, Binary classification](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/binary_classification.slides.html)
 + [Lecture ??, Regression origin](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/regression_through_the_origin.slides.html)
 + [Lecture ??, Regression](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/regression.slides.html)
++ [Lecture ??, Logistic regression](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/logistic.slides.html)
 

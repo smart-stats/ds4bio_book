@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>10_sqlite slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>21_ml slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
@@ -14599,14 +14599,17 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar {
+::-webkit-scrollbar
+{
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar * {
-  background: transparent;
+::-webkit-scrollbar *
+{
+  background:transparent;
 }
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+{
   background: #727272 !important;
 }
 </style>
@@ -14633,12 +14636,12 @@ div.jp-OutputPrompt {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: {
-                    automatic: true
+                    linebreaks: { 
+                    automatic: true 
                     }
                 }
             });
-
+        
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14659,49 +14662,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="SQL-via-sqlite">SQL via sqlite<a class="anchor-link" href="#SQL-via-sqlite">&#182;</a></h1>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="SQL">SQL<a class="anchor-link" href="#SQL">&#182;</a></h2><ul>
-<li>We'll cover some of the basics of SQL (structured querry language) by working through some examples</li>
-<li>SQL is a set of language standards for databases</li>
-<li>As its name implies, sqlite is a small implementation of SQL. </li>
-<li><a href="https://www.guru99.com/download-install-sqlite.html">Here's</a> a tutorial on installing for windows. (Sqlite3 is a single file.)</li>
-<li>For a Mac/linux install in the usual way</li>
-</ul>
-
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Creating-a-database">Creating a database<a class="anchor-link" href="#Creating-a-database">&#182;</a></h2>
-<pre><code>command prompt&gt; sqlite3 class.db
-sqlite&gt; create table class(id int primary key, lname text,fname)
-sqlite&gt; insert into class values (1, "Wayne", "Bruce");
-sqlite&gt; insert into class values (2, "Jennifer", "Walters");
-sqlite&gt; .header on
-sqlist&gt; .mode column
-sqlite&gt; select * from class;
-id  lname     fname  
---  --------  -------
-1   Wayne     Bruce  
-2   Jennifer  Walters
-sqlite&gt; .quit</code></pre>
-
+<h1 id="Maximum-Likelihood">Maximum Likelihood<a class="anchor-link" href="#Maximum-Likelihood">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -14713,27 +14674,9 @@ sqlite&gt; .quit</code></pre>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
-<li>The command <code>sqlite3 class.db</code> opens up the database, in this case creating a new one, and then enters into th sqlite command line. </li>
-<li>The command <code>create ...</code> creates our table within our database</li>
-<li>The <code>insert ...</code> commands insert two records</li>
-<li>The <code>.header ...</code> and <code>.mode ...</code> commands format output</li>
-<li>The <code>select ...</code> command grabs all records</li>
-<li>Then <code>.quit</code> just quits the commmand line. </li>
-</ul>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li><code>ls</code> in the current working directory now shows the file <code>class.db</code></li>
-<li>Everything else we discuss below assumes working in the sqlite command prompt. </li>
+<li>How do we get the loss function that we use for logistic regression? </li>
+<li>We rely on a statistical argument called maximum likelihood (ML). </li>
+<li>Sadly, ML is used to be represent maximum likelihood and machine learning, both important topics in data science. </li>
 </ul>
 
 </div>
@@ -14746,17 +14689,56 @@ sqlite&gt; .quit</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Working-in-sqlite">Working in sqlite<a class="anchor-link" href="#Working-in-sqlite">&#182;</a></h2><ul>
-<li>It's nice to work with a development environment specifically created for sql with nice highlighting and autocompletion</li>
-<li>Sqlite has <ul>
-<li>SQL commands, which must be typed with a semicolon at the end</li>
-<li>sqlite specific commands, which begin with a period 
-+<code>pragma</code> commands, which are also sqlite specific</li>
+<h2 id="Example,-coin-flipping">Example, coin flipping<a class="anchor-link" href="#Example,-coin-flipping">&#182;</a></h2><ul>
+<li>Consider a coin flips, each with their own probability of a head</li>
 </ul>
-</li>
-<li>Some things will be portable to other SQL implementations and others not.</li>
+$$
+p_i = P(Y_i = 1 | x_i) ~~~ 1 - p_i = P(Y_i = 0 | x_i)
+$$<ul>
+<li>For example $Y_i$ could be the event that person $i$ has hypertension and $x_i$ their smoking consumption in pack years. </li>
+<li>We'd like to estimate the probability that someone has hypertension given their pack years.</li>
+<li>We could write this more compactly as:</li>
 </ul>
-
+$$
+P(Y_i = j | x_i) = p_i ^ j (1 - p_i)^{1-j} ~~~ j \in \{0, 1\}.
+$$
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="A-coin-flip">A coin flip<a class="anchor-link" href="#A-coin-flip">&#182;</a></h2><ul>
+<li>Consider a dataset, $Y_1, \ldots, Y_n$ and $x_1, \ldots, x_n$. </li>
+<li>Every $y_1, \ldots, y_n$  is either 0 or 1. </li>
+<li>Under our model, the probability of one observed data point is</li>
+</ul>
+$$
+P(Y_i = y_i | x_i) = p_i ^ {y_i} (1 - p_i)^{1-y_i}
+$$
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Multiple-coin-flips">Multiple coin flips<a class="anchor-link" href="#Multiple-coin-flips">&#182;</a></h2><ul>
+<li>What about all of the data jointly? </li>
+<li>Assume the coin flips are independent, then the probabilities multiply. </li>
+<li>The <strong>joint</strong> probability of our data in this case is </li>
+</ul>
+$$
+P(Y_1 = y_1, \ldots, Y_n = y_n ~|~ x_1, \ldots, x_n)
+= \prod_{i=1}^n p_i ^ {y_i} (1 - p_i)^{1-y_i}
+$$
 </div>
 </div>
 </div>
@@ -14767,12 +14749,15 @@ sqlite&gt; .quit</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="A-more-realistic-example">A more realistic example<a class="anchor-link" href="#A-more-realistic-example">&#182;</a></h2><ul>
-<li>Consider the data Opiods in the US at Open Case Studies</li>
+<h2 id="Tying-the-probaiblities-together">Tying the probaiblities together<a class="anchor-link" href="#Tying-the-probaiblities-together">&#182;</a></h2><ul>
+<li>This model doesn't say much, there's nothing to tie these probabilities together. </li>
+<li>In our example, all we could do is estimate the probability of hypertension for a bunch of people with exactly the same pack years. + It seems logical that groups with nearly the same pack years should have similar probabilities, or even better that they vary smoothly with pack years. </li>
+<li>Our logistic regression model does this.</li>
 </ul>
-<p><a href="https://github.com/opencasestudies/ocs-bp-opioid-rural-urban">https://github.com/opencasestudies/ocs-bp-opioid-rural-urban</a></p>
-<ul>
-<li>It's described <a href="https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import">here</a></li>
+$$
+\mathrm{logit}(p_i) = \beta_0 + \beta_1 x_i
+$$<ul>
+<li>Now we have a model that relates the probabilities to the $x_i$ in a smooth way. </li>
 </ul>
 
 </div>
@@ -14785,11 +14770,12 @@ sqlite&gt; .quit</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Downloading-the-data">Downloading the data<a class="anchor-link" href="#Downloading-the-data">&#182;</a></h2>
-<pre><code>wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_pop_arcos.csv
-wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/land_area.csv
-wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_annual.csv</code></pre>
-
+<h2 id="PUtting-it-together">PUtting it together<a class="anchor-link" href="#PUtting-it-together">&#182;</a></h2>$$
+P(Y_1 = y_1, \ldots, Y_n = y_n ~|~ x_1, \ldots, x_n)
+= \prod_{i=1}^n p_i ^ {y_i} (1 - p_i)^{1-y_i}
+= \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1 x_i}}{1 + e^{\beta_0 + \beta_1 x_i}}\right)^{y_i}
+\left(\frac{1}{1 + e^{\beta_0 + \beta_1 x_i}}\right)^{1-y_i}
+$$
 </div>
 </div>
 </div>
@@ -14800,15 +14786,9 @@ wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Importing-into-sqlite">Importing into sqlite<a class="anchor-link" href="#Importing-into-sqlite">&#182;</a></h2>
-<pre><code>command prompt&gt; sqlite3 opioid.db
-sqlite&gt; .mode csv
-sqlite&gt; .import county_pop_arcos.csv population
-sqlite&gt; .import county_annual.csv annual
-sqlite&gt; .import land_area.csv land
-sqlite&gt; .tables
-annual      land        population</code></pre>
-
+<h2 id="Simplyfing">Simplyfing<a class="anchor-link" href="#Simplyfing">&#182;</a></h2>$$
+\exp\left\{\beta_0 \sum_{i=1}^n y_i + \beta_1 \sum_{i=1}^n y_i x_i\right\}\times \prod_{i=1}^n \left(\frac{1}{1 + e^{\beta_0 + \beta_1 x_i}}\right)
+$$
 </div>
 </div>
 </div>
@@ -14819,64 +14799,12 @@ annual      land        population</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="What-variables-do-the-tables-include?">What variables do the tables include?<a class="anchor-link" href="#What-variables-do-the-tables-include?">&#182;</a></h3>
-<pre><code>sqlite&gt; pragma table_info(population);
-cid  name          type  notnull  dflt_value  pk
----  ------------  ----  -------  ----------  --
-0                  TEXT  0                    0 
-1    BUYER_COUNTY  TEXT  0                    0 
-2    BUYER_STATE   TEXT  0                    0 
-3    countyfips    TEXT  0                    0 
-4    STATE         TEXT  0                    0 
-5    COUNTY        TEXT  0                    0 
-6    county_name   TEXT  0                    0 
-7    NAME          TEXT  0                    0 
-8    variable      TEXT  0                    0 
-9    year          TEXT  0                    0 
-10   population    TEXT  0                    0</code></pre>
-
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="What-variables-do-the-tables-include?-continued">What variables do the tables include? continued<a class="anchor-link" href="#What-variables-do-the-tables-include?-continued">&#182;</a></h3>
-<pre><code>sqlite&gt; pragma table_info(annual);
-cid  name          type  notnull  dflt_value  pk
----  ------------  ----  -------  ----------  --
-0                  TEXT  0                    0 
-1    BUYER_COUNTY  TEXT  0                    0 
-2    BUYER_STATE   TEXT  0                    0 
-3    year          TEXT  0                    0 
-4    count         TEXT  0                    0 
-5    DOSAGE_UNIT   TEXT  0                    0 
-6    countyfips    TEXT  0                    0</code></pre>
-
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="What-variables-do-the-tables-include?-continued">What variables do the tables include? continued<a class="anchor-link" href="#What-variables-do-the-tables-include?-continued">&#182;</a></h3>
-<pre><code>sqlite&gt; pragma table_info(land)
-cid  name         type  notnull  dflt_value  pk
----  -----------  ----  -------  ----------  --
-0                 TEXT  0                    0 
-1    Areaname     TEXT  0                    0 
-2    STCOU        TEXT  0                    0 
-3    LND010190F   TEXT  0                    0 
-4    LND010190D   TEXT  0                    0 
-5    LND010190N1  TEXT  0                    0</code></pre>
+<h2 id="Simplyfing">Simplyfing<a class="anchor-link" href="#Simplyfing">&#182;</a></h2>$$
+\exp\left\{\beta_0 \sum_{i=1}^n y_i + \beta_1 \sum_{i=1}^n y_i x_i\right\}\times \prod_{i=1}^n \left(\frac{1}{1 + e^{\beta_0 + \beta_1 x_i}}\right)
+$$<ul>
+<li>Notice, interestingly, this only depends on $n$, $\sum_{i=1}^n y_i$ and $\sum_{i=1}^n y_i x_i$. </li>
+<li>These are called the <strong>sufficient statistics</strong>, since we don't actually need to know the individual data points, just these quantities. (Effectively</li>
+</ul>
 
 </div>
 </div>
@@ -14888,20 +14816,13 @@ cid  name         type  notnull  dflt_value  pk
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Working-with-data">Working with data<a class="anchor-link" href="#Working-with-data">&#182;</a></h2><ul>
-<li>printing out columns</li>
+<h2 id="Maximum-likelihood">Maximum likelihood<a class="anchor-link" href="#Maximum-likelihood">&#182;</a></h2><ul>
+<li>The principle of ML. </li>
 </ul>
-
-<pre><code>sqlite&gt; select BUYER_COUNTY, BUYER_STATE, STATE, COUNTY, year, population from population limit 5;
-BUYER_COUNTY  BUYER_STATE  STATE  COUNTY  year  population
-------------  -----------  -----  ------  ----  ----------
-AUTAUGA       AL           1      1       2006  51328     
-BALDWIN       AL           1      3       2006  168121    
-BARBOUR       AL           1      5       2006  27861     
-BIBB          AL           1      7       2006  22099     
-BLOUNT        AL           1      9       2006  55485</code></pre>
+<p><em>Pick the values of $\beta_0$ and $\beta_1$ that make the data that we actually observed most probable.</em></p>
 <ul>
-<li><code>limit 5</code> prints out five rows</li>
+<li>When you take the joint probability and plug in the actual Ys and Xs that we observed and view it as a function of $\beta_0$ and $\beta_1$, it's called a <strong>likelihood</strong>.</li>
+<li>So a likelihood is the joint probability with the observed data plugged in and maximum likelihood finds the values of the parameters that makes the data that we observed most likely.</li>
 </ul>
 
 </div>
@@ -14914,28 +14835,32 @@ BLOUNT        AL           1      9       2006  55485</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-the-data">Working with the data<a class="anchor-link" href="#Working-with-the-data">&#182;</a></h3><ul>
-<li>Let's perform some of the tasks in <a href="https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import">the write up</a></li>
-<li>Goal is to print out some of the missing data in the annual dataset. </li>
+<h2 id="Our-example">Our example<a class="anchor-link" href="#Our-example">&#182;</a></h2><ul>
+<li>Generally, since sums are more convenient than products, we take the natural logarithm.</li>
+</ul>
+$$
+\beta_0 \sum_{i=1}^n y_i + \beta_1 \sum_{i=1}^n y_i x_i - \sum_{i=1}^n \log\left(1 + e^{\beta_0 + \beta_1 x_i}\right)
+$$<ul>
+<li>This is the function that sklearn maximizes over $\beta_1$ and $\beta_0$ to obtain the estimates</li>
 </ul>
 
-<pre><code>sqlite&gt; select * from annual where countyfips = "NA" limit 10;
-     BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
----  ------------  -----------  ----  -----  -----------  ----------
-188  ADJUNTAS      PR           2006  147    102800       NA        
-189  ADJUNTAS      PR           2007  153    104800       NA        
-190  ADJUNTAS      PR           2008  153    45400        NA        
-191  ADJUNTAS      PR           2009  184    54200        NA        
-192  ADJUNTAS      PR           2010  190    56200        NA        
-193  ADJUNTAS      PR           2011  186    65530        NA        
-194  ADJUNTAS      PR           2012  138    57330        NA        
-195  ADJUNTAS      PR           2013  138    65820        NA        
-196  ADJUNTAS      PR           2014  90     59490        NA        
-197  AGUADA        PR           2006  160    49200        NA</code></pre>
-<ul>
-<li>Here, we used the condition "NA" to test for missingness, since the CSV files have the string NA values for missing data.</li>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Second-example,-linear-regression">Second example, linear regression<a class="anchor-link" href="#Second-example,-linear-regression">&#182;</a></h2><ul>
+<li>linear regression can also be cast as a likelihood problem. + Consider an instance where we assume that the $Y_i$ are Gaussian with a mean equal to $\beta_0 + \beta_1 x_i$ and variance $\sigma^2$. </li>
+<li>The probability that $Y_i$ lies betweens the points $A$ and $B$ is governed by the equation</li>
 </ul>
-
+$$
+P(Y_i \in [A, B) ~|~ x_i) = \int_A^B \exp\left\{ -(y_i - \beta_0 - \beta_1 x_i)^2 / 2\sigma^2 \right\} dy_i
+$$
 </div>
 </div>
 </div>
@@ -14946,27 +14871,12 @@ BLOUNT        AL           1      9       2006  55485</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-the-data-continued">Working with the data continued<a class="anchor-link" href="#Working-with-the-data-continued">&#182;</a></h3><p>Is there missing data outside of PR?</p>
-
-<pre><code>sqlite&gt; select * from annual where countyfips = "NA" and BUYER_STATE != "PR" limit 10;
-       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
------  ------------  -----------  ----  -----  -----------  ----------
-10072  GUAM          GU           2006  319    265348       NA        
-10073  GUAM          GU           2007  330    275600       NA        
-10074  GUAM          GU           2008  313    286900       NA        
-10075  GUAM          GU           2009  390    355300       NA        
-10076  GUAM          GU           2010  510    413800       NA        
-10077  GUAM          GU           2011  559    475600       NA        
-10078  GUAM          GU           2012  616    564800       NA        
-10079  GUAM          GU           2013  728    623200       NA        
-10080  GUAM          GU           2014  712    558960       NA        
-17430  MONTGOMERY    AR           2006  469    175390       NA</code></pre>
-<ul>
-<li>Further inspect the missing data further on your own.</li>
-<li>It looks like its the unincorporated territories and a handful of Arkansas values missing <code>countyfips</code> </li>
-<li>Montgomery county AR is missing FIPs codes. </li>
+<h2 id="Density-functions">Density functions<a class="anchor-link" href="#Density-functions">&#182;</a></h2><ul>
+<li>Letting $A=-\infty$ and taking the derivative with respect to $B$, we obtain the density function, sort of the probability on an infintessimally small interval:</li>
 </ul>
-
+$$
+\exp\left\{ -(y_i - \beta_0 - \beta_1 x_i)^2 / 2\sigma^2 \right\}
+$$
 </div>
 </div>
 </div>
@@ -14977,20 +14887,16 @@ BLOUNT        AL           1      9       2006  55485</code></pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-the-data-continued">Working with the data continued<a class="anchor-link" href="#Working-with-the-data-continued">&#182;</a></h3><ul>
-<li>Since we want to look US states in specific, we set the Montgomery county ones to the correct value 05097 and ignore the other missing values.</li>
+<h2 id="Joint-likelihood">Joint likelihood<a class="anchor-link" href="#Joint-likelihood">&#182;</a></h2><ul>
+<li>Uses the density evaluated at the observed data, the joint likelihood assuming independence is:</li>
 </ul>
-
-<pre><code>sqlite&gt; update annual set countyfips = 05097 where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
-sqlite&gt; select * from annual where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
-
-       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
------  ------------  -----------  ----  -----  -----------  ----------
-17430  MONTGOMERY    AR           2006  469    175390       5097      
-17431  MONTGOMERY    AR           2007  597    241270       5097      
-17432  MONTGOMERY    AR           2008  561    251760       5097      
-17433  MONTGOMERY    AR           2009  554    244160       5097</code></pre>
-
+$$
+\prod_{i=1}^n \exp\left\{ -(y_i - \beta_0 - \beta_1 x_i)^2 / 2\sigma^2 \right\}
+= \exp\left\{ -\sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2 / 2\sigma^2 \right\}
+$$<p>Since it's more convenient to deal with logs we get that the joint log likelihood is</p>
+$$
+- \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2 / 2\sigma^2 
+$$
 </div>
 </div>
 </div>
@@ -15001,44 +14907,14 @@ sqlite&gt; select * from annual where BUYER_STATE = "AR" and BUYER_COUNTY = "MON
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-the-data-continued">Working with the data continued<a class="anchor-link" href="#Working-with-the-data-continued">&#182;</a></h3><ul>
-<li>Lets delete rows from the <code>annual</code> table that have missing county data.</li>
-<li>(HW) Check on these counties before and verify that the've been deleted afterwards. 
-<pre><code>sqlite&gt; delete from annual where BUYER_COUNTY = "NA"</code></pre>
-</li>
-<li>We want to grab just three columns from the <code>land</code> table, so let's create a new one called <code>land_area</code>.</li>
+<h2 id="Loss-function">Loss function<a class="anchor-link" href="#Loss-function">&#182;</a></h2><ul>
+<li>Since minimizing the negative is the same as maximizing this, and the constants of proportionality are irrelevant for maximizing for $\beta_1$ and $\beta_0$, we get that maximum likelihood for these parameters minimizes</li>
 </ul>
-
-<pre><code>sqlite&gt; create table land_area as select Areaname, STCOU, LND110210D from land;</code></pre>
-<ul>
-<li>Also, the column there is called <code>STCOU</code>, which we want to rename to <code>countyfips</code>. 
-<pre><code>sqlite&gt; alter table land_area rename column STCOU to countyfips;</code></pre>
-</li>
+$$
+\sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+$$<ul>
+<li>which is the same thing we minimized to obtain our least squares regression estimates.</li>
 </ul>
-
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-the-data-continued">Working with the data continued<a class="anchor-link" href="#Working-with-the-data-continued">&#182;</a></h3><ul>
-<li>Next we want to start joining the tables</li>
-<li>So let's left join our table and print out the counts to make sure we accounted correctly.</li>
-</ul>
-
-<pre><code>sqlite&gt; create table county_info as select * from population left join land_area using(countyfips);
-sqlite&gt; select count(*) from land;
-3198
-sqlite&gt; select count(*) from land_area;
-3198
-sqlite&gt; select count(*) from county_info;
-28265
-sqlite&gt; select count(*) from population;</code></pre>
 
 </div>
 </div>

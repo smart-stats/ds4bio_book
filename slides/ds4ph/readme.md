@@ -18,3 +18,4 @@
 + [Lecture 19, Regression](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/19_regression.slides.html)
 + [Lecture 20, Logistic regression](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/20_logistic.slides.html)
 + [Lecture 21, Maximum likelihood](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/21_ml.slides.html)
++ [Lecture 22, Linear separable](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/22_linear_separable.slides.html)

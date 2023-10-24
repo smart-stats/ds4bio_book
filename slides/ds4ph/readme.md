@@ -21,3 +21,4 @@
 + [Lecture 22, Linear separable](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/22_linear_separable.slides.html)
 + [Lecture 23, Linear separable interpretation](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/23_linear_separable_smf.slides.html)
 + [Lecture 24, Regression example](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/24_regression_examples.slides.html)
++ [Lecture 25, Regression interpretation](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/24_regression_interpretation.slides.html)

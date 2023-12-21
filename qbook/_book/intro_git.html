@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.302">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data science and AI for the biological and medical sciences using python - 3&nbsp; Git, github</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./intro_html.html" rel="next">
+<link href="./intro_unix.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./intro_git.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/images/dasl.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DS&amp;AI4B&amp;MSUP</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_git.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_html.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra python tooling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Streamlit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dash</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics and inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics_ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Maximum Likelihood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics_causal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Causal DAGs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./supervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_binary_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Introduction to binary classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_regression_origin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression through the origin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Prediction with regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_logistic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_multivariable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear separable models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervised_dft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DFT</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./unsupervised_pca_ica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unsupervised learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./nns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neural networks</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Neural networks, introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_basic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Basic regression as a NN</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Logistic regression as a NN</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_pytorch_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Pytorch by example</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./specialized.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialized NNs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_autoencoder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Autoencoders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_autoencoder2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Autoencoder example</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_gan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GANs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Summary</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-least-you-need-to-know" id="toc-the-least-you-need-to-know" class="nav-link active" data-scroll-target="#the-least-you-need-to-know"><span class="header-section-number">3.1</span> The least you need to know</a></li>
+  <li><a href="#a-little-more-detail" id="toc-a-little-more-detail" class="nav-link" data-scroll-target="#a-little-more-detail"><span class="header-section-number">3.2</span> A little more detail</a>
+  <ul class="collapse">
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">3.2.1</span> Getting started</a></li>
+  <li><a href="#adding-files" id="toc-adding-files" class="nav-link" data-scroll-target="#adding-files"><span class="header-section-number">3.2.2</span> Adding files</a></li>
+  <li><a href="#checking-status" id="toc-checking-status" class="nav-link" data-scroll-target="#checking-status"><span class="header-section-number">3.2.3</span> Checking status</a></li>
+  <li><a href="#commiting-changes" id="toc-commiting-changes" class="nav-link" data-scroll-target="#commiting-changes"><span class="header-section-number">3.2.4</span> Commiting changes</a></li>
+  <li><a href="#remote-repositories" id="toc-remote-repositories" class="nav-link" data-scroll-target="#remote-repositories"><span class="header-section-number">3.2.5</span> Remote repositories</a></li>
+  </ul></li>
+  <li><a href="#branching" id="toc-branching" class="nav-link" data-scroll-target="#branching"><span class="header-section-number">3.3</span> Branching</a></li>
+  <li><a href="#clients" id="toc-clients" class="nav-link" data-scroll-target="#clients"><span class="header-section-number">3.4</span> Clients</a></li>
+  <li><a href="#setting-up-ssh" id="toc-setting-up-ssh" class="nav-link" data-scroll-target="#setting-up-ssh"><span class="header-section-number">3.5</span> Setting up ssh</a></li>
+  <li><a href="#github-pages" id="toc-github-pages" class="nav-link" data-scroll-target="#github-pages"><span class="header-section-number">3.6</span> Github pages</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In the live versions of these classes, we use the version control system git and git hosting service github. If you work in data science should have a working knowledge of both git and at least one cloud hosting service (like github). For git, you work in a <em>repository</em>, which is basically a project directory on your computer with some extra files that help git work. Git is then used for <em>version control</em> so that you keep track of states of your project. Github, is a hosting service for git repositories. Typically, you have your repository on your computer and you coordinate it with the one on the server. Github is just one of several hosting services, bitbucket is another, or you could even relatively easily start your own. However, github has front end web services that allows you to interact with your remote repository easily. This is very convenient.</p>
+<section id="the-least-you-need-to-know" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-least-you-need-to-know"><span class="header-section-number">3.1</span> The least you need to know</h2>
+<p>I’m not going to fully recreate git / github tutorials here; <a href="https://seankross.com/the-unix-workbench/git-and-github.html">here’s one I recommend</a> by Sean Kross. Instead, I’m going to go through a typical git / github workflow.</p>
+<ol type="1">
+<li><strong>Initialization</strong> I almost always initialize my git repository on github with a <code>readme.md</code> file.</li>
+<li><strong>Clone</strong> I typically <em>clone</em> the repository to my local computer using the command line or a local git gui that works with github, like <a href="https://desktop.github.com/">this one</a>. Note that you only have to clone the repo once. After it’s cloned you have a full local copy of the repository.</li>
+<li><strong>add</strong> new files to track and <strong>stage</strong> them after I’ve worked with them.</li>
+<li><strong>commit</strong> the changes to the local repository with a meaningful commit message.</li>
+<li><strong>push</strong> the changes to the repository.</li>
+<li>If there’s changes on the remote repository not represented in my local repository, I <strong>pull</strong> those changes to my local repo.</li>
+</ol>
+<p>For larger projects, you’re likely working with multiple people, some of whom you’ve given access to your remote repository and some of whom you have not. The ones who can’t directly push to the remote repo might have their own version of the code and their own version on github. If they think you should incorporate those changes, they might issue a <strong>pull request</strong> to you. You can then opt to pull their changes into your repo on github, then pull them from github to your local repo. One of the reasons why services like github and bitbucket are so popular is that they make this coordination fairly easy, along with having nice project messaging and management tools.</p>
+<p>In our class, we use github classroom. For github classroom, you’ll get a link to a repo to put your submission files into. When you push to the remote repository, you’ll have submitted. <em>But, up to the due date you can make changes an push again.</em></p>
+</section>
+<section id="a-little-more-detail" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="a-little-more-detail"><span class="header-section-number">3.2</span> A little more detail</h2>
+<section id="getting-started" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">3.2.1</span> Getting started</h3>
+<p>Git is a version control system invented by Linus Torvalds, the invetor of the linux operating system. A github repository is a directory that the software git is using to keep track of versions. Install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a>, it’s already installed on most cloud services and many operaiting systems. You can initialize a repository in a directory with the command <code>git init</code> in that directory. Honestly, I almost never start a git repo this way, because I’ve connected my repo to a cloud server. But, more on that later. After you’ve initialized it, your git repo is a locally version controlled system.</p>
+</section>
+<section id="adding-files" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="adding-files"><span class="header-section-number">3.2.2</span> Adding files</h3>
+<p>OK, now you want to add some of your files to your repo. You have a directory You can add files with the command</p>
+<pre><code>git add FILENAME</code></pre>
+<p>The file <code>FILENAME</code> is now staged to be part of the repository, but isn’t added yet! Files that you haven’t added won’t be tracked. This is good, since there’s many files, llike log files, that we don’t want to track. You only need to add the files once, then they are being tracked. Try it out with a readme markdown file in your repository.</p>
+</section>
+<section id="checking-status" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="checking-status"><span class="header-section-number">3.2.3</span> Checking status</h3>
+<p>One of the most useful git commands is</p>
+<pre><code>git status</code></pre>
+<p>This gives the status of which files are being tracked, which are not and which have changes.</p>
+</section>
+<section id="commiting-changes" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="commiting-changes"><span class="header-section-number">3.2.4</span> Commiting changes</h3>
+<p>You have to actually commit your changes to the repository to have them represented. Committing changes is a local operation, subsequently, we’ll show you how to coordinate with a remote repository. Here’s the command I use to commit most often</p>
+<pre><code>git commit -a -m "COMMIT MESSAGE"</code></pre>
+<p>Here the flag <code>-a</code> means commit all files staged for commits. You can also commit individual files or a collection of specific files. The <code>-m "COMMIT MESSAGE"</code> is the message associated with your commit. Make your commit messages more informative. If you don’t add <code>-m</code> github will bring up an editor for you to enter your commit message.</p>
+</section>
+<section id="remote-repositories" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="remote-repositories"><span class="header-section-number">3.2.5</span> Remote repositories</h3>
+<p>Git becomes much more useful when it’s coordinated with a remote repository. Github is a server for hosting remote git repositories, there are several others, bitbucket is an example. Github also includes a great deal of functionality for working with the remote repository through the website. There’s many git and github guis that you could use if you want. I always liked to github one and magit in emacs.</p>
+<section id="connecting-your-remote-and-local-repos" class="level4" data-number="3.2.5.1">
+<h4 data-number="3.2.5.1" class="anchored" data-anchor-id="connecting-your-remote-and-local-repos"><span class="header-section-number">3.2.5.1</span> Connecting your remote and local repos</h4>
+<p>You need to connect your local repo to the remote repo. First create a version of the repo on github (actually then it gives you instructions). Then you can either</p>
+<ol type="1">
+<li><em>Clone</em> the repo from the server <code>git clone REMOTE SERVER</code></li>
+<li>Connect the server to your local repository</li>
+</ol>
+<p>For 2. you use a command like:</p>
+<pre><code>git remote add origin git@github.com:USERNAME/REPONAME.git</code></pre>
+<p>Personally, I find it easier just to create the repo on github and clone it. You can clone over ssh or https, if you don’t know what ssh is use https and then switch over to ssh as you learn how to use it.</p>
+</section>
+<section id="pushing-changes" class="level4" data-number="3.2.5.2">
+<h4 data-number="3.2.5.2" class="anchored" data-anchor-id="pushing-changes"><span class="header-section-number">3.2.5.2</span> Pushing changes</h4>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<p><img src="intro_git_files/figure-html/cell-2-output-1.png" width="211" height="211"></p>
+</div>
+</div>
+<p>You push from the repo you’re working on to another (remote repo). So, for me, this typically means pushing from my local computer repo to github or to a scientific computing cluster.</p>
+<pre><code>git push origin main</code></pre>
+<p>The above command could be read as “push my new committed changes from my origin to the main branch on my remote repo”. Older repos had the default branch <code>master</code> instead of <code>main</code>. But, github switched in <a href="https://github.com/github/renaming">2020 or so</a>. So, some older documentation may not have this switch.</p>
+</section>
+<section id="pulling-changes" class="level4" data-number="3.2.5.3">
+<h4 data-number="3.2.5.3" class="anchored" data-anchor-id="pulling-changes"><span class="header-section-number">3.2.5.3</span> Pulling changes</h4>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<p><img src="intro_git_files/figure-html/cell-3-output-1.png" width="211" height="211"></p>
+</div>
+</div>
+<p>There might be changes that you want represented locally that were changed on the remote repository; for example, you might edit a readme file through github’s web interface. The command for this is really easy, it’s just pull</p>
+<pre><code>git pull</code></pre>
+<p>The pain occurs if you have made local changes that are in conflict with the remote changes. I’d write about merge conflicts, but I can’t, I just can’t (<em>shudder</em>). [Here’s some docs on managing merge conflicts] (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line).</p>
+</section>
+<section id="cloning" class="level4" data-number="3.2.5.4">
+<h4 data-number="3.2.5.4" class="anchored" data-anchor-id="cloning"><span class="header-section-number">3.2.5.4</span> Cloning</h4>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<p><img src="intro_git_files/figure-html/cell-4-output-1.png" width="307" height="211"></p>
+</div>
+</div>
+<p>To clone a remote repository is to simply create a local copy where you can pull changes from the remote. If a repository is public and you own it, then you can clone it and push changes back to the remote. If you don’t, you can clone and pull changes, but then can’t push back to the remote.</p>
+<p>Try with the book repo, clone it so you have access to the files. In the figure below the owner can pull and push to the repo. In the picture below, consider that you clone GH1 off of github to you. You can pull updates from GH1 but can’t push changes to GH1. The owner of GH1 of course can pull and push.</p>
+<p>As an example, close this book (via https) with:</p>
+<pre><code>git clone https://github.com/smart-stats/ds4bio_book.git</code></pre>
+</section>
+<section id="forking" class="level4" data-number="3.2.5.5">
+<h4 data-number="3.2.5.5" class="anchored" data-anchor-id="forking"><span class="header-section-number">3.2.5.5</span> Forking</h4>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<p><img src="intro_git_files/figure-html/cell-5-output-1.png" width="307" height="211"></p>
+</div>
+</div>
+<p>A common workflow for github is to “fork” the repository. This differs from cloning in the sense that your fork is an entirely separate new copy. In the picture above, GH2 is a fork of GH1. It can pull upstream changes from GH1, but can’t write to it, since you don’t own that repo. You can push and pull from Local2 which is connected to GH2.</p>
+<p>Forking on github is easy. Just click the “fork” button in the upper right corner.</p>
+</section>
+<section id="pull-requests" class="level4" data-number="3.2.5.6">
+<h4 data-number="3.2.5.6" class="anchored" data-anchor-id="pull-requests"><span class="header-section-number">3.2.5.6</span> Pull requests</h4>
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<p><img src="intro_git_files/figure-html/cell-6-output-1.png" width="307" height="211"></p>
+</div>
+</div>
+<p>Imagine a case where you forked the book repo and have some great additions (maybe a section on merge conflicts?). You think that these changes you think should be represented for other students. You can’t push changes to my repo; the very idea would be perposterous! How do you get your great changes represented in my repo?</p>
+<p>You issue a <em>pull request</em> in the sense of requesting GH1 to pull your changes from GH2. Then, I would get notified of the pull request and would decide whether or not to merge them into my repo. This system has many benefits, and particularly, is great for operating on open source projects.</p>
+<p>I like to do pull requests directly on github through the web interface.</p>
+</section>
+</section>
+</section>
+<section id="branching" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="branching"><span class="header-section-number">3.3</span> Branching</h2>
+<p>You often want multiple versions of a repository. For example, you might want a development version, a working version and a stable version. This is what branches are for in git. To create and switch to a branch called <code>dev</code>, use:</p>
+<pre><code>git checkout -b dev</code></pre>
+<p>This creates a new branch called <code>dev</code> and switches to that branch. If you already have <code>dev</code>, use <code>checkout</code> without <code>-b</code>. Suppose you want to merge your change from <code>dev</code> into your default branch (<code>main</code>)</p>
+<pre><code>git checkout main
+git merge dev</code></pre>
+<p>Start very basic with branches, then when you get the hang of it you can use it like a pro. <a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Here’s more documentation</a>.</p>
+</section>
+<section id="clients" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="clients"><span class="header-section-number">3.4</span> Clients</h2>
+<p>You can avoid the command line stuff with a git client, of which there are many. It’s still good to know the command line options, for remote work if nothing else. I’ve tried several git clients and my favorite is the github client software and magit in emacs.</p>
+</section>
+<section id="setting-up-ssh" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="setting-up-ssh"><span class="header-section-number">3.5</span> Setting up ssh</h2>
+<p>If you want to connect to a remote repository to github on a unix or linux system, it’s probably easiest to set up using so called secure shell. You can also set it up a variety of ways on Windows, but the rules are a little less universal. If you find this very hard to follow, just use a git and github gui (like github desktop, which is what I like to recommend).</p>
+<p>Secure shell works as follows. It creates a public key (think like a lock, everyone can see it) and a private key (like the key for the lock, only you have it). When you connect to github, it has your public key and you use the private key to “unlock” it. First, you need a <code>.ssh</code> directory from your personal directory. If you don’t have that, try <code>ssh username@server</code> to a server that you know and it will automatically create one.</p>
+<p>we’ll go through <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this</a> tutorial.</p>
+<p>Then, cd into your <code>.ssh</code> director and type the following and follow the instructions</p>
+<pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></pre>
+<p>This generates your public/prviate key pair. Then you need to take the public key file, and upload it to github under settings. This is described <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">here</a>.</p>
+<p>In some cases I’ve also had to add this to a file <code>config</code> in my <code>.ssh</code> directory:</p>
+<pre><code>Host github.com
+     ForwardX11 no
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/YOUR_PRIVATE_KEY_FILENAME</code></pre>
+<p>Once this is setup, then you should be able to push and pull from github from the command line without passwords.</p>
+</section>
+<section id="github-pages" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="github-pages"><span class="header-section-number">3.6</span> Github pages</h2>
+<p>It’s possible to host web pages on github. By <em>hosting</em> I mean serving the web page on the internet so that others can view it. There’s a couple of steps to doing this. First, you need an html file to serve. If you look in <a href="https://smart-stats.github.io/ds4bio_book/book/_build/html/html.html">the chapter</a> on html, there’s the code for a basic wepage. Save a web page as say “index.html”. You can double check that it works by simply double clicking on the file on your local computer. It should display as a web page in your browser, but it’s only viewable by you. Notice the addres begins with <code>file:///...</code>. To serve the file so that others can view it, we need it to exist on a server.</p>
+<p>Github will serve the file for us, but first we need a repository. Create a public repository; I typically do this on github. Then you need to add an empty file called <code>.nojekyll</code>. Don’t forget the period at the beginning. This prevents github from thinking you’re using the <a href="https://jekyllrb.com/">jekyll framework</a>, which is the default. Since we’re serving a basic webpage, we don’t need this framework. I create this file on github just by clicking <em>Add File</em> then <em>Create new file</em>.</p>
+<p>Next we need to tell github that this repo serves web pages. Click on <em>settings</em> then <em>pages</em> on the left. Then, under <em>source</em> choose the branch that you want to serve the pages from. Add your html file, commit and push to github. Give it a few minutes, then your file will be served from</p>
+<pre><code>https:///GITHUBUSERNAME.github.io/REPONAME/FILENAME.html</code></pre>
+<p>where here <code>GITHUBUSERNAME</code> is either your github username or the organization. <code>REPONAME</code> is the name of your repository and <code>FILENAME.html</code> is your html file, with the path if it’s in subdirectories. As an example, here’s a version I did <a href="https://bcaffo.github.io/testHtmlRepo/index.html">https://bcaffo.github.io/testHtmlRepo/index.html</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro_unix.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./intro_html.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

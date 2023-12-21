@@ -1,0 +1,277 @@
+---
+title: "Advanced interactive graphics: D3"
+format: html
+---
+In your other DS courses, you've learned how to create static graphics
+uses R, ggplot, matplotlib, seaborn ... You've probably also learned
+how to create client side interactive graphics using libraries like
+plotly and maybe also learned client-server interactivity with shiny,
+dash ...
+
+In this section we're going to dig deeper into client side graphics,
+which are almost always done via html, css, javascript and a
+javascript plotting library. We're going to focus on d3.js, a well
+known javascript library for creating interactive data
+visulalizations.
+
+Tools like d3 are mostly for creating professional data web
+graphics. So, most of our daily graphics use will just use
+python/R/julia/matlab ... or plotting libraries like plotly. Usually,
+you want to prototype graphics outside of d3. Here, we'll give you a
+smidge of using d3 to get you started if your goal is to become a
+graphics expert.
+
+## Introduction to D3
+Let's get started. I'm going to assume that you have a basic knowledge
+of html, css and a little bit of javascript. D3 works by manipulating
+html elements. Let's select every paragraph element in a document.
+
+```{.html}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <p> Advanced </p>
+    <p> Data science </p> 
+        <script>
+            let pselect = d3.selectAll("p")
+            //let pselect = d3.select("p").style("color", "green");
+            //let pselect = d3.selectAll("p").style("color", "green");
+        </script>
+    </body>
+</html>
+```
+Going forward, we'll omit most of the html commands.
+
+
++ The command `<script src="https://d3js.org/d3.v5.min.js"></script>` loads d3 from a CDN. You could also download it locally if you'd like.
++ The script `let pselect = d3.selectAll("p").style("color", "green");` creates a variable `pselect` that is all of the html paragraph elements
++ Try doing this, loading the web page, then try uncommenting each other script line in turn and refreshing
++ In chrome do Ctrl-shift-i to get the developer console and inspect the variable pselect.
++ Nesting `select` or `selectAll` will select elements within the selected elements.
++ You can also select by id or class. 
+
+## A simple example
+
+Let's go through an example where we plot brain volumetric ROI data on the log scale using
+D3. 
+```{.html}
+<style>
+    .bar {
+        background: #f5b634;
+        border: 4px solid #0769ad;
+        height: 20px;
+    }
+</style>
+<body>
+        <script>
+            let roiData = [
+                {"roi": "Telencephalon_L", "volume" : 531111},
+                {"roi": "Telencephalon_R", "volume" : 543404},
+                {"roi": "Diencephalon_L",  "volume" : 9683  },
+                {"roi": "Diencephalon_R",  "volume" : 9678  },
+                {"roi": "Mesencephalon",   "volume" : 10268 },
+                {"roi": "Metencephalon",   "volume" : 159402},
+                {"roi": "Myelencephalon",  "volume" : 4973  },
+                {"roi": "CSF",             "volume" : 109776}
+            ];
+    
+            let divSelection = d3.select("body") 
+                    .selectAll("div")
+                    .data(roiData)
+                    .enter()
+                    .append('div')
+                    .attr("class", "bar")
+                    .style("width", (d) => {return Math.log(d.volume) * 20 + "px"; })
+                    .text(d => d.roi)
+                    .on("mouseover", function(){
+                        d3.select(this)
+                        .style("background-color", "orange");
+                    })
+                    .on("mouseout", function(){
+                        d3.select(this)
+                        .style("background-color","#33A2FF" )
+                    })        </script>
+    </body>
+```
++ The `data(roiDat)` selects our dataset
++ The `enter()` and `append('div')` commands add `div` elements to the html document, one per data element.
++ The `attr` method considers our `bar` stylesheet style
++ The `style` method changes the style so that the bars have the width of our data.
+The notation `(d) => {return d.volume * .001 + "px"}` is a function that selects the
+ROI element of the data, multiplies it by .001 then converts it to text with  `px` at the end.
++ The `text` method at the end appends the text to our plot
++ The `on` methods say what to do when one mouses over and off the bars. You can see now that
+they turn orange then back. Remove the mouseout `.on` call and see what happens.
+
+The output looks like this. Hover over a bar to test. (Look at the file in [d3/roi1.html](https://github.com/smart-stats/advanced_ds4bio_book/blob/main/qbook/d3/roi1.html))
+
+```{=html}
+<iframe width="780" height="200" src="d3/roi1.html" title="Output"></iframe>
+```
+
+## Working through a realistic example
+
+Under `assets/kirby_pivot.csv` is a dataset with the kirby 21 data pivoted to have regions as columns. Let's work through a d3 example of ploting right versus left asymmetry in the telencephalon (the largest area of the brain including the cortex and central white matter).
+
+Here's the scatterplot that I've got so far. For HW, add text labels to the point, or a tooltip that gives point information when you hover over it.  
+
+
+```{=html}
+<iframe width="500" height="500" src="d3/roi2.html" title="Output"></iframe>
+```
+
+The code for the plot is in [d3/roi2.html](https://github.com/smart-stats/advanced_ds4bio_book/blob/main/qbook/d3/roi2.html). Let's go over some of the main parts of the d3 code here. First, we set up the graphic
+
+```{js}
+const h = 500
+const w = 500
+
+// create the background
+let svg = d3.select("body")
+    .append("svg")
+    .attr("width" , h)
+    .attr("height", w);
+```
+
+Next we load in the data. First, we create a function that does a little row processing for us. Honestly, it's probably better to just do this in python/R/julia ... beforehand, but it's worth showing here. We create variables for the log ratio between the right and left hemispheres and the log of the geometric mean. We'll use this to create a Tukey mean/difference plot of the log of the volumes. 
+
+```{js}
+//create the variables we're interested in
+let rowConverter = function(d) {
+    return {
+        id : d.id,
+        //y is going to be the log difference R-L
+        logratio : Math.log(parseFloat(d.Telencephalon_R)) - Math.log(parseFloat(d.Telencephalon_L)),
+        //x is going to be the average log 
+        loggm : (Math.log(parseFloat(d.Telencephalon_L)) + Math.log(parseFloat(d.Telencephalon_R))) * .5
+    };
+    }
+
+//the location where I'm pulling the csv from
+let dataloc = "https://raw.githubusercontent.com/smart-stats/advanced_ds4bio_book/main/qbook/assets/kirby_pivot.csv"
+
+//read in the data and parse the rows 
+kirby_pivot = d3.csv(dataloc, rowConverter)
+```
+
+Modern js uses something called 'promises', which alllows for asynchronous evaluation. When we read in our csv file, it gets created as a promise and not an array like we need. The result is that our plotting commands need to then be called as a method from the promise object. The reason for this is so that it only uses the data when the data is actually loaded (i.e. promise fulfilled.) So, the plotting commmands for us look like this.
+
+```{js}
+kirby_pivot.then(dat => {
+    PLOTTING COMMANDS
+})
+```
+
+Just a reminder that the notation `d => g(d)` is JS shorthand for `function(d) {return g(d);}` and is used heavily in d3 coding. Now let's fill in `PLOTTING COMMANDS`. First, let's fill in some utility functions. We get the range of our x and y values to help set up our axes. d3 `scales` map our function values to a range we want. So let's create scale maps for x, y and color and then also set up axes using those scales. We'll also go ahead on plot our axes so they're on the bottom.
+
+```{js}
+maxx = d3.max(dat, d => d.loggm)
+minx = d3.min(dat, d => d.loggm)
+maxy = d3.max(dat, d => d.logratio)
+miny = d3.min(dat, d => d.logratio)
+
+//fudge is the boundary otherwise points get chopped off
+let fudge = 50
+
+let yScale = d3.scaleLinear()
+    .domain([miny, maxy])
+    .range([h-fudge, fudge])
+
+let pointScale = d3.scaleLinear()
+    .domain([miny, maxy])
+    .range([5, 10])
+
+let colorScale = d3.scaleLinear()
+    .domain([miny, maxy])
+    .range([0, 1])
+
+
+let xScale = d3.scaleLinear()
+    .domain([minx, maxx])
+    .range([w-fudge, fudge]);
+
+// define the axes
+let xaxis = d3.axisBottom().scale(xScale)
+let yaxis = d3.axisLeft().scale(yScale)
+svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(0," + (h - fudge) + ")")
+    .call(xaxis)
+
+svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + fudge + ",0)")
+    .call(yaxis)
+```
+Now let's create the plot. We're going to add circles at each location, which is attributes `cx` and `cy`. Notice we use our previous defined scales to give their locations. Also, we'll set the color and size relative to the logratio. Finally, when we mouseover a point, let's change the radius then change it back when we mouseoff.
+
+```{js}
+svg.selectAll("circle")
+    .data(dat)
+    .enter()
+    .append("circle")
+    .attr("cy", d => yScale(d.logratio))
+    .attr("cx", d => xScale(d.loggm))
+    .attr("r",  d => pointScale(d.logratio))
+    .attr("fill", d => d3.interpolateWarm(colorScale(d.logratio)))
+    .attr("stroke", "black")
+    .on("mouseover", function() {
+        d3.select(this)
+            .attr("r", 30)
+        })
+    .on("mouseout", function() {
+        d3.select(this)
+        .attr("r",  d => pointScale(d.logratio))
+    })
+```
+
+Obviously, this is a lot of work for a simple scatterplot. The difference is that here you have total control over plotting and interactivity elements.
+
+## Observable and Observable Plot
+Observerable is a notebook for working with d3. It's quite neat since mixing javascript coding in a web notebook, which itself is written in javascript, makes for an interesting setup. Typically, one would do the data preprocessing in R, python, julia ... then do the advanced graphing in d3.  In addition to accepting d3 as inputs, observable has a slightly higher set of utility functions called observable plot.  (Quarto, which this document is in, allows for observable cells.)  So, let's read in some ROI data and plot it in observable plot. Note this is the average of the Type I Level I ROIs. Notice this is much easier than using d3 directly. 
+
+```{ojs}
+data = FileAttachment("assets/kirby_avg.csv").csv();
+Plot.plot({
+marks: [Plot.barY(data, {x: "roi", y: "volume", fill : 'roi'})],
+    x: {tickRotate: 45},
+    color: {scheme: "spectral"},    
+    height: 400,
+    width: 400,
+    marginBottom: 100
+
+})
+```
+
+
+## Links
++ [Observable is not javascript](https://observablehq.com/@observablehq/observables-not-javascript)
++ [d3 tutorial](https://www.tutorialsteacher.com/d3js/select-dom-element-using-d3js).
++ [d3 gallery](https://observablehq.com/@d3/gallery)
+
+## Homework
++ Create a D3 graphic web page that displays a scatterplot of your chosing. Show point information on hover.
++ On the same web page, create a D3 graphic web page that displays a stacked bar chart for the Kirby 21 data. Hover data should show subject information and increase the size of the bar. Here's a plotly version to get a sense.
+
+```{python}
+import pandas as pd
+import plotly.express as px
+import numpy as np
+dat = pd.read_csv("https://raw.githubusercontent.com/smart-stats/ds4bio_book/main/book/assetts/kirby21.csv").drop(['Unnamed: 0'], axis = 1)
+dat = dat.assign(id_char = dat.id.astype(str))
+fig = px.bar(dat, x = "id_char", y = "volume", color = "roi")
+fig.show()
+```
++ Submit your webpages and all supporting code to your assignment repo
++ Here's a hint to the HW in [d3/hwHint.html](https://github.com/smart-stats/advanced_ds4bio_book/blob/main/qbook/d3/hwHint.html)
+
+```{=html}
+<iframe width="500" height="500" src="d3/hwHint.html" title="hwHit"></iframe>
+```
+
+

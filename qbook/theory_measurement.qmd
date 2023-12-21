@@ -1,0 +1,101 @@
+---
+title: "Measurement"
+format: html
+---
+
+## Repeatability
+
+Repeatability or test/retest reliabity is the agreement of measurements across technical replications. 
+
+### Mean/difference - Bland/Altman plots
+
+The Bland/Altman [@bland1999measuring] or Tukey mean/difference plot [@tukey1977exploratory] is a plot of agreement between two measured quantities.
+Here I use the mricloudpy package to read in data and convert it to a dataframe.
+Here, we have two measures of the same data. B/A plots typically add a 1.96 sd bar to detect outlying differences.
+
+```{python}
+import statsmodels.api as sm
+import numpy as np
+
+import sys 
+import os
+sys.path.append("/home/bcaffo/sandboxes/MRICloudPy/mricloudpy/")
+
+from mricloudpy.mricloudpy import Data
+example = "/home/bcaffo/sandboxes/MRICloudPy/mricloudpy/sample_data/"
+d = Data(example)
+```
+
+```{python}
+visit1 = Data("mricloud/visit1/").df
+visit2 = Data("mricloud/visit2/").df
+```
+
+
+```{python}
+import statsmodels.api as sm
+import numpy as np
+import matplotlib.pyplot as plt
+
+csf1 = visit1[(visit1['Type'] == 1) & (visit1['Level'] == 1) & (visit1['Object'] == 'CSF')]['Volume']
+csf2 = visit2[(visit2['Type'] == 1) & (visit2['Level'] == 1) & (visit2['Object'] == 'CSF')]['Volume']
+plt.scatter(csf1, csf2)
+```
+
+```{python}
+sm.graphics.mean_diff_plot(csf1, csf2)
+```
+
+
+Often the B/A plot is done on the log scale. This plots the log ratio on the y axis versus the geometric mean on the x axis.
+
+```{python}
+sm.graphics.mean_diff_plot(np.log(csf1), np.log(csf2))
+```
+
+## ICC
+
+The intra-class correlation coefficient is a measure of agreement. It measures the ratio of the inter-subject variation to the total variation (intra and inter). I like to think of ICC as a random effect model. If $Y_{ij}$ is measurement $j$ on subject $i$ then consider the random effect model
+
+$$
+Y_{ij} = \mu + U_i + \epsilon_{ij}
+~~~~ U_i \sim \mathrm{N}(0,\sigma^2_u) ~~~~ \epsilon_{ij} \sim \mathrm{N}(0, \sigma^2)
+$$
+
+Then, the ICC is defined as 
+
+$$
+\frac{\sigma^2_U}{\sigma^2_U + \sigma^2}.
+$$
+
+Note, this ICC model applies even if there's more than 2 measurements per subject. 
+
+Consider two subjects, however. There's an easy moment estimator in that
+$$
+Y_{i2} - Y_{i1} = \epsilon_{i2} - \epsilon_{i1}
+$$
+Thus, the variance of the differences  is an estimator of $2\sigma^2. Similarly,
+$$
+(Y_{i1} + Y_{i2})/2 = U_i + (\epsilon_{i2} + \epsilon_{i1})/2.
+$$
+Thus, the variance of the average is an estimate of $\sigma_u^2 + \sigma^2 / 4$. Thus, we have two equations and two uknowns. This solution has the benefit that it doesn't depend on the normality of the random effects. However, it can produce negative estimates. Another approach simply uses maximum likelihood.
+
+
+```{python}
+import pingouin as pg
+import pandas as pd
+import statsmodels.formula.api as smf
+
+
+csfdf1 = visit1[(visit1['Type'] == 1) & (visit1['Level'] == 1) & (visit1['Object'] == 'CSF')]
+csfdf2 = visit2[(visit2['Type'] == 1) & (visit2['Level'] == 1) & (visit2['Object'] == 'CSF')]
+
+csfdf = pd.concat( [csfdf1, csfdf2] )
+csfdf['logvolume'] = np.log(csfdf['Volume'])
+
+md = smf.mixedlm("logvolume ~ 1", csfdf, groups=csfdf["ID"]).fit()
+md.summary()
+
+sigmasq = md.scale
+
+```

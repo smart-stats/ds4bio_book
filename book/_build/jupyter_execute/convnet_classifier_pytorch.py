@@ -24,7 +24,6 @@ import pandas as pd
 # In[2]:
 
 
-
 imgURL = "https://raw.githubusercontent.com/larvalabs/cryptopunks/master/punks.png"
 urllib.request.urlretrieve(imgURL, "cryptoPunksAll.jpg")
 

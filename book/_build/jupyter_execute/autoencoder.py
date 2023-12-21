@@ -210,9 +210,8 @@ autoencoder = autoencoder()
 # In[6]:
 
 
-
 ## Here's some example data by grabbing one batch
-tryItOut = iter(trainLoader).next()
+tryItOut = next(iter(trainLoader))
 print(tryItOut.shape)
 
 ## Let's encode that data
@@ -246,9 +245,10 @@ for i in range(5):
 
 
 
+
 # Let' see how we do on our images. We'll run the algorithm for 500 epochs 
 
-# In[12]:
+# In[8]:
 
 
 #Optimizer
@@ -273,7 +273,7 @@ for epoch in range(n_epochs):
 
 # Now that we've run it, let's feed a collection of training images through the convnet and see how we did. The top row is the first 5 images of the last training epoch, last batch, and the bottom 5 is those images passed through the algorithm.
 
-# In[15]:
+# In[9]:
 
 
 ## the data from the last iteration is called images
@@ -299,14 +299,14 @@ for i in range(5):
   plt.imshow(img)
 
 
-# In[13]:
+# In[10]:
 
 
 testLoader  = torch.utils.data.DataLoader(torch.Tensor(x_test), batch_size = 100, shuffle = False, num_workers = 1)
-testSample = autoencoder.forward(iter(testLoader).next()).detach().numpy()
+testSample =  autoencoder.forward(next(iter(testLoader))).detach().numpy()
 
 
-# In[16]:
+# In[11]:
 
 
 plt.figure(figsize=(10,4))

@@ -1,0 +1,405 @@
+## Autoencoder example
+
+Autoencoders are another unsupervised learning technique. Autoencoders
+take in a record and spit out a prediction of the same size. The goal
+is to represent the records as a NN. In an incomplete autoencoder, the
+model is regularized by the embedding (middle) layer being much lower
+than the input dimension. In this way, an autoencoder is a dimension
+reduction technique, reducing the input dimension size downto a much
+lower size (the encoder) then back out to the original size (the
+decoder). We can represent the autoencoder with a network diagram as
+below.
+
+
+```{python}
+#| echo: false
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+import sklearn as skl
+
+#plt.figure(figsize=[2, 2])
+G = nx.DiGraph()
+G.add_node("X1",  pos = (0, 5) )
+G.add_node("X2",  pos = (1, 5) )
+G.add_node("X3",  pos = (2, 5) )
+G.add_node("X4",  pos = (3, 5) )
+G.add_node("X5",  pos = (4, 5) )
+G.add_node("X6",  pos = (5, 5) )
+G.add_node("X7",  pos = (6, 5) )
+G.add_node("X8",  pos = (7, 5) )
+
+G.add_node("H11",  pos = (1.4, 4) )
+G.add_node("H12",  pos = (2.8, 4) )
+G.add_node("H13",  pos = (4.2, 4) )
+G.add_node("H14",  pos = (5.6, 4) )
+
+G.add_node("H21",  pos = (2.1, 3) )
+G.add_node("H22",  pos = (4.9, 3) )
+
+G.add_node("H31",  pos = (1.4, 2) )
+G.add_node("H32",  pos = (2.8, 2) )
+G.add_node("H33",  pos = (4.2, 2) )
+G.add_node("H34",  pos = (5.6, 2) )
+
+
+G.add_node("H41",  pos = (0, 1) )
+G.add_node("H42",  pos = (1, 1) )
+G.add_node("H43",  pos = (2, 1) )
+G.add_node("H44",  pos = (3, 1) )
+G.add_node("H45",  pos = (4, 1) )
+G.add_node("H46",  pos = (5, 1) )
+G.add_node("H47",  pos = (6, 1) )
+G.add_node("H48",  pos = (7, 1) )
+
+G.add_edges_from([ ("X1", "H11"),  ("X1", "H12"),  ("X1", "H13"),  ("X1", "H14")])
+G.add_edges_from([ ("X2", "H11"),  ("X2", "H12"),  ("X2", "H13"),  ("X2", "H14")])
+G.add_edges_from([ ("X3", "H11"),  ("X3", "H12"),  ("X3", "H13"),  ("X3", "H14")])
+G.add_edges_from([ ("X4", "H11"),  ("X4", "H12"),  ("X4", "H13"),  ("X4", "H14")])
+G.add_edges_from([ ("X5", "H11"),  ("X5", "H12"),  ("X5", "H13"),  ("X5", "H14")])
+G.add_edges_from([ ("X6", "H11"),  ("X6", "H12"),  ("X6", "H13"),  ("X6", "H14")])
+G.add_edges_from([ ("X7", "H11"),  ("X7", "H12"),  ("X7", "H13"),  ("X7", "H14")])
+G.add_edges_from([ ("X8", "H11"),  ("X8", "H12"),  ("X8", "H13"),  ("X8", "H14")])
+
+G.add_edges_from([ ("H11", "H21"),  ("H11", "H22")])
+G.add_edges_from([ ("H12", "H21"),  ("H12", "H22")])
+G.add_edges_from([ ("H13", "H21"),  ("H13", "H22")])
+G.add_edges_from([ ("H14", "H21"),  ("H14", "H22")])
+
+
+G.add_edges_from([ ("H21", "H31"),  ("H21", "H32"),  ("H21", "H33"),  ("H21", "H34")])
+G.add_edges_from([ ("H22", "H31"),  ("H22", "H32"),  ("H22", "H33"),  ("H22", "H34")])
+
+G.add_edges_from([ ("H31", "H41"),  ("H31", "H42"),  ("H31", "H43"),  ("H31", "H44")])
+G.add_edges_from([ ("H31", "H45"),  ("H31", "H46"),  ("H31", "H47"),  ("H31", "H48")])
+G.add_edges_from([ ("H32", "H41"),  ("H32", "H42"),  ("H32", "H43"),  ("H32", "H44")])
+G.add_edges_from([ ("H32", "H45"),  ("H32", "H46"),  ("H32", "H47"),  ("H32", "H48")])
+G.add_edges_from([ ("H33", "H41"),  ("H33", "H42"),  ("H33", "H43"),  ("H33", "H44")])
+G.add_edges_from([ ("H33", "H45"),  ("H33", "H46"),  ("H33", "H47"),  ("H33", "H48")])
+G.add_edges_from([ ("H34", "H41"),  ("H34", "H42"),  ("H34", "H43"),  ("H34", "H44")])
+G.add_edges_from([ ("H34", "H45"),  ("H34", "H46"),  ("H34", "H47"),  ("H34", "H48")])
+
+
+#G.add_edges_from([("H11", "H21"), ("H11", "H22"), ("H12", "H21"), ("H12", "H22")])
+#G.add_edges_from([("H21", "Y"), ("H22", "Y")])
+nx.draw(G, 
+        nx.get_node_attributes(G, 'pos'), 
+        with_labels=True, 
+        font_weight='bold', 
+        node_size = 1000,
+        node_color = "lightblue",
+        linewidths = 3)
+ax= plt.gca()
+ax.collections[0].set_edgecolor("#000000")
+ax.set_xlim([-.5, 7.5])
+ax.set_ylim([.5, 5.5])
+plt.show()
+```
+
+Let $\phi$ be the first two layers of the network and $\theta$ be the
+last two. So, if we wanted to pass a data row, $x_i$ through the
+network we would do $\theta(\phi(x_i))$. We would call the network
+$\phi$ as the *encoding* network and $\theta$ as the decoding
+network. Consider training the network by minimizing
+
+$$
+\sum_{i=1}^n || x_i - \theta(\phi(x_i)) ||^2
+$$
+
+over the weights. This sort of network is called an
+autoencoder. Notice that the same data is the input and output of the
+network. This kind of learning is called **unsupervised**, since we're
+not trying to use $x$ to predict an outcome $y$. Instead, we're trying
+to explore variation and find interesting features in $x$ as a goal in
+itself without a "supervising" outcome, $y$, to help out.
+
+Notice overfitting concerns are somewhat different in this network
+construction. If this model fits well, then it's suggesting that 2
+numbers can explain 8. That is, the network will have reduced the
+inputs to only two dimensions, that we could visualize for
+example. That is a form of parsimony that prevents overfitting. The
+middle layer is called the embedding. It is called this because an
+autoencoder is a form of non-linear embedding of our data into a lower
+dimensionional space.
+
+There's nothing to prevent us from having convolutional layers if the
+inputs are images. That's what we'll work on here. For convolutional
+autoencoders, it's typical to increase the number of channels and
+decrease the image sizes as one works through the network.
+
+### PCA and autoencoders
+
+Without modification, autoencoders can be programmed that span the
+same space as PCA/SVD [@plaut2018principal]. Enforcing the
+orthogonality requires something like adding Lagrange terms to the
+loss function. There's no reason why you would do this, since PCA is
+well developed and works just fine. However, it does suggest why NNs
+are such a large class of models.
+
+Let $X_i$ be a collection of features for record $i$. Then, the SVD
+approximates the data matrix $X$ with $UV^t$, where we've absorbed the
+singular values into either $U$ or $V$. Per record, this model for $K$
+components and column $k$ from $V$ of $v_k$.
+
+$$
+\hat x_i = \sum_{k=1}^K <x_i, v_k> v_k 
+$$
+
+Therefore, consider a neural network that specifies that the first layer defines $K$ hidden units as 
+
+$$
+h_{ik} = <x_i, v_k>.
+$$
+
+That is, it has a linear activation function with no bias term and weights $v_{jk}$ where $v_{jk}$ is element $j$ of vector $v_k$. Then consider an output layer that defines
+
+$$
+\hat x_{ij} = \sum_{k=1}^K h_{ik} v_{jk},
+$$
+
+Again, this is a linear activation function with weights $v_{jk}$. So,
+we arrive at the conclusion, that PCA is an example of an autoencoder
+with two layers, constraints on the weights being common to both
+layers, and constraints on the loss function that enforces the
+orthonormality of the $v_k$. Of course, as we saw with ordinary
+regression, whether or not we can actually get gradient descent to
+converge remains a harder issue than just using PCA
+directly. Furthermore, the autoencoder wouldn't necessarily order the
+PCs similarly.
+
+Finally, we see that a two layer autoencoder -without the constraints-
+contains the PCA fit as a special case and spans the same space as the
+PCA fit. Similarly we see that such a two layer encoder is
+overspecified, as most NNs are.
+
+### Example on dermamnist
+
+First, let's set up our autoencoder  by defining a python class then initializing it.
+We assume the imports and data loading from the chapter on PCA and ICA.
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.linalg as la
+from sklearn.decomposition import PCA
+import urllib.request
+import PIL
+import numpy as np
+import torch 
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+import torchvision
+import torchvision.transforms as transforms
+import torch.utils.data as data
+from torch.utils.data import TensorDataset, DataLoader
+from sklearn.decomposition import FastICA
+from tqdm import tqdm
+import medmnist
+from medmnist import INFO, Evaluator
+import scipy
+import IPython
+```
+
+```{python}
+#| echo: false
+data_flag = 'dermamnist'
+
+## This defines our NN parameters
+NUM_EPOCHS = 10
+BATCH_SIZE = 128
+lr = 0.001
+
+info = INFO[data_flag]
+task = info['task']
+n_channels = info['n_channels']
+n_classes = len(info['label'])
+
+##https://github.com/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb
+data_flag = 'dermamnist'
+
+data_transform = transforms.Compose([
+  
+  transforms.ToTensor()
+
+])
+DataClass = getattr(medmnist, info['python_class'])
+
+# load the data
+train_dataset = DataClass(split = 'train', transform = data_transform, download = True)
+test_dataset  = DataClass(split = 'test' , transform = data_transform, download = True)
+pil_dataset   = DataClass(split = 'train',                             download = True)
+
+train_loader = data.DataLoader(dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+test_loader = data.DataLoader(dataset=test_dataset, batch_size=2*BATCH_SIZE, shuffle=False)
+
+def loader_to_array(dataloader):
+  ## Read one iteration to get data
+  test_input, test_target = next(iter(dataloader))
+  ## Total number of training images
+  n = np.sum([inputs.shape[0] for inputs, targets in dataloader])
+  ## The dimensions of the images
+  imgdim = (test_input.shape[2], test_input.shape[3])
+  images = np.empty( (n, imgdim[0], imgdim[1], 3))
+
+  ## Read the data from the data loader into our numpy array
+  idx = 0
+  for inputs, targets in dataloader:
+    inputs = inputs.detach().numpy()
+    for j in range(inputs.shape[0]):
+      img = inputs[j,:,:,:]
+      ## get it out of pytorch format
+      img = np.transpose(img, (1, 2, 0))
+      images[idx,:,:,:] = img
+      matrix = images.reshape(n, 3 * np.prod(imgdim))
+      idx += 1
+  return images, matrix
+
+train_images, train_matrix = loader_to_array(train_loader)
+test_images, test_matrix = loader_to_array(test_loader)
+
+## Demean the matrices
+train_mean = train_matrix.mean(0)
+train_matrix = train_matrix - train_mean
+test_mean = test_matrix.mean(0)
+test_matrix = test_matrix - test_mean
+```
+
+
+```{python}
+kernel_size = 5
+
+class autoencoder(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        self.conv1 = nn.Conv2d(3, 6, kernel_size)
+        self.conv2 = nn.Conv2d(6, 12, kernel_size)
+        self.pool  = nn.MaxPool2d(2, 2)
+        self.iconv1 = nn.ConvTranspose2d(12, 6, kernel_size+1, stride = 2)
+        self.iconv2 = nn.ConvTranspose2d(6, 3, kernel_size+1, stride = 2)
+
+    def encode(self, x):
+        x = F.relu(self.conv1(x))
+        x = self.pool(x)
+        x = F.relu(self.conv2(x))
+        x = self.pool(x)
+        return x
+    
+    def decode(self, x):
+        x = F.relu(self.iconv1(x))
+        ## Use the sigmoid as the final layer 
+        ## since we've normalized pixel values to be between 0 and 1
+        x = torch.sigmoid(self.iconv2(x))
+        return(x)
+    
+    def forward(self, x):
+        return self.decode(self.encode(x))
+    
+autoencoder = autoencoder()
+```
+
+We can try out the autoencoder by 
+
+```{python}
+## Here's some example data by grabbing one batch
+tryItOut, _ = next(iter(train_loader))
+print(tryItOut.shape)
+
+## Let's encode that data
+encoded = autoencoder.encode(tryItOut)
+print(encoded.shape)
+
+## Now let's decode the encoded data
+decoded = autoencoder.decode(encoded)
+print(decoded.shape)
+
+## Now let's run the whole thing through
+fedForward = autoencoder.forward(tryItOut)
+print(fedForward.shape)
+```
+
+```{python}
+test = fedForward.detach().numpy()
+
+## Plot out the first 5 images, note this isn't very interesting, since
+## all of the weights haven't been trained
+plt.figure(figsize=(10,5))
+for i in range(5): 
+  plt.subplot(1, 5,i+1)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(test[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)
+```
+
+```{python}
+#Optimizer
+optimizer = torch.optim.Adam(autoencoder.parameters(), lr = 0.001)
+
+#Epochs
+n_epochs = 20
+
+autoencoder.train()
+
+for epoch in range(n_epochs):
+    for data, _ in train_loader:
+        images = data
+        optimizer.zero_grad()
+        outputs = autoencoder.forward(images)
+        loss = F.mse_loss(outputs, images)
+        loss.backward()
+        optimizer.step()
+          
+```
+
+```{python}
+## the data from the last iteration is called images
+trainSample = images.detach().numpy()
+
+plt.figure(figsize=(10,5))
+for i in range(5): 
+  plt.subplot(1, 5,i+1)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(trainSample[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)
+
+## the output from the last iterations (feed forward through the network) is called outputs
+trainOutput = outputs.detach().numpy()
+
+plt.figure(figsize=(10,5))
+for i in range(5): 
+  plt.subplot(2, 5,i+6)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(trainOutput[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)
+
+```
+
+On a test batch
+```{python}
+
+test_batch, _ = next(iter(test_loader))
+x_test = test_batch.detach().numpy()
+testSample = autoencoder.forward(test_batch).detach().numpy()
+
+plt.figure(figsize=(10,4))
+
+## Plot the original data
+for i in range(5): 
+  plt.subplot(2, 5, i + 1)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(x_test[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)
+# Plot the data having been run throught the convolutional autoencoder
+for i in range(5): 
+  plt.subplot(2, 5, i + 6)
+  plt.xticks([])
+  plt.yticks([])
+  img = np.transpose(testSample[i,:,:,:], (1, 2, 0))
+  plt.imshow(img)
+```

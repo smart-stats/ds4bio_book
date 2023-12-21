@@ -5,7 +5,7 @@
 
 # # Basic regression in pytorch
 
-# In[225]:
+# In[1]:
 
 
 import pandas as pd
@@ -20,7 +20,7 @@ dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/
 dat.head(4)
 
 
-# In[193]:
+# In[2]:
 
 
 sns.scatterplot(dat['T2'], dat['PD'])
@@ -74,6 +74,7 @@ ytraining = ytraining.unsqueeze(1)
  ]
 
 
+
 # In[ ]:
 
 
@@ -108,6 +109,7 @@ for t in range(10000):
   
   ## Optimization step
   optimizer.step()
+
 
 
 # In[229]:

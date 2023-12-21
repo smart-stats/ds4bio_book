@@ -1,0 +1,280 @@
+data_advanced_databases.qmd:import numpy as np
+data_advanced_databases.qmd:import h5py
+data_advanced_webscraping.qmd:from urllib.request import urlopen
+data_advanced_webscraping.qmd:from bs4 import BeautifulSoup as bs
+data_advanced_webscraping.qmd:import pandas as pd
+data_advanced_webscraping.qmd:from selenium import webdriver
+data_cleaning_example.qmd:manipulations.  The python command for this is `import`.
+data_cleaning_example.qmd:import pandas as pd
+data_cleaning_example.qmd:import numpy as np
+data_cleaning_example.qmd:import matplotlib as mpl
+data_cleaning_example.qmd:function `read_csv` within pandas. Notice we imported pandas `as pd`
+data_cleaning_example.qmd:import plotly.express as px
+data_sqlite.qmd:wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_pop_arcos.csv
+data_sqlite.qmd:wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/land_area.csv
+data_sqlite.qmd:wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_annual.csv
+data_sqlite.qmd:Next, let's import them into sqlite
+data_sqlite.qmd:sqlite> .import county_pop_arcos.csv population
+data_sqlite.qmd:sqlite> .import county_annual.csv annual
+data_sqlite.qmd:sqlite> .import land_area.csv land
+data_sqlite.qmd:import sqlite3 as sq3
+data_sqlite.qmd:import pandas as pd
+data_webscraping.qmd:let's import the packages we need.
+data_webscraping.qmd:import requests as rq
+data_webscraping.qmd:import bs4
+data_webscraping.qmd:import pandas as pd
+graphics_advanced_interactive.qmd:import pandas as pd
+graphics_advanced_interactive.qmd:import plotly.express as px
+graphics_advanced_interactive.qmd:import numpy as np
+graphics_eda.qmd:import numpy as np
+graphics_eda.qmd:import pandas as pd
+graphics_eda.qmd:import seaborn as sns
+graphics_eda.qmd:import matplotlib.pyplot as plt
+graphics_images.qmd:from PIL import Image
+graphics_images.qmd:import numpy as np
+graphics_images.qmd:import matplotlib.pyplot as plt
+graphics_images.qmd:Convolutions are an important topic  in mathematics, statistics, signal processing ... Let's discuss 1D convolutions first. A real valued convolution of two continuous signals, $X(t)$ and $K(t)$ is defined as $X* K$ 
+graphics_images.qmd:import pandas as pd
+graphics_images.qmd:import numpy as np
+graphics_images.qmd:import matplotlib.pyplot as plt
+graphics_images.qmd:import seaborn as sns
+graphics_images.qmd:import PIL
+graphics_images.qmd:import scipy.signal as sp
+graphics_images.qmd:import urllib.request
+graphics_interactive.qmd:import pandas as pd
+graphics_interactive.qmd:import plotly.express as px
+graphics_interactive.qmd:import numpy as np
+graphics_interactive.qmd:import folium 
+intro_git.qmd:import networkx as nx
+intro_git.qmd:import matplotlib.pyplot as plt
+intro_git.qmd:#import numpy as np
+intro_git.qmd:#import sklearn as skl
+nns_basic_regression.qmd:import pandas as pd
+nns_basic_regression.qmd:import torch
+nns_basic_regression.qmd:import statsmodels.formula.api as smf
+nns_basic_regression.qmd:import statsmodels as sm
+nns_basic_regression.qmd:import seaborn as sns
+nns_basic_regression.qmd:import matplotlib.pyplot as plt
+nns_intro.qmd:import networkx as nx
+nns_intro.qmd:import matplotlib.pyplot as plt
+nns_intro.qmd:import numpy as np
+nns_intro.qmd:import sklearn as skl
+nns_intro.qmd:zero isn't important, since the intercept term effectively shifts the
+nns_intro.qmd:from sklearn.linear_model import LinearRegression
+nns_logistic_regression.qmd:import pandas as pd
+nns_logistic_regression.qmd:import torch
+nns_logistic_regression.qmd:import statsmodels.formula.api as smf
+nns_logistic_regression.qmd:import statsmodels as sm
+nns_logistic_regression.qmd:import seaborn as sns
+nns_logistic_regression.qmd:import matplotlib.pyplot as plt
+nns_logistic_regression.qmd:import numpy as np
+nns_pytorch_example.qmd:import networkx as nx
+nns_pytorch_example.qmd:import matplotlib.pyplot as plt
+nns_pytorch_example.qmd:import numpy as np
+nns_pytorch_example.qmd:import sklearn as skl
+nns_pytorch_example.qmd:import torch
+nns_pytorch_example.qmd:import numpy as np
+nns_pytorch_example.qmd:import pandas as pd
+nns_pytorch_example.qmd:import seaborn as sns
+nns_pytorch_example.qmd:import matplotlib.pyplot as plt
+nns_pytorch_example.qmd:import sklearn.linear_model as lm
+python_basic.qmd:These types are our basic building blocks. There's some other important basic types that build on these. We'll cover these later, but to give you a teaser:
+python_basic.qmd:Sets and tuples are similar to lists, however with some important distinctions. Sets, contain only unique elements and tuples are immutable lists.
+python_functions.qmd:Writing functions are an important aspect of programming. Writing functions helps automate redundant tasks and create more reusable code. Defining functions in python is easy. Let's write a function that raises a number to a power. (This is unnecessary of course.) Don't forget the colon.
+python_practice.qmd:1. `import numpy`
+python_practice.qmd:2. `import numpy as np`
+python_practice.qmd:3. `from numpy import *`
+python_practice.qmd:Option 1. imports numpy, but then you have to type `numpy.FUNCTION` to
+python_practice.qmd:import numpy as np
+python_practice.qmd:2. `import numpy.linalg as la` then `la.det(mymat)`
+python_practice.qmd:3. `from numpy.linalg import det` then `det(mymat)`
+python_practice.qmd:from numpy.linalg import det 
+specialized_autoencoder2.qmd:import networkx as nx
+specialized_autoencoder2.qmd:import matplotlib.pyplot as plt
+specialized_autoencoder2.qmd:import numpy as np
+specialized_autoencoder2.qmd:import sklearn as skl
+specialized_autoencoder.qmd:import networkx as nx
+specialized_autoencoder.qmd:import matplotlib.pyplot as plt
+specialized_autoencoder.qmd:import numpy as np
+specialized_autoencoder.qmd:import sklearn as skl
+specialized_autoencoder.qmd:import urllib.request
+specialized_autoencoder.qmd:import PIL
+specialized_autoencoder.qmd:import matplotlib.pyplot as plt
+specialized_autoencoder.qmd:import numpy as np
+specialized_autoencoder.qmd:import torch 
+specialized_autoencoder.qmd:import torch.nn as nn
+specialized_autoencoder.qmd:import torch.nn.functional as F
+specialized_autoencoder.qmd:from torch.utils.data import TensorDataset, DataLoader
+specialized_autoencoder.qmd:import torchvision
+specialized_autoencoder.qmd:import torchvision.transforms as transforms
+specialized_gan.qmd:import networkx as nx
+specialized_gan.qmd:import matplotlib.pyplot as plt
+specialized_gan.qmd:import numpy as np
+specialized_gan.qmd:import sklearn as skl
+specialized_gan.qmd:import torch
+specialized_gan.qmd:import torch.nn as nn
+specialized_gan.qmd:import torch.optim as optim
+specialized_gan.qmd:import torch.nn.functional as F
+specialized_gan.qmd:import numpy as np
+specialized_gan.qmd:import matplotlib.pyplot as plt
+specialized_gan.qmd:import urllib.request
+specialized_gan.qmd:import PIL
+specialized_gpu.qmd:import torch
+specialized_gpu.qmd:import time
+specialized_gpu.qmd:import torch
+specialized_gpu.qmd:import torch.nn as nn
+specialized_gpu.qmd:import torch.optim as optim
+specialized_gpu.qmd:import torch.nn.functional as F
+specialized_gpu.qmd:import numpy as np
+specialized_gpu.qmd:import urllib.request
+specialized_gpu.qmd:import PIL
+specialized_gpu.qmd:import matplotlib.pyplot as plt
+specialized_gpu.qmd:import matplotlib.animation as animation
+specialized_gpu.qmd:from IPython.display import HTML, Image
+statistics_causal.qmd:import networkx as nx
+statistics_causal.qmd:import matplotlib.pyplot as plt
+statistics_causal.qmd:import numpy as np
+statistics_causal.qmd:import sklearn as skl
+statistics_causal.qmd:It's important to emphasize, that every aspect of the adjustment formula is theoretically estimable if $Y$, $X$ and the nodes in $S$ are observed.  
+statistics_causal.qmd:In the upper right diagram below, $Z$ is a so-called **instrumental** variable. A good example is $Z$ being the randomization indicator and $X$ being the treatment the person actually took. It is important in this example to emphasize that use of the instrumental variable is often a very fruitful method of analysis. However, it's not a useful backdoor adjustment and conditioning on $Z$ simply removes most of the relevant variation in $X$. If one wants to use $Z$ as an instrumental variable in this setting, then specific methods taylored to instrumental variable use need to be employed.
+statistics_ml.qmd:learning, both important topics in data science. So you'll just kind
+supervised_binary_classification.qmd:import numpy as np
+supervised_binary_classification.qmd:import pandas as pd
+supervised_binary_classification.qmd:import seaborn as sns
+supervised_binary_classification.qmd:import matplotlib.pyplot as plt
+supervised_binary_classification.qmd:from sklearn.metrics import accuracy_score, roc_curve, auc
+supervised_dft.qmd:import numpy as np
+supervised_dft.qmd:import matplotlib.pyplot as plt
+supervised_example.qmd:import pandas as pd
+supervised_example.qmd:import numpy as np
+supervised_example.qmd:from sklearn.linear_model import LinearRegression
+supervised_example.qmd:import matplotlib.pyplot as plt
+supervised_lm_fft.qmd:It's important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that $x$ is $e^{-2\pi i m k / n}$ for $m=0,\ldots, n-1$ for a particular value of $k$. Vectors like this are orthogonal for different values of $k$ and all have norm 1. We have already seen that the Fourier coefficient is 
+supervised_lm_fft.qmd:import pandas as pd
+supervised_lm_fft.qmd:import numpy as np
+supervised_lm_fft.qmd:from sklearn import linear_model
+supervised_lm_fft.qmd:import matplotlib.pyplot as plt
+supervised_lm_fft.qmd:import statsmodels.api as sm
+supervised_lm_interpretation.qmd:Note, the adjusted estimated treatment effect is the difference between the two parallel sloped lines. The unadjusted estimated treatment effect is the difference between the two horizontal lines. Let's look at how adjustment changes things depending on the setting. First we'll do our imports and then define a function that will make our plot for us and fit the ANCOVA model.
+supervised_lm_interpretation.qmd:import pandas as pd
+supervised_lm_interpretation.qmd:import matplotlib.pyplot as plt
+supervised_lm_interpretation.qmd:import seaborn as sns
+supervised_lm_interpretation.qmd:import numpy as np
+supervised_lm_interpretation.qmd:import pandas as pd
+supervised_lm_interpretation.qmd:from sklearn.linear_model import LinearRegression
+supervised_lm_interpretation.qmd:import copy
+supervised_logistic.qmd:import numpy as np
+supervised_logistic.qmd:import pandas as pd
+supervised_logistic.qmd:import seaborn as sns
+supervised_logistic.qmd:import matplotlib.pyplot as plt
+supervised_logistic.qmd:import sklearn.linear_model as lm
+supervised_logistic.qmd:from sklearn.metrics import accuracy_score, roc_curve, auc
+supervised_multivariable.qmd:import numpy as np
+supervised_multivariable.qmd:import pandas as pd
+supervised_multivariable.qmd:import seaborn as sns
+supervised_multivariable.qmd:import matplotlib.pyplot as plt
+supervised_multivariable.qmd:import sklearn.linear_model as lm
+supervised_multivariable.qmd:import sklearn as skl
+supervised_multivariable.qmd:import statsmodels.formula.api as smf
+supervised_multivariable.qmd:import statsmodels as sm
+supervised_multivariable.qmd:import matplotlib.pyplot as plt
+supervised_regression_origin.qmd:import pandas as pd
+supervised_regression_origin.qmd:import numpy as np
+supervised_regression_origin.qmd:import matplotlib.pyplot as plt
+supervised_regression.qmd:import numpy as np
+supervised_regression.qmd:from scipy import stats as st
+supervised_regression.qmd:import pandas as pd
+supervised_regression.qmd:import seaborn as sns
+supervised_regression.qmd:import matplotlib.pyplot as plt
+theory_data_analysis.qmd:pure determinism (i.e. hidden variables) requires giving up some important notions in this area, such as locality. How much of a proof of the existence of randomness the theorem and experiments are is debatable (and heavily debated). Bell's theorem notwithstanding, it still remains in question whether these measurements are truly random in some sense or just well modeled by randomness. But, I'll stop here, since I don't understand this stuff at all.
+theory_data_analysis.qmd:For our purposes, this seems irrelevant. Even if randomness does exist at the scale of the extremely small, our data generally references systems where we believe that determinism holds. There is no Bell's theorem of disease. Typically, we think observed and hidden variables explain the relevant majority of an individual or population's state of health. Moreover, regardless if some models are right or it's just true that all stochastic models are wrong, many models are extremely useful. It is more important to be able to accurately represent one's assumptions and how they connect to the experimental setting than it is to argue that one's assumptions are true on some bizarre abstract level. So, my recommendation is to ignore this line of thinking entirely, and instead focus on being able to articulate your assumptions and describe what it is you're treating as random, regardless of whether or not it actually is.
+theory_data_analysis.qmd:Another useful definition of a model is that it connects our data to a hypothetical or actual population. This requires defining the population of interest. Having a good sense of the target population is an important step in data analysis. Without this step, we are creating estimators without estimands. Defined this way, our model helps us **generalize** our results beyond our sample. Kass discusses this idea of modeling in [@kass2011statistical]. He expouses a form of "statistical pragmatism". Notably, he makes a stark delineation between statisticl concepts and the "real world". As an example 
+theory_data_analysis.qmd:Sampling variation deserves a special mention as design based inference. Very often we make iid (random) sampling assumptions even if the assumptions are obviously false. It is important to acknowledge that conclusions are under this assumption.
+theory_data_analysis.qmd:In many settings we assume that we are modeling mechanisms, for example when modeling $Y=f(x)+\epsilon$. Often, we assume that $\epsilon$ is comprised of acculated errors from unmodeled variables. There is further an assumption that these errors accumulate in a way that is well modeled by randomness. Some examples where this fails to be true is when we omit an important confounder from our model. There, the errors are systematic in a way that is essential for understanding the scientific phenomena that we are studying. In a later chapter, we'll discuss causal diagrams and think about what variables we include and exclude from our models and how to unmodeled variables can influence our results.
+theory_data_analysis.qmd:It's important to emphasize that rather than thinking of one way to think about modeling as being right and others wrong, one should be able to describe with precision what they are doing in their analysis. Here are some examples of questions one might ask themselves:
+theory_explainability.qmd:Explainability is an important aspect for building trust in a neural
+theory_explainability.qmd:import urllib.request
+theory_explainability.qmd:import PIL
+theory_explainability.qmd:import matplotlib.pyplot as plt
+theory_explainability.qmd:import numpy as np
+theory_explainability.qmd:import pandas as pd
+theory_explainability.qmd:import torch 
+theory_explainability.qmd:import torch.nn as nn
+theory_explainability.qmd:import torch.nn.functional as F
+theory_explainability.qmd:from torch.utils.data import TensorDataset, DataLoader
+theory_explainability.qmd:import torchvision
+theory_explainability.qmd:import torchvision.transforms as transforms
+theory_explainability.qmd:import torch.optim as optim
+theory_explainability.qmd:important, then the prediction would drop. If it wasn't very
+theory_explainability.qmd:important, the prediction would stay the same.
+theory_measurement.qmd:import statsmodels.api as sm
+theory_measurement.qmd:import numpy as np
+theory_measurement.qmd:import sys 
+theory_measurement.qmd:import os
+theory_measurement.qmd:from mricloudpy.mricloudpy import Data
+theory_measurement.qmd:import statsmodels.api as sm
+theory_measurement.qmd:import numpy as np
+theory_measurement.qmd:import matplotlib.pyplot as plt
+theory_measurement.qmd:import pingouin as pg
+theory_measurement.qmd:import pandas as pd
+theory_measurement.qmd:import statsmodels.formula.api as smf
+tooling_dash2.qmd:from dash import Dash, dcc, html, Input, Output
+tooling_dash2.qmd:import plotly.express as px
+tooling_dash2.qmd:import pandas as pd
+tooling_dash2.qmd:from datetime import date
+tooling_dash2.qmd:from dash import Dash, html, dcc
+tooling_dash2.qmd:from dash.dependencies import Input, Output
+tooling_dash2.qmd:from dash import Dash, dcc, html, Input, Output
+tooling_dash2.qmd:import dash_leaflet as dl
+tooling_dash2.qmd:from dash import Dash, html, dcc
+tooling_dash2.qmd:from dash.dependencies import Input, Output, State
+tooling_dash2.qmd:import os
+tooling_dash.qmd:import dash
+tooling_dash.qmd:import dash_core_components as dcc
+tooling_dash.qmd:import dash_html_components as html
+tooling_dash.qmd:import plotly.express as px
+tooling_dash.qmd:import pandas as pd
+tooling_dash.qmd:import numpy as np
+tooling_dash.qmd:from dash import Dash, dcc, html, Input, Output
+tooling_dash.qmd:import plotly.express as px
+tooling_dash.qmd:import pandas as pd
+tooling_dash.qmd:from datetime import date
+tooling_dash.qmd:from dash import Dash, html, dcc
+tooling_dash.qmd:from dash.dependencies import Input, Output
+tooling_dash.qmd:from dash import Dash, dcc, html, Input, Output
+tooling_dash.qmd:import dash_leaflet as dl
+tooling_dash.qmd:from dash import Dash, html, dcc
+tooling_dash.qmd:from dash.dependencies import Input, Output, State
+tooling_dash.qmd:import os
+tooling_numpy.qmd:import pandas as pd
+tooling_numpy.qmd:import numpy as np
+tooling_numpy.qmd:import matplotlib.pyplot as plt
+tooling_numpy.qmd:from sklearn import linear_model
+tooling_streamlit.qmd:import streamlit as st
+tooling_streamlit.qmd:import streamlit as st
+tooling_streamlit.qmd:import pandas as pd
+tooling_streamlit.qmd:import numpy as np
+unsupervised_pca_ica.qmd:import numpy as np
+unsupervised_pca_ica.qmd:import matplotlib.pyplot as plt
+unsupervised_pca_ica.qmd:import numpy.linalg as la
+unsupervised_pca_ica.qmd:from sklearn.decomposition import PCA
+unsupervised_pca_ica.qmd:import urllib.request
+unsupervised_pca_ica.qmd:import PIL
+unsupervised_pca_ica.qmd:import numpy as np
+unsupervised_pca_ica.qmd:import torch 
+unsupervised_pca_ica.qmd:import torch.nn as nn
+unsupervised_pca_ica.qmd:import torch.optim as optim
+unsupervised_pca_ica.qmd:import torch.nn.functional as F
+unsupervised_pca_ica.qmd:import torchvision
+unsupervised_pca_ica.qmd:import torchvision.transforms as transforms
+unsupervised_pca_ica.qmd:import torch.utils.data as data
+unsupervised_pca_ica.qmd:from torch.utils.data import TensorDataset, DataLoader
+unsupervised_pca_ica.qmd:from sklearn.decomposition import FastICA
+unsupervised_pca_ica.qmd:from tqdm import tqdm
+unsupervised_pca_ica.qmd:import medmnist
+unsupervised_pca_ica.qmd:from medmnist import INFO, Evaluator
+unsupervised_pca_ica.qmd:import scipy
+unsupervised_pca_ica.qmd:import IPython
+unsupervised_pca_ica.qmd:from sklearn.decomposition import PCA
+unsupervised_pca_ica.qmd:import audio2numpy as a2n
+unsupervised_pca_ica.qmd:from scipy.io.wavfile import write

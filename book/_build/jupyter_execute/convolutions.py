@@ -41,7 +41,7 @@
 # 
 # 
 
-# In[147]:
+# In[1]:
 
 
 import pandas as pd
@@ -63,8 +63,7 @@ X =  X[np.min(np.where(X !=  0)) : X.size]
 plt.plot(X)
 
 
-# In[148]:
-
+# In[2]:
 
 
 ## 41 day moving average
@@ -101,7 +100,7 @@ axes[1, 2].plot(X - XCshifted)
 # Let's show that the first point and end point of the convolution are the averages of $(M-1)/2$ points and and $(M-1)/2+1$ zeros at the beginning or end of the original signal just to show that our intuition is correct. 
 # 
 
-# In[149]:
+# In[3]:
 
 
 temp = np.convolve(X, K, 'same')
@@ -118,7 +117,7 @@ temp = np.convolve(X, K, 'same')
 
 # Also, I averaged a lot (41 days) in order to make the shift very apparent. Let's look at the performance for less wide of a kernel.
 
-# In[150]:
+# In[4]:
 
 
 ## 21 day moving average
@@ -135,7 +134,7 @@ axes[1].plot(X - XC)
 # It should be stated that the convolution operation is multiplication in Fourier space. So, functions like `np.convolve` are performing FFTs in the background. However, if you're going to do this yourself, make sure to keep track of indices and zero padding. (I.e. the bookkeeping.) Otherwise, the FFT wraps around and you get a little of the end averaged in with the beginning and vice versa. I work out getting the same answer as `mode = "same"` below.
 # 
 
-# In[151]:
+# In[5]:
 
 
 fig, axes = plt.subplots(1, 2, figsize = [12.4, 6.2])
@@ -190,7 +189,7 @@ axes[1].plot(convolution - XC)
 # 
 # For regular kernels (box kernels, 2D Gaussians), convolution smooths the image, which has the efffect of making it blurrier. The kernel width determines how blurry the image will then be. This is typically done to denoise an image (to blur out the noise). Let's try it on a cartoon image of Brian. We'll just stick to a black and white image so that it's 2D. A color image has 3 color channels, so is a 3D array. (However, you see the patten; you should be able to extend this to 3D with little problem.)
 
-# In[41]:
+# In[6]:
 
 
 import PIL
@@ -207,7 +206,7 @@ plt.yticks([])
 plt.imshow(img, cmap='gray', vmin=0, vmax=255)
 
 
-# In[42]:
+# In[7]:
 
 
 def kernel(i, j):
@@ -263,8 +262,7 @@ plt.title("32x32")
 # 
 # where $c$ is usually set to a small value. If $c=0$ the leaky relu is just the relu. I set $c$ to be 0.05 so that we can see the background image.
 
-# In[145]:
-
+# In[8]:
 
 
 plt.figure(figsize=[12.4, 6.2])
@@ -302,9 +300,10 @@ plt.yticks([])
 plt.title("LRELU of convolution + bias")
 
 
+
 # Because of how convolutions work, this will find this eye anywhere in the image. Here we just add another eye somewhere else and repeat the convolution.
 
-# In[144]:
+# In[9]:
 
 
 plt.figure(figsize=[12.4, 6.2])

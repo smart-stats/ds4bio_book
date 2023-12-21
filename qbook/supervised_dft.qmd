@@ -1,0 +1,345 @@
+# DFT
+## Abstract notations
+### History
+The Fourier transform is one of the key tools in Biomedical Data
+Science. Its namesake is [Jean Baptiste
+Fourier](https://en.wikipedia.org/wiki/Joseph_Fourier), who was a 18th
+century French mathemetician who made fundamental discoveries into
+harmonic analysis. Its fair to say that Fourier's discoveries are some
+of the most fundamental in all of a mathematics and engineering and is
+the foundation for signal processing.
+
+One of his main discoveries was the Fourier series, the idea that a
+function can be decomposed into building blocks of trigonometric
+functions.
+
+### Some notation
+Let $<,>$ be a so-called inner product. For example $<a, b> =
+\sum_{m=1}^n a_m b_m$ if $a$ and $b$ are two vectors. But, $<a,
+b>=\int_0^1 a(t)b(t)dt$ if $a$ and $b$ are two functions on
+$[0,1]$. (There is a nice generality between Fourier results on data
+and Fourier results on functions and other spaces. However, we'll
+largely focus on discrete data, so think of the first definition.) We
+can define the norm as $<a, a> = ||a||^2$, so that, the distance
+between two vectors is $||a-b||$.
+
+Consider a basis, that is a set of vectors, $b_k$ so that $||b_k|| =
+1$ and $<b_k, b_j>= I(k=j)$ and the set of vectors, ${\cal H}$, that
+can be written as $\sum_{k=1}^k b_k c_k$ for some constants $c_k$,
+then for any element $x\in H$ we have that the best approximation
+using any subset of the indices, $S$, is of the form
+
+$$
+\sum_{k\in S} b_k <b_k, x>.
+$$
+
+For real vectors and the basis we consider, every vector can be
+written as a sum of the basis elements. You can have weird functions
+that can't be written out as sums of the basis elements, but they're
+weird functions.
+
+## More practically
+The basis we're interested in is $b_k$ which has element $m$ equal to
+$e^{-2\pi i m k/n} = \cos(2\pi mk/n) + i \sin (2\pi mk / n)$ for
+$k=0,..., n-1$. Here, notice, we quit using the index $i$ since now it
+stands for the complex unit.  This basis satisfies our rules of $<b_k,
+b_j> = I(j=k)$ and having norm 1. So that, given any vector $x$, our
+best approximation to it is
+
+$$
+\sum_{k=0}^{n-1} b_k <b_k, x> = \sum_{k=0}^{n-1} b_k F_k
+$$
+
+where 
+
+$$
+F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
+= \sum_{m=0}^{n-1} x_m [\cos(2\pi m k / n) + i \sin(2\pi m k / n)].
+$$
+
+The collection of elements, $F = (F_0, \ldots F_{n-1})$ are called the
+(discrete) Fourier coeficients and the operation that takes $x$ and
+converts it into $F$ is called the (discrete) Fourier transform.
+
+Let's consider  the case where $x=(1 ~4 ~9 ~16)'$. So then
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.arange(1,5,1) ** 2
+t = np.arange(0, 4, 1)
+n = 4
+F0 = np.sum(x * np.exp(-2 * 1j * np.pi * t * 0 / n))
+F1 = np.sum(x * np.exp(-2 * 1j * np.pi * t * 1 / n))
+F2 = np.sum(x * np.exp(-2 * 1j * np.pi * t * 2 / n))
+F3 = np.sum(x * np.exp(-2 * 1j * np.pi * t * 3 / n))
+
+np.round([F0, F1, F2, F3], 3)
+```
+
+```{python}
+F = np.fft.fft(x)
+F
+```
+
+Let's give a more realistic example. Consider two cosine waves, one
+fast, one slow. Let's add them together and see if the FFT can figure
+out what we've done.
+
+```{python}
+n = 1000
+t = np.arange(0, n, 1)
+c1 = np.cos(2 * np.pi * t * 5 / n)
+c2 = np.cos(2 * np.pi * t * 20 / n)
+plt.plot(t, c1)
+plt.plot(t, c2)
+plt.show
+```
+
+```{python}
+x = c1 + .5 * c2
+plt.plot(t, x)
+plt.show
+```
+
+```{python}
+a = np.fft.fft(x)
+b = a.real ** 2 + a.imag ** 2
+plt.plot(b)
+plt.show()
+np.where(b > 1e-5)
+```
+
+### Some notes
+We can go backwards from the Fourier coefficients to the signal using the inverse transform. Also, for real signals sometimes people will multiply the signal by $(-1)^t$ in order for the plot of the norm of the coeficients (the power spectrum as its called) to look nicer.
+
+```{python}
+a = np.fft.fft(x * (-1) ** t)
+b = a.real ** 2 + a.imag ** 2
+plt.plot(b)
+plt.show()
+```
+
+```{python}
+a = np.fft.fft(x)
+b = np.fft.ifft(a)
+
+plt.plot(b)
+plt.show()
+```
+
+### Filtering
+
+Filtering is the process of allowing certain frequency bands to be retained while others to be discarded. Imagine in our case that we want the low frequency band to pass and to get rid of the higher frequency. In this case we want a low pass filter. There's a lot of ways to filter signals, but let's just do it by simple thresholding. The slightly tricky thing about this in practical problems, is making sure that you're filtering at the frequencies that you want to. As an example, we have 1,000 time points. Say one time point is 1/100 of a second so that we have ten second of data. We have two cosine functions, one that is at 5 oscillations per 10 seconds (0.5 Hz) and one at 20 oscillations per 10 seconds (2 hz). Let's filter out anything ove 0.5 Hz.
+
+```{python}
+## demonstrating hard filtering
+a = np.fft.fft(x)
+n = a.size
+timestep = 1/100
+## a function that shows what the frequencies are in the units you want
+w = np.fft.fftfreq(n, timestep)
+
+b = a
+b[(abs(w) > .5)] = 0
+c = np.fft.ifft(b).real
+plt.plot(c)
+plt.show()
+```
+
+
+## Regression and FFTs
+
+Recall regression through the origin. If $y$ and $x$ are $n$-vectors
+of the same length, the minimizer of
+
+$$
+||y - \beta x ||^2
+$$
+
+is $\hat \beta = <x, y> / ||x||^2$. Note, if $||x|| = 1$ then the
+estimate is just $\hat \beta = <x, y>$. Now consider a second
+variable, $w$, such that $<x, w> = 0$ and $||w|| = 1$. Consider now
+the least squares model
+
+$$
+||y - \beta x - \gamma w||^2.
+$$
+
+We argued that the best estimate for $\beta$ now first gets rid of $w$
+be regressing it out of $y$ and $x$. So, consider that
+
+$$
+||y - <w, y> w - \beta (x - <w, x> w)||^2 =
+||y - <w, y> w - \beta x||^2. 
+$$
+
+Thus, now the best estimate of $\beta$ is
+
+$$
+<y - <w, y> w, x> = <y, x>.
+$$
+
+Or, in other words, if $x$ and $w$ are orthogonal then the coefficient
+estimate for $x$ with $w$ included is the same as the coefficient of
+$x$ by itself. This extends to more than two regressors.
+
+If you have a collection of $n$ mutually orthogonal vectors of norm
+one, they are called an orthonormal basis. For an orthonomal
+basis, 1. the coefficients are just the inner products between the
+regressors and the outcome and 2. inclusion or exclusion of other
+elemenents of the basis doesn't change a basis elements estimated
+coefficients.
+
+It's important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that $x$ is $e^{-2\pi i m k / n}$ for $m=0,\ldots, n-1$ for a particular value of $k$. Vectors like this are orthogonal for different values of $k$ and all have norm 1. We have already seen that the Fourier coefficient is 
+
+$$
+f_k = <y, x> = \sum_{m=0}^{n-1} y_m e^{-2\pi i m k / n} = 
+\sum_{m=0}^{n-1} y_m \cos(-2\pi m k / n) + i \sum_{m=0}^{n-1} y_m \sin(-2\pi m k / n) 
+$$
+
+where $y_m$ is element $m$ of $y$. Thus, the Fourier coefficients are
+exactly just least squares coefficients applied in the complex space.
+Thus we have that
+
+$$
+f_k = a_k + i b_k
+$$
+
+where $a_k$ and $b_k$ are the coefficients from linear models with
+just the sine and cosine terms. Of course, we don't actually fit
+Fourier transforms this way, since there's a much faster way to do,
+aptly named the fast Fourier transform (FFT). However, knowing how
+fast discrete Fourier transforms relate to linear models allows us to
+use them in creative ways, like putting them into models with other
+covariates, or in logistic regression models.
+
+Let's numerically look at FFTs and linear models using covid case counts in Italy as an example.
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+```
+
+```{python}
+dat = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
+dat.head()
+```
+
+```{python}
+## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)
+y=dat[dat['Country/Region'] == 'Italy'].drop(["Province/State", "Country/Region", "Lat", "Long"], axis=1).unstack()
+## convert from tuple to array
+y = np.asarray(y)  
+## get case counts instead of cumulative counts
+y = y[1 : y.size] - y[0 : (y.size - 1)]
+## get the first non zero entry
+y =  y[np.min(np.where(y !=  0)) : y.size]
+plt.plot(y)
+
+```
+
+Let's look at a smoothed version of it and then take the residual. The residual is where we'd like to look at some oscillatory behavior.
+
+```{python}
+n = y.size
+t = np.arange(0, n, 1)
+lowess = sm.nonparametric.lowess
+yhat = lowess(y, t, frac=.05,return_sorted=False)
+plt.plot(y)
+plt.plot(yhat)
+```
+
+```{python}
+## We're interested in the residual
+e = y - yhat
+plt.plot(e)
+```
+
+Let's manually create our Fourier bases. We're just going to pick some periods to investigate. We'll pick a fast varying and slow varying.
+
+```{python}
+## Create 4 elements
+## Orthonormal basis (note dividing by sqrt(n/2) makes them norm 1)
+c5  = np.cos(-2 * np.pi * t * 5 / n  ) / np.sqrt(n /2)
+c20 = np.cos(-2 * np.pi * t * 20 / n ) / np.sqrt(n /2)
+s5  = np.sin(-2 * np.pi * t * 5  / n  )/ np.sqrt(n /2)
+s20 = np.sin(-2 * np.pi * t * 20 / n  ) / np.sqrt(n /2)
+```
+
+```{python}
+fig, axs = plt.subplots(2, 2)
+axs[0,0].plot(t, c5)
+axs[0,1].plot(t, c20)
+axs[1,0].plot(t, s5)
+axs[1,1].plot(t, s20)
+plt.show()
+```
+
+Let's verify that they are indeed orthonormal. That is, we want to show that $<x_i, x_j> = I(i =j)$. We also show that they are all mean 0.
+
+```{python}
+## Verify that they are orthonormal mean 0, round to 6 decimal places
+np.around( [
+ np.sum(c5),
+ np.sum(c20),
+ np.sum(s5),
+ np.sum(s20),
+ np.sum(c5 * c5),
+ np.sum(c20 * c20),
+ np.sum(s5 * s5),
+ np.sum(s20 * s20),
+ np.sum(c5 * s5),
+ np.sum(c5 * s20),
+ np.sum(c5 * c20),
+ np.sum(s5 * s20),
+], 6)
+```
+
+Let's take the FFT, the fast (discrete) Fourier transform th way one would normally do it. First, we use FFT in numpy. Then, there's a convenient method, `fftfreq`, which gives the associated frequencies with each element of the transform. Finally, we plot the spectral density, which is the sum of the real and complex Fourier coefficients. Sorting the elements first is necessary to connect the dots on the plot. Interestingly, once we remove the trend from the Italy data, there's some very noticeable spikes in the spectral density, which implies large coefficients on that specific frequency. This is possibly some reporting issue.
+
+```{python}
+f = np.fft.fft(e)
+w = np.fft.fftfreq(n)
+ind = w.argsort()
+f = f[ind] 
+w = w[ind]
+plt.plot(w, f.real**2 + f.imag**2)
+```
+
+Now let's manually find the coefficients using our constructed bases and the formula that the coefficients.
+
+```{python}
+[
+ np.sum(c5 * e) * np.sqrt(n / 2),
+ np.sum(c20 * e) * np.sqrt(n / 2),
+ np.sum(s5 * e) * np.sqrt(n / 2),
+ np.sum(s20 * e) * np.sqrt(n / 2),
+] 
+```
+
+```{python}
+sreg = linear_model.LinearRegression()
+x=np.c_[c5, c20, s5, s20]
+fit = sreg.fit(x, y)
+fit.coef_ * np.sqrt(n/2)
+```
+
+```{python}
+x=np.c_[c5, s5]
+fit = sreg.fit(x, y)
+fit.coef_ * np.sqrt(n/2)
+```
+
+```{python}
+test = np.where( np.abs(f.real / np.sum(c5 * y) / np.sqrt(n / 2) - 1) < 1e-5) 
+[test, f.real[test], w[test], 5 / n]
+```
+
+```{python}
+f.imag[test]
+```
+

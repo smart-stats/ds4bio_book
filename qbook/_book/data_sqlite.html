@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.302">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data science and AI for the biological and medical sciences using python - 11&nbsp; SQL via sqlite</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data_advanced_databases.html" rel="next">
+<link href="./data_cleaning_example.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html">Working with data</a></li><li class="breadcrumb-item"><a href="./data_sqlite.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/images/dasl.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DS&amp;AI4B&amp;MSUP</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_html.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra python tooling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Streamlit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dash</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Summary</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-more-reaslistic-example" id="toc-a-more-reaslistic-example" class="nav-link active" data-scroll-target="#a-more-reaslistic-example"><span class="header-section-number">11.1</span> A more reaslistic example</a></li>
+  <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data"><span class="header-section-number">11.2</span> Working with data</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">11.3</span> Notes</a></li>
+  <li><a href="#sqlite-in-python" id="toc-sqlite-in-python" class="nav-link" data-scroll-target="#sqlite-in-python"><span class="header-section-number">11.4</span> sqlite in python</a></li>
+  <li><a href="#reading-into-pandas" id="toc-reading-into-pandas" class="nav-link" data-scroll-target="#reading-into-pandas"><span class="header-section-number">11.5</span> Reading into pandas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this page, we’ll cover some of the basics of SQL (structured querry language) by working through some examples. SQL is a set of language standards for databases, so we have to choose a specific implementation. We’ll use sqlite for this purpose. As its name implies, sqlite is a small implementation of SQL.</p>
+<p>In my linux implementation, sqlite3 was pre-installed. <a href="https://www.guru99.com/download-install-sqlite.html">Here’s</a> a tutorial on installing for windows. Sqlite3 is a single file.</p>
+<p>We’ll first create a database at the command line. Notice when we create a file</p>
+<pre><code>command prompt&gt; sqlite3 class.db
+sqlite&gt; create table class(id int primary key, lname text,fname)
+sqlite&gt; insert into class values (1, "Wayne", "Bruce");
+sqlite&gt; insert into class values (2, "Jennifer", "Walters");
+sqlite&gt; .header on
+sqlist&gt; .mode column
+sqlite&gt; select * from class;
+id  lname     fname  
+--  --------  -------
+1   Wayne     Bruce  
+2   Jennifer  Walters
+sqlite&gt; .quit</code></pre>
+<ul>
+<li>The command <code>sqlite3 class.db</code> opens up the database, in this case creating a new one, and then enters into th sqlite command line.</li>
+<li>The command <code>create ...</code> creates our table within our database</li>
+<li>The <code>insert ...</code> commands insert two records</li>
+<li>The <code>.header ...</code> and <code>.mode ...</code> commands format output</li>
+<li>The <code>select ...</code> command grabs all records</li>
+<li>Then <code>.quit</code> just quits the commmand line.</li>
+</ul>
+<p>Performing an <code>ls</code> in the current working directory now shows the file <code>class.db</code>. Everything else we discuss below assumes working in the sqlite command prompt.</p>
+<p>To work with sqlite, it’s nice to work with a development environment specifically created for sql. Specifically, one with nice highlighting and autocompletion. Since I’m writing these notes in jupyter, I’m just pasting code output.</p>
+<p>Sqlite has SQL commands, which must be typed with a semicolon at the end, and sqlite specific commands, which begin with a period and the <code>pragma</code> commands, which are also sqlite specific. This is good to remember, since some things will be portable to other SQL implementations and others not. ]</p>
+<section id="a-more-reaslistic-example" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="a-more-reaslistic-example"><span class="header-section-number">11.1</span> A more reaslistic example</h2>
+<p>Let’s create and work with a more realistic example. Consider the data Opiods in the US at Open Case Studies <a href="https://github.com/opencasestudies/ocs-bp-opioid-rural-urban">https://github.com/opencasestudies/ocs-bp-opioid-rural-urban</a> as described <a href="https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import">here</a>. Read over their writeup, as we’re mostly going to be showing how to duplicate a lot of their steps in sqlite.</p>
+<p>First, you need to download the data, which you could do by right clicking and saving the file or with a command:</p>
+<pre><code>wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_pop_arcos.csv
+wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/land_area.csv
+wget https://raw.githubusercontent.com/opencasestudies/ocs-bp-opioid-rural-urban/master/data/simpler_import/county_annual.csv</code></pre>
+<p>Next, let’s import them into sqlite</p>
+<pre><code>command prompt&gt; sqlite3 opioid.db
+sqlite&gt; .mode csv
+sqlite&gt; .import county_pop_arcos.csv population
+sqlite&gt; .import county_annual.csv annual
+sqlite&gt; .import land_area.csv land
+sqlite&gt; .tables
+annual      land        population</code></pre>
+<p>What variables do the tables include? The <code>pragma</code> command is unique to sqlite and contains a bunch of helper functions.</p>
+<pre><code>sqlite&gt; pragma table_info(population);
+cid  name          type  notnull  dflt_value  pk
+---  ------------  ----  -------  ----------  --
+0                  TEXT  0                    0 
+1    BUYER_COUNTY  TEXT  0                    0 
+2    BUYER_STATE   TEXT  0                    0 
+3    countyfips    TEXT  0                    0 
+4    STATE         TEXT  0                    0 
+5    COUNTY        TEXT  0                    0 
+6    county_name   TEXT  0                    0 
+7    NAME          TEXT  0                    0 
+8    variable      TEXT  0                    0 
+9    year          TEXT  0                    0 
+10   population    TEXT  0                    0 
+sqlite&gt; pragma table_info(annual);
+cid  name          type  notnull  dflt_value  pk
+---  ------------  ----  -------  ----------  --
+0                  TEXT  0                    0 
+1    BUYER_COUNTY  TEXT  0                    0 
+2    BUYER_STATE   TEXT  0                    0 
+3    year          TEXT  0                    0 
+4    count         TEXT  0                    0 
+5    DOSAGE_UNIT   TEXT  0                    0 
+6    countyfips    TEXT  0                    0
+sqlite&gt; pragma table_info(land)
+cid  name         type  notnull  dflt_value  pk
+---  -----------  ----  -------  ----------  --
+0                 TEXT  0                    0 
+1    Areaname     TEXT  0                    0 
+2    STCOU        TEXT  0                    0 
+3    LND010190F   TEXT  0                    0 
+4    LND010190D   TEXT  0                    0 
+5    LND010190N1  TEXT  0                    0</code></pre>
+<p>(I truncated this latter output at 5.)</p>
+</section>
+<section id="working-with-data" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="working-with-data"><span class="header-section-number">11.2</span> Working with data</h2>
+<p>Let’s print out a few columns of the population data.</p>
+<pre><code>sqlite&gt; select BUYER_COUNTY, BUYER_STATE, STATE, COUNTY, year, population from population limit 5;
+BUYER_COUNTY  BUYER_STATE  STATE  COUNTY  year  population
+------------  -----------  -----  ------  ----  ----------
+AUTAUGA       AL           1      1       2006  51328     
+BALDWIN       AL           1      3       2006  168121    
+BARBOUR       AL           1      5       2006  27861     
+BIBB          AL           1      7       2006  22099     
+BLOUNT        AL           1      9       2006  55485   </code></pre>
+<p>The <code>limit 5</code> prints out five rows. Let’s perform some of the tasks in <a href="https://www.opencasestudies.org/ocs-bp-opioid-rural-urban/#Data_Import">the write up</a>. For example, they want to print out some of the missing data in the annual dataset.</p>
+<pre><code>sqlite&gt; select * from annual where countyfips = "NA" limit 10;
+     BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+---  ------------  -----------  ----  -----  -----------  ----------
+188  ADJUNTAS      PR           2006  147    102800       NA        
+189  ADJUNTAS      PR           2007  153    104800       NA        
+190  ADJUNTAS      PR           2008  153    45400        NA        
+191  ADJUNTAS      PR           2009  184    54200        NA        
+192  ADJUNTAS      PR           2010  190    56200        NA        
+193  ADJUNTAS      PR           2011  186    65530        NA        
+194  ADJUNTAS      PR           2012  138    57330        NA        
+195  ADJUNTAS      PR           2013  138    65820        NA        
+196  ADJUNTAS      PR           2014  90     59490        NA        
+197  AGUADA        PR           2006  160    49200        NA   </code></pre>
+<p>Here, we used the condition “NA” to test for missingness, since the CSV files have the string NA values for missing data. Places other than Puerto Rico (PR)? Lets check some</p>
+<pre><code>sqlite&gt; select * from annual where countyfips = "NA" and BUYER_STATE != "PR" limit 10;
+       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+-----  ------------  -----------  ----  -----  -----------  ----------
+10072  GUAM          GU           2006  319    265348       NA        
+10073  GUAM          GU           2007  330    275600       NA        
+10074  GUAM          GU           2008  313    286900       NA        
+10075  GUAM          GU           2009  390    355300       NA        
+10076  GUAM          GU           2010  510    413800       NA        
+10077  GUAM          GU           2011  559    475600       NA        
+10078  GUAM          GU           2012  616    564800       NA        
+10079  GUAM          GU           2013  728    623200       NA        
+10080  GUAM          GU           2014  712    558960       NA        
+17430  MONTGOMERY    AR           2006  469    175390       NA     </code></pre>
+<p>Inspect the missing data further on your own. It looks like its the unincorporated territories and a handful of Arkansas values missing <code>countyfips</code> (Federal Information Processing Standard). Specifically, Montgomery county AR is missing FIPs codes. Since we want to look US states in specific, excluding territories, we will just set the Montgomery county ones to the correct value 05097 and ignore the other missing values.</p>
+<pre><code>sqlite&gt; update annual set countyfips = 05097 where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
+sqlite&gt; select * from annual where BUYER_STATE = "AR" and BUYER_COUNTY = "MONTGOMERY"
+
+       BUYER_COUNTY  BUYER_STATE  year  count  DOSAGE_UNIT  countyfips
+-----  ------------  -----------  ----  -----  -----------  ----------
+17430  MONTGOMERY    AR           2006  469    175390       5097      
+17431  MONTGOMERY    AR           2007  597    241270       5097      
+17432  MONTGOMERY    AR           2008  561    251760       5097      
+17433  MONTGOMERY    AR           2009  554    244160       5097      </code></pre>
+<p>Now lets delete rows from the <code>annual</code> table that have missing county data. Check on these counties before and verify that the’ve been deleted afterwards. Also, we want to grab just three columns from the <code>land</code> table, so let’s create a new one called <code>land_area</code>. Also, the column there is called <code>STCOU</code>, which we want to rename to <code>coutyfips</code>. (I’m going to stop printing out the results of every step, so make sure you’re checking your work as you go.)</p>
+<pre><code>sqlite&gt; delete from annual where BUYER_COUNTY = "NA"
+sqlite&gt; create table land_area as select Areaname, STCOU, LND110210D from land;
+sqlite&gt; alter table land_area rename column STCOU to countyfips;</code></pre>
+<p>Next we want to start joining the tables, so let’s left join our table and print out the counts to make sure we accounted correctly.</p>
+<pre><code>sqlite&gt; create table county_info as select * from population left join land_area using(countyfips);
+sqlite&gt; select count(*) from land;
+3198
+sqlite&gt; select count(*) from land_area;
+3198
+sqlite&gt; select count(*) from county_info;
+28265
+sqlite&gt; select count(*) from population;</code></pre>
+</section>
+<section id="notes" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="notes"><span class="header-section-number">11.3</span> Notes</h2>
+<p>At this point, hopefully you have enough of a background to finish doing the example from Open Case Studies. I have to say, that working with SQL is pleasant, but I prefer python as a home base. In addition, after working with the data, I want to use plotting and analysis tools. In the next chapter, we’ll look at using python as a base language to interact with an sqlite database.</p>
+</section>
+<section id="sqlite-in-python" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="sqlite-in-python"><span class="header-section-number">11.4</span> sqlite in python</h2>
+<p>An sqlite3 library ships with python. In this tutorial, we’ll discuss how to utilize this library and read sqlite tables into pandas. With this, you can generalize to other python APIs to other databases.<br>
+First, let’s continue on with our work from the previous notebook. A nice little tutorial can be found <a href="https://datacarpentry.org/python-ecology-lesson/09-working-with-sql/index.html">here</a>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3 <span class="im">as</span> sq3</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sq3.<span class="ex">connect</span>(<span class="st">"sql/opioid.db"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cursor() creates an object that can execute functions in the sqlite cursor</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> con.cursor()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> sql.execute(<span class="st">"select * from county_info limit 5;"</span>):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># you have to close the connection</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>con.close</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('1', 'AUTAUGA', 'AL', '01001', '1', '1', 'Autauga', 'Autauga County, Alabama', 'B01003_001', '2006', '51328', 'Autauga, AL', '594.44')
+('2', 'BALDWIN', 'AL', '01003', '1', '3', 'Baldwin', 'Baldwin County, Alabama', 'B01003_001', '2006', '168121', 'Baldwin, AL', '1589.78')
+('3', 'BARBOUR', 'AL', '01005', '1', '5', 'Barbour', 'Barbour County, Alabama', 'B01003_001', '2006', '27861', 'Barbour, AL', '884.88')
+('4', 'BIBB', 'AL', '01007', '1', '7', 'Bibb', 'Bibb County, Alabama', 'B01003_001', '2006', '22099', 'Bibb, AL', '622.58')
+('5', 'BLOUNT', 'AL', '01009', '1', '9', 'Blount', 'Blount County, Alabama', 'B01003_001', '2006', '55485', 'Blount, AL', '644.78')</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>&lt;function Connection.close()&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="reading-into-pandas" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="reading-into-pandas"><span class="header-section-number">11.5</span> Reading into pandas</h2>
+<p>Let’s read our sqlite database into pandas. At this point, we can then work on the dataset entirely in pandas. This is closest to how I work. I’m typically more comfortable working in R or python and so get my data out of database formats and into tidyverse or pandas formats as soon as I can.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sq3.<span class="ex">connect</span>(<span class="st">"sql/opioid.db"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>county_info <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from county_info"</span>, con)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># you have to close the connection</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>con.close</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>county_info.head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>&lt;bound method NDFrame.head of                BUYER_COUNTY BUYER_STATE countyfips STATE COUNTY  \
+0          1        AUTAUGA          AL      01001     1      1   
+1          2        BALDWIN          AL      01003     1      3   
+2          3        BARBOUR          AL      01005     1      5   
+3          4           BIBB          AL      01007     1      7   
+4          5         BLOUNT          AL      01009     1      9   
+...      ...            ...         ...        ...   ...    ...   
+28260  28261       WASHAKIE          WY      56043    56     43   
+28261  28262         WESTON          WY      56045    56     45   
+28262  28263        SKAGWAY          AK      02230     2    230   
+28263  28264  HOONAH ANGOON          AK      02105     2    105   
+28264  28265     PETERSBURG          AK      02195     2    195   
+
+         county_name                               NAME    variable  year  \
+0            Autauga            Autauga County, Alabama  B01003_001  2006   
+1            Baldwin            Baldwin County, Alabama  B01003_001  2006   
+2            Barbour            Barbour County, Alabama  B01003_001  2006   
+3               Bibb               Bibb County, Alabama  B01003_001  2006   
+4             Blount             Blount County, Alabama  B01003_001  2006   
+...              ...                                ...         ...   ...   
+28260       Washakie           Washakie County, Wyoming  B01003_001  2014   
+28261         Weston             Weston County, Wyoming  B01003_001  2014   
+28262        Skagway       Skagway Municipality, Alaska  B01003_001  2014   
+28263  Hoonah Angoon  Hoonah-Angoon Census Area, Alaska  B01003_001  2014   
+28264     Petersburg         Petersburg Borough, Alaska  B01003_001  2014   
+
+      population           Areaname LND110210D  
+0          51328        Autauga, AL     594.44  
+1         168121        Baldwin, AL    1589.78  
+2          27861        Barbour, AL     884.88  
+3          22099           Bibb, AL     622.58  
+4          55485         Blount, AL     644.78  
+...          ...                ...        ...  
+28260       8444       Washakie, WY    2238.55  
+28261       7135         Weston, WY    2398.09  
+28262        996        Skagway, AK     452.33  
+28263       2126  Hoonah-Angoon, AK    7524.92  
+28264       3212     Petersburg, AK    3281.98  
+
+[28265 rows x 13 columns]&gt;</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data_cleaning_example.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data_advanced_databases.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

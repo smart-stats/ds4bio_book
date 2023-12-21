@@ -1,0 +1,40 @@
+# Linear models: a classic example
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+```
+
+```{python}
+dat = pd.read_csv("https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/swiss.csv")
+dat.head()
+```
+
+```{python}
+y = dat.Fertility
+x = dat.drop(['Region', 'Fertility'], axis=1)
+fit = LinearRegression().fit(x, y)
+yhat = fit.predict(x)
+[fit.intercept_, fit.coef_]
+```
+
+```{python}
+x2 = x
+x2['Test'] = x2.Agriculture + x2.Examination
+fit2 = LinearRegression().fit(x2, y)
+yhat2 = fit2.predict(x2)
+```
+
+```{python}
+plt.plot(yhat, yhat2)
+```
+
+```{python}
+x3 = x2.drop(['Agriculture'], axis = 1)
+fit3 = LinearRegression().fit(x3, y)
+yhat3 = fit3.predict(x3)
+plt.plot(yhat, yhat3)
+```
+

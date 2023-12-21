@@ -1,0 +1,174 @@
+# Big data storage
+
+You've probably already learned about some variation of databases
+either sql, nosql, spark, a cloud db, ... We covered sqlite last chapter.  Often,
+the backend of these databases can be quite complicated, while the
+front end requires SQL querries or something similar. We'll look at a
+non-relational database format that is specifically useful for
+scientific computing called hdf5. HDF5 has implementations in many
+languages, but we'll look at python. This is a hierarchical data
+format specifically useful for large array calculations.
+
+Let's create a basic h5py file. First, let's load our stuff.
+
+```{python}
+import numpy as np
+import h5py
+```
+
+Now, let's create an empty hdf5 file. Here's the basic code; the
+option `w` is open for writing. There's also `w-`, `r`, `r+`, `a` for
+write protected, read only, read/write, read/write and create.  The
+first time I ran it I used:
+
+```{python}
+f = h5py.File('sensor.hdf5', 'w')
+```
+
+Then, subsequently
+```{python}
+#| eval: false
+f = h5py.File('sensor.hdf5', 'r+')
+```
+
+Now let's populate it with some data. The hdf5 file works almost like
+a directory where we can store hierarchical data. For example, suppose
+that we want sensors stored in a superstructure called `sensors` and
+want to fill in the data for `sensor1` and `sensor1`.
+
+```{python}
+f['sensors/sensor1'] = np.random.normal(size = 1024)
+f['sensors/sensor2'] = np.random.normal(size = 1024)
+```
+
+Now we can do normal `np` stuff on this sensor. However, hdf5 is only
+bringing in the part that we are using into memory. This allows us to
+work with very large files. Also, as we show here, you can name the
+data to a variable since that's more convenient.
+
+```{python}
+s1 = f['sensors/sensor1']
+s2 = f['sensors/sensor2']
+```
+
+## Blockwise basic statistical calculations
+Now, consider taking the mean of both variables. Imagine that the time
+series is so long it's not feasible to load into memory. So, we want
+to read it in blocks. You want your blocks to be as big as possible,
+since that's fastest. In our case, of course, none of this is
+necessary.
+
+Our goal in this section is to do the following: calculate the
+empirical mean and variance for each sensor, center and scale each
+sensor, and write those changes to those variables, calculate the
+sample correlation then calculate the residual for sensor1 given
+sensor2. (I think typically you wouldn't want to overwrite the
+original data; but, this is for pedagogical purposes.) We want our
+data organized so sensors are stored in a hierarchical "folder" called
+sensors and processed data is in a different folder.
+
+We're just simulating iid standard normals. So, we have a rough idea
+of the answers we should get, since the the data are theoretically
+mean 0, variance 1 and uncorrelated. After our calculations, they will
+have empirical mean 0 and variance 1 and the empirical correlation
+between the residual and sensor 2 will be 0.
+
+Let's consider a block variation of the inner product. 
+$$
+<a, b> = \sum_{i=0}^{n-1} a_i b_i = \sum_{i=0}^{n/B} \sum_{j=0}^{B-1} a_{j + i B} b_{j + i B}
+$$
+(if $n$ is divisible by $B$. Otherwise you have to figure out what to do with the final block, which isn't hard but makes the notation messier.) So, for example, the (sample) mean is then $<x, J>/n$ where $J$ is a vector of ones. 
+
+Let's calculate the mean using blockwise calculations.
+
+```{python}
+n = s1.shape[0]
+B = 32
+## mean center the blocks
+mean1 = 0
+mean2 = 0
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    mean1 += s1[block_indices].sum() / n 
+    mean2 += s2[block_indices].sum() / n
+
+[mean1, mean2]
+
+```
+
+Let's now center our time series.
+```{python}
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    s1[block_indices] -= mean1  
+    s2[block_indices] -= mean2
+```
+
+Now the (unbiased, sample) variance of centered vector $a$ is simply $<a, a>/(n-1)$.
+
+```{python}
+
+v1, v2 = 0, 0
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    v1 += np.sum(s1[block_indices] ** 2) / (n - 1)
+    v2 += np.sum(s2[block_indices] ** 2) / (n - 1)
+[v1, v2]
+```
+
+Now let's scale our vectors as
+
+```{python}
+sd1 = np.sqrt(v1)
+sd2 = np.sqrt(v2)
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    s1[block_indices] /= v1  
+    s2[block_indices] /= v2
+```
+
+Now that our vectors are centered and scaled, the empirical correlation is simply $<a, b>/(n-1)$. Let's do that
+
+```{python}
+cor = 0
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    cor += np.sum(s1[block_indices] * s2[block_indices]) / (n-1) 
+cor
+```
+Finally, we want to "regress out" s2 from s1. Since we normalized our series, the correlation is slope coefficient from linear regression (regardless of the outcome and dependent variable) and the intercept is zero (since we centered). Thus, the residual we want is $e_{12} = s_1 - \rho s_2$ where $\rho$ is the correlation.
+```{python}
+f['processed/resid_s1_s2'] = np.empty(n)
+e12 = f['processed/resid_s1_s2']
+for i in range(int(n/B)):
+    block_indices = np.array(range(B)) + i * B
+    e12[block_indices] += s1[block_indices] - cor * s2[block_indices] 
+```
+
+Now we have our new processed data stored in a vector. To close our
+database simply do:
+
+```{python}
+f.close()
+```
+
+Now our processed data is stored on disk.
+
+```{python}
+f = h5py.File('sensor.hdf5', 'r')
+f['processed/resid_s1_s2']
+```
+
+```{python}
+f.close()
+```
+
+
+## Homework
+
+1. Perform lots of regressions. Suppose that you have a setting where you would like to perform the operation
+$$
+(X'X)^{-1} X' Y
+$$
+where $X$ is $n\times p$ and $Y$ is $n\times v$. Consider the case where $Y$ is very large (so $V$ is large). Simulate some data where you perform this linear model in block calculations.
+2. Write a block matrix multiplication program that takes in two matrices with agreeable dimensions stored as HDF5 and multiplies them in block sizes specified by the user.

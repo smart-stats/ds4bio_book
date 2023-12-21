@@ -1,0 +1,221 @@
+---
+title: "NLP"
+format: html
+---
+
+## On text encoding
+
+Computers represent characters via character encodings. Basically, a
+mapping from a binary representation to a character symbol
+value. There's many character encodings and most often our text system
+autodetects them.
+
+Character encodings existed a long time before computers, since people
+seem to always want to represent letters as numbers. On a computer,
+the program has to interpret the character code and display it in a
+way that we want. ASCII represents characters as 7 bits, (unicode)
+UTF-8, UTF-16 and UTF-32 represent characters as 8, 16, and 32
+bits. Of course the greater the bit representation, the larger the
+character set that can be represented. ASCII contains only the usual
+keyboard characters whereas Unicode contains much more.
+
+[Here's](https://docs.python.org/3/howto/unicode.html#the-unicode-type)
+some info about python unicode. For example, python's default
+character encoding is UTF-8. So strings automatically allow UTF-8
+characters
+
+```{python}
+print("😉")
+print("\N{WINKING FACE}")
+print("\U0001F609")
+```
+
+Unicode characters can be variable names, but emojis can't.  (However,
+see
+[here](https://betterprogramming.pub/emojis-as-python-variables-sure-why-not-96ce955dada1)
+where they magically do `import pandas as 🐼`). Greek letters are fair
+game.
+
+```{python}
+import numpy as np
+
+x = np.array([1, 5, 8, 10, 2, 4])
+μ = x.mean()
+σ = x.std()
+print( (μ, σ) )
+```
+
+This is annoying for programming. But, useful for labeling plot axes and whatnot.
+
+## Regular expressions
+
+Regular expressions (regexes) are simply advanced pattern matching
+tools. Regular expressions represent regular characters, a, b, ..., z,
+A, B, ..., Z exactly like you'd think. But, some other characters, .,
++, and others are metacharacters that are used to help us match
+things. A backslash, \, can be used to directly reference a
+metacharacter, so "\\+", references the character "+". It can also be
+used to escape a regular character. So "\\d" references the set of
+digits rather than the character `d`.
+
+Honestly, I have to look up regex definitions everytime I use
+them. [Here's](https://en.wikipedia.org/wiki/Regular_expression) a
+table from wikipedia
+reduced. [Here's](https://docs.python.org/3/library/re.html) the
+python regex docs.
+
+| Metacharacter	| Description |
+|---|---|
+| ^	    | Matches the starting position within the string.| 
+| .	    | Matches any single character. |
+| [ ]	| Matches a single character that is contained within the brackets. |
+| [^ ]	| Matches a single character that is not contained within the brackets.|
+| $    	| Matches the ending position of the string or the position just before a string-ending newline.|
+| ( )   | Defines a marked subexpression.|
+| \n    | Matches what the nth marked subexpression matched, where n is a digit from 1 to 9 |
+| *	    | Matches the preceding element zero or more times.|
+| {m,n}	| Matches the preceding element at least m and not more than n times.|
+
+Many search functions in R and python allow for regexes. Especially,
+the `re` python module. Try these simple examples and look at the
+methods associated with the output. It contains methods for where the
+regex occurs in the string, the whole input string itself etc. It
+returns nil if there's no match.
+
+```{python}
+import re
+out = re.search('[hcb]a', 'hat')
+print( (out.group(0), out.string) )
+out = re.search('[hcb]a', 'phat')
+print( (out.group(0), out.string) )
+out = re.search('[hcb]a', 'rat')
+print(out)
+```
+
+```{python}
+out = re.findall('[hcb]a', 'hatcathat')
+print(out)
+```
+
+We can match any letter with ".". 
+
+```{python}
+out = re.search('.a', 'rat')
+print( (out.group(0), out.string) )
+out = re.search('.a', 'phat')
+print( (out.group(0), out.string) )
+```
+
+We can search for things like any number using a dash.
+
+```{python}
+out = re.search('subject[0-9].txt', 'subject3.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject[0-9][0-9][0-9].txt', 'subject015.txt')
+print( (out.group(0), out.string) )
+```
+
+'CHARACTER*' will match any number of the character, inncluding 0, whereas `CHAR+` matches one or more times.
+
+```{python}
+out = re.search('subject0*.txt', 'subject.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject0*.txt', 'subject000.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject0*.txt', 'subject123.txt')
+print(out)
+out = re.search('subject0+.txt', 'subject.txt')
+print(out)
+out = re.search('subject0+.txt', 'subject000.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject0+.txt', 'subject123.txt')
+print(out)
+```
+
+`CHARACTER?` matches one or zero times.
+
+```{python}
+out = re.search('subject0?.txt', 'subject.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject0?.txt', 'subject0.txt')
+print( (out.group(0), out.string) )
+out = re.search('subject0?.txt', 'subject00.txt')
+print(out)
+```
+
+You can string together regexes to obtain more complex searches. For example, the following searches for `subject[GREATER THAN ONE NUMBER].txt`
+```{python}
+out = re.search('[0-9]+.txt', 'subject501.txt')
+print( (out.group(0), out.string) )
+```
+
+Python's `re` library has several other methods than search including: `match`, `findall()`, `finditer()` (see [here]()).
+
+That's enough regexes. My typical workflow for regexes is to simply relearn them every time I need them, since I don't use them enough to get terribly fluent.
+
+## Natural language tool kit
+
+nltk is probably the most widely used natural language toolkit.
+To install nltk, just use conda or pip. However, I also had to run `nltk.download()` to download the extra stuff required for the package to run. I found [this](https://realpython.com/nltk-nlp-python/) tutorial helpful.
+
+```{python}
+import nltk
+```
+
+Tokenizing words and sentences. Consider this history and physical exam note from [here](https://www.med.unc.edu/medclerk/education/grading/history-and-physical-examination-h-p-examples/). 
+
+
+```{python}
+note = """HPI is a 76 yo man with h/o HTN, DM, and sleep apnea who presented to the ED complaining of chest pain. He states that the pain began the day before and consisted of a sharp pain that lasted around 30 seconds, followed by a dull pain that would last around 2 minutes. The pain was located over his left chest area somewhat near his shoulder. The onset of pain came while the patient was walking in his home. He did not sit and rest during the pain, but continued to do household chores. Later on in the afternoon he went to the gym where he walked 1 mile on the treadmill, rode the bike for 5 minutes, and swam in the pool. After returning from the gym he did some work out in the yard, cutting back some vines. He did not have any reoccurrences of chest pain while at the gym or later in the evening. The following morning (of his presentation to the ED) he noticed the pain as he was getting out of bed. Once again it was a dull pain, preceded by a short interval of a sharp pain. The patient did experience some tingling in his right arm after the pain ceased. He continued to have several episodes of the pain throughout the morning, so his daughter-in-law decided to take him to the ED around 12:30pm. The painful episodes did not increase in intensity or severity during this time. At the ED the patient was given nitroglycerin, which he claims helped alleviate the pain somewhat. HPI has not experienced any shortness of breath, nausea, or diaphoresis during these episodes of pain. He has never had chest pain in the past. He has been told “years ago” that he has a right bundle branch block and premature heart beats."""
+```
+
+Let's tokenize this note by sentence and word.
+
+```{python}
+sentences = nltk.tokenize.sent_tokenize(note)
+words = nltk.tokenize.word_tokenize(note)
+for i in range(3):
+    print(sentences[i])
+print(words)
+```
+
+Let's filter out some common English filler words.
+
+```{python}
+filter_words = set(nltk.corpus.stopwords.words("english"))
+filtered = [w for w in words if w in filter_words]
+print(filtered[0 : 10])
+```
+
+We can also reduce words to their stems, i.e. grammatical root form.
+
+```{python}
+stemmer = nltk.stem.PorterStemmer().stem
+print(stemmer("Diagnosed"))
+print(stemmer("Diagnosing"))
+print(stemmer("diagnosed"))
+```
+
+Lemmatization reduces words to an underlying meaing.
+
+```{python}
+from nltk.stem import WordNetLemmatizer
+lemmatize = WordNetLemmatizer().lemmatize
+## Here v for verb
+print(lemmatize("am", pos = "v"))
+print(lemmatize("are", pos = "v"))
+print(lemmatize("worst", pos = "n"))
+print(lemmatize("worst", pos = "a"))
+```
+
+## Sentiment
+
+Sentiment is predicting a score about the tone of a text. The compound value is a numeric sentiment score.  
+
+```{python}
+from nltk.sentiment import SentimentIntensityAnalyzer
+sentiment = SentimentIntensityAnalyzer().polarity_scores
+print(sentiment(note))
+print(sentiment("Sentiment analysis is great!"))
+print(sentiment("The world is doomed."))
+```

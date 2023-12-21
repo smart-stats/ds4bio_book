@@ -15,6 +15,7 @@ chapters:
 - file: rBasic.ipynb
 - file: rTidyverse.ipynb
 - file: rFromPython.ipynb
+- file: data_structures.ipynb
 - file: pythonFromR.ipynb
 - file: html.md
 - file: interactive.ipynb

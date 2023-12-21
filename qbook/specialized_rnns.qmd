@@ -1,0 +1,344 @@
+
+## RNNs
+
+Recurrent neural networks (RNNs) are commonly used for ordered data, such as in time series analysis or text processing.  
+
+It might be worth considering some existing common time series models first.
+
+### Linear time sieres models
+
+#### Stochastic time series models
+
+Perhaps the most popular version of stochastic time series models is the autoregressive (AR) models. Here's an AR(1) model
+$$
+Y_t = \beta_0 + Y_{t-1}\rho + \epsilon_t
+$$
+
+Generalizations allow for longer lags, called AR(p) models where p is the number of lags. We could instead have the error terms have dependence in so called moving average (MA) models. Here's an MA(1)
+
+$$
+Y_t = \beta_0 + Y_{t-1}\rho + \epsilon_t + \gamma \epsilon_{t-1}
+$$
+where, again, longer lags can be incorporated. We could combine these models in ARMA models. Here's an ARMA(1,1) model
+
+$$
+Y_t = \beta_0 + Y_{t-1}\rho + \epsilon_t + \gamma \epsilon_{t-1}
+$$
+
+
+RNNs get their name since the hidden layers point to themselves. This is already well explored in time series analyses, where we can have models such as AR models:
+
+Differencing, i.e. considering $Y_t - Y_{t-1}$ can be thought of as looking at a linear approximation to the derivative of the $Y_t$ process. Second order differencing simply looks at $(Y_t - Y_{t-1}) - (Y_{t-1} - Y_{t-2})$ is then approximating the second derivative and so on. ARIMA models look at ARMA models on differenced data. So, an ARIMA model can be specified with three numbers the AR part, the MA part and the differencing part.
+
+Stochastic models are especially useful in things like finance for modeling asset prices. This is because efficient market theory suggests no explanatory variables are needed so looking at the time series and so modeling the data this way is often useful. 
+
+#### Functional outcomes
+
+Instead of modeling the outcome time series as a stochastic process, we might be interested in modeling it as a function using a smoother. For example we might model
+$$
+Y_t = f(t) + \epsilon = z_t \beta + \epsilon
+$$
+where $z_t$ is a basis element from a smoother matrix. An example is regression splines.
+
+#### Explanatory time series models
+
+Consider regression models for $Y ~|~ X$ where $Y$ and $X$ are time series. We might consider concordant models
+
+$$
+Y_t = \beta_0 + \beta_1 X_t + \epsilon_t
+$$
+
+Distributed lag models
+$$
+Y_t = \alpha + \beta_0 X_t + \beta_1 X_{t-1} + \ldots + \beta_p X_{t-p} + \epsilon_t
+$$
+
+Markov models model $Y_t ~|~ Y_{t-1}, \mbox{Other covariates}$. So, we can model
+$$
+Y_t = \alpha + \beta_0 Y_{t-1} + \epsilon_t.
+$$
+
+Not unlike the MA models, in all of these cases we can model dependence in the $\epsilon$ terms. 
+
+#### Functional predictors
+
+Consider the instance where $Y$ is not a time series, but $X_{i}$ is for each $i$. Let's write this as a function, $x_i(t)$. We then need to relate an entire time series to each $Y$ value. We might consider models of the form
+$$
+Y_i = \alpha + \int \beta(t) x_i(t) dt + \epsilon_i 
+$$
+
+#### Summarizing linear time series models
+
+(base) bcaffo@penguin:~/sandboxes/advanced_ds4bio_book$ 
+In summary, there's quite a few ways to model time series data lineary. And you can combine methods and extend them to generalized linear model settings. 
+
+### RNNS
+
+RNNs have many variations, the same as linear time series models. They are called recurrent, since they point to themselves. Let's look at a simple RNN where we have a time series, $X_{it}$ and we want to predict a concordant time series, $y_t$. Consider a model $h_t = \mathrm{expit}(w_0 + w_1 h_{t-1} + w_2 x_{t})$ and $\hat Y_t = \mathrm{expit}(w_3 + w_4 h_t)$ [@elman1990finding].
+
+
+```{python}
+#| echo: false
+
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+import sklearn as skl
+
+plt.figure(figsize=[6, 6])
+G = nx.DiGraph()
+
+G.add_node("X(t-1)",  pos = (0  ,   1)   )
+G.add_node("X(t)"  ,  pos = (0.5  ,   1) )
+G.add_node("X(t+1)",  pos = (1  ,   1)   ) 
+
+G.add_node("h(t-1)",  pos = (0,   0.5) )
+G.add_node("h(t)"  ,  pos = (0.5, 0.5) )
+G.add_node("h(t+1)",  pos = (1,   0.5) )
+
+G.add_node("Y(t-1)",  pos =  (0 ,   0) )
+G.add_node("Y(t)"  ,  pos =  (0.5 ,   0) )
+G.add_node("Y(t+1)",  pos =  (1 ,   0) )
+
+G.add_edges_from([
+    ['X(t-1)',  'h(t-1)'],
+    ['X(t)', 'h(t)'],
+    ['X(t+1)', 'h(t+1)'],
+    ['h(t-1)', 'h(t)'],
+    ['h(t)', 'h(t+1)'],
+    ['h(t-1)', 'Y(t-1)'],
+    ['h(t)', 'Y(t)'],
+    ['h(t+1)', 'Y(t+1)'] 
+] )
+
+nx.draw(G, 
+        nx.get_node_attributes(G, 'pos'), 
+        with_labels=True, 
+        font_weight='bold', 
+        node_size = 4000,
+        node_color = "lightblue",
+        linewidths = 3)
+ax= plt.gca()
+ax.collections[0].set_edgecolor("#000000")
+ax.set_xlim([-.3, 1.3])
+ax.set_ylim([-.3, 1.3])
+
+
+plt.show();
+```
+
+Notice, the prior hidden nodes point to the subsequent nodes. This builds in the history of the network.
+
+
+We can also have networks that point to single outcomes
+
+```{python}
+#| echo: false
+plt.figure(figsize=[6, 6])
+G = nx.DiGraph()
+
+G.add_node("X(t-1)",  pos = (0  ,   1)   )
+G.add_node("X(t)"  ,  pos = (0.5  ,   1) )
+G.add_node("X(t+1)",  pos = (1  ,   1)   ) 
+
+G.add_node("h(t-1)",  pos = (0,   0.5) )
+G.add_node("h(t)"  ,  pos = (0.5, 0.5) )
+G.add_node("h(t+1)",  pos = (1,   0.5) )
+
+G.add_node("Y",  pos =  (1 ,   0) )
+
+G.add_edges_from([
+    ['X(t-1)',  'h(t-1)'],
+    ['X(t)', 'h(t)'],
+    ['X(t+1)', 'h(t+1)'],
+    ['h(t-1)', 'h(t)'],
+    ['h(t)', 'h(t+1)'],
+    ['h(t+1)', 'Y'] 
+] )
+
+nx.draw(G, 
+        nx.get_node_attributes(G, 'pos'), 
+        with_labels=True, 
+        font_weight='bold', 
+        node_size = 4000,
+        node_color = "lightblue",
+        linewidths = 3)
+ax= plt.gca()
+ax.collections[0].set_edgecolor("#000000")
+ax.set_xlim([-.3, 1.3])
+ax.set_ylim([-.3, 1.3])
+
+
+plt.show();
+```
+
+
+
+### Example character prediction
+
+I used [this tutorial](https://edumunozsala.github.io/BlogEms/fastpages/jupyter/rnn/lstm/pytorch/2020/09/03/char-level-text-generator-pytorch.html) by [Eduardo Muñoz](https://edumunozsala.github.io/BlogEms/about/) and the [pytorch character prediction tutorial](https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html) here. 
+
+Let's predict the last letter of words from Shakespeare's writing from the previous words. Using this, you should be able to extrapolate how to create a character prediction algorithm and from that a word prediction algorithm.
+
+ I got the training text from [here](https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt) with a simple `url` request. 
+
+```{python}
+import torch
+from torch import nn
+from torch.autograd import Variable
+import numpy as np
+import string
+import nltk
+from urllib import request
+```
+
+```{python}
+url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+urlresponse = request.urlopen(url)
+text = urlresponse.read().decode("ascii")
+text_words = nltk.tokenize.word_tokenize(text.lower())
+
+##remove all of the non alpha characters like commas, periods ...
+text_words = [word for word in text_words if word.isalpha() and len(word) > 2]
+
+## Test whether all 26 letters are represented
+#text_letters = set([l.lower() for l in text if l.isalpha()])
+#len(text_letters)
+## All characters are represented
+
+## The lowercase letters as a list
+import string
+letters = string.ascii_lowercase
+n_letters = len(letters)
+
+
+## one hot encode each letter then create a matrix for each word
+def word_encode(word):
+    n_word = len(word)
+    input_tensor = torch.zeros(len(word) - 1, 1, n_letters)
+    for i in range(n_word - 1):
+        l = word[i]
+        input_tensor[i, 0, letters.find(l)] = 1
+    output_category = letters.find(word[i + 1])
+    return input_tensor, output_category
+
+
+
+test_word = text_words[0]
+test_predictor, test_outcome = word_encode(test_word)
+print(test_word)
+print(test_predictor.shape)
+print(test_outcome)
+
+```
+
+Let's create a list of our predictor tensor and outcome categories.
+
+```{python}
+N = len(text_words)
+predictor_list = []
+outcome_list = []
+for i in range(N):
+    w = text_words[i]
+    p, o = word_encode(w)
+    predictor_list.append(p)
+    outcome_list.append(o)
+
+outcome_tensor = torch.tensor(outcome_list)
+```
+
+Here's the RNN from their tutorial 
+```{python}
+import torch.nn as nn
+
+class RNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(RNN, self).__init__()
+
+        self.hidden_size = hidden_size
+
+        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)
+        self.i2o = nn.Linear(input_size + hidden_size, output_size)
+        self.softmax = nn.LogSoftmax(dim=1)
+
+    def forward(self, input, hidden):
+        combined = torch.cat( (input, hidden), 1)
+        hidden = self.i2h(combined)
+        output = self.i2o(combined)
+        output = self.softmax(output)
+        return output, hidden
+
+    def initHidden(self):
+        return torch.zeros(1, self.hidden_size)
+
+n_hidden = 256
+rnn = RNN(n_letters, n_hidden, n_letters)
+
+test_hidden = rnn.initHidden()
+test_input_val = test_predictor[0]
+print(test_input_val.shape)
+print(rnn.forward(test_input_val, test_hidden))
+```
+
+
+```{python}
+import torch.optim as optim
+
+criterion = nn.NLLLoss()
+#criterion = nn.CrossEntropyLoss()
+
+learning_rate = 1e-4
+epochs = 1000 
+batch_size = 100
+
+optimizer = optim.Adam(rnn.parameters(),  lr = learning_rate)
+
+## This runs the first few characters of a word
+## through the RNN
+def predict(input_tensor):
+    prompt_length = input_tensor.size()[0]
+    h = rnn.initHidden()
+    for j in range(prompt_length):
+        o, h = rnn(input_tensor[j], h)
+    return o, h
+
+
+for epoch in range(epochs):
+    ## grab a random batch by grabbing random indices
+    batch_indices = np.random.choice(N, batch_size)
+
+    ## initialize the predictions
+    output = torch.zeros(batch_size, n_letters)
+    ## run through the batch
+    for i in range(batch_size):
+        index = batch_indices[i]
+        input_tensor = predictor_list[index]
+        o, h = predict(input_tensor)
+        output[i,:] = o
+
+    rnn.zero_grad()
+    loss = criterion(output, outcome_tensor[batch_indices])
+    loss.backward()
+    optimizer.step()
+
+```
+
+Try some words:
+```{python}
+## The confusion matrix
+cm = np.zeros( (n_letters, n_letters) )
+for i in range(1000):
+    input_tensor = predictor_list[i]
+    output = predict(input_tensor)[0]
+    actual = letters.find(text_words[i][-1])
+    guess = torch.argmax(output)
+    cm[actual, guess] += 1
+
+plt.imshow(cm)
+plt.xticks([])
+plt.yticks([])
+```
+
+```{python}
+np.sum(np.diag(cm)) / np.sum(cm)
+```

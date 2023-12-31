@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.302">
+<meta name="generator" content="quarto-1.1.245">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,8 +17,27 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -68,16 +87,11 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphics.html">Graphics</a></li><li class="breadcrumb-item"><a href="./graphics_theory.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -85,422 +99,368 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="./" class="sidebar-logo-link">
       <img src="./assets/images/dasl.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DS&amp;AI4B&amp;MSUP</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></span></a>
+  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></span></a>
+  <a href="./intro_git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_html.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></span></a>
+  <a href="./intro_html.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <a href="./python.html" class="sidebar-item-text sidebar-link">Python</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  <a href="./python_basic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></span></a>
+  <a href="./python_programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  <a href="./python_functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></span></a>
+  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></span></a>
+  <a href="./python_practice.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Working with data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <a href="./data.html" class="sidebar-item-text sidebar-link">Working with data</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></span></a>
+  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></span></a>
+  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></span></a>
+  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></span></a>
+  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></span></a>
+  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graphics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <a href="./graphics.html" class="sidebar-item-text sidebar-link">Graphics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></span></a>
+  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></span></a>
+  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></span></a>
+  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></span></a>
+  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></span></a>
+  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./tooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extra python tooling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <a href="./tooling.html" class="sidebar-item-text sidebar-link">Extra python tooling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  <a href="./tooling_nlp.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NLP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Streamlit</span></span></a>
+  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Numpy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dash</span></span></a>
+  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Streamlit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dash</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics and inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <a href="./statistics.html" class="sidebar-item-text sidebar-link">Statistics and inference</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistics_ml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Maximum Likelihood</span></span></a>
+  <a href="./statistics_ml.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Maximum Likelihood</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistics_causal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Causal DAGs</span></span></a>
+  <a href="./statistics_optimization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Optimization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics_causal.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Causal DAGs</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./supervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervised learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <a href="./supervised.html" class="sidebar-item-text sidebar-link">Supervised learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_binary_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Introduction to binary classification</span></span></a>
+  <a href="./supervised_binary_classification.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to binary classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_regression_origin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression through the origin</span></span></a>
+  <a href="./supervised_regression_origin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Regression through the origin</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Prediction with regression</span></span></a>
+  <a href="./supervised_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Prediction with regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_logistic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  <a href="./supervised_logistic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_multivariable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear separable models</span></span></a>
+  <a href="./supervised_multivariable.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Linear separable models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_dft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DFT</span></span></a>
+  <a href="./supervised_dft.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">DFT</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unsupervised learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <a href="./unsupervised.html" class="sidebar-item-text sidebar-link">Unsupervised learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./unsupervised_pca_ica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Unsupervised learning</span></span></a>
+  <a href="./unsupervised_pca_ica.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Unsupervised learning</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./nns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Neural networks</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <a href="./nns.html" class="sidebar-item-text sidebar-link">Neural networks</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./nns_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Neural networks, introduction</span></span></a>
+  <a href="./nns_intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Neural networks, introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./nns_basic_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Basic regression as a NN</span></span></a>
+  <a href="./nns_basic_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Basic regression as a NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./nns_logistic_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Logistic regression as a NN</span></span></a>
+  <a href="./nns_logistic_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Logistic regression as a NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./nns_pytorch_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Pytorch by example</span></span></a>
+  <a href="./nns_pytorch_example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pytorch by example</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./specialized.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized NNs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <a href="./specialized.html" class="sidebar-item-text sidebar-link">Specialized NNs</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./specialized_autoencoder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Autoencoders</span></span></a>
+  <a href="./specialized_autoencoder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Autoencoders</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./specialized_autoencoder2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Autoencoder example</span></span></a>
+  <a href="./specialized_autoencoder2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Autoencoder example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./specialized_gan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GANs</span></span></a>
+  <a href="./specialized_gan.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">GANs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_rnns.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">RNNs</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./theory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DS theory</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./theory_explainability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Explainability</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Summary</span></span>
+      <span class="sidebar-item-text sidebar-link text-start">Summary</span>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#design-arguments" id="toc-design-arguments" class="nav-link active" data-scroll-target="#design-arguments"><span class="header-section-number">18.1</span> Design arguments</a>
+  <li><a href="#design-arguments" id="toc-design-arguments" class="nav-link active" data-scroll-target="#design-arguments"><span class="toc-section-number">18.1</span>  Design arguments</a>
   <ul class="collapse">
-  <li><a href="#graphical-critique" id="toc-graphical-critique" class="nav-link" data-scroll-target="#graphical-critique"><span class="header-section-number">18.1.1</span> Graphical critique</a></li>
-  <li><a href="#theory-of-graphics" id="toc-theory-of-graphics" class="nav-link" data-scroll-target="#theory-of-graphics"><span class="header-section-number">18.1.2</span> Theory of graphics</a></li>
+  <li><a href="#graphical-critique" id="toc-graphical-critique" class="nav-link" data-scroll-target="#graphical-critique"><span class="toc-section-number">18.1.1</span>  Graphical critique</a></li>
+  <li><a href="#theory-of-graphics" id="toc-theory-of-graphics" class="nav-link" data-scroll-target="#theory-of-graphics"><span class="toc-section-number">18.1.2</span>  Theory of graphics</a></li>
   </ul></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">18.2</span> Implementation</a>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="toc-section-number">18.2</span>  Implementation</a>
   <ul class="collapse">
-  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics"><span class="header-section-number">18.2.1</span> Grammar of graphics</a></li>
-  <li><a href="#narative-storytelling" id="toc-narative-storytelling" class="nav-link" data-scroll-target="#narative-storytelling"><span class="header-section-number">18.2.2</span> Narative storytelling</a></li>
+  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics"><span class="toc-section-number">18.2.1</span>  Grammar of graphics</a></li>
+  <li><a href="#narative-storytelling" id="toc-narative-storytelling" class="nav-link" data-scroll-target="#narative-storytelling"><span class="toc-section-number">18.2.2</span>  Narative storytelling</a></li>
   </ul></li>
-  <li><a href="#graph-galleries-and-further-reading" id="toc-graph-galleries-and-further-reading" class="nav-link" data-scroll-target="#graph-galleries-and-further-reading"><span class="header-section-number">18.3</span> Graph galleries and further reading</a>
+  <li><a href="#graph-galleries-and-further-reading" id="toc-graph-galleries-and-further-reading" class="nav-link" data-scroll-target="#graph-galleries-and-further-reading"><span class="toc-section-number">18.3</span>  Graph galleries and further reading</a>
   <ul class="collapse">
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">18.3.1</span> Further reading</a></li>
-  <li><a href="#graph-galleries" id="toc-graph-galleries" class="nav-link" data-scroll-target="#graph-galleries"><span class="header-section-number">18.3.2</span> Graph galleries</a></li>
-  <li><a href="#historically-famous-graphics" id="toc-historically-famous-graphics" class="nav-link" data-scroll-target="#historically-famous-graphics"><span class="header-section-number">18.3.3</span> Historically famous graphics</a></li>
-  <li><a href="#infographics-in-the-media" id="toc-infographics-in-the-media" class="nav-link" data-scroll-target="#infographics-in-the-media"><span class="header-section-number">18.3.4</span> Infographics in the media</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="toc-section-number">18.3.1</span>  Further reading</a></li>
+  <li><a href="#graph-galleries" id="toc-graph-galleries" class="nav-link" data-scroll-target="#graph-galleries"><span class="toc-section-number">18.3.2</span>  Graph galleries</a></li>
+  <li><a href="#historically-famous-graphics" id="toc-historically-famous-graphics" class="nav-link" data-scroll-target="#historically-famous-graphics"><span class="toc-section-number">18.3.3</span>  Historically famous graphics</a></li>
+  <li><a href="#infographics-in-the-media" id="toc-infographics-in-the-media" class="nav-link" data-scroll-target="#infographics-in-the-media"><span class="toc-section-number">18.3.4</span>  Infographics in the media</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -510,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></h1>
 </div>
 
 
@@ -518,7 +478,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
@@ -527,26 +486,26 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="design-arguments" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="design-arguments"><span class="header-section-number">18.1</span> Design arguments</h2>
-<p>One of the main design arguments for the graphical display of information is data / ink maximization <span class="citation" data-cites="tufte1990data">(<a href="#ref-tufte1990data" role="doc-biblioref"><strong>tufte1990data?</strong></a>)</span>. This is the idea that idea that as much of the “ink” (non-background pixels) of the plot as possible should be displaying data.</p>
-<p>Data/ink maximalization has been criticized empirically. For example, <span class="citation" data-cites="inbar2007minimalism">(<a href="#ref-inbar2007minimalism" role="doc-biblioref"><strong>inbar2007minimalism?</strong></a>)</span> conducted a study with 87 undergraduates and found a clear preference for the non-maximized variations. Another line of argument discusses the “paradox of simplicity” <span class="citation" data-cites="norman2007simplicity">(<a href="#ref-norman2007simplicity" role="doc-biblioref"><strong>norman2007simplicity?</strong></a>)</span>, <span class="citation" data-cites="eytam2017paradox">(<a href="#ref-eytam2017paradox" role="doc-biblioref"><strong>eytam2017paradox?</strong></a>)</span>, whereby we have a strong aesthetic preference for simplicity, but also want flexibility and maximum utility.</p>
+<p>One of the main design arguments for the graphical display of information is data / ink maximization <span class="citation" data-cites="tufte1990data">Tufte (<a href="references.html#ref-tufte1990data" role="doc-biblioref">1990</a>)</span>. This is the idea that idea that as much of the “ink” (non-background pixels) of the plot as possible should be displaying data.</p>
+<p>Data/ink maximalization has been criticized empirically. For example, <span class="citation" data-cites="inbar2007minimalism">Inbar, Tractinsky, and Meyer (<a href="references.html#ref-inbar2007minimalism" role="doc-biblioref">2007</a>)</span> conducted a study with 87 undergraduates and found a clear preference for the non-maximized variations. Another line of argument discusses the “paradox of simplicity” <span class="citation" data-cites="norman2007simplicity">Norman (<a href="references.html#ref-norman2007simplicity" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="eytam2017paradox">Eytam, Tractinsky, and Lowengart (<a href="references.html#ref-eytam2017paradox" role="doc-biblioref">2017</a>)</span>, whereby we have a strong aesthetic preference for simplicity, but also want flexibility and maximum utility.</p>
 <ul>
-<li><span class="citation" data-cites="bertin1983semiology">(<a href="#ref-bertin1983semiology" role="doc-biblioref"><strong>bertin1983semiology?</strong></a>)</span></li>
+<li><span class="citation" data-cites="bertin1983semiology">Bertin (<a href="references.html#ref-bertin1983semiology" role="doc-biblioref">1983</a>)</span></li>
 </ul>
 <section id="graphical-critique" class="level3" data-number="18.1.1">
 <h3 data-number="18.1.1" class="anchored" data-anchor-id="graphical-critique"><span class="header-section-number">18.1.1</span> Graphical critique</h3>
 <ul>
-<li><span class="citation" data-cites="wickham2010graphical">(<a href="#ref-wickham2010graphical" role="doc-biblioref"><strong>wickham2010graphical?</strong></a>)</span></li>
+<li><span class="citation" data-cites="wickham2010graphical">Wickham et al. (<a href="references.html#ref-wickham2010graphical" role="doc-biblioref">2010</a>)</span></li>
 </ul>
 </section>
 <section id="theory-of-graphics" class="level3" data-number="18.1.2">
 <h3 data-number="18.1.2" class="anchored" data-anchor-id="theory-of-graphics"><span class="header-section-number">18.1.2</span> Theory of graphics</h3>
 <ul>
-<li><span class="citation" data-cites="cleveland1987research">(<a href="#ref-cleveland1987research" role="doc-biblioref"><strong>cleveland1987research?</strong></a>)</span></li>
-<li><span class="citation" data-cites="cleveland1984many">(<a href="#ref-cleveland1984many" role="doc-biblioref"><strong>cleveland1984many?</strong></a>)</span></li>
-<li><span class="citation" data-cites="cleveland1980calendar">(<a href="#ref-cleveland1980calendar" role="doc-biblioref"><strong>cleveland1980calendar?</strong></a>)</span></li>
-<li><span class="citation" data-cites="carswell1992choosing">(<a href="#ref-carswell1992choosing" role="doc-biblioref"><strong>carswell1992choosing?</strong></a>)</span></li>
-<li><span class="citation" data-cites="cleveland1986experiment">(<a href="#ref-cleveland1986experiment" role="doc-biblioref"><strong>cleveland1986experiment?</strong></a>)</span></li>
-<li>Magical thinking <span class="citation" data-cites="diaconis2006theories">(<a href="#ref-diaconis2006theories" role="doc-biblioref"><strong>diaconis2006theories?</strong></a>)</span></li>
+<li><span class="citation" data-cites="cleveland1987research">Cleveland (<a href="references.html#ref-cleveland1987research" role="doc-biblioref">1987</a>)</span></li>
+<li><span class="citation" data-cites="cleveland1984many">Cleveland and McGill (<a href="references.html#ref-cleveland1984many" role="doc-biblioref">1984</a>)</span></li>
+<li><span class="citation" data-cites="cleveland1980calendar">Cleveland and Devlin (<a href="references.html#ref-cleveland1980calendar" role="doc-biblioref">1980</a>)</span></li>
+<li><span class="citation" data-cites="carswell1992choosing">Carswell (<a href="references.html#ref-carswell1992choosing" role="doc-biblioref">1992</a>)</span></li>
+<li><span class="citation" data-cites="cleveland1986experiment">Cleveland and McGill (<a href="references.html#ref-cleveland1986experiment" role="doc-biblioref">1986</a>)</span></li>
+<li>Magical thinking <span class="citation" data-cites="diaconis2006theories">Diaconis (<a href="references.html#ref-diaconis2006theories" role="doc-biblioref">2006</a>)</span></li>
 </ul>
 </section>
 </section>
@@ -555,14 +514,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="grammar-of-graphics" class="level3" data-number="18.2.1">
 <h3 data-number="18.2.1" class="anchored" data-anchor-id="grammar-of-graphics"><span class="header-section-number">18.2.1</span> Grammar of graphics</h3>
 <ul>
-<li><span class="citation" data-cites="wilkinson2012grammar">(<a href="#ref-wilkinson2012grammar" role="doc-biblioref"><strong>wilkinson2012grammar?</strong></a>)</span></li>
-<li><span class="citation" data-cites="wilkinson2013grammar">(<a href="#ref-wilkinson2013grammar" role="doc-biblioref"><strong>wilkinson2013grammar?</strong></a>)</span></li>
-<li><span class="citation" data-cites="wickham2010layered">(<a href="#ref-wickham2010layered" role="doc-biblioref"><strong>wickham2010layered?</strong></a>)</span></li>
+<li><span class="citation" data-cites="wilkinson2012grammar">Wilkinson (<a href="references.html#ref-wilkinson2012grammar" role="doc-biblioref">2012</a>)</span></li>
+<li><span class="citation" data-cites="wilkinson2013grammar">Wilkinson (<a href="references.html#ref-wilkinson2013grammar" role="doc-biblioref">2013</a>)</span></li>
+<li><span class="citation" data-cites="wickham2010layered">Wickham (<a href="references.html#ref-wickham2010layered" role="doc-biblioref">2010</a>)</span></li>
 </ul>
 </section>
 <section id="narative-storytelling" class="level3" data-number="18.2.2">
 <h3 data-number="18.2.2" class="anchored" data-anchor-id="narative-storytelling"><span class="header-section-number">18.2.2</span> Narative storytelling</h3>
-<p>Edward and Jeffrey (<span class="citation" data-cites="segel2010narrative">(<a href="#ref-segel2010narrative" role="doc-biblioref"><strong>segel2010narrative?</strong></a>)</span>) argue regarding the use of modern interactive tools in data narrative storytelling. They give seven canonical genres of narrative visulation.</p>
+<p>Edward and Jeffrey (<span class="citation" data-cites="segel2010narrative">Segel and Heer (<a href="references.html#ref-segel2010narrative" role="doc-biblioref">2010</a>)</span>) argue regarding the use of modern interactive tools in data narrative storytelling. They give seven canonical genres of narrative visulation.</p>
 </section>
 </section>
 <section id="graph-galleries-and-further-reading" class="level2" data-number="18.3">
@@ -606,6 +565,56 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-bertin1983semiology" class="csl-entry" role="doc-biblioentry">
+Bertin, Jacques. 1983. <em>Semiology of Graphics</em>. University of Wisconsin press.
+</div>
+<div id="ref-carswell1992choosing" class="csl-entry" role="doc-biblioentry">
+Carswell, C Melody. 1992. <span>“Choosing Specifiers: An Evaluation of the Basic Tasks Model of Graphical Perception.”</span> <em>Human Factors</em> 34 (5): 535–54.
+</div>
+<div id="ref-cleveland1987research" class="csl-entry" role="doc-biblioentry">
+Cleveland, William S. 1987. <span>“Research in Statistical Graphics.”</span> <em>Journal of the American Statistical Association</em> 82 (398): 419–23.
+</div>
+<div id="ref-cleveland1980calendar" class="csl-entry" role="doc-biblioentry">
+Cleveland, William S, and Susan J Devlin. 1980. <span>“Calendar Effects in Monthly Time Series: Detection by Spectrum Analysis and Graphical Methods.”</span> <em>Journal of the American Statistical Association</em> 75 (371): 487–96.
+</div>
+<div id="ref-cleveland1984many" class="csl-entry" role="doc-biblioentry">
+Cleveland, William S, and Robert McGill. 1984. <span>“The Many Faces of a Scatterplot.”</span> <em>Journal of the American Statistical Association</em> 79 (388): 807–22.
+</div>
+<div id="ref-cleveland1986experiment" class="csl-entry" role="doc-biblioentry">
+———. 1986. <span>“An Experiment in Graphical Perception.”</span> <em>International Journal of Man-Machine Studies</em> 25 (5): 491–500.
+</div>
+<div id="ref-diaconis2006theories" class="csl-entry" role="doc-biblioentry">
+Diaconis, Persi. 2006. <span>“Theories of Data Analysis: From Magical Thinking Through Classical Statistics.”</span> <em>Exploring Data Tables, Trends, and Shapes</em>, 1–36.
+</div>
+<div id="ref-eytam2017paradox" class="csl-entry" role="doc-biblioentry">
+Eytam, Eleanor, Noam Tractinsky, and Oded Lowengart. 2017. <span>“The Paradox of Simplicity: Effects of Role on the Preference and Choice of Product Visual Simplicity Level.”</span> <em>International Journal of Human-Computer Studies</em> 105: 43–55.
+</div>
+<div id="ref-inbar2007minimalism" class="csl-entry" role="doc-biblioentry">
+Inbar, Ohad, Noam Tractinsky, and Joachim Meyer. 2007. <span>“Minimalism in Information Visualization: Attitudes Towards Maximizing the Data-Ink Ratio.”</span> In <em>Proceedings of the 14th European Conference on Cognitive Ergonomics: Invent! Explore!</em>, 185–88.
+</div>
+<div id="ref-norman2007simplicity" class="csl-entry" role="doc-biblioentry">
+Norman, Donald A. 2007. <span>“Simplicity Is Highly Overrated.”</span> <em>Interactions</em> 14 (2): 40–41.
+</div>
+<div id="ref-segel2010narrative" class="csl-entry" role="doc-biblioentry">
+Segel, Edward, and Jeffrey Heer. 2010. <span>“Narrative Visualization: Telling Stories with Data.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 16 (6): 1139–48.
+</div>
+<div id="ref-tufte1990data" class="csl-entry" role="doc-biblioentry">
+Tufte, ER. 1990. <span>“Data-Ink Maximization and Graphical Design.”</span> <em>Oikos</em>, 130–44.
+</div>
+<div id="ref-wickham2010layered" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28.
+</div>
+<div id="ref-wickham2010graphical" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Dianne Cook, Heike Hofmann, and Andreas Buja. 2010. <span>“Graphical Inference for Infovis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 16 (6): 973–79.
+</div>
+<div id="ref-wilkinson2012grammar" class="csl-entry" role="doc-biblioentry">
+Wilkinson, Leland. 2012. <span>“The Grammar of Graphics.”</span> In <em>Handbook of Computational Statistics</em>, 375–414. Springer.
+</div>
+<div id="ref-wilkinson2013grammar" class="csl-entry" role="doc-biblioentry">
+———. 2013. <em>The Grammar of Graphics</em>. Springer Science &amp; Business Media.
+</div>
+</div>
 </section>
 </section>
 
@@ -637,23 +646,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -665,24 +660,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -718,128 +696,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

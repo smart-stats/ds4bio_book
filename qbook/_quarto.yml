@@ -49,6 +49,7 @@ book:
     - part: statistics.qmd
       chapters:
          - statistics_ml.qmd
+         - statistics_optimization.qmd
          - statistics_causal.qmd
     - part: supervised.qmd
       chapters:

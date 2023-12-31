@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.302">
+<meta name="generator" content="quarto-1.1.245">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data science and AI for the biological and medical sciences using python - 29&nbsp; Linear separable models</title>
+<title>Data science and AI for the biological and medical sciences using python - 30&nbsp; Linear separable models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,10 +17,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,13 +46,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -98,7 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -107,16 +135,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./supervised.html">Supervised learning</a></li><li class="breadcrumb-item"><a href="./supervised_multivariable.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear separable models</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Linear separable models</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -124,311 +147,350 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="./" class="sidebar-logo-link">
       <img src="./assets/images/dasl.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DS&amp;AI4B&amp;MSUP</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/smart-stats/ds4bio_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  <a href="./intro_markdown.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Markdown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></span></a>
+  <a href="./intro_unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Unix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></span></a>
+  <a href="./intro_git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git, github</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_html.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></span></a>
+  <a href="./intro_html.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">HTML, CSS and javascript</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <a href="./python.html" class="sidebar-item-text sidebar-link">Python</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  <a href="./python_basic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></span></a>
+  <a href="./python_programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python programming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  <a href="./python_functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></span></a>
+  <a href="./python_virtual_environments.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Virtual Environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></span></a>
+  <a href="./python_practice.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python in practice</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Working with data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <a href="./data.html" class="sidebar-item-text sidebar-link">Working with data</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></span></a>
+  <a href="./data_cleaning_example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data cleaning, an example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></span></a>
+  <a href="./data_sqlite.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQL via sqlite</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></span></a>
+  <a href="./data_advanced_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Big data storage</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></span></a>
+  <a href="./data_webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Webscraping</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></span></a>
+  <a href="./data_advanced_webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Advanced web scraping</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graphics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <a href="./graphics.html" class="sidebar-item-text sidebar-link">Graphics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></span></a>
+  <a href="./graphics_eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory data analysis example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></span></a>
+  <a href="./graphics_interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Interactive graphics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></span></a>
+  <a href="./graphics_advanced_interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Advanced interactive graphics: D3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></span></a>
+  <a href="./graphics_theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced: theory of graphical display</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></span></a>
+  <a href="./graphics_images.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Working with images</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./tooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extra python tooling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <a href="./tooling.html" class="sidebar-item-text sidebar-link">Extra python tooling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  <a href="./tooling_nlp.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NLP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Streamlit</span></span></a>
+  <a href="./tooling_numpy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Numpy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dash</span></span></a>
+  <a href="./tooling_streamlit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Streamlit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tooling_dash.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dash</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics and inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <a href="./statistics.html" class="sidebar-item-text sidebar-link">Statistics and inference</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistics_ml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Maximum Likelihood</span></span></a>
+  <a href="./statistics_ml.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Maximum Likelihood</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistics_causal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Causal DAGs</span></span></a>
+  <a href="./statistics_causal.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Causal DAGs</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./supervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervised learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <a href="./supervised.html" class="sidebar-item-text sidebar-link">Supervised learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_binary_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Introduction to binary classification</span></span></a>
+  <a href="./supervised_binary_classification.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Introduction to binary classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_regression_origin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression through the origin</span></span></a>
+  <a href="./supervised_regression_origin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Regression through the origin</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Prediction with regression</span></span></a>
+  <a href="./supervised_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Prediction with regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_logistic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  <a href="./supervised_logistic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_multivariable.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear separable models</span></span></a>
+  <a href="./supervised_multivariable.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Linear separable models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervised_dft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DFT</span></span></a>
+  <a href="./supervised_dft.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DFT</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Summary</span></span>
+      <div class="sidebar-item-container"> 
+            <a href="./unsupervised.html" class="sidebar-item-text sidebar-link">Unsupervised learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./unsupervised_pca_ica.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./nns.html" class="sidebar-item-text sidebar-link">Neural networks</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Neural networks, introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_basic_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Basic regression as a NN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_logistic_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Logistic regression as a NN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nns_pytorch_example.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Pytorch by example</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./specialized.html" class="sidebar-item-text sidebar-link">Specialized NNs</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_autoencoder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Autoencoders</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_autoencoder2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Autoencoder example</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_gan.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">GANs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./specialized_rnns.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">RNNs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Summary</span>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aside-different-python-packages" id="toc-aside-different-python-packages" class="nav-link active" data-scroll-target="#aside-different-python-packages"><span class="header-section-number">29.1</span> Aside different python packages</a></li>
-  <li><a href="#a-classic-example" id="toc-a-classic-example" class="nav-link" data-scroll-target="#a-classic-example"><span class="header-section-number">29.2</span> A classic example</a></li>
-  <li><a href="#regression-interpretation" id="toc-regression-interpretation" class="nav-link" data-scroll-target="#regression-interpretation"><span class="header-section-number">29.3</span> Regression interpretation</a></li>
+  <li><a href="#aside-different-python-packages" id="toc-aside-different-python-packages" class="nav-link active" data-scroll-target="#aside-different-python-packages"><span class="toc-section-number">30.1</span>  Aside different python packages</a></li>
+  <li><a href="#a-classic-example" id="toc-a-classic-example" class="nav-link" data-scroll-target="#a-classic-example"><span class="toc-section-number">30.2</span>  A classic example</a></li>
+  <li><a href="#regression-interpretation" id="toc-regression-interpretation" class="nav-link" data-scroll-target="#regression-interpretation"><span class="toc-section-number">30.3</span>  Regression interpretation</a></li>
   </ul>
 </nav>
     </div>
@@ -437,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear separable models</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Linear separable models</span></h1>
 </div>
 
 
@@ -445,7 +507,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
@@ -506,29 +567,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.752   
-Dependent Variable: PD               AIC:                64.3671 
-Date:               2023-04-01 15:54 BIC:                82.7996 
-No. Observations:   74               Log-Likelihood:     -24.184 
-Df Model:           7                F-statistic:        32.58   
-Df Residuals:       66               Prob (F-statistic): 4.47e-19
-R-squared:          0.776            Scale:              0.12620 
+Model:              OLS              Adj. R-squared:     0.726   
+Dependent Variable: PD               AIC:                55.1221 
+Date:               2023-12-30 11:13 BIC:                73.6620 
+No. Observations:   75               Log-Likelihood:     -19.561 
+Df Model:           7                F-statistic:        29.03   
+Df Residuals:       67               Prob (F-statistic): 5.73e-18
+R-squared:          0.752            Scale:              0.11042 
 ------------------------------------------------------------------
-                Coef.   Std.Err.     t     P&gt;|t|    [0.025  0.975]
+               Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept       0.4092    0.1576   2.5967  0.0116   0.0946  0.7239
-FLAIR          -0.1573    0.1042  -1.5086  0.1362  -0.3654  0.0509
-T1             -0.1457    0.0944  -1.5437  0.1274  -0.3342  0.0428
-T2              0.6795    0.0888   7.6522  0.0000   0.5022  0.8568
-FLAIR_10       -0.0160    0.3373  -0.0473  0.9624  -0.6894  0.6575
-T1_10           0.1413    0.1870   0.7558  0.4524  -0.2320  0.5147
-T2_10           0.0010    0.2863   0.0034  0.9973  -0.5706  0.5726
-FLAIR_20        1.5177    0.7673   1.9779  0.0521  -0.0143  3.0496
+Intercept      0.1283    0.1272   1.0086  0.3168  -0.1256   0.3822
+FLAIR          0.0747    0.0806   0.9260  0.3578  -0.0863   0.2356
+T1            -0.3471    0.0779  -4.4575  0.0000  -0.5025  -0.1917
+T2             0.4224    0.0870   4.8528  0.0000   0.2486   0.5961
+FLAIR_10      -0.0677    0.3303  -0.2048  0.8383  -0.7270   0.5917
+T1_10          0.3769    0.1561   2.4137  0.0185   0.0652   0.6885
+T2_10          0.1155    0.2512   0.4597  0.6473  -0.3860   0.6169
+FLAIR_20       1.5173    0.7033   2.1575  0.0346   0.1136   2.9211
 -----------------------------------------------------------------
-Omnibus:               1.482        Durbin-Watson:          2.164
-Prob(Omnibus):         0.477        Jarque-Bera (JB):       1.028
-Skew:                  -0.281       Prob(JB):               0.598
-Kurtosis:              3.136        Condition No.:          41   
+Omnibus:              1.025        Durbin-Watson:           2.087
+Prob(Omnibus):        0.599        Jarque-Bera (JB):        0.707
+Skew:                 0.236        Prob(JB):                0.702
+Kurtosis:             3.061        Condition No.:           43   
 =================================================================
 </code></pre>
 </div>
@@ -548,145 +609,67 @@ Kurtosis:              3.136        Condition No.:          41
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> sm.discrete.discrete_model.Logit(ytraining, xtraining).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimization terminated successfully.
-         Current function value: 0.246787
-         Iterations 8</code></pre>
+         Current function value: 0.233582
+         Iterations 9</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+
+<table class="simpletable">
 <caption>Logit Regression Results</caption>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
-<td>GOLD_Lesions</td>
-<td data-quarto-table-cell-role="th">No. Observations:</td>
-<td>74</td>
+<tbody><tr>
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
-<td>Logit</td>
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
-<td>66</td>
+<tr>
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
-<td>MLE</td>
-<td data-quarto-table-cell-role="th">Df Model:</td>
-<td>7</td>
+<tr>
+  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
-<td>Sat, 01 Apr 2023</td>
-<td data-quarto-table-cell-role="th">Pseudo R-squ.:</td>
-<td>0.6423</td>
+<tr>
+  <th>Date:</th>            <td>Sat, 30 Dec 2023</td> <th>  Pseudo R-squ.:     </th>  <td>0.6630</td>  
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
-<td>15:54:11</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
-<td>-18.262</td>
+<tr>
+  <th>Time:</th>                <td>11:13:49</td>     <th>  Log-Likelihood:    </th> <td> -17.519</td> 
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">converged:</td>
-<td>True</td>
-<td data-quarto-table-cell-role="th">LL-Null:</td>
-<td>-51.049</td>
+<tr>
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
-<td>nonrobust</td>
-<td data-quarto-table-cell-role="th">LLR p-value:</td>
-<td>1.153e-11</td>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.440e-12</td>
 </tr>
-</tbody>
-</table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
-<tbody>
-<tr class="odd">
-<td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">z</td>
-<td data-quarto-table-cell-role="th">P&gt;|z|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+      <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P&gt;|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">const</td>
-<td>-3.8197</td>
-<td>1.950</td>
-<td>-1.959</td>
-<td>0.050</td>
-<td>-7.642</td>
-<td>0.003</td>
+<tr>
+  <th>const</th>    <td>   -2.2650</td> <td>    2.012</td> <td>   -1.126</td> <td> 0.260</td> <td>   -6.209</td> <td>    1.679</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">FLAIR</td>
-<td>1.8228</td>
-<td>1.229</td>
-<td>1.483</td>
-<td>0.138</td>
-<td>-0.586</td>
-<td>4.231</td>
+<tr>
+  <th>FLAIR</th>    <td>    1.3765</td> <td>    1.250</td> <td>    1.102</td> <td> 0.271</td> <td>   -1.073</td> <td>    3.826</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">T1</td>
-<td>3.4443</td>
-<td>1.326</td>
-<td>2.597</td>
-<td>0.009</td>
-<td>0.845</td>
-<td>6.044</td>
+<tr>
+  <th>T1</th>       <td>    4.2686</td> <td>    1.583</td> <td>    2.697</td> <td> 0.007</td> <td>    1.166</td> <td>    7.371</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">T2</td>
-<td>2.5276</td>
-<td>1.262</td>
-<td>2.002</td>
-<td>0.045</td>
-<td>0.053</td>
-<td>5.002</td>
+<tr>
+  <th>T2</th>       <td>    3.1742</td> <td>    1.547</td> <td>    2.052</td> <td> 0.040</td> <td>    0.143</td> <td>    6.205</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">FLAIR_10</td>
-<td>8.5824</td>
-<td>4.147</td>
-<td>2.070</td>
-<td>0.038</td>
-<td>0.455</td>
-<td>16.710</td>
+<tr>
+  <th>FLAIR_10</th> <td>    4.9115</td> <td>    4.194</td> <td>    1.171</td> <td> 0.242</td> <td>   -3.309</td> <td>   13.132</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">T1_10</td>
-<td>-0.7716</td>
-<td>2.258</td>
-<td>-0.342</td>
-<td>0.733</td>
-<td>-5.198</td>
-<td>3.655</td>
+<tr>
+  <th>T1_10</th>    <td>   -0.2656</td> <td>    2.027</td> <td>   -0.131</td> <td> 0.896</td> <td>   -4.238</td> <td>    3.707</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">T2_10</td>
-<td>-7.0170</td>
-<td>3.760</td>
-<td>-1.866</td>
-<td>0.062</td>
-<td>-14.387</td>
-<td>0.353</td>
+<tr>
+  <th>T2_10</th>    <td>   -7.9347</td> <td>    3.463</td> <td>   -2.291</td> <td> 0.022</td> <td>  -14.723</td> <td>   -1.147</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">FLAIR_20</td>
-<td>-16.0704</td>
-<td>9.094</td>
-<td>-1.767</td>
-<td>0.077</td>
-<td>-33.895</td>
-<td>1.754</td>
+<tr>
+  <th>FLAIR_20</th> <td>  -16.3760</td> <td>    8.107</td> <td>   -2.020</td> <td> 0.043</td> <td>  -32.265</td> <td>   -0.487</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </div>
 </div>
 <p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
@@ -714,11 +697,11 @@ Kurtosis:              3.136        Condition No.:          41
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'False Positive Rate'</span>)</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-8-output-1.png" width="608" height="456"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-8-output-1.png" width="608" height="457"></p>
 </div>
 </div>
-<section id="aside-different-python-packages" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="aside-different-python-packages"><span class="header-section-number">29.1</span> Aside different python packages</h2>
+<section id="aside-different-python-packages" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="aside-different-python-packages"><span class="header-section-number">30.1</span> Aside different python packages</h2>
 <p>So far we’ve explored several plotting libraries including: default pandas methods, matplotlib, seaborn and plotly. We’ve also looked at several fitting libraries including to some extent numpy, but especially scikitlearn and statsmodels. What’s the difference? Well, these packages are all mantained by different people and have different features and goals. For example, scikitlearn is more expansive than statsmodels, but statsmodels functions more like one is used to with statistical output. Matplotlib is very expansive, but seaborn has nicer default options and is a little easier. So, when doing data science with python, one has to get used to trying out a few packages, weighing the cost and benefits of each, and picking one.</p>
 <p>‘statsmodels’, what we’re using above, has multiple methods for fitting binary models including: <code>sm.Logit</code>, <code>smf.logit</code>, <code>BinaryModel</code> and <code>glm</code>. Here I’m just going to use <code>Logit</code> which does not use the formula syntax of <code>logit</code>. Note, by default, this does not add an intercept this way. So, I’m adding a column of ones, which adds an intercept.</p>
 <p>Consider the following which uses the formula API</p>
@@ -727,147 +710,69 @@ Kurtosis:              3.136        Condition No.:          41
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimization terminated successfully.
-         Current function value: 0.246787
-         Iterations 8</code></pre>
+         Current function value: 0.233582
+         Iterations 9</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+
+<table class="simpletable">
 <caption>Logit Regression Results</caption>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
-<td>GOLD_Lesions</td>
-<td data-quarto-table-cell-role="th">No. Observations:</td>
-<td>74</td>
+<tbody><tr>
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
-<td>Logit</td>
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
-<td>66</td>
+<tr>
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
-<td>MLE</td>
-<td data-quarto-table-cell-role="th">Df Model:</td>
-<td>7</td>
+<tr>
+  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
-<td>Sat, 01 Apr 2023</td>
-<td data-quarto-table-cell-role="th">Pseudo R-squ.:</td>
-<td>0.6423</td>
+<tr>
+  <th>Date:</th>            <td>Sat, 30 Dec 2023</td> <th>  Pseudo R-squ.:     </th>  <td>0.6630</td>  
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
-<td>15:54:11</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
-<td>-18.262</td>
+<tr>
+  <th>Time:</th>                <td>11:13:49</td>     <th>  Log-Likelihood:    </th> <td> -17.519</td> 
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">converged:</td>
-<td>True</td>
-<td data-quarto-table-cell-role="th">LL-Null:</td>
-<td>-51.049</td>
+<tr>
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
-<td>nonrobust</td>
-<td data-quarto-table-cell-role="th">LLR p-value:</td>
-<td>1.153e-11</td>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.440e-12</td>
 </tr>
-</tbody>
-</table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
-<tbody>
-<tr class="odd">
-<td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">z</td>
-<td data-quarto-table-cell-role="th">P&gt;|z|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+</tbody></table>
+<table class="simpletable">
+<tbody><tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P&gt;|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Intercept</td>
-<td>-3.8197</td>
-<td>1.950</td>
-<td>-1.959</td>
-<td>0.050</td>
-<td>-7.642</td>
-<td>0.003</td>
+<tr>
+  <th>Intercept</th> <td>   -2.2650</td> <td>    2.012</td> <td>   -1.126</td> <td> 0.260</td> <td>   -6.209</td> <td>    1.679</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">FLAIR</td>
-<td>1.8228</td>
-<td>1.229</td>
-<td>1.483</td>
-<td>0.138</td>
-<td>-0.586</td>
-<td>4.231</td>
+<tr>
+  <th>FLAIR</th>     <td>    1.3765</td> <td>    1.250</td> <td>    1.102</td> <td> 0.271</td> <td>   -1.073</td> <td>    3.826</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">T1</td>
-<td>3.4443</td>
-<td>1.326</td>
-<td>2.597</td>
-<td>0.009</td>
-<td>0.845</td>
-<td>6.044</td>
+<tr>
+  <th>T1</th>        <td>    4.2686</td> <td>    1.583</td> <td>    2.697</td> <td> 0.007</td> <td>    1.166</td> <td>    7.371</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">T2</td>
-<td>2.5276</td>
-<td>1.262</td>
-<td>2.002</td>
-<td>0.045</td>
-<td>0.053</td>
-<td>5.002</td>
+<tr>
+  <th>T2</th>        <td>    3.1742</td> <td>    1.547</td> <td>    2.052</td> <td> 0.040</td> <td>    0.143</td> <td>    6.205</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">FLAIR_10</td>
-<td>8.5824</td>
-<td>4.147</td>
-<td>2.070</td>
-<td>0.038</td>
-<td>0.455</td>
-<td>16.710</td>
+<tr>
+  <th>FLAIR_10</th>  <td>    4.9115</td> <td>    4.194</td> <td>    1.171</td> <td> 0.242</td> <td>   -3.309</td> <td>   13.132</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">T1_10</td>
-<td>-0.7716</td>
-<td>2.258</td>
-<td>-0.342</td>
-<td>0.733</td>
-<td>-5.198</td>
-<td>3.655</td>
+<tr>
+  <th>T1_10</th>     <td>   -0.2656</td> <td>    2.027</td> <td>   -0.131</td> <td> 0.896</td> <td>   -4.238</td> <td>    3.707</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">T2_10</td>
-<td>-7.0170</td>
-<td>3.760</td>
-<td>-1.866</td>
-<td>0.062</td>
-<td>-14.387</td>
-<td>0.353</td>
+<tr>
+  <th>T2_10</th>     <td>   -7.9347</td> <td>    3.463</td> <td>   -2.291</td> <td> 0.022</td> <td>  -14.723</td> <td>   -1.147</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">FLAIR_20</td>
-<td>-16.0704</td>
-<td>9.094</td>
-<td>-1.767</td>
-<td>0.077</td>
-<td>-33.895</td>
-<td>1.754</td>
+<tr>
+  <th>FLAIR_20</th>  <td>  -16.3760</td> <td>    8.107</td> <td>   -2.020</td> <td> 0.043</td> <td>  -32.265</td> <td>   -0.487</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </div>
 </div>
 </section>
-<section id="a-classic-example" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="a-classic-example"><span class="header-section-number">29.2</span> A classic example</h2>
+<section id="a-classic-example" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="a-classic-example"><span class="header-section-number">30.2</span> A classic example</h2>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -875,76 +780,75 @@ Kurtosis:              3.136        Condition No.:          41
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/bcaffo/ds4bme_intro/master/data/swiss.csv"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dat.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
+
 <div>
 
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Region</th>
-<th data-quarto-table-cell-role="th">Fertility</th>
-<th data-quarto-table-cell-role="th">Agriculture</th>
-<th data-quarto-table-cell-role="th">Examination</th>
-<th data-quarto-table-cell-role="th">Education</th>
-<th data-quarto-table-cell-role="th">Catholic</th>
-<th data-quarto-table-cell-role="th">Infant.Mortality</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Courtelary</td>
-<td>80.2</td>
-<td>17.0</td>
-<td>15</td>
-<td>12</td>
-<td>9.96</td>
-<td>22.2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Delemont</td>
-<td>83.1</td>
-<td>45.1</td>
-<td>6</td>
-<td>9</td>
-<td>84.84</td>
-<td>22.2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Franches-Mnt</td>
-<td>92.5</td>
-<td>39.7</td>
-<td>5</td>
-<td>5</td>
-<td>93.40</td>
-<td>20.2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Moutier</td>
-<td>85.8</td>
-<td>36.5</td>
-<td>12</td>
-<td>7</td>
-<td>33.77</td>
-<td>20.3</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Neuveville</td>
-<td>76.9</td>
-<td>43.5</td>
-<td>17</td>
-<td>15</td>
-<td>5.16</td>
-<td>20.6</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Region</th>
+      <th>Fertility</th>
+      <th>Agriculture</th>
+      <th>Examination</th>
+      <th>Education</th>
+      <th>Catholic</th>
+      <th>Infant.Mortality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Courtelary</td>
+      <td>80.2</td>
+      <td>17.0</td>
+      <td>15</td>
+      <td>12</td>
+      <td>9.96</td>
+      <td>22.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Delemont</td>
+      <td>83.1</td>
+      <td>45.1</td>
+      <td>6</td>
+      <td>9</td>
+      <td>84.84</td>
+      <td>22.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Franches-Mnt</td>
+      <td>92.5</td>
+      <td>39.7</td>
+      <td>5</td>
+      <td>5</td>
+      <td>93.40</td>
+      <td>20.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Moutier</td>
+      <td>85.8</td>
+      <td>36.5</td>
+      <td>12</td>
+      <td>7</td>
+      <td>33.77</td>
+      <td>20.3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Neuveville</td>
+      <td>76.9</td>
+      <td>43.5</td>
+      <td>17</td>
+      <td>15</td>
+      <td>5.16</td>
+      <td>20.6</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
@@ -955,7 +859,7 @@ Kurtosis:              3.136        Condition No.:          41
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> fit.predict(x)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>[fit.intercept_, fit.coef_]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>[66.91518167896866,
+<pre><code>[66.9151816789687,
  array([-0.17211397, -0.25800824, -0.87094006,  0.10411533,  1.07704814])]</code></pre>
 </div>
 </div>
@@ -968,7 +872,7 @@ Kurtosis:              3.136        Condition No.:          41
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.plot(yhat, yhat2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-14-output-1.png" width="571" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-14-output-1.png" width="571" height="416"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
@@ -977,12 +881,12 @@ Kurtosis:              3.136        Condition No.:          41
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>yhat3 <span class="op">=</span> fit3.predict(x3)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.plot(yhat, yhat3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-15-output-1.png" width="571" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-15-output-1.png" width="571" height="416"></p>
 </div>
 </div>
 </section>
-<section id="regression-interpretation" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="regression-interpretation"><span class="header-section-number">29.3</span> Regression interpretation</h2>
+<section id="regression-interpretation" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="regression-interpretation"><span class="header-section-number">30.3</span> Regression interpretation</h2>
 <p>Let’s consider how adjustment works in regression by considering a so called ANCOVA (analysis of covariance) setting. Imagine, there’s treatment variable that we’re ineterested in, <span class="math inline">\(T_i\)</span>, and a regression variable that we have to adjust for, <span class="math inline">\(X_i\)</span>. Consider this specific variation of this setting:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1 X_i + \beta_2 T_i + \epsilon_i
@@ -1056,28 +960,28 @@ Y_i = \beta_0 + \beta_1 X_i + \beta_2 T_i + \epsilon_i
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>myplot(x, y, t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-18-output-1.png" width="574" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-18-output-1.png" width="574" height="418"></p>
 </div>
 </div>
 <p>Notice that the marginal means (horizontal lines) are about 4 units appart, same as the lines. This is due to the randomization. A goal of randomization is to make our inference for the treatment unrelated to whether or not we adjust for the confounding variable (<span class="math inline">\(X\)</span>). So, we get (up to random error) the ssame answer whether we adjust for <span class="math inline">\(X\)</span> or not. Let’s consider a different setting.</p>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>myplot(x <span class="op">+</span> t <span class="op">*</span> <span class="dv">4</span>, y, t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-19-output-1.png" width="574" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-19-output-1.png" width="574" height="416"></p>
 </div>
 </div>
 <p>Now notice that there is a large unadjusted difference (difference between the horizontal lines) whereas there is not much of a difference between the lines. That is, when adjusting for <span class="math inline">\(X\)</span>, the relationship goes away. Of note, treatment assignment is highly related to the <span class="math inline">\(X\)</span> variable. Orange dots tend to have a larger <span class="math inline">\(X\)</span> value than the blue. Because of this, there’s pratically no area of overlap between the orange and the blue to directly compare them. The adjusted model is all model, extrapolating the blue line up to the orange and the orange down to the blue assuming that they’re parallel.</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>myplot(x <span class="op">+</span> t <span class="op">*</span> <span class="dv">4</span>, y  <span class="op">-</span> t <span class="op">*</span> <span class="dv">4</span>, t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-20-output-1.png" width="574" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-20-output-1.png" width="574" height="416"></p>
 </div>
 </div>
 <p>Above notice that the result is the reverse. There’s little association marginally, but a large one when conditioning. Let’s look at one final case.</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>myplot(x <span class="op">+</span> t <span class="op">*</span> <span class="dv">6</span>, y  <span class="op">-</span> t <span class="op">*</span> <span class="dv">2</span>, t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="supervised_multivariable_files/figure-html/cell-21-output-1.png" width="574" height="415"></p>
+<p><img src="supervised_multivariable_files/figure-html/cell-21-output-1.png" width="574" height="416"></p>
 </div>
 </div>
 <p>Above things are even worse, the relationship has reversed itself. The marginal association is that the orange is above the blue whereas the conditional association is that the blue is above the orange. That is, if you fit the treatment model without <span class="math inline">\(X\)</span> you get one answer, and with <span class="math inline">\(X\)</span> you get the exact opposite answer! This is an example of so-called “Simpsons paradox”. The “paradox” isn’t that paradoxical. It simply says the relationship between two variables could reverse itself when factoring in another variable. Once again, note there’s no overlap in the distributions.</p>
@@ -1113,23 +1017,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -1141,24 +1031,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1194,140 +1067,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./supervised_logistic.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./supervised_dft.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DFT</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DFT</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

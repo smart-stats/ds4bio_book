@@ -1,0 +1,228 @@
+# Optimization
+
+Not all problems have closed form opimization results. Instead, we have to rely on algorithms to numerically optmize our parameteris. 
+To fix our discussion, let $l(\theta)$ be a negative log likelihood or loss function that we want to minimize. Equivalently, they
+could be the log likelihood or the negative of a loss function (gain function) that we want to optimize. Since we'll be focusing
+on machine learning, we'll characterize the problem in the terms of minimization, since most ML algoirthms are focused on minmizing
+loss functions.
+
+Consider how we would normally minimize a function. We would typically find the root of the derivative. That is, solving
+$l'(\theta) = 0$. However, finding the root simply creates an equally hard problem. What about approximating
+$l'(\theta)$ with a line at the current estimate? That is,
+$$
+l'(\theta) \approx l'\left(\theta^{(0)}\right) + \left(\theta - \theta^{(0)}\right)l''\left(\theta^{(0)}\right)  = 0,
+$$
+with the approximation being motivated by Taylor's theorem, where $l''$ is the Hessian (second derivative matrix). Solving the right hand equality implies
+$$
+\theta^{(1)} = \theta^{(0)} - l''\left(\theta^{(0)}\right)^{-1} l'\left(\theta^{(0)}\right).
+$$
+The algorithm that then recenters the approximation at $\theta^{(1)}$ and performs another update and so on, is called Newton's algorithm,
+which, as its name implies is a very old technique. This algorithm takes the form of heading in the opposite direction of the
+gradient ($- l'\left(\theta^{(0)}\right)$) where the scale of the move is governed by the inverse of the second derivative.
+
+As an example, consider the function $l(\theta) = \theta^p$  for $p$ an even number $\geq 2$. Then $l'(\theta) = p\theta^{p-1}$ and $l''(\theta) = p(p-1) \theta^{p-2}$. Then,
+the update is 
+$$
+\theta^{(1)} = \theta^{(0)} - \theta^{(0)} / (p - 1) = \theta^{(0)} (p-2)/(p-1)
+$$ 
+implying $\theta^{(n)} = \theta^{(0)} [(p-2)/ (p - 1)]^n$, which clearly converges to 0, the minimum. It converges in one iteration at $p=2$. The size of the jump at which one moves along the linear
+approximation is the inverse of the second derivative, i.e. $1 / [p(p-1) \theta^{p-2}]$.  Thus, one moves more the less convex $l$ is around the minimum. In this case, this results in a convergence rate of $[(p-2) / (p - 1)]^{n}$. 
+
+Let's try it out for $p=4$. Here's the core of the code:
+
+```{python}
+#| eval: false
+p = 4
+while (error > tolerance):
+    theta = theta - theta / (p-1)
+```
+
+```{python}
+#| echo: false
+import numpy as np
+import pandas as pd
+import numpy as np
+import matplotlib.pylab as plt
+import seaborn as sns
+
+p = 4
+theta = 2
+noiter = int(1e3)
+thetavals = np.linspace(-2, 2, 1000)
+plt.plot(thetavals, thetavals ** p)
+for i in range(noiter):
+    step = theta / (p-1)
+    plt.plot([theta, theta - step, theta - step], 
+             [theta ** p, theta ** p, (theta - step) ** p ], color = 'red')
+    theta = theta - step
+plt.show()
+```
+
+## Example
+
+Poisson regression makes for a good example. Consider a model where $Y_i \sim \mbox{Poisson}(\mu_i)$ where
+$\log(\mu_i) = x_i^t \theta$ for covariate vector $x_i$. Then the negative log-likelihood associated with the data up to additive constants in $\theta$ is:
+
+$$
+l(\theta) = -\sum_{i=1}^n \left[
+  y_i x_i^t \theta - e^{x_i^t \theta} \right]
+$$
+
+Thus,
+$$
+l'(\theta) = -\sum_{i=1}^n \left[y_i x_i -  e^{x_i^t \theta} x_i\right]
+= - \mathbf{X}^t \mathbf{y} + \mathbf{X}^t e^{\mathbf{X}^t \theta} 
+$$
+$$
+l''(\theta) = \sum_{i=1}^n e^{x_i^t \theta} x_i x_i^t = \mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}
+$$
+where $\mathbf{X}$ contains rows $x_i^t$ and $e^{\mathbf{X}^t \theta}$ is a vector with elements
+$\mathbf{X}^t \theta$. Therefore, the update function to go from the current value of $\theta$ to the next is:
+
+$$
+U(\theta) = \theta + 
+\left[\mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}\right ]^{-1} \mathbf{X}^t \left[ \mathbf{y} - e^{\mathbf{X}^t \theta}\right].
+$$
+Thus, our update shifts the current value by a fit from a weighted linear model. In this case, the linear
+model has outcome $\mathbf{y} - e^{\mathbf{X}^t \theta}$ (which is $\mathbf{y} - E_\theta[\mathbf{y}]$) design matrix $\mathbf{X}$ and weights
+$e^{\mathbf{X}^t \theta}$ (which are $\mathrm{Var}_\theta(\mathbf{Y})$).
+
+Consider an example using the Prussian Horse Kick data. We'll use `rpy2` to 
+load the data in from R and plot it. We'll group the data over other variables and simply 
+fit a Poisson loglinear model with just an intercept and slope term.
+```{python}
+from rpy2.robjects.packages import importr, data
+from rpy2.robjects.pandas2ri import py2rpy, rpy2py
+sns.set()
+
+pscl = importr('pscl')
+prussian_r = data(pscl).fetch('prussian')['prussian']
+prussian = rpy2py(prussian_r).drop('corp', axis = 1).groupby('year').sum().reset_index()
+
+sns.scatterplot(x = 'year', y = 'y',  size = 'y', data = prussian);
+```
+
+First let's fit the model using `statsmodels` and print out the coeficients.
+
+```{python}
+from statsmodels.discrete.discrete_model import Poisson
+prussian['itc'] = 1
+y = prussian['y'].to_numpy()
+x = prussian[ ['itc', 'year'] ].to_numpy()
+out = Poisson(endog = y, exog = x, ).fit()
+print(out.summary())
+```
+
+```{python}
+#| echo: false
+def like(theta):
+    eta = x @ np.array(theta)
+    like = eta * y - np.exp(eta)  
+    return np.exp( np.sum(like) )
+
+beta0_vals = np.linspace(0.6910 - 2 * 1.061, 0.6910 + 2 * 1.061, 100)
+beta1_vals = np.linspace(0.0188 - 2 * 0.012, 0.0188 + 2 * 0.012, 100)
+
+l = [ [like([beta0, beta1]) for beta1 in beta1_vals] for beta0 in beta0_vals]
+
+#plt.imshow(l)
+plt.contour(beta0_vals, beta1_vals, l)
+
+error = np.inf
+tolerance = .001
+theta = np.array([ 0.6910 + 2 * 1.061, 0.0188 + 2 * 0.012])
+nosteps = 0
+while (error > tolerance):
+    eta = x @ theta
+    mu = np.exp(eta)
+    var = np.linalg.inv(x.transpose() @ np.diag(mu) @ x) 
+    step =  var @ x.transpose() @ (y - mu)
+    theta = theta + step
+    error = np.linalg.norm(step)
+    nosteps += 1
+    plt.plot( [ (theta - step)[0], theta[0]]  , [ (theta - step)[1], theta[1]], '-k')
+
+plt.show()
+```
+
+Now, let's define the variables and fit the model using `numpy`. The error is the norm of the step size for that iteration.
+
+```{python}
+error = np.inf
+tolerance = .001
+theta = np.array([0, 1])
+nosteps = 0
+while (error > tolerance):
+    eta = x @ theta
+    mu = np.exp(eta)
+    var = np.linalg.inv(x.transpose() @ np.diag(mu) @ x) 
+    step =  var @ x.transpose() @ (y - mu)
+    theta = theta + step
+    error = np.linalg.norm(step)
+    nosteps += 1
+print( [theta, nosteps])
+
+```
+
+Notice we get the same answer as the optimization routine in `statsmodels`. In this 
+setting, the second derivative is more than just useful for fast optimization. Specifically, we can get the standard error of the coefficients witht the square root of the diagonal  of the $\left[\mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}\right ]^{-1}$ term on convergence. This is the empirical estimate of the asymptotic standard error for the MLE.
+
+```{python}
+print(np.sqrt(np.diag(var)))
+```
+
+## Gradient descent
+Often, we can't calculate a second derivative, as will be the case with neural networks.
+We then replace the step size in Newton's algorithm with a less optimal step size:
+$$
+\theta^{(1)} = \theta^{(0)} - \epsilon \times l'\left(\theta^{(0)}\right)
+$$
+where $\epsilon$ is the so-called ``learning rate''. 
+
+Consider our example of trying to minimize $\theta^p$. Then, our update is 
+$$
+\theta^{(1)} = \theta^{(0)} - \epsilon \times p \left[\theta^{(0)}\right]^{p-1}.
+$$
+
+Let's try it out for a few different values of $\epsilon$. The core of the code is simply:
+```{python}
+#| eval: false
+for i in range(noiter):
+    theta = theta - epsilon * p * theta ** (p-1)
+```
+Here we show the convergence for $\epsilon = .1$ (blue line), $\epsilon = .01$ (red line) and $\epsilon = .001$ (green line).
+
+```{python}
+#| echo: false
+p = 4
+theta = 2
+epsilon = 1e-2
+noiter = int(1e3)
+thetavals = np.linspace(-2, 2, 1000)
+plt.plot(thetavals, thetavals ** p, color = 'black')
+
+for i in range(noiter):
+    step = epsilon * p * theta ** (p-1)
+    plt.plot([theta, theta - step, theta - step], 
+             [theta ** p, theta ** p, (theta - step) ** p ], color = 'red')
+    theta = theta - step
+
+theta = 2
+epsilon = 1e-1
+for i in range(noiter):
+    step = epsilon * p * theta ** (p-1)
+    plt.plot([theta, theta - step, theta - step], 
+             [theta ** p, theta ** p, (theta - step) ** p ], color = 'blue')
+    theta = theta - step
+
+theta = 2
+epsilon = .001
+for i in range(noiter):
+    step = epsilon * p * theta ** (p-1)
+    plt.plot([theta, theta - step, theta - step], 
+             [theta ** p, theta ** p, (theta - step) ** p ], color = 'green')
+    theta = theta - step
+
+
+plt.show()
+```

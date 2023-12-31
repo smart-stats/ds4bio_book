@@ -107,49 +107,19 @@ First let's fit the model using `statsmodels` and print out the coeficients.
 ```{python}
 from statsmodels.discrete.discrete_model import Poisson
 prussian['itc'] = 1
+prussian['year_normalized'] = (prussian['year'] - prussian['year'].min()) / (prussian['year'].max() - prussian['year'].min())
+
 y = prussian['y'].to_numpy()
-x = prussian[ ['itc', 'year'] ].to_numpy()
+x = prussian[ ['itc', 'year_normalized'] ].to_numpy()
 out = Poisson(endog = y, exog = x, ).fit()
 print(out.summary())
-```
-
-```{python}
-#| echo: false
-def like(theta):
-    eta = x @ np.array(theta)
-    like = eta * y - np.exp(eta)  
-    return np.exp( np.sum(like) )
-
-beta0_vals = np.linspace(0.6910 - 2 * 1.061, 0.6910 + 2 * 1.061, 100)
-beta1_vals = np.linspace(0.0188 - 2 * 0.012, 0.0188 + 2 * 0.012, 100)
-
-l = [ [like([beta0, beta1]) for beta1 in beta1_vals] for beta0 in beta0_vals]
-
-#plt.imshow(l)
-plt.contour(beta0_vals, beta1_vals, l)
-
-error = np.inf
-tolerance = .001
-theta = np.array([ 0.6910 + 2 * 1.061, 0.0188 + 2 * 0.012])
-nosteps = 0
-while (error > tolerance):
-    eta = x @ theta
-    mu = np.exp(eta)
-    var = np.linalg.inv(x.transpose() @ np.diag(mu) @ x) 
-    step =  var @ x.transpose() @ (y - mu)
-    theta = theta + step
-    error = np.linalg.norm(step)
-    nosteps += 1
-    plt.plot( [ (theta - step)[0], theta[0]]  , [ (theta - step)[1], theta[1]], '-k')
-
-plt.show()
 ```
 
 Now, let's define the variables and fit the model using `numpy`. The error is the norm of the step size for that iteration.
 
 ```{python}
 error = np.inf
-tolerance = .001
+tolerance = .0001
 theta = np.array([0, 1])
 nosteps = 0
 while (error > tolerance):
@@ -170,6 +140,40 @@ setting, the second derivative is more than just useful for fast optimization. S
 ```{python}
 print(np.sqrt(np.diag(var)))
 ```
+
+Here's the likelihood, which is very narrow, and the path of the estimates as Newton's algorithm runs.
+```{python}
+#| echo: false
+def like(theta):
+    eta = x @ np.array(theta)
+    like = eta * y - np.exp(eta)  
+    return np.exp( np.sum(like) )
+
+beta0_vals = np.linspace(2.0983 - 2 * 0.145, 2.0983 + 2 * 0.145, 100)
+beta1_vals = np.linspace(0.3565 - 2 * 0.236, 0.3565 + 2 * 0.236, 100)
+
+l = [ [like([beta0, beta1]) for beta1 in beta1_vals] for beta0 in beta0_vals]
+
+#plt.imshow(l)
+plt.contour(beta0_vals, beta1_vals, l)
+
+error = np.inf
+tolerance = .001
+theta = np.array([ 2.0983 + 2 * 0.145, 0.3565 + 2 * 0.236])
+nosteps = 0
+while (error > tolerance):
+    eta = x @ theta
+    mu = np.exp(eta)
+    var = np.linalg.inv(x.transpose() @ np.diag(mu) @ x) 
+    step =  var @ x.transpose() @ (y - mu)
+    theta = theta + step
+    error = np.linalg.norm(step)
+    nosteps += 1
+    plt.plot( [ (theta - step)[0], theta[0]]  , [ (theta - step)[1], theta[1]], color = "blue")
+
+plt.show()
+```
+
 
 ## Gradient descent
 Often, we can't calculate a second derivative, as will be the case with neural networks.
@@ -226,3 +230,41 @@ for i in range(noiter):
 
 plt.show()
 ```
+
+
+## Example revisited with gradient descent
+
+Let's run the same data throw the gradient descent algorithm rather than Newton's method.
+Here we set the learning rate to b 0.001 for a thousand iterations. The gist of the code is simply:
+
+```{python}
+#| eval: false
+
+epsilon = .001
+for i in range(1000):
+    eta = x @ theta
+    mu = np.exp(eta)
+    step =  - epsilon * x.transpose() @ (y - mu)
+    theta = theta - step
+
+```
+
+Stopping the algorithm is a little trickier for gradient descent, since the change at each iteration is dependent on the learning rate. Small learning rates will lead to small step sizes. Here's a plot of the covergence on top of contours of the likelihood.
+```{python}
+#| echo: false
+
+plt.contour(beta0_vals, beta1_vals, l)
+epsilon = .001
+theta = np.array([ 2.0983 + 2 * 0.145, 0.3565 + 2 * 0.236])
+for i in range(1000):
+    eta = x @ theta
+    mu = np.exp(eta)
+    step =  epsilon * x.transpose() @ (y - mu)
+    theta = theta + step
+    plt.plot( [ (theta - step)[0], theta[0]]  , 
+              [ (theta - step)[1], theta[1]], 
+              color = "blue")
+
+plt.show()
+```
+

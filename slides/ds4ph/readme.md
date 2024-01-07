@@ -22,4 +22,4 @@
 + [Lecture 23, Linear separable interpretation](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/23_linear_separable_smf.slides.html)
 + [Lecture 24, Regression example](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/24_regression_examples.slides.html)
 + [Lecture 25, Regression interpretation](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/25_regression_interpretation.slides.html)
-+ [Lecture 26, Neural Networks](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/26_nns.html)
++ [Lecture 26, Neural Networks](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/26_nns.slides.html)

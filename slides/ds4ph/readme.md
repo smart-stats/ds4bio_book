@@ -1,4 +1,4 @@
-+ [Lecture 1, Introduction](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/02_github.slides.html#/)
++ [Lecture 1, Introduction](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/01_welcome.slides.html#/)
 + [Lecture 2, git and github](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/02_github.slides.html#/)
 + [Lecture 3, python](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/03_python_basics.slides.html#/)
 + [Lecture 4, python programming](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/04_python_progamming.slides.html)

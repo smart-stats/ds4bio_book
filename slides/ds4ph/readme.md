@@ -23,3 +23,6 @@
 + [Lecture 24, Regression example](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/24_regression_examples.slides.html)
 + [Lecture 25, Regression interpretation](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/25_regression_interpretation.slides.html)
 + [Lecture 26, Neural Networks](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/26_nns.slides.html)
++ [Lecture 27, Regression in pytorch](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/27_basic_regression_pytorch.slides.html)
++ [Lecture 28, Neural Networks](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/28_logistic_regression_pytorch.slides.html)
++ [Streamlit](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/streamlit.slides.html)

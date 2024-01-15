@@ -102,7 +102,13 @@ prussian = rpy2py(prussian_r).drop('corp', axis = 1).groupby('year').sum().reset
 sns.scatterplot(x = 'year', y = 'y',  size = 'y', data = prussian);
 ```
 
-First let's fit the model using `statsmodels` and print out the coeficients.
+First let's fit the model using `statsmodels` and print out the coeficients. We normalize the year variable as 
+
+$$
+\frac{\mbox{Year} - \min(\mbox{Year})}{\max(\mbox{Year}) - \min(\mbox{Year})}.
+$$
+
+So our slope coefficient is the proprotion of the total years under study rather than the raw year. This is done for several reasons. It helps us visualize the likelihood for one. Secondly, this is normal practice in deep learning to put coefficients on a common scale to help the algorithms have more unit-free starting points. 
 
 ```{python}
 from statsmodels.discrete.discrete_model import Poisson

@@ -2,7 +2,7 @@ import streamlit as st
 
 st.write("""
 
-## This is page 2
+## This is page 3
 
 """
 )

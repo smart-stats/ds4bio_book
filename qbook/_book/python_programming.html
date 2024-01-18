@@ -592,6 +592,14 @@ d</code></pre>
 [0, 1, 2]</code></pre>
 </div>
 </div>
+<p>List comprehension is really useful for quickly creating lists. The format is <code>[expression for item in list if condition]</code>. Here’s an example where we square the even integers.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 4, 16, 36, 64, 100, 144, 196, 256, 324, 400, 484, 576]</code></pre>
+</div>
+</div>
 
 
 

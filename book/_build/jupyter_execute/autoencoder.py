@@ -210,6 +210,7 @@ autoencoder = autoencoder()
 # In[6]:
 
 
+
 ## Here's some example data by grabbing one batch
 tryItOut = next(iter(trainLoader))
 print(tryItOut.shape)
@@ -241,7 +242,6 @@ for i in range(5):
   plt.yticks([])
   img = np.transpose(test[i,:,:,:], (1, 2, 0))
   plt.imshow(img)
-
 
 
 

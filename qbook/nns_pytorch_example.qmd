@@ -4,6 +4,7 @@ This example from the pytorch documentation [here](https://pytorch.org/tutorials
 
 ```{python}
 #| tags: [hide-input]
+#| echo: false
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np

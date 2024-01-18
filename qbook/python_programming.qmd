@@ -74,3 +74,9 @@ print(a)
 print(list(a))
 ```
 
+List comprehension is really useful for quickly creating lists. The format is `[expression for item in list if condition]`. Here's an example where we square the even integers.
+
+```{python}
+a = [x**2 for x in range(25) if x % 2 == 0]
+print(a)
+```

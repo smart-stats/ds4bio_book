@@ -21,6 +21,9 @@ chapters:
 - file: interactive.ipynb
 - file: webscraping.ipynb
 - file: streamlit.ipynb
+- file: dash.ipynb
+- file: dash2.ipynb
+- file: voila.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb
@@ -34,16 +37,13 @@ chapters:
 - file: dft.ipynb
 - file: linearModels_FFTs.ipynb
 - file: nns.ipynb
-- file: pytorch_regression.ipynb
 - file: basic_regression_pytorch.ipynb
 - file: logistic_regression_pytorch.ipynb
+- file: pytorch_regression.ipynb
 #- file: convnet_classifier_pytorch.ipynb
 #- file: convolutions.ipynb
 #- file: autoencoder.ipynb
 #- file: gan.ipynb
 #- file: gpu.ipynb
 #- file: explainability.ipynb
-- file: voila.ipynb
-- file: dash.ipynb
-- file: dash2.ipynb
 

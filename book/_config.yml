@@ -4,6 +4,8 @@ title: Data science and AI for Bio/medical applications using python
 author: Brian Caffo
 logo: dasl.png
 
+only_build_toc_files: true
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:

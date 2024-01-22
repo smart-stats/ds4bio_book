@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Git, github &#8212; Data science and AI for Bio/medical applications using python</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,61 +63,112 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'git';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python background" href="ds_python.html" />
     <link rel="prev" title="Welcome!" href="intro.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
         
       
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/dasl.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/dasl.png" class="logo__image only-light" alt="Data science and AI for Bio/medical applications using python - Home"/>
+    <script>document.write(`<img src="_static/dasl.png" class="logo__image only-dark" alt="Data science and AI for Bio/medical applications using python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -115,646 +178,275 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Git, github
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ds_python.html">
-   Python background
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_python.html">
-   Python basics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_programming.html">
-   Python programming
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="functions.html">
-   Functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_practice.html">
-   Python in practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="virtual_environments.html">
-   Virtual Environments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data_cleaning.html">
-   Data cleaning by example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="EDA.html">
-   Exploratory data analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data_structures.html">
-   Data structures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sqlite.html">
-   SQL via sqlite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pysqlite.html">
-   sqlite in python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rBasic.html">
-   Base R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rTidyverse.html">
-   R tidyverse quick example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rFromPython.html">
-   R from python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pythonFromR.html">
-   Python from R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="html.html">
-   HTML, CSS and javascript
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="interactive.html">
-   Interactive graphics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="webscraping.html">
-   Webscraping
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="voila.html">
-   Jupyterwidgets and voila
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="streamlit.html">
-   Streamlit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dash.html">
-   Dash
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dash2.html">
-   Dash callbacks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="binary_classification.html">
-   Introduction to binary classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_through_the_origin.html">
-   Regression through the origin
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression.html">
-   Continuous prediction with regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy.html">
-   Numpy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="logistic.html">
-   Logistic regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ml.html">
-   Maximum Likelihood
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearSeparable.html">
-   Linear separable models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearSeparableSMF.html">
-   Interpretation of linear regression coefficients.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_examples.html">
-   Linear models: a classic example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_interpretation.html">
-   Regression interpretation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dft.html">
-   DFT
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearModels_FFTs.html">
-   Regression and FFTs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nns.html">
-   Neural networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pytorch_regression.html">
-   Pytorch by example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_regression_pytorch.html">
-   Basic regression in pytorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="logistic_regression_pytorch.html">
-   Logistic regression in pytorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convnet_classifier_pytorch.html">
-   Convnet classifier example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolutions.html">
-   Convolutions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="autoencoder.html">
-   Autoencoders
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gan.html">
-   GANs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gpu.html">
-   Parallelism and GPU computing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="explainability.html">
-   Explainability
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Git, github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/git.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fgit.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/git.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/smart-stats/ds4bio_book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fgit.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/git.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-least-you-need-to-know">
-   The least you need to know
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-little-more-detail">
-   A little more detail
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-started">
-     Getting started
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-files">
-     Adding files
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-status">
-     Checking status
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#commiting-changes">
-     Commiting changes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#remote-repositories">
-     Remote repositories
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connecting-your-remote-and-local-repos">
-       Connecting your remote and local repos
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pushing-changes">
-       Pushing changes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pulling-changes">
-       Pulling changes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#cloning">
-       Cloning
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forking">
-       Forking
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pull-requests">
-       Pull requests
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#branching">
-   Branching
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clients">
-   Clients
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-ssh">
-   Setting up ssh
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#github-pages">
-   Github pages
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Git, github</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-least-you-need-to-know">
-   The least you need to know
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-little-more-detail">
-   A little more detail
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-started">
-     Getting started
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-files">
-     Adding files
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checking-status">
-     Checking status
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#commiting-changes">
-     Commiting changes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#remote-repositories">
-     Remote repositories
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connecting-your-remote-and-local-repos">
-       Connecting your remote and local repos
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pushing-changes">
-       Pushing changes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pulling-changes">
-       Pulling changes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#cloning">
-       Cloning
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forking">
-       Forking
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pull-requests">
-       Pull requests
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#branching">
-   Branching
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clients">
-   Clients
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-ssh">
-   Setting up ssh
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#github-pages">
-   Github pages
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Git, github</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-you-need-to-know">The least you need to know</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-little-more-detail">A little more detail</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-files">Adding files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-status">Checking status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commiting-changes">Commiting changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-repositories">Remote repositories</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-your-remote-and-local-repos">Connecting your remote and local repos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes">Pushing changes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-changes">Pulling changes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning">Cloning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forking">Forking</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests">Pull requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branching">Branching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clients">Clients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-ssh">Setting up ssh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-pages">Github pages</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="git-github">
-<h1>Git, github<a class="headerlink" href="#git-github" title="Permalink to this headline">#</a></h1>
+<h1>Git, github<a class="headerlink" href="#git-github" title="Permalink to this heading">#</a></h1>
 <p>In the live versions of these classes, we use the version control system git and git hosting service github. If you work in data science should have a working knowledge of both git and at least one cloud hosting service (like github).
 For git, you work in a <em>repository</em>, which is basically a project directory on your
 computer with some extra files that help git work. Git is then used for <em>version control</em>
@@ -765,9 +457,9 @@ is another, or you could even relatively easily start your own. However, github 
 end web services that allows you to interact with your remote repository easily. This is
 very convenient.</p>
 <section id="the-least-you-need-to-know">
-<h2>The least you need to know<a class="headerlink" href="#the-least-you-need-to-know" title="Permalink to this headline">#</a></h2>
+<h2>The least you need to know<a class="headerlink" href="#the-least-you-need-to-know" title="Permalink to this heading">#</a></h2>
 <p>I’m not going to fully recreate git / github tutorials here; <a class="reference external" href="https://seankross.com/the-unix-workbench/git-and-github.html">here’s one I recommend</a> by Sean Kross. Instead, I’m going to go through a typical git / github workflow.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>Initialization</strong> I almost always initialize my git repository on github with a <code class="docutils literal notranslate"><span class="pre">readme.md</span></code> file.</p></li>
 <li><p><strong>Clone</strong> I typically <em>clone</em> the repository to my local computer using the command line or a local git gui that works with github, like <a class="reference external" href="https://desktop.github.com/">this one</a>. Note that you only have to clone the repo once. After it’s cloned
 you have a full local copy of the repository.</p></li>
@@ -785,14 +477,14 @@ nice project messaging and management tools.</p>
 <p>In our class, we use github classroom. For github classroom, you’ll get a link to a repo to put your submission files into. When you push to the remote repository, you’ll have submitted. <em>But, up to the due date you can make changes an push again.</em></p>
 </section>
 <section id="a-little-more-detail">
-<h2>A little more detail<a class="headerlink" href="#a-little-more-detail" title="Permalink to this headline">#</a></h2>
+<h2>A little more detail<a class="headerlink" href="#a-little-more-detail" title="Permalink to this heading">#</a></h2>
 <section id="getting-started">
-<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h3>
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
 <p>Git is a version control system invented by Linus Torvalds, the invetor of the linux operating system. A github repository is a directory that the software git is using to keep track of versions. Install <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a>, it’s already installed on most cloud services and many operaiting systems.
 You can initialize a repository in a directory with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> in that directory. Honestly, I almost never start a git repo this way, because I’ve connected my repo to a cloud server. But, more on that later. After you’ve initialized it, your git repo is a locally version controlled system.</p>
 </section>
 <section id="adding-files">
-<h3>Adding files<a class="headerlink" href="#adding-files" title="Permalink to this headline">#</a></h3>
+<h3>Adding files<a class="headerlink" href="#adding-files" title="Permalink to this heading">#</a></h3>
 <p>OK, now you want to add some of your files to your repo. You have a directory You can add files with the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">FILENAME</span>
 </pre></div>
@@ -801,7 +493,7 @@ You can initialize a repository in a directory with the command <code class="doc
 You only need to add the files once, then they are being tracked. Try it out with a readme markdown file in your repository.</p>
 </section>
 <section id="checking-status">
-<h3>Checking status<a class="headerlink" href="#checking-status" title="Permalink to this headline">#</a></h3>
+<h3>Checking status<a class="headerlink" href="#checking-status" title="Permalink to this heading">#</a></h3>
 <p>One of the most useful git commands is</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">status</span>
 </pre></div>
@@ -809,7 +501,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>This gives the status of which files are being tracked, which are not and which have changes.</p>
 </section>
 <section id="commiting-changes">
-<h3>Commiting changes<a class="headerlink" href="#commiting-changes" title="Permalink to this headline">#</a></h3>
+<h3>Commiting changes<a class="headerlink" href="#commiting-changes" title="Permalink to this heading">#</a></h3>
 <p>You have to actually commit your changes to the repository to have them represented. Committing changes is a local operation, subsequently, we’ll show you how to coordinate with a remote repository. Here’s the command I use to commit most often</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;COMMIT MESSAGE&quot;</span>
 </pre></div>
@@ -817,12 +509,12 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>Here the flag <code class="docutils literal notranslate"><span class="pre">-a</span></code> means commit all files staged for commits. You can also commit individual files or a collection of specific files. The <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;COMMIT</span> <span class="pre">MESSAGE&quot;</span></code> is the message associated with your commit. Make your commit messages more informative. If you don’t add <code class="docutils literal notranslate"><span class="pre">-m</span></code> github will bring up an editor for you to enter your commit message.</p>
 </section>
 <section id="remote-repositories">
-<h3>Remote repositories<a class="headerlink" href="#remote-repositories" title="Permalink to this headline">#</a></h3>
+<h3>Remote repositories<a class="headerlink" href="#remote-repositories" title="Permalink to this heading">#</a></h3>
 <p>Git becomes much more useful when it’s coordinated with a remote repository. Github is a server for hosting remote git repositories, there are several others, bitbucket is an example. Github also includes a great deal of functionality for working with the remote repository through the website. There’s many git and github guis that you could use if you want. I always liked to github one and magit in emacs.</p>
 <section id="connecting-your-remote-and-local-repos">
-<h4>Connecting your remote and local repos<a class="headerlink" href="#connecting-your-remote-and-local-repos" title="Permalink to this headline">#</a></h4>
+<h4>Connecting your remote and local repos<a class="headerlink" href="#connecting-your-remote-and-local-repos" title="Permalink to this heading">#</a></h4>
 <p>You need to connect your local repo to the remote repo. First create a version of the repo on github (actually then it gives you instructions). Then you can either</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><em>Clone</em> the repo from the server <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">REMOTE</span> <span class="pre">SERVER</span></code></p></li>
 <li><p>Connect the server to your local repository</p></li>
 </ol>
@@ -833,8 +525,13 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>Personally, I find it easier just to create the repo on github and clone it. You can clone over ssh or https, if you don’t know what ssh is use https and then switch over to ssh as you learn how to use it.</p>
 </section>
 <section id="pushing-changes">
-<h4>Pushing changes<a class="headerlink" href="#pushing-changes" title="Permalink to this headline">#</a></h4>
+<h4>Pushing changes<a class="headerlink" href="#pushing-changes" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -863,8 +560,9 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/git_2_0.png" src="_images/git_2_0.png" />
+<img alt="_images/f11f460988a1bbd1806c2ec53e82b891166133af120dc2d0173e83b31281b35d.png" src="_images/f11f460988a1bbd1806c2ec53e82b891166133af120dc2d0173e83b31281b35d.png" />
 </div>
 </div>
 <p>You push from the repo you’re working on to another (remote repo). So, for me, this typically means pushing from my local computer repo to github or to a scientific computing cluster.</p>
@@ -874,8 +572,13 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>The above command could be read as “push my new committed changes from my origin to the main branch on my remote repo”.  Older repos had the default branch <code class="docutils literal notranslate"><span class="pre">master</span></code> instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>. But, github switched in <a class="reference external" href="https://github.com/github/renaming">2020 or so</a>. So, some older documentation may not have this switch.</p>
 </section>
 <section id="pulling-changes">
-<h4>Pulling changes<a class="headerlink" href="#pulling-changes" title="Permalink to this headline">#</a></h4>
+<h4>Pulling changes<a class="headerlink" href="#pulling-changes" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -899,8 +602,9 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/git_4_0.png" src="_images/git_4_0.png" />
+<img alt="_images/12d1ed77fd93872f2631c1a8f23e90212a5048d2aeab7493ee7b5f549fdf87ea.png" src="_images/12d1ed77fd93872f2631c1a8f23e90212a5048d2aeab7493ee7b5f549fdf87ea.png" />
 </div>
 </div>
 <p>There might be changes that you want represented locally that were changed on the remote repository; for example, you might edit a readme file through github’s web interface. The command for this is really easy, it’s just pull</p>
@@ -911,8 +615,13 @@ You only need to add the files once, then they are being tracked. Try it out wit
 (<a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line">https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line</a>).</p>
 </section>
 <section id="cloning">
-<h4>Cloning<a class="headerlink" href="#cloning" title="Permalink to this headline">#</a></h4>
+<h4>Cloning<a class="headerlink" href="#cloning" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -941,8 +650,9 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/git_7_0.png" src="_images/git_7_0.png" />
+<img alt="_images/bd0539b57f2ae173c59b1152038bb037c0e3e51c8cf7198b8f7a0c5ee65ea1ec.png" src="_images/bd0539b57f2ae173c59b1152038bb037c0e3e51c8cf7198b8f7a0c5ee65ea1ec.png" />
 </div>
 </div>
 <p>To clone a remote repository is to simply create a local copy where you can pull changes from the remote. If a repository is public and you own it, then you can clone it and push changes back to the remote. If you don’t, you can clone and pull changes, but then can’t push back to the remote.</p>
@@ -953,8 +663,13 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </section>
 <section id="forking">
-<h4>Forking<a class="headerlink" href="#forking" title="Permalink to this headline">#</a></h4>
+<h4>Forking<a class="headerlink" href="#forking" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -987,16 +702,22 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/git_10_0.png" src="_images/git_10_0.png" />
+<img alt="_images/39fa3882b524059a423d4f3f610738cfac13a8f97a1e78699bc7fcae0c081459.png" src="_images/39fa3882b524059a423d4f3f610738cfac13a8f97a1e78699bc7fcae0c081459.png" />
 </div>
 </div>
 <p>A common workflow for github is to “fork” the repository. This differs from cloning in the sense that your fork is an entirely separate new copy. In the picture above, GH2 is a fork of GH1. It can pull upstream changes from GH1, but can’t write to it, since you don’t own that repo. You can push and pull from Local2 which is connected to GH2.</p>
 <p>Forking on github is easy. Just click the “fork” button in the upper right corner.</p>
 </section>
 <section id="pull-requests">
-<h4>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">#</a></h4>
+<h4>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -1029,8 +750,9 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/git_13_0.png" src="_images/git_13_0.png" />
+<img alt="_images/159ec925f3eebe0061c58a06637318217e148fa50d9cdc2350429a28028cbc6b.png" src="_images/159ec925f3eebe0061c58a06637318217e148fa50d9cdc2350429a28028cbc6b.png" />
 </div>
 </div>
 <p>Imagine a case where you forked the book repo and have some great additions (maybe a section on merge conflicts?). You think that these changes you think should be represented for other students. You can’t push changes to my repo; the very idea would be perposterous! How do you get your great changes represented in my repo?</p>
@@ -1040,7 +762,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </section>
 </section>
 <section id="branching">
-<h2>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">#</a></h2>
+<h2>Branching<a class="headerlink" href="#branching" title="Permalink to this heading">#</a></h2>
 <p>You often want multiple versions of a repository. For example, you might want a development version, a working version and a stable version. This is what branches are for in git. To create and switch to a branch called <code class="docutils literal notranslate"><span class="pre">dev</span></code>, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">dev</span>
 </pre></div>
@@ -1053,11 +775,11 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>Start very basic with branches, then when you get the hang of it you can use it like a pro. <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Here’s more documentation</a>.</p>
 </section>
 <section id="clients">
-<h2>Clients<a class="headerlink" href="#clients" title="Permalink to this headline">#</a></h2>
+<h2>Clients<a class="headerlink" href="#clients" title="Permalink to this heading">#</a></h2>
 <p>You can avoid the command line stuff with a git client, of which there are many. It’s still good to know the command line options, for remote work if nothing else. I’ve tried several git clients and my favorite is the github client software and magit in emacs.</p>
 </section>
 <section id="setting-up-ssh">
-<h2>Setting up ssh<a class="headerlink" href="#setting-up-ssh" title="Permalink to this headline">#</a></h2>
+<h2>Setting up ssh<a class="headerlink" href="#setting-up-ssh" title="Permalink to this heading">#</a></h2>
 <p>If you want to connect to a remote repository to github on a unix or linux system, it’s probably easiest to set up using so called secure shell. You can also set it up a variety of ways on Windows, but the rules are a little less universal. If you find this very hard to follow, just use a git and github gui (like github desktop, which is what I like to recommend).</p>
 <p>Secure shell works as follows. It creates a public key (think like a lock, everyone can see it) and a private key (like the key for the lock, only you have it). When you connect to github, it has your public key and you use the private key to “unlock” it. First, you need a <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> directory from your personal directory. If you don’t have that, try <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;server</span></code> to a server that you know and it will automatically create one.</p>
 <p>we’ll go through <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this</a> tutorial.</p>
@@ -1077,7 +799,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 <p>Once this is setup, then you should be able to push and pull from github from the command line without passwords.</p>
 </section>
 <section id="github-pages">
-<h2>Github pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">#</a></h2>
+<h2>Github pages<a class="headerlink" href="#github-pages" title="Permalink to this heading">#</a></h2>
 <p>It’s possible to host web pages on github. By <em>hosting</em> I mean serving the web page on the internet so that others can view it. There’s a couple of steps to doing this. First, you need an html file to serve. If you look in <a class="reference external" href="https://smart-stats.github.io/ds4bio_book/book/_build/html/html.html">the chapter</a> on html, there’s the code for a basic wepage. Save a web page as say “index.html”. You can double check that it works by simply double clicking on the file on your local computer. It should display as a web page in your browser, but it’s only viewable by you. Notice the addres begins with <code class="docutils literal notranslate"><span class="pre">file:///...</span></code>. To serve the file so that others can view it, we need it to exist on a server.</p>
 <p>Github will serve the file for us, but first we need a repository. Create a public repository; I typically do this on github. Then you need to add an empty file called <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code>. Don’t forget the period at the beginning. This prevents github from thinking you’re using the <a class="reference external" href="https://jekyllrb.com/">jekyll framework</a>, which is the default. Since we’re serving a basic webpage, we don’t need this framework. I create this file on github just by clicking <em>Add File</em> then <em>Create new file</em>.</p>
 <p>Next we need to tell github that this repo serves web pages. Click on <em>settings</em> then <em>pages</em> on the left. Then, under <em>source</em> choose the branch that you want to serve the pages from. Add your html file, commit and push to github. Give it a few minutes, then your file will be served from</p>
@@ -1100,7 +822,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1108,50 +830,123 @@ You only need to add the files once, then they are being tracked. Try it out wit
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome!</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome!</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ds_python.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ds_python.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Python background</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-you-need-to-know">The least you need to know</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-little-more-detail">A little more detail</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-files">Adding files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-status">Checking status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commiting-changes">Commiting changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-repositories">Remote repositories</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-your-remote-and-local-repos">Connecting your remote and local repos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes">Pushing changes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-changes">Pulling changes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning">Cloning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forking">Forking</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests">Pull requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branching">Branching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clients">Clients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-ssh">Setting up ssh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-pages">Github pages</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Brian Caffo<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Brian Caffo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

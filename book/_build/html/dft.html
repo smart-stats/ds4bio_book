@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -522,10 +527,10 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function matplotlib.pyplot.show&gt;
 </pre></div>
 </div>
-<img alt="_images/3a344dc4d4408fa4d8cb7c46270e4e323c17d77d46b82d6d1a1c77c48924a51a.png" src="_images/3a344dc4d4408fa4d8cb7c46270e4e323c17d77d46b82d6d1a1c77c48924a51a.png" />
+<img alt="_images/bb68eb2739bbc915235d289c0049efc68f04e126bee4c7257ba32b4c0e04f88f.png" src="_images/bb68eb2739bbc915235d289c0049efc68f04e126bee4c7257ba32b4c0e04f88f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -537,10 +542,10 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function matplotlib.pyplot.show&gt;
 </pre></div>
 </div>
-<img alt="_images/5cd5df44b9bc09483d5b9133a356142ba56ca438d6b97d6f535f69e2531ad95d.png" src="_images/5cd5df44b9bc09483d5b9133a356142ba56ca438d6b97d6f535f69e2531ad95d.png" />
+<img alt="_images/27cb7ef71d062c9b0855385e3d05dd617c71c0ba0bfb4b8b4c0fc746b1b419c9.png" src="_images/27cb7ef71d062c9b0855385e3d05dd617c71c0ba0bfb4b8b4c0fc746b1b419c9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -554,7 +559,7 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e328f388f992dbb07fb8d6331dd4cc950b670fe5c958d45c2381f02749c556e0.png" src="_images/e328f388f992dbb07fb8d6331dd4cc950b670fe5c958d45c2381f02749c556e0.png" />
+<img alt="_images/7b40ad44d745d633094ff02fc1e0b436e424d77b1530e396695001dda92a56a1.png" src="_images/7b40ad44d745d633094ff02fc1e0b436e424d77b1530e396695001dda92a56a1.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([  5,  20, 980, 995]),)
 </pre></div>
 </div>
@@ -574,7 +579,7 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8d5cb5083c7d57eb390be17188e0490c4a8d820b7ca33bc73fdc50c16d5311e9.png" src="_images/8d5cb5083c7d57eb390be17188e0490c4a8d820b7ca33bc73fdc50c16d5311e9.png" />
+<img alt="_images/3178136496423ff37dc08b9b1cc46fc0395dc5b0fe1a0580339111c91a4d01c8.png" src="_images/3178136496423ff37dc08b9b1cc46fc0395dc5b0fe1a0580339111c91a4d01c8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -589,11 +594,11 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.10/site-packages/matplotlib/cbook/__init__.py:1298: ComplexWarning: Casting complex values to real discards the imaginary part
-  return np.asarray(x, float)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/_asarray.py:85: ComplexWarning: Casting complex values to real discards the imaginary part
+  return array(a, dtype, copy=False, order=order)
 </pre></div>
 </div>
-<img alt="_images/5cd5df44b9bc09483d5b9133a356142ba56ca438d6b97d6f535f69e2531ad95d.png" src="_images/5cd5df44b9bc09483d5b9133a356142ba56ca438d6b97d6f535f69e2531ad95d.png" />
+<img alt="_images/27cb7ef71d062c9b0855385e3d05dd617c71c0ba0bfb4b8b4c0fc746b1b419c9.png" src="_images/27cb7ef71d062c9b0855385e3d05dd617c71c0ba0bfb4b8b4c0fc746b1b419c9.png" />
 </div>
 </div>
 </section>
@@ -619,7 +624,7 @@ F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/465d05974873a9e43172c2aba1ef5d74ea688981e0fbc1d9b43bbe3e8d211e4c.png" src="_images/465d05974873a9e43172c2aba1ef5d74ea688981e0fbc1d9b43bbe3e8d211e4c.png" />
+<img alt="_images/a45eeaaf1eed5d0898447e4358d5a5f123539160de806684c9cf43e752b20b15.png" src="_images/a45eeaaf1eed5d0898447e4358d5a5f123539160de806684c9cf43e752b20b15.png" />
 </div>
 </div>
 </section>

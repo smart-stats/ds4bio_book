@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'logistic_regression_pytorch';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Jupyterwidgets and voila" href="voila.html" />
+    <link rel="next" title="Pytorch by example" href="pytorch_regression.html" />
     <link rel="prev" title="Basic regression in pytorch" href="basic_regression_pytorch.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -200,6 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -212,12 +215,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -598,10 +603,10 @@ document.write(`
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     1</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 21 Jan 2024</td> <th>  Pseudo R-squ.:     </th>  <td>0.3827</td>  
+  <th>Date:</th>            <td>Wed, 30 Sep 2020</td> <th>  Pseudo R-squ.:     </th>  <td>0.3827</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>22:39:54</td>     <th>  Log-Likelihood:    </th> <td> -42.785</td> 
+  <th>Time:</th>                <td>02:50:12</td>     <th>  Log-Likelihood:    </th> <td> -42.785</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -69.315</td> 
@@ -719,10 +724,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x788091c22350&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f21d092db00&gt;]
 </pre></div>
 </div>
-<img alt="_images/d2e48bad8de9527e9c1ae97d94639b4d93d3eb83dc24522fcf20bebf07ae2a10.png" src="_images/d2e48bad8de9527e9c1ae97d94639b4d93d3eb83dc24522fcf20bebf07ae2a10.png" />
+<img alt="_images/3e37809ccc8757573d519ebb143b4fc380af0c28748f75647a264926b733aeaa.png" src="_images/3e37809ccc8757573d519ebb143b4fc380af0c28748f75647a264926b733aeaa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,8 +738,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.5087]])
-tensor([-0.0869])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.4062]])
+tensor([-0.0502])
 </pre></div>
 </div>
 </div>
@@ -781,11 +786,11 @@ tensor([-0.0869])
       </div>
     </a>
     <a class="right-next"
-       href="voila.html"
+       href="pytorch_regression.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Jupyterwidgets and voila</p>
+        <p class="prev-next-title">Pytorch by example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

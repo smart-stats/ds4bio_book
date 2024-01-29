@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'pytorch_regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Basic regression in pytorch" href="basic_regression_pytorch.html" />
-    <link rel="prev" title="Neural networks" href="nns.html" />
+    <link rel="next" title="Convnet classifier example" href="convnet_classifier_pytorch.html" />
+    <link rel="prev" title="Logistic regression in pytorch" href="logistic_regression_pytorch.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,6 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -212,12 +215,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -415,7 +420,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/pytorch_regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/pytorch_regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="pytorch-by-example">
 <h1>Pytorch by example<a class="headerlink" href="#pytorch-by-example" title="Permalink to this heading">#</a></h1>
 <p>This example from the pytorch documentation <a class="reference external" href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html">here</a> displays generating random y ad x dat and fitting a multi-layer neural network. We’re going to consider a regression problem, but using a two layer neural network to solve it. Consider something like this. We have 5 inputs; those get passed to 3 hidden nodes, those get RELU’d, which get passed to an output.</p>
@@ -465,7 +470,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ef9f5a3c2754b0bc02e3d4494b720a2f23f6814521a48fb69c92fb7c6b319732.png" src="_images/ef9f5a3c2754b0bc02e3d4494b720a2f23f6814521a48fb69c92fb7c6b319732.png" />
+<img alt="_images/9f4127c54f9ae3f9018bf6154fd755ad618e4f63464b59f5a88b35ed858f1473.png" src="_images/9f4127c54f9ae3f9018bf6154fd755ad618e4f63464b59f5a88b35ed858f1473.png" />
 </div>
 </div>
 <p>Below, we create an example. It isn’t terribly interesting, since the X and the Y aren’t related at all. But, it does show us some useful code.</p>
@@ -535,20 +540,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 4528.63818359375
-199 3238.584716796875
-299 3374.392333984375
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399 2921.04736328125
-499 2942.135498046875
-599 2804.49462890625
-699 2643.803466796875
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>799 2589.518798828125
-899 2602.940673828125
-999 2472.806640625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99 4462.662109375
+199 3108.746337890625
+299 2818.672119140625
+399 2695.042724609375
+499 2575.990234375
+599 2518.623291015625
+699 2455.26171875
+799 2433.107177734375
+899 2537.490234375
+999 2394.48828125
 </pre></div>
 </div>
 </div>
@@ -562,7 +563,12 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;PD&quot;</span><span class="p">,</span>     <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
@@ -598,8 +604,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/eb66a828f1c42427613bde1ff8d44a0239a8cf4be0b6879389a6767ea71bfb28.png" src="_images/eb66a828f1c42427613bde1ff8d44a0239a8cf4be0b6879389a6767ea71bfb28.png" />
+<img alt="_images/435ac2567eb8fca4347272dc5a6d036054644c6ef9257fc9d556088892dbddf3.png" src="_images/435ac2567eb8fca4347272dc5a6d036054644c6ef9257fc9d556088892dbddf3.png" />
 </div>
 </div>
 <p>Let’s set the training fraction at 75% (and thus the testing fraction at 25%). This gives us relatively little data to fit with. Thus, a relatively simple model makes sense.</p>
@@ -639,10 +646,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([83, 5]),
- torch.Size([83, 1]),
- torch.Size([17, 5]),
- torch.Size([17, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([71, 5]),
+ torch.Size([71, 1]),
+ torch.Size([29, 5]),
+ torch.Size([29, 1])]
 </pre></div>
 </div>
 </div>
@@ -685,34 +692,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 437.9674072265625
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000 31.781356811523438
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20000 23.55449104309082
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30000 23.519428253173828
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40000 23.518774032592773
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50000 23.51890754699707
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60000 23.518856048583984
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70000 23.519176483154297
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80000 23.51889419555664
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90000 23.519132614135742
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 14.484624862670898
+10000 14.468339920043945
+20000 14.46751880645752
+30000 14.46751594543457
+40000 14.466597557067871
+50000 14.466065406799316
+60000 14.467192649841309
+70000 14.467138290405273
+80000 14.466984748840332
+90000 14.465974807739258
 </pre></div>
 </div>
 </div>
@@ -728,10 +717,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7c3be4831210&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7edb6b6edd90&gt;
 </pre></div>
 </div>
-<img alt="_images/c371f28dff4dce620e2b50d3fd2f953c57785ec05b7697c98c82026049dcbd19.png" src="_images/c371f28dff4dce620e2b50d3fd2f953c57785ec05b7697c98c82026049dcbd19.png" />
+<img alt="_images/84381dd55dba53866673efc1cc7476aa3532709a2dbcdbd9415b7c6e89a864b9.png" src="_images/84381dd55dba53866673efc1cc7476aa3532709a2dbcdbd9415b7c6e89a864b9.png" />
 </div>
 </div>
 </section>
@@ -767,20 +756,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="nns.html"
+       href="logistic_regression_pytorch.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Neural networks</p>
+        <p class="prev-next-title">Logistic regression in pytorch</p>
       </div>
     </a>
     <a class="right-next"
-       href="basic_regression_pytorch.html"
+       href="convnet_classifier_pytorch.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic regression in pytorch</p>
+        <p class="prev-next-title">Convnet classifier example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

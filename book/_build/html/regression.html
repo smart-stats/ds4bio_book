@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -561,7 +566,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/efc34224420f58038da8c46470dfdc499b24583aea9a8ab0c19c22a1c36a8609.png" src="_images/efc34224420f58038da8c46470dfdc499b24583aea9a8ab0c19c22a1c36a8609.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7a8de9cb65e0&gt;
+</pre></div>
+</div>
+<img alt="_images/7241c7678878b1546e3815a6bea394dab53c903e4457fe6959b377370ceaaea2.png" src="_images/7241c7678878b1546e3815a6bea394dab53c903e4457fe6959b377370ceaaea2.png" />
 </div>
 </div>
 <p>T2 and PD (proton density) look pretty linearly related. Imagine a study where a researcher collected T2 but did not collect PD. Let’s try to predict their PD values from the T2 values using a line. We’ll use least squares as the loss function. Specifically</p>
@@ -626,18 +634,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.32153465912095225, 0.723021581731955]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.3575995777786273, 0.7501876813563654]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.10/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  warnings.warn(
-/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.10/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  warnings.warn(
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f09863f7f28&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;T2&#39;, ylabel=&#39;PD&#39;&gt;
-</pre></div>
-</div>
+<img alt="_images/03ae6e8372df0b6c878fcadc39f495cf987d9d06546b9a1c35a9794d358ed2ab.png" src="_images/03ae6e8372df0b6c878fcadc39f495cf987d9d06546b9a1c35a9794d358ed2ab.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -648,16 +651,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7230215817319552, intercept=0.3215346591209521, rvalue=0.7843848151805346, pvalue=1.5560489251002063e-15, stderr=0.06985035422497327, intercept_stderr=0.06418755302228903)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.7501876813563655, intercept=0.3575995777786272, rvalue=0.8063396481545092, pvalue=5.206724152484508e-19, stderr=0.0631197373474049)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio/lib/python3.10/site-packages/seaborn/_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  warnings.warn(
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f09861c7240&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;T2&#39;, ylabel=&#39;PD&#39;&gt;
-</pre></div>
-</div>
+<img alt="_images/70c9768bac6c91f7a67337aad5b747d69206869afdb618e064b50a8a397e40c6.png" src="_images/70c9768bac6c91f7a67337aad5b747d69206869afdb618e064b50a8a397e40c6.png" />
 </div>
 </div>
 <p>Let’s now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>. We’ll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.</p>
@@ -678,12 +678,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.17336868126653535, 0.2173182833471015]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.19740482076071508, 0.14423355311215716]
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Actual PD value from ytest&#39;)
 </pre></div>
 </div>
+<img alt="_images/353ca38c90c210e744e179f92aaf96aca9dd103b25e9a466be146cfac7f914d8.png" src="_images/353ca38c90c210e744e179f92aaf96aca9dd103b25e9a466be146cfac7f914d8.png" />
 </div>
 </div>
 </section>

@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -589,10 +594,10 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7dd4bbde6950&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6726d05b0&gt;]
 </pre></div>
 </div>
-<img alt="_images/e2392138e191640a5016e8cc5e4ef4514f4881ceaebdece07aa7dd4acfb54ea4.png" src="_images/e2392138e191640a5016e8cc5e4ef4514f4881ceaebdece07aa7dd4acfb54ea4.png" />
+<img alt="_images/5a71ae17b7fa565520efc71c944dfde026c2c3a805b4915e647ce086bb128f15.png" src="_images/5a71ae17b7fa565520efc71c944dfde026c2c3a805b4915e647ce086bb128f15.png" />
 </div>
 </div>
 <p>Now, let’s center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span>, is right at (0, 0).</p>
@@ -605,10 +610,10 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7dd4b3d04520&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6725dc6d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/e0f9e23f8333e0f2b45d53a4163325e74bc9a5addcecf39e2889735259ac4b55.png" src="_images/e0f9e23f8333e0f2b45d53a4163325e74bc9a5addcecf39e2889735259ac4b55.png" />
+<img alt="_images/ccabd880193b961f6b49f3bb87851e6db76fdbf0be612fb0d5facc1b2e14ed2b.png" src="_images/ccabd880193b961f6b49f3bb87851e6db76fdbf0be612fb0d5facc1b2e14ed2b.png" />
 </div>
 </div>
 <p>Here’s our slope estimate according to our formula.</p>
@@ -635,10 +640,10 @@ l'' = \sum_i 2 x_i^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7dd4b3d70c70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78f6725525b0&gt;]
 </pre></div>
 </div>
-<img alt="_images/01c947b5c3032eba991f216b69aad999dcc4877c9ce919d4ba1202c3168b3dfa.png" src="_images/01c947b5c3032eba991f216b69aad999dcc4877c9ce919d4ba1202c3168b3dfa.png" />
+<img alt="_images/ffe97029c0c20242884a1fba8c278283532396d2b11748a35575e75e977e6a5e.png" src="_images/ffe97029c0c20242884a1fba8c278283532396d2b11748a35575e75e977e6a5e.png" />
 </div>
 </div>
 </section>

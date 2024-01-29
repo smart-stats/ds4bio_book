@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -471,12 +476,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>'x'</li><li>'y'</li></ol>
+<div class="output text_html"><ol class=list-inline>
+	<li>'x'</li>
+	<li>'y'</li>
+</ol>
 </div></div>
 </div>
 <p>Honestly, the <code class="docutils literal notranslate"><span class="pre">c</span></code> function in R is perhaps one of the most important. It concatenates things.</p>
@@ -489,12 +492,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>6</li><li>30</li><li>48</li></ol>
+<div class="output text_html"><ol class=list-inline>
+	<li>6</li>
+	<li>30</li>
+	<li>48</li>
+</ol>
 </div></div>
 </div>
 <p>But you have to be careful that R will guess what you want to do.
@@ -506,12 +508,14 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>2</li><li>10</li><li>16</li><li>2</li><li>10</li><li>16</li></ol>
+<div class="output text_html"><ol class=list-inline>
+	<li>2</li>
+	<li>10</li>
+	<li>16</li>
+	<li>2</li>
+	<li>10</li>
+	<li>16</li>
+</ol>
 </div></div>
 </div>
 <p>R’s Boolean values are <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> and <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
@@ -575,18 +579,16 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
-</div><div class="output text_html">'character'</div><div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
+<div class="output text_html"><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ol>
+</div><div class="output text_html">'character'</div><div class="output text_html"><ol class=list-inline>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ol>
 </div><div class="output text_html">'character'</div></div>
 </div>
 <p>Brief technicality, <code class="docutils literal notranslate"><span class="pre">x[1]</span></code> returns a list containing the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> whereas <code class="docutils literal notranslate"><span class="pre">x[[1]]</span></code> returns the entity itself. Let’s create a dataframe. Also note R starts counting at 1 (unlike 0 for python).</p>
@@ -598,12 +600,8 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 5 × 2</caption>
-<thead>
-	<tr><th scope=col>index</th><th scope=col>letter</th></tr>
-	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
-</thead>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
 <tbody>
 	<tr><td>3</td><td>c</td></tr>
 	<tr><td>4</td><td>d</td></tr>
@@ -624,24 +622,33 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li></ol>
-</div><div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 2 × 2</caption>
-<thead>
-	<tr><th></th><th scope=col>index</th><th scope=col>letter</th></tr>
-	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
-</thead>
+<div class="output text_html"><ol class=list-inline>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+</ol>
+</div><div class="output text_html"><table>
+<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
 <tbody>
-	<tr><th scope=row>1</th><td>3</td><td>c</td></tr>
-	<tr><th scope=row>2</th><td>4</td><td>d</td></tr>
+	<tr><td>3</td><td>c</td></tr>
+	<tr><td>4</td><td>d</td></tr>
 </tbody>
 </table>
-</div><div class="output text_html">'c'</div></div>
+</div><div class="output text_html">c
+<details>
+	<summary style=display:list-item;cursor:pointer>
+		<strong>Levels</strong>:
+	</summary>
+	<ol class=list-inline>
+		<li>'c'</li>
+		<li>'d'</li>
+		<li>'e'</li>
+		<li>'f'</li>
+		<li>'g'</li>
+	</ol>
+</details></div></div>
 </div>
 <p>Finally, let’s cover matrices.</p>
 <div class="cell docutils container">
@@ -654,16 +661,14 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 3 × 2 of type int</caption>
+<div class="output text_html"><table>
 <tbody>
-	<tr><td>1</td><td>4</td></tr>
-	<tr><td>2</td><td>5</td></tr>
-	<tr><td>3</td><td>6</td></tr>
+	<tr><td>1</td><td>2</td></tr>
+	<tr><td>3</td><td>4</td></tr>
+	<tr><td>5</td><td>6</td></tr>
 </tbody>
 </table>
-</div><div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 × 3 of type int</caption>
+</div><div class="output text_html"><table>
 <tbody>
 	<tr><td>1</td><td>3</td><td>5</td></tr>
 	<tr><td>2</td><td>4</td><td>6</td></tr>
@@ -679,20 +684,6 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>1</li><li>4</li></ol>
-</div><div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
-</div><div class="output text_html">4</div></div>
 </div>
 </section>
 <section id="functions">

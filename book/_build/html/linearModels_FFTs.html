@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -504,16 +509,16 @@ f_k = a_k + i b_k
       <th>1/26/20</th>
       <th>1/27/20</th>
       <th>...</th>
-      <th>2/28/23</th>
-      <th>3/1/23</th>
-      <th>3/2/23</th>
-      <th>3/3/23</th>
-      <th>3/4/23</th>
-      <th>3/5/23</th>
-      <th>3/6/23</th>
-      <th>3/7/23</th>
-      <th>3/8/23</th>
-      <th>3/9/23</th>
+      <th>9/13/21</th>
+      <th>9/14/21</th>
+      <th>9/15/21</th>
+      <th>9/16/21</th>
+      <th>9/17/21</th>
+      <th>9/18/21</th>
+      <th>9/19/21</th>
+      <th>9/20/21</th>
+      <th>9/21/21</th>
+      <th>9/22/21</th>
     </tr>
   </thead>
   <tbody>
@@ -530,16 +535,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>209322</td>
-      <td>209340</td>
-      <td>209358</td>
-      <td>209362</td>
-      <td>209369</td>
-      <td>209390</td>
-      <td>209406</td>
-      <td>209436</td>
-      <td>209451</td>
-      <td>209451</td>
+      <td>154094</td>
+      <td>154180</td>
+      <td>154283</td>
+      <td>154361</td>
+      <td>154487</td>
+      <td>154487</td>
+      <td>154487</td>
+      <td>154585</td>
+      <td>154712</td>
+      <td>154757</td>
     </tr>
     <tr>
       <th>1</th>
@@ -554,16 +559,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>334391</td>
-      <td>334408</td>
-      <td>334408</td>
-      <td>334427</td>
-      <td>334427</td>
-      <td>334427</td>
-      <td>334427</td>
-      <td>334427</td>
-      <td>334443</td>
-      <td>334457</td>
+      <td>157436</td>
+      <td>158431</td>
+      <td>159423</td>
+      <td>160365</td>
+      <td>161324</td>
+      <td>162173</td>
+      <td>162953</td>
+      <td>163404</td>
+      <td>164276</td>
+      <td>165096</td>
     </tr>
     <tr>
       <th>2</th>
@@ -578,16 +583,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>271441</td>
-      <td>271448</td>
-      <td>271463</td>
-      <td>271469</td>
-      <td>271469</td>
-      <td>271477</td>
-      <td>271477</td>
-      <td>271490</td>
-      <td>271494</td>
-      <td>271496</td>
+      <td>200301</td>
+      <td>200528</td>
+      <td>200770</td>
+      <td>200989</td>
+      <td>201224</td>
+      <td>201425</td>
+      <td>201600</td>
+      <td>201766</td>
+      <td>201948</td>
+      <td>202122</td>
     </tr>
     <tr>
       <th>3</th>
@@ -602,16 +607,16 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>47866</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47875</td>
-      <td>47890</td>
-      <td>47890</td>
+      <td>15096</td>
+      <td>15099</td>
+      <td>15108</td>
+      <td>15113</td>
+      <td>15124</td>
+      <td>15124</td>
+      <td>15124</td>
+      <td>15140</td>
+      <td>15140</td>
+      <td>15153</td>
     </tr>
     <tr>
       <th>4</th>
@@ -626,20 +631,20 @@ f_k = a_k + i b_k
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>105255</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105277</td>
-      <td>105288</td>
-      <td>105288</td>
+      <td>50738</td>
+      <td>51047</td>
+      <td>51407</td>
+      <td>51827</td>
+      <td>52208</td>
+      <td>52307</td>
+      <td>52307</td>
+      <td>52644</td>
+      <td>52968</td>
+      <td>53387</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 1147 columns</p>
+<p>5 rows × 614 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -657,10 +662,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7cf932473040&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e708b370&gt;]
 </pre></div>
 </div>
-<img alt="_images/d1d89e33c0b73aa5212f6256be4a1ddacb46cbdac856c3b4fd3b94bca69a4292.png" src="_images/d1d89e33c0b73aa5212f6256be4a1ddacb46cbdac856c3b4fd3b94bca69a4292.png" />
+<img alt="_images/9d77f5ec2d77858f414235085bde03d3650354fe6cd994ffeffa9ca9d9812f0e.png" src="_images/9d77f5ec2d77858f414235085bde03d3650354fe6cd994ffeffa9ca9d9812f0e.png" />
 </div>
 </div>
 <p>Let’s look at a smoothed version of it and then take the residual. The residual is where we’d like to look at some oscillatory behavior.</p>
@@ -676,10 +681,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7cf92a35efb0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7068730&gt;]
 </pre></div>
 </div>
-<img alt="_images/ca9d4556ed2cd30ee6a2d17f96221663bf6e59d068697da2532cda97a12043a4.png" src="_images/ca9d4556ed2cd30ee6a2d17f96221663bf6e59d068697da2532cda97a12043a4.png" />
+<img alt="_images/1dbb559443bf47e3c708cc173f716d748f3007a5a03e3fb7d2724be59c728fea.png" src="_images/1dbb559443bf47e3c708cc173f716d748f3007a5a03e3fb7d2724be59c728fea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -691,10 +696,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7cf92a3d5c00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e6fcc550&gt;]
 </pre></div>
 </div>
-<img alt="_images/cc02e4d9636b5bede3848a50f837c635aa143a63c29d042d79cefcf0db44df3e.png" src="_images/cc02e4d9636b5bede3848a50f837c635aa143a63c29d042d79cefcf0db44df3e.png" />
+<img alt="_images/84ae8251922ed0d100fdc93761e544fe5171c9a8d63b2eda5939120a9a1d5db5.png" src="_images/84ae8251922ed0d100fdc93761e544fe5171c9a8d63b2eda5939120a9a1d5db5.png" />
 </div>
 </div>
 <p>Let’s manually create our Fourier bases. We’re just going to pick some periods to investigate. We’ll pick a fast varying and slow varying.</p>
@@ -722,7 +727,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ee4db90b8e3c33a4bcdfc6440d3e3377070230a2a3e2e3b00b5c625db172210d.png" src="_images/ee4db90b8e3c33a4bcdfc6440d3e3377070230a2a3e2e3b00b5c625db172210d.png" />
+<img alt="_images/21e16102bcf1277100b2de435c6ff3b3534938d2ef9a9b4cddf405838a1cf559.png" src="_images/21e16102bcf1277100b2de435c6ff3b3534938d2ef9a9b4cddf405838a1cf559.png" />
 </div>
 </div>
 <p>Let’s verify that they are indeed orthonormal. That is, we want to show that <span class="math notranslate nohighlight">\(&lt;x_i, x_j&gt; = I(i =j)\)</span>. We also show that they are all mean 0.</p>
@@ -747,7 +752,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.,  0., -0., -0.,  1.,  1.,  1.,  1.,  0.,  0., -0., -0.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0., -0.,  0., -0.,  1.,  1.,  1.,  1., -0.,  0., -0.,  0.])
 </pre></div>
 </div>
 </div>
@@ -765,10 +770,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7cf92a1c89d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26e7153190&gt;]
 </pre></div>
 </div>
-<img alt="_images/05cae5714711e9beb5d5e4f45554a1bda68d9122242ff969b0dc2e772f628d1f.png" src="_images/05cae5714711e9beb5d5e4f45554a1bda68d9122242ff969b0dc2e772f628d1f.png" />
+<img alt="_images/cc0ab9b6c895c244122c485b7512c8a44401eea9b6e65677e0a3177e0fab37de.png" src="_images/cc0ab9b6c895c244122c485b7512c8a44401eea9b6e65677e0a3177e0fab37de.png" />
 </div>
 </div>
 <p>Now let’s manually find the coefficients using our constructed bases and the formula that the coefficients.</p>
@@ -784,10 +789,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-42402.165397766235,
- -961069.7936856844,
- 62406.76098672958,
- 1902286.8621751778]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-122321.23192612399,
+ -19854.09302843738,
+ -90543.46016843051,
+ -5434.237738349892]
 </pre></div>
 </div>
 </div>
@@ -802,8 +807,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1222376.2412703 , -1286448.11961955, -4881386.48874237,
-        1827887.03044428])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147,  3129.66692969, -2734.54157365, -1381.53286565])
 </pre></div>
 </div>
 </div>
@@ -817,7 +821,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1222376.2412703 , -4881386.48874237])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7023.06387147, -2734.54157365])
 </pre></div>
 </div>
 </div>
@@ -830,10 +834,10 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([], dtype=int64),),
- array([], dtype=float64),
- array([], dtype=float64),
- 0.004409171075837742]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([115, 125]),),
+ array([7023.06387147, 7023.06387147]),
+ array([-0.02074689,  0.02074689]),
+ 0.02074688796680498]
 </pre></div>
 </div>
 </div>
@@ -845,7 +849,7 @@ f_k = a_k + i b_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([], dtype=float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2734.54157365, -2734.54157365])
 </pre></div>
 </div>
 </div>

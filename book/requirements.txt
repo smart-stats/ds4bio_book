@@ -2,9 +2,11 @@ jupyter-book
 matplotlib
 numpy
 pandas
-sklearn
+scikit-learn
 seaborn
 scipy
-PIL
-urllib
+PILLOW
+urllib3
 networkx
+torch
+torchvision

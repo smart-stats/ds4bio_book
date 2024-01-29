@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -503,29 +508,29 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.708   
-Dependent Variable: PD               AIC:                76.9379 
-Date:               2024-01-21 22:39 BIC:                95.4778 
-No. Observations:   75               Log-Likelihood:     -30.469 
-Df Model:           7                F-statistic:        26.60   
-Df Residuals:       67               Prob (F-statistic): 4.78e-17
-R-squared:          0.735            Scale:              0.14770 
+Model:              OLS              Adj. R-squared:     0.773   
+Dependent Variable: PD               AIC:                72.6331 
+Date:               2019-09-23 19:22 BIC:                91.2790 
+No. Observations:   76               Log-Likelihood:     -28.317 
+Df Model:           7                F-statistic:        37.44   
+Df Residuals:       68               Prob (F-statistic): 6.19e-21
+R-squared:          0.794            Scale:              0.13787 
 ------------------------------------------------------------------
-                Coef.   Std.Err.     t     P&gt;|t|    [0.025  0.975]
+               Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept       0.2980    0.1539   1.9369  0.0570  -0.0091  0.6051
-FLAIR          -0.0159    0.0958  -0.1660  0.8687  -0.2071  0.1753
-T1             -0.1644    0.0866  -1.8978  0.0620  -0.3373  0.0085
-T2              0.6195    0.0866   7.1525  0.0000   0.4467  0.7924
-FLAIR_10       -0.6105    0.3690  -1.6546  0.1027  -1.3471  0.1260
-T1_10           0.1172    0.1794   0.6531  0.5159  -0.2409  0.4753
-T2_10           0.0569    0.3248   0.1752  0.8614  -0.5913  0.7052
-FLAIR_20        2.2913    0.7626   3.0047  0.0037   0.7692  3.8133
+Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
+FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
+T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
+T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
+FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
+T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
+T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
+FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
 -----------------------------------------------------------------
-Omnibus:              1.523        Durbin-Watson:           2.154
-Prob(Omnibus):        0.467        Jarque-Bera (JB):        0.905
-Skew:                 0.063        Prob(JB):                0.636
-Kurtosis:             3.523        Condition No.:           40   
+Omnibus:               4.022        Durbin-Watson:          2.111
+Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
+Skew:                  -0.238       Prob(JB):               0.142
+Kurtosis:              4.003        Condition No.:          41   
 =================================================================
 </pre></div>
 </div>
@@ -545,6 +550,12 @@ Kurtosis:             3.523        Condition No.:           40
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -554,8 +565,8 @@ Kurtosis:             3.523        Condition No.:           40
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.134297
-         Iterations 11
+         Current function value: 0.253784
+         Iterations 8
 </pre></div>
 </div>
 </div>
@@ -570,25 +581,25 @@ Kurtosis:             3.523        Condition No.:           40
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 21 Jan 2024</td> <th>  Pseudo R-squ.:     </th>  <td>0.8062</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>22:39:44</td>     <th>  Log-Likelihood:    </th> <td> -10.072</td> 
+  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.292e-15</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -596,30 +607,30 @@ Kurtosis:             3.523        Condition No.:           40
       <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>const</th>    <td>  -12.3155</td> <td>    5.843</td> <td>   -2.108</td> <td> 0.035</td> <td>  -23.767</td> <td>   -0.864</td>
+  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>    <td>    4.1918</td> <td>    1.938</td> <td>    2.163</td> <td> 0.031</td> <td>    0.394</td> <td>    7.989</td>
+  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>       <td>    2.0904</td> <td>    1.406</td> <td>    1.487</td> <td> 0.137</td> <td>   -0.665</td> <td>    4.845</td>
+  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>       <td>    0.9518</td> <td>    1.337</td> <td>    0.712</td> <td> 0.477</td> <td>   -1.669</td> <td>    3.573</td>
+  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th> <td>   28.4077</td> <td>   13.640</td> <td>    2.083</td> <td> 0.037</td> <td>    1.673</td> <td>   55.142</td>
+  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>    <td>    7.7530</td> <td>    4.367</td> <td>    1.775</td> <td> 0.076</td> <td>   -0.806</td> <td>   16.312</td>
+  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>    <td>  -20.8353</td> <td>   11.802</td> <td>   -1.765</td> <td> 0.077</td> <td>  -43.966</td> <td>    2.296</td>
+  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th> <td>  -32.7591</td> <td>   16.165</td> <td>   -2.027</td> <td> 0.043</td> <td>  -64.442</td> <td>   -1.076</td>
+  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
-</table><br/><br/>Possibly complete quasi-separation: A fraction 0.29 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
+</table></div></div>
 </div>
 <p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
 <p>In other words, consider the triplets
@@ -652,7 +663,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f25c72587402f8c026f7eb39aafb7e220ac0eeaa2f2331461e9a64401e95be0a.png" src="_images/f25c72587402f8c026f7eb39aafb7e220ac0eeaa2f2331461e9a64401e95be0a.png" />
+<img alt="_images/aaa1f70a243c59a4076aa8283207085bf8a2e69cceb3cc3974e50d1ace6af9db.png" src="_images/aaa1f70a243c59a4076aa8283207085bf8a2e69cceb3cc3974e50d1ace6af9db.png" />
 </div>
 </div>
 <section id="aside-different-python-packages">
@@ -669,32 +680,32 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.134297
-         Iterations 11
+         Current function value: 0.241546
+         Iterations 8
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
 <caption>Logit Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    75</td>  
+  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
 </tr>
 <tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    67</td>  
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
 </tr>
 <tr>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 21 Jan 2024</td> <th>  Pseudo R-squ.:     </th>  <td>0.8062</td>  
+  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>22:39:44</td>     <th>  Log-Likelihood:    </th> <td> -10.072</td> 
+  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
 </tr>
 <tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -51.979</td> 
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
 </tr>
 <tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.292e-15</td>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -702,30 +713,30 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>  -12.3155</td> <td>    5.843</td> <td>   -2.108</td> <td> 0.035</td> <td>  -23.767</td> <td>   -0.864</td>
+  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
 </tr>
 <tr>
-  <th>FLAIR</th>     <td>    4.1918</td> <td>    1.938</td> <td>    2.163</td> <td> 0.031</td> <td>    0.394</td> <td>    7.989</td>
+  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
 </tr>
 <tr>
-  <th>T1</th>        <td>    2.0904</td> <td>    1.406</td> <td>    1.487</td> <td> 0.137</td> <td>   -0.665</td> <td>    4.845</td>
+  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
 </tr>
 <tr>
-  <th>T2</th>        <td>    0.9518</td> <td>    1.337</td> <td>    0.712</td> <td> 0.477</td> <td>   -1.669</td> <td>    3.573</td>
+  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
 </tr>
 <tr>
-  <th>FLAIR_10</th>  <td>   28.4077</td> <td>   13.640</td> <td>    2.083</td> <td> 0.037</td> <td>    1.673</td> <td>   55.142</td>
+  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
 </tr>
 <tr>
-  <th>T1_10</th>     <td>    7.7530</td> <td>    4.367</td> <td>    1.775</td> <td> 0.076</td> <td>   -0.806</td> <td>   16.312</td>
+  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
 </tr>
 <tr>
-  <th>T2_10</th>     <td>  -20.8353</td> <td>   11.802</td> <td>   -1.765</td> <td> 0.077</td> <td>  -43.966</td> <td>    2.296</td>
+  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
 </tr>
 <tr>
-  <th>FLAIR_20</th>  <td>  -32.7591</td> <td>   16.165</td> <td>   -2.027</td> <td> 0.043</td> <td>  -64.442</td> <td>   -1.076</td>
+  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
 </tr>
-</table><br/><br/>Possibly complete quasi-separation: A fraction 0.29 of observations can be<br/>perfectly predicted. This might indicate that there is complete<br/>quasi-separation. In this case some parameters will not be identified.</div></div>
+</table></div></div>
 </div>
 </section>
 </section>

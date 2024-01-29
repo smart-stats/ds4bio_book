@@ -200,6 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -212,12 +215,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -562,7 +567,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f11f460988a1bbd1806c2ec53e82b891166133af120dc2d0173e83b31281b35d.png" src="_images/f11f460988a1bbd1806c2ec53e82b891166133af120dc2d0173e83b31281b35d.png" />
+<img alt="_images/0971959fd389965303347767ec64a0b179b42c15c162103729fefda4509c7ae3.png" src="_images/0971959fd389965303347767ec64a0b179b42c15c162103729fefda4509c7ae3.png" />
 </div>
 </div>
 <p>You push from the repo you’re working on to another (remote repo). So, for me, this typically means pushing from my local computer repo to github or to a scientific computing cluster.</p>
@@ -604,7 +609,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/12d1ed77fd93872f2631c1a8f23e90212a5048d2aeab7493ee7b5f549fdf87ea.png" src="_images/12d1ed77fd93872f2631c1a8f23e90212a5048d2aeab7493ee7b5f549fdf87ea.png" />
+<img alt="_images/f49748194a41839641d28e26372ea6b364b12d820537e00fbc396de6278b43f3.png" src="_images/f49748194a41839641d28e26372ea6b364b12d820537e00fbc396de6278b43f3.png" />
 </div>
 </div>
 <p>There might be changes that you want represented locally that were changed on the remote repository; for example, you might edit a readme file through github’s web interface. The command for this is really easy, it’s just pull</p>
@@ -652,7 +657,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bd0539b57f2ae173c59b1152038bb037c0e3e51c8cf7198b8f7a0c5ee65ea1ec.png" src="_images/bd0539b57f2ae173c59b1152038bb037c0e3e51c8cf7198b8f7a0c5ee65ea1ec.png" />
+<img alt="_images/ef83d9b247c7bbfc756e481f486d68e7570e5531d9cc281f8a5f701aabddb152.png" src="_images/ef83d9b247c7bbfc756e481f486d68e7570e5531d9cc281f8a5f701aabddb152.png" />
 </div>
 </div>
 <p>To clone a remote repository is to simply create a local copy where you can pull changes from the remote. If a repository is public and you own it, then you can clone it and push changes back to the remote. If you don’t, you can clone and pull changes, but then can’t push back to the remote.</p>
@@ -704,7 +709,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/39fa3882b524059a423d4f3f610738cfac13a8f97a1e78699bc7fcae0c081459.png" src="_images/39fa3882b524059a423d4f3f610738cfac13a8f97a1e78699bc7fcae0c081459.png" />
+<img alt="_images/b902eade8ad7a3b2726eb2d41fcbb81cd62069b40c75a596d68be2546b43c932.png" src="_images/b902eade8ad7a3b2726eb2d41fcbb81cd62069b40c75a596d68be2546b43c932.png" />
 </div>
 </div>
 <p>A common workflow for github is to “fork” the repository. This differs from cloning in the sense that your fork is an entirely separate new copy. In the picture above, GH2 is a fork of GH1. It can pull upstream changes from GH1, but can’t write to it, since you don’t own that repo. You can push and pull from Local2 which is connected to GH2.</p>
@@ -752,7 +757,7 @@ You only need to add the files once, then they are being tracked. Try it out wit
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/159ec925f3eebe0061c58a06637318217e148fa50d9cdc2350429a28028cbc6b.png" src="_images/159ec925f3eebe0061c58a06637318217e148fa50d9cdc2350429a28028cbc6b.png" />
+<img alt="_images/575a72cfe713b1f75ebc7e41724526d5cdf41fddc853a70cd03de8432922a4ea.png" src="_images/575a72cfe713b1f75ebc7e41724526d5cdf41fddc853a70cd03de8432922a4ea.png" />
 </div>
 </div>
 <p>Imagine a case where you forked the book repo and have some great additions (maybe a section on merge conflicts?). You think that these changes you think should be represented for other students. You can’t push changes to my repo; the very idea would be perposterous! How do you get your great changes represented in my repo?</p>

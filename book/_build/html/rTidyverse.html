@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -440,18 +445,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.6     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.4
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.7     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.9
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.2.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.0
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.1.2     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.1
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registered S3 methods overwritten by &#39;ggplot2&#39;:
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by &#39;rvest&#39;:
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
 </pre></div>
 </div>
 </div>
@@ -466,36 +475,31 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
-<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...1`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Missing column names filled in: &#39;X1&#39; [1]”Parsed with column specification:
+cols(
+  X1 = col_double(),
+  rawid = col_character(),
+  roi = col_character(),
+  volume = col_double(),
+  min = col_double(),
+  max = col_double(),
+  mean = col_double(),
+  std = col_double(),
+  type = col_double(),
+  level = col_double()
+)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">836</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">10</span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
-<span class=" -Color -Color-Red">chr</span> (2): rawid, roi
-<span class=" -Color -Color-Green">dbl</span> (8): ...1, volume, min, max, mean, std, type, level
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
-<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
-</pre></div>
-</div>
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 6 × 10</caption>
-<thead>
-	<tr><th scope=col>...1</th><th scope=col>rawid</th><th scope=col>roi</th><th scope=col>volume</th><th scope=col>min</th><th scope=col>max</th><th scope=col>mean</th><th scope=col>std</th><th scope=col>type</th><th scope=col>level</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>X1</th><th scope=col>rawid</th><th scope=col>roi</th><th scope=col>volume</th><th scope=col>min</th><th scope=col>max</th><th scope=col>mean</th><th scope=col>std</th><th scope=col>type</th><th scope=col>level</th></tr></thead>
 <tbody>
-	<tr><td>1</td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_L</td><td>531111</td><td> 0</td><td>374</td><td>128.3013</td><td>51.8593</td><td>1</td><td>1</td></tr>
-	<tr><td>2</td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_R</td><td>543404</td><td> 0</td><td>300</td><td>135.0683</td><td>53.6471</td><td>1</td><td>1</td></tr>
-	<tr><td>3</td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_L </td><td>  9683</td><td>15</td><td>295</td><td>193.5488</td><td>32.2733</td><td>1</td><td>1</td></tr>
-	<tr><td>4</td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_R </td><td>  9678</td><td>10</td><td>335</td><td>193.7051</td><td>32.7869</td><td>1</td><td>1</td></tr>
-	<tr><td>5</td><td>kirby127a_3_1_ax.img</td><td>Mesencephalon  </td><td> 10268</td><td>55</td><td>307</td><td>230.8583</td><td>29.2249</td><td>1</td><td>1</td></tr>
-	<tr><td>6</td><td>kirby127a_3_1_ax.img</td><td>Metencephalon  </td><td>159402</td><td> 2</td><td>299</td><td>138.5200</td><td>52.2241</td><td>1</td><td>1</td></tr>
+	<tr><td>1                   </td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_L     </td><td>531111              </td><td> 0                  </td><td>374                 </td><td>128.3013            </td><td>51.8593             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>2                   </td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_R     </td><td>543404              </td><td> 0                  </td><td>300                 </td><td>135.0683            </td><td>53.6471             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>3                   </td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_L      </td><td>  9683              </td><td>15                  </td><td>295                 </td><td>193.5488            </td><td>32.2733             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>4                   </td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_R      </td><td>  9678              </td><td>10                  </td><td>335                 </td><td>193.7051            </td><td>32.7869             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>5                   </td><td>kirby127a_3_1_ax.img</td><td>Mesencephalon       </td><td> 10268              </td><td>55                  </td><td>307                 </td><td>230.8583            </td><td>29.2249             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>6                   </td><td>kirby127a_3_1_ax.img</td><td>Metencephalon       </td><td>159402              </td><td> 2                  </td><td>299                 </td><td>138.5200            </td><td>52.2241             </td><td>1                   </td><td>1                   </td></tr>
 </tbody>
 </table>
 </div></div>
@@ -510,206 +514,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>Error in `select()`:
-! Can&#39;t subset columns that don&#39;t exist.
-✖ Column `X1` doesn&#39;t exist.
-Traceback:
-
-1. dat %&gt;% select(-X1, -rawid)
-2. select(., -X1, -rawid)
-3. select.data.frame(., -X1, -rawid)
-4. tidyselect_fix_call(tidyselect::eval_select(expr(c(...)), .data), 
- .     call = error_call)
-5. withCallingHandlers(expr, error = function(cnd) {
- .     cnd$call &lt;- call
- .     cnd$parent &lt;- NULL
- .     cnd_signal(cnd)
- . })
-6. tidyselect::eval_select(expr(c(...)), .data)
-7. eval_select_impl(data, names(data), as_quosure(expr, env), include = include, 
- .     exclude = exclude, strict = strict, name_spec = name_spec, 
- .     allow_rename = allow_rename, error_call = error_call, )
-8. with_subscript_errors(vars_select_eval(vars, expr, strict = strict, 
- .     data = x, name_spec = name_spec, uniquely_named = uniquely_named, 
- .     allow_rename = allow_rename, type = type, error_call = error_call), 
- .     type = type)
-9. tryCatch(with_entraced_errors(expr), vctrs_error_subscript = function(cnd) {
- .     cnd$subscript_action &lt;- subscript_action(type)
- .     cnd$subscript_elt &lt;- &quot;column&quot;
- .     cnd_signal(cnd)
- . })
-10. tryCatchList(expr, classes, parentenv, handlers)
-11. tryCatchOne(expr, names, parentenv, handlers[[1L]])
-12. value[[3L]](cond)
-13. cnd_signal(cnd)
-14. signal_abort(cnd)
-15. signalCondition(cnd)
-16. (function (cnd) 
-  . {
-  .     cnd$call &lt;- call
-  .     cnd$parent &lt;- NULL
-  .     cnd_signal(cnd)
-  . })(structure(list(message = &quot;&quot;, trace = structure(list(call = list(
-  .     IRkernel::main(), kernel$run(), handle_shell(), executor$execute(msg), 
-  .     tryCatch(evaluate(request$content$code, envir = .GlobalEnv, 
-  .         output_handler = oh, stop_on_error = 1L), interrupt = function(cond) {
-  .         log_debug(&quot;Interrupt during execution&quot;)
-  .         interrupted &lt;&lt;- TRUE
-  .     }, error = .self$handle_error), tryCatchList(expr, classes, 
-  .         parentenv, handlers), tryCatchOne(tryCatchList(expr, 
-  .         names[-nh], parentenv, handlers[-nh]), names[nh], parentenv, 
-  .         handlers[[nh]]), doTryCatch(return(expr), name, parentenv, 
-  .         handler), tryCatchList(expr, names[-nh], parentenv, handlers[-nh]), 
-  .     tryCatchOne(expr, names, parentenv, handlers[[1L]]), doTryCatch(return(expr), 
-  .         name, parentenv, handler), evaluate(request$content$code, 
-  .         envir = .GlobalEnv, output_handler = oh, stop_on_error = 1L), 
-  .     evaluate_call(expr, parsed$src[[i]], envir = envir, enclos = enclos, 
-  .         debug = debug, last = i == length(out), use_try = stop_on_error != 
-  .             2L, keep_warning = keep_warning, keep_message = keep_message, 
-  .         log_echo = log_echo, log_warning = log_warning, output_handler = output_handler, 
-  .         include_timing = include_timing), timing_fn(handle(ev &lt;- withCallingHandlers(withVisible(eval_with_user_handlers(expr, 
-  .         envir, enclos, user_handlers)), warning = wHandler, error = eHandler, 
-  .         message = mHandler))), handle(ev &lt;- withCallingHandlers(withVisible(eval_with_user_handlers(expr, 
-  .         envir, enclos, user_handlers)), warning = wHandler, error = eHandler, 
-  .         message = mHandler)), try(f, silent = TRUE), tryCatch(expr, 
-  .         error = function(e) {
-  .             call &lt;- conditionCall(e)
-  .             if (!is.null(call)) {
-  .                 if (identical(call[[1L]], quote(doTryCatch))) 
-  .                   call &lt;- sys.call(-4L)
-  .                 dcall &lt;- deparse(call, nlines = 1L)
-  .                 prefix &lt;- paste(&quot;Error in&quot;, dcall, &quot;: &quot;)
-  .                 LONG &lt;- 75L
-  .                 sm &lt;- strsplit(conditionMessage(e), &quot;\n&quot;)[[1L]]
-  .                 w &lt;- 14L + nchar(dcall, type = &quot;w&quot;) + nchar(sm[1L], 
-  .                   type = &quot;w&quot;)
-  .                 if (is.na(w)) 
-  .                   w &lt;- 14L + nchar(dcall, type = &quot;b&quot;) + nchar(sm[1L], 
-  .                     type = &quot;b&quot;)
-  .                 if (w &gt; LONG) 
-  .                   prefix &lt;- paste0(prefix, &quot;\n  &quot;)
-  .             }
-  .             else prefix &lt;- &quot;Error : &quot;
-  .             msg &lt;- paste0(prefix, conditionMessage(e), &quot;\n&quot;)
-  .             .Internal(seterrmessage(msg[1L]))
-  .             if (!silent &amp;&amp; isTRUE(getOption(&quot;show.error.messages&quot;))) {
-  .                 cat(msg, file = outFile)
-  .                 .Internal(printDeferredWarnings())
-  .             }
-  .             invisible(structure(msg, class = &quot;try-error&quot;, condition = e))
-  .         }), tryCatchList(expr, classes, parentenv, handlers), 
-  .     tryCatchOne(expr, names, parentenv, handlers[[1L]]), doTryCatch(return(expr), 
-  .         name, parentenv, handler), withCallingHandlers(withVisible(eval_with_user_handlers(expr, 
-  .         envir, enclos, user_handlers)), warning = wHandler, error = eHandler, 
-  .         message = mHandler), withVisible(eval_with_user_handlers(expr, 
-  .         envir, enclos, user_handlers)), eval_with_user_handlers(expr, 
-  .         envir, enclos, user_handlers), eval(expr, envir, enclos), 
-  .     eval(expr, envir, enclos), dat %&gt;% select(-X1, -rawid), select(., 
-  .         -X1, -rawid), select.data.frame(., -X1, -rawid), tidyselect_fix_call(tidyselect::eval_select(expr(c(...)), 
-  .         .data), call = error_call), withCallingHandlers(expr, 
-  .         error = function(cnd) {
-  .             cnd$call &lt;- call
-  .             cnd$parent &lt;- NULL
-  .             cnd_signal(cnd)
-  .         }), tidyselect::eval_select(expr(c(...)), .data), eval_select_impl(data, 
-  .         names(data), as_quosure(expr, env), include = include, 
-  .         exclude = exclude, strict = strict, name_spec = name_spec, 
-  .         allow_rename = allow_rename, error_call = error_call, 
-  .         ), with_subscript_errors(vars_select_eval(vars, expr, 
-  .         strict = strict, data = x, name_spec = name_spec, uniquely_named = uniquely_named, 
-  .         allow_rename = allow_rename, type = type, error_call = error_call), 
-  .         type = type), tryCatch(with_entraced_errors(expr), vctrs_error_subscript = function(cnd) {
-  .         cnd$subscript_action &lt;- subscript_action(type)
-  .         cnd$subscript_elt &lt;- &quot;column&quot;
-  .         cnd_signal(cnd)
-  .     }), tryCatchList(expr, classes, parentenv, handlers), tryCatchOne(expr, 
-  .         names, parentenv, handlers[[1L]]), doTryCatch(return(expr), 
-  .         name, parentenv, handler), with_entraced_errors(expr), 
-  .     try_fetch(expr, simpleError = function(cnd) {
-  .         abort(conditionMessage(cnd), call = conditionCall(cnd))
-  .     }), withCallingHandlers(expr, condition = function(cnd) {
-  .         {
-  .             .__handler_frame__. &lt;- TRUE
-  .             .__setup_frame__. &lt;- frame
-  .             if (inherits(cnd, &quot;message&quot;)) {
-  .                 except &lt;- c(&quot;warning&quot;, &quot;error&quot;)
-  .             }
-  .             else if (inherits(cnd, &quot;warning&quot;)) {
-  .                 except &lt;- &quot;error&quot;
-  .             }
-  .             else {
-  .                 except &lt;- &quot;&quot;
-  .             }
-  .         }
-  .         while (!is_null(cnd)) {
-  .             if (inherits(cnd, &quot;simpleError&quot;)) {
-  .                 out &lt;- handlers[[1L]](cnd)
-  .                 if (!inherits(out, &quot;rlang_zap&quot;)) 
-  .                   throw(out)
-  .             }
-  .             inherit &lt;- .subset2(.subset2(cnd, &quot;rlang&quot;), &quot;inherit&quot;)
-  .             if (is_false(inherit)) {
-  .                 return()
-  .             }
-  .             cnd &lt;- .subset2(cnd, &quot;parent&quot;)
-  .         }
-  .     }), vars_select_eval(vars, expr, strict = strict, data = x, 
-  .         name_spec = name_spec, uniquely_named = uniquely_named, 
-  .         allow_rename = allow_rename, type = type, error_call = error_call), 
-  .     walk_data_tree(expr, data_mask, context_mask, error_call), 
-  .     eval_c(expr, data_mask, context_mask), reduce_sels(node, 
-  .         data_mask, context_mask, init = init), walk_data_tree(new, 
-  .         data_mask, context_mask), as_indices_sel_impl(out, vars = vars, 
-  .         strict = strict, data = data, call = error_call), as_indices_impl(x, 
-  .         vars, call = call, strict = strict), chr_as_locations(x, 
-  .         vars, call = call), vctrs::vec_as_location(x, n = length(vars), 
-  .         names = vars), `&lt;fn&gt;`(), stop_subscript_oob(i = i, subscript_type = subscript_type, 
-  .         names = names, subscript_action = subscript_action, subscript_arg = subscript_arg, 
-  .         call = call), stop_subscript(class = &quot;vctrs_error_subscript_oob&quot;, 
-  .         i = i, subscript_type = subscript_type, ..., call = call), 
-  .     abort(class = c(class, &quot;vctrs_error_subscript&quot;), i = i, ..., 
-  .         call = vctrs_error_call(call))), parent = c(0L, 1L, 2L, 
-  . 3L, 4L, 5L, 6L, 7L, 6L, 9L, 10L, 4L, 12L, 13L, 13L, 15L, 16L, 
-  . 17L, 18L, 19L, 13L, 13L, 13L, 23L, 24L, 0L, 0L, 0L, 28L, 29L, 
-  . 28L, 31L, 32L, 33L, 34L, 35L, 36L, 33L, 38L, 39L, 32L, 41L, 42L, 
-  . 43L, 44L, 45L, 46L, 47L, 48L, 49L, 50L, 51L, 52L), visible = c(TRUE, 
-  . TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
-  . TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
-  . TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
-  . TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
-  . TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE), namespace = c(&quot;IRkernel&quot;, 
-  . NA, &quot;IRkernel&quot;, NA, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, 
-  . &quot;base&quot;, &quot;evaluate&quot;, &quot;evaluate&quot;, &quot;evaluate&quot;, &quot;evaluate&quot;, &quot;base&quot;, 
-  . &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;evaluate&quot;, &quot;base&quot;, 
-  . &quot;base&quot;, NA, &quot;dplyr&quot;, &quot;dplyr&quot;, &quot;dplyr&quot;, &quot;base&quot;, &quot;tidyselect&quot;, 
-  . &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;base&quot;, &quot;tidyselect&quot;, 
-  . &quot;rlang&quot;, &quot;base&quot;, &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;tidyselect&quot;, 
-  . &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;tidyselect&quot;, &quot;vctrs&quot;, 
-  . &quot;vctrs&quot;, &quot;vctrs&quot;, &quot;vctrs&quot;, &quot;rlang&quot;), scope = c(&quot;::&quot;, NA, &quot;local&quot;, 
-  . NA, &quot;::&quot;, &quot;local&quot;, &quot;local&quot;, &quot;local&quot;, &quot;local&quot;, &quot;local&quot;, &quot;local&quot;, 
-  . &quot;::&quot;, &quot;:::&quot;, &quot;local&quot;, &quot;local&quot;, &quot;::&quot;, &quot;::&quot;, &quot;local&quot;, &quot;local&quot;, 
-  . &quot;local&quot;, &quot;::&quot;, &quot;::&quot;, &quot;:::&quot;, &quot;::&quot;, &quot;::&quot;, NA, &quot;::&quot;, &quot;:::&quot;, &quot;:::&quot;, 
-  . &quot;::&quot;, &quot;::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;::&quot;, &quot;local&quot;, &quot;local&quot;, &quot;local&quot;, &quot;:::&quot;, 
-  . &quot;::&quot;, &quot;::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;:::&quot;, 
-  . &quot;:::&quot;, &quot;::&quot;, &quot;local&quot;, &quot;:::&quot;, &quot;:::&quot;, &quot;::&quot;), error_frame = c(FALSE, 
-  . FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, 
-  . FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, 
-  . FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, 
-  . FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, 
-  . FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, 
-  . FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)), row.names = c(NA, 
-  . -53L), version = 2L, class = c(&quot;rlang_trace&quot;, &quot;rlib_trace&quot;, &quot;tbl&quot;, 
-  . &quot;data.frame&quot;)), parent = NULL, i = &quot;X1&quot;, subscript_type = &quot;character&quot;, 
-  .     names = c(&quot;...1&quot;, &quot;rawid&quot;, &quot;roi&quot;, &quot;volume&quot;, &quot;min&quot;, &quot;max&quot;, 
-  .     &quot;mean&quot;, &quot;std&quot;, &quot;type&quot;, &quot;level&quot;), subscript_action = &quot;subset&quot;, 
-  .     subscript_arg = &quot;x&quot;, rlang = list(inherit = TRUE), call = chr_as_locations(x, 
-  .         vars, call = call), subscript_elt = &quot;column&quot;), class = c(&quot;vctrs_error_subscript_oob&quot;, 
-  . &quot;vctrs_error_subscript&quot;, &quot;rlang_error&quot;, &quot;error&quot;, &quot;condition&quot;)))
-17. cnd_signal(cnd)
-18. signal_abort(cnd)
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>roi</th><th scope=col>volume</th><th scope=col>min</th><th scope=col>max</th><th scope=col>mean</th><th scope=col>std</th><th scope=col>type</th><th scope=col>level</th></tr></thead>
+<tbody>
+	<tr><td>Telencephalon_L</td><td>531111         </td><td> 0             </td><td>374            </td><td>128.3013       </td><td>51.8593        </td><td>1              </td><td>1              </td></tr>
+	<tr><td>Telencephalon_R</td><td>543404         </td><td> 0             </td><td>300            </td><td>135.0683       </td><td>53.6471        </td><td>1              </td><td>1              </td></tr>
+	<tr><td>Diencephalon_L </td><td>  9683         </td><td>15             </td><td>295            </td><td>193.5488       </td><td>32.2733        </td><td>1              </td><td>1              </td></tr>
+	<tr><td>Diencephalon_R </td><td>  9678         </td><td>10             </td><td>335            </td><td>193.7051       </td><td>32.7869        </td><td>1              </td><td>1              </td></tr>
+	<tr><td>Mesencephalon  </td><td> 10268         </td><td>55             </td><td>307            </td><td>230.8583       </td><td>29.2249        </td><td>1              </td><td>1              </td></tr>
+	<tr><td>Metencephalon  </td><td>159402         </td><td> 2             </td><td>299            </td><td>138.5200       </td><td>52.2241        </td><td>1              </td><td>1              </td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>Let’s get the Type 1 Level 1 data.</p>
 <div class="cell docutils container">

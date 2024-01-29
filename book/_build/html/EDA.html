@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -576,7 +581,7 @@ document.write(`
   Text(6, 0, &#39;Telencephalon_R&#39;)])
 </pre></div>
 </div>
-<img alt="_images/f01cb1168c687b5f6a67f642e1547d8f055bf6d4b0e1974b70ad6f76a1f28775.png" src="_images/f01cb1168c687b5f6a67f642e1547d8f055bf6d4b0e1974b70ad6f76a1f28775.png" />
+<img alt="_images/cc8c8fd83a35b9e93189eb58507f9278b324237fd370a854f649eb93aeb53c39.png" src="_images/cc8c8fd83a35b9e93189eb58507f9278b324237fd370a854f649eb93aeb53c39.png" />
 </div>
 </div>
 <p>Unfortunately, seaborn doesn’t have a stakced bar chart. However, pandas does have one built in. To do this, however, we have to create a version of the data with ROIs as the columns. This is done with a pivot statement.</p>
@@ -678,10 +683,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x78b041aed510&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x787406f72340&gt;
 </pre></div>
 </div>
-<img alt="_images/418029c34e0c209ee739286ad850bf482528905a5238e538d4b8943fc346a563.png" src="_images/418029c34e0c209ee739286ad850bf482528905a5238e538d4b8943fc346a563.png" />
+<img alt="_images/e37ef4ee57123aa4cc40def105fdfc404999033ddb99d8d17e4762dbfebb7fe8.png" src="_images/e37ef4ee57123aa4cc40def105fdfc404999033ddb99d8d17e4762dbfebb7fe8.png" />
 </div>
 </div>
 <p>Let’s do some scatterplots. Let’s look at bilateral symmetry in the telencephalon.</p>
@@ -698,10 +703,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78b03979b2e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x787406d03940&gt;]
 </pre></div>
 </div>
-<img alt="_images/12f5a708d4817c3e08a130d1726f22c3e417b54e90e4ce303f2da498445a06c1.png" src="_images/12f5a708d4817c3e08a130d1726f22c3e417b54e90e4ce303f2da498445a06c1.png" />
+<img alt="_images/28662ec70bf741537f949598d9e7804a5391a802df9f84d1ad785e3726c7f86a.png" src="_images/28662ec70bf741537f949598d9e7804a5391a802df9f84d1ad785e3726c7f86a.png" />
 </div>
 </div>
 <p>This plot has the issue that there’s a lot of blank space. This is often addressed via a mean difference plot. This plot shows (X+Y) / 2 versus (X-y). This is basically just rotating the plot above by 45 degrees to get rid of all of the blank space around the diagonal line. Alternatively, you could plot (log(x) + log(y)) / 2 versus log(X) - log(Y). This plots the log of the geometric mean of the two observations versus the log of their ratio. Sometimes people use log base 2 or log base 10.</p>
@@ -718,20 +723,20 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([12.8 , 12.85, 12.9 , 12.95, 13.  , 13.05, 13.1 , 13.15, 13.2 ,
         13.25, 13.3 ]),
- [Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;)])
+ [Text(12.8, 0, &#39;12.80&#39;),
+  Text(12.850000000000001, 0, &#39;12.85&#39;),
+  Text(12.9, 0, &#39;12.90&#39;),
+  Text(12.950000000000001, 0, &#39;12.95&#39;),
+  Text(13.0, 0, &#39;13.00&#39;),
+  Text(13.05, 0, &#39;13.05&#39;),
+  Text(13.100000000000001, 0, &#39;13.10&#39;),
+  Text(13.15, 0, &#39;13.15&#39;),
+  Text(13.200000000000001, 0, &#39;13.20&#39;),
+  Text(13.25, 0, &#39;13.25&#39;),
+  Text(13.3, 0, &#39;13.30&#39;)])
 </pre></div>
 </div>
-<img alt="_images/827755b19e57f748cad876096b56b874d136cfd132d76fced2e9718a93e27f2d.png" src="_images/827755b19e57f748cad876096b56b874d136cfd132d76fced2e9718a93e27f2d.png" />
+<img alt="_images/075b1d6f377b983cd9c10a85f768183fb978642e83514ecf520f98d937590925.png" src="_images/075b1d6f377b983cd9c10a85f768183fb978642e83514ecf520f98d937590925.png" />
 </div>
 </div>
 <p>Thus, apparently, the <em>right</em> side is always a little bigger than the <em>left</em> and the scale of the ratio is <span class="math notranslate nohighlight">\(e^{0.02}\)</span> while the scale of the geometric mean is <span class="math notranslate nohighlight">\(e^{13}\)</span>. Note, <span class="math notranslate nohighlight">\(\exp(x) \approx 1 + x\)</span>  for <span class="math notranslate nohighlight">\(x \approx 0\)</span>. So it’s about 2% larger. A note about right versus left in imaging. Often the labels get switched as there are different conventions (is it the right of the subject or the right of the viewer when looking straight at the subject?). Typically, it’s known that some of the areas of subject’s left hemisphere are larger and so it’s probably radiological (right of the viewer) convention here. <a class="reference external" href="https://www.dana.org/uploadedFiles/BAW/Brain_Brief_Right_Brain-Left_Brain_Final.pdf">Here’s</a> a nicely done article about right versus left brain.</p>
@@ -747,10 +752,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x78b0396ad300&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7874068783a0&gt;]
 </pre></div>
 </div>
-<img alt="_images/cae35a1780598ce1854e5556b894dd33dfd3c94ca0a193a08360d203b845e338.png" src="_images/cae35a1780598ce1854e5556b894dd33dfd3c94ca0a193a08360d203b845e338.png" />
+<img alt="_images/e4dda0c147be9c5de1d94bd151d81cbfa839126d2aab33f8a5f629b9863dc69b.png" src="_images/e4dda0c147be9c5de1d94bd151d81cbfa839126d2aab33f8a5f629b9863dc69b.png" />
 </div>
 </div>
 </section>

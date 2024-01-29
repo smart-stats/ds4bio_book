@@ -40,10 +40,10 @@ chapters:
 - file: basic_regression_pytorch.ipynb
 - file: logistic_regression_pytorch.ipynb
 - file: pytorch_regression.ipynb
-#- file: convnet_classifier_pytorch.ipynb
+- file: convnet_classifier_pytorch.ipynb
 #- file: convolutions.ipynb
-#- file: autoencoder.ipynb
-#- file: gan.ipynb
-#- file: gpu.ipynb
-#- file: explainability.ipynb
+- file: autoencoder.ipynb
+- file: gan.ipynb
+- file: gpu.ipynb
+- file: explainability.ipynb
 

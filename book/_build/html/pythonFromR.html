@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
@@ -214,12 +217,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -434,19 +439,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 6 × 10</caption>
-<thead>
-	<tr><th></th><th scope=col>Unnamed: 0</th><th scope=col>rawid</th><th scope=col>roi</th><th scope=col>volume</th><th scope=col>min</th><th scope=col>max</th><th scope=col>mean</th><th scope=col>std</th><th scope=col>type</th><th scope=col>level</th></tr>
-	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>Unnamed: 0</th><th scope=col>rawid</th><th scope=col>roi</th><th scope=col>volume</th><th scope=col>min</th><th scope=col>max</th><th scope=col>mean</th><th scope=col>std</th><th scope=col>type</th><th scope=col>level</th></tr></thead>
 <tbody>
-	<tr><th scope=row>1</th><td>1</td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_L</td><td>531111</td><td> 0</td><td>374</td><td>128.3013</td><td>51.8593</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>2</th><td>2</td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_R</td><td>543404</td><td> 0</td><td>300</td><td>135.0683</td><td>53.6471</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>3</th><td>3</td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_L </td><td>  9683</td><td>15</td><td>295</td><td>193.5488</td><td>32.2733</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>4</th><td>4</td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_R </td><td>  9678</td><td>10</td><td>335</td><td>193.7051</td><td>32.7869</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>5</th><td>5</td><td>kirby127a_3_1_ax.img</td><td>Mesencephalon  </td><td> 10268</td><td>55</td><td>307</td><td>230.8583</td><td>29.2249</td><td>1</td><td>1</td></tr>
-	<tr><th scope=row>6</th><td>6</td><td>kirby127a_3_1_ax.img</td><td>Metencephalon  </td><td>159402</td><td> 2</td><td>299</td><td>138.5200</td><td>52.2241</td><td>1</td><td>1</td></tr>
+	<tr><td>1                   </td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_L     </td><td>531111              </td><td> 0                  </td><td>374                 </td><td>128.3013            </td><td>51.8593             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>2                   </td><td>kirby127a_3_1_ax.img</td><td>Telencephalon_R     </td><td>543404              </td><td> 0                  </td><td>300                 </td><td>135.0683            </td><td>53.6471             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>3                   </td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_L      </td><td>  9683              </td><td>15                  </td><td>295                 </td><td>193.5488            </td><td>32.2733             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>4                   </td><td>kirby127a_3_1_ax.img</td><td>Diencephalon_R      </td><td>  9678              </td><td>10                  </td><td>335                 </td><td>193.7051            </td><td>32.7869             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>5                   </td><td>kirby127a_3_1_ax.img</td><td>Mesencephalon       </td><td> 10268              </td><td>55                  </td><td>307                 </td><td>230.8583            </td><td>29.2249             </td><td>1                   </td><td>1                   </td></tr>
+	<tr><td>6                   </td><td>kirby127a_3_1_ax.img</td><td>Metencephalon       </td><td>159402              </td><td> 2                  </td><td>299                 </td><td>138.5200            </td><td>52.2241             </td><td>1                   </td><td>1                   </td></tr>
 </tbody>
 </table>
 </div></div>
@@ -461,12 +462,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>-1.17678527069652</li><li>1.03141791208298</li><li>-0.408351874885392</li><li>-0.713779408099302</li><li>0.557432582358037</li></ol>
+<div class="output text_html"><ol class=list-inline>
+	<li>0.100258381351714</li>
+	<li>-0.630196670637148</li>
+	<li>-1.20126126831663</li>
+	<li>0.497026758497375</li>
+	<li>-0.820078150428286</li>
+</ol>
 </div></div>
 </div>
 <p>(Of course, this example isn’t necessary since R already has <code class="docutils literal notranslate"><span class="pre">rnorm</span></code>.) Notice that you actually have to do the type conversion, <code class="docutils literal notranslate"><span class="pre">as.integer</span></code>, since python is more strongly typed than R.</p>

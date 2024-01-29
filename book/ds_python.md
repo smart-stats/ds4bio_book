@@ -1,5 +1,3 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD)
-
 # Python background
 
 First, you'll need a place to program python for data analysis. Python has a dizzying array of options for its use. 

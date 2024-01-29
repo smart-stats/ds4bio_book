@@ -1,111 +1,182 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Convnet classifier example &#8212; Data science and AI for Bio/medical applications using python</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'convnet_classifier_pytorch';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Convolutions" href="convolutions.html" />
-    <link rel="prev" title="Logistic regression in pytorch" href="logistic_regression_pytorch.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="Pytorch by example" href="pytorch_regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/dasl.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Data science and AI for Bio/medical applications using python</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/dasl.png" class="logo__image only-light" alt="Data science and AI for Bio/medical applications using python - Home"/>
+    <script>document.write(`<img src="_static/dasl.png" class="logo__image only-dark" alt="Data science and AI for Bio/medical applications using python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -115,491 +186,265 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="git.html">
-   Git, github
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ds_python.html">
-   Python background
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_python.html">
-   Python basics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_programming.html">
-   Python programming
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="functions.html">
-   Functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_practice.html">
-   Python in practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="virtual_environments.html">
-   Virtual Environments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data_cleaning.html">
-   Data cleaning by example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="EDA.html">
-   Exploratory data analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data_structures.html">
-   Data structures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sqlite.html">
-   SQL via sqlite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pysqlite.html">
-   sqlite in python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rBasic.html">
-   Base R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rTidyverse.html">
-   R tidyverse quick example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rFromPython.html">
-   R from python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pythonFromR.html">
-   Python from R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="html.html">
-   HTML, CSS and javascript
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="interactive.html">
-   Interactive graphics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="webscraping.html">
-   Webscraping
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="voila.html">
-   Jupyterwidgets and voila
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="streamlit.html">
-   Streamlit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dash.html">
-   Dash
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dash2.html">
-   Dash callbacks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="binary_classification.html">
-   Introduction to binary classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_through_the_origin.html">
-   Regression through the origin
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression.html">
-   Continuous prediction with regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy.html">
-   Numpy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="logistic.html">
-   Logistic regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ml.html">
-   Maximum Likelihood
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearSeparable.html">
-   Linear separable models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearSeparableSMF.html">
-   Interpretation of linear regression coefficients.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_examples.html">
-   Linear models: a classic example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_interpretation.html">
-   Regression interpretation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dft.html">
-   DFT
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linearModels_FFTs.html">
-   Regression and FFTs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nns.html">
-   Neural networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pytorch_regression.html">
-   Pytorch by example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_regression_pytorch.html">
-   Basic regression in pytorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="logistic_regression_pytorch.html">
-   Logistic regression in pytorch
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Convnet classifier example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolutions.html">
-   Convolutions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="autoencoder.html">
-   Autoencoders
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gan.html">
-   GANs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gpu.html">
-   Parallelism and GPU computing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="explainability.html">
-   Explainability
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Convnet classifier example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/master?urlpath=tree/convnet_classifier_pytorch.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fconvnet_classifier_pytorch.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/convnet_classifier_pytorch.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/smart-stats/ds4bio_book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fconvnet_classifier_pytorch.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/convnet_classifier_pytorch.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convnet-example">
-   Convnet example
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pytorch">
-   Pytorch
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Convnet classifier example</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convnet-example">
-   Convnet example
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pytorch">
-   Pytorch
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Convnet classifier example</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convnet-example">Convnet example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch">Pytorch</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/convnet_classifier_pytorch.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/convnet_classifier_pytorch.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="convnet-classifier-example">
-<h1>Convnet classifier example<a class="headerlink" href="#convnet-classifier-example" title="Permalink to this headline">#</a></h1>
+<h1>Convnet classifier example<a class="headerlink" href="#convnet-classifier-example" title="Link to this heading">#</a></h1>
 <section id="convnet-example">
-<h2>Convnet example<a class="headerlink" href="#convnet-example" title="Permalink to this headline">#</a></h2>
+<h2>Convnet example<a class="headerlink" href="#convnet-example" title="Link to this heading">#</a></h2>
 <p>In this exercise, we’ll build an autoencoder to model cryptopunks. You might have heard of the recent NFT (non-fungible token) craze. Cryptopunks are example NFT assets that one can buy. As of this writing, the cheapest Cryptopunk is worth over $40,000 dollars. The punks each have attributes, like a mustache or hairstyle. We’ll train a conv net to classify punks by attributes. First we’ll need to download all of the cryptopunks, which are in a giant single image file. Then separate them into the individual punks. (There’s probably an easier way to do this, but this wasn’t that hard.) Then we’ll build a tensorflow model of the punks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,7 +466,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;cryptoPunksAll.jpg&#39;, &lt;http.client.HTTPMessage at 0x7f65f4da9f90&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;cryptoPunksAll.jpg&#39;, &lt;http.client.HTTPMessage at 0x7fde325aec70&gt;)
 </pre></div>
 </div>
 </div>
@@ -634,7 +479,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/convnet_classifier_pytorch_4_0.png" src="_images/convnet_classifier_pytorch_4_0.png" />
+<img alt="_images/1bdd01b41fc4597e7129861b636621f708fee81092c326715fdd465e4a35dc6d.png" src="_images/1bdd01b41fc4597e7129861b636621f708fee81092c326715fdd465e4a35dc6d.png" />
 </div>
 </div>
 <p>It looks like there’s 100x100=10,000 crypto punks each one being a 24x24 (x3 color channels) image.</p>
@@ -661,10 +506,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([], &lt;a list of 0 Text major ticklabel objects&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([], [])
 </pre></div>
 </div>
-<img alt="_images/convnet_classifier_pytorch_8_1.png" src="_images/convnet_classifier_pytorch_8_1.png" />
+<img alt="_images/f21f7157f9e53e328a39c9c2930883daa1d7237f9fe5e9854c0e975475e09ee2.png" src="_images/f21f7157f9e53e328a39c9c2930883daa1d7237f9fe5e9854c0e975475e09ee2.png" />
 </div>
 </div>
 <p>Here’s punks 0 : 24. You can double check that the reference image is filling by rows associated with the punk’s index by looking at links like these (change the final number which is the punk’s index):</p>
@@ -686,7 +531,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/convnet_classifier_pytorch_10_0.png" src="_images/convnet_classifier_pytorch_10_0.png" />
+<img alt="_images/eb0859327f0fd6d53adb2fec5dddfa0c97ed4947ee38d4ea70cde7c63c294e9e.png" src="_images/eb0859327f0fd6d53adb2fec5dddfa0c97ed4947ee38d4ea70cde7c63c294e9e.png" />
 </div>
 </div>
 <p>Reorder the array. I couldn’t get reshape to do this right, but I think this is a one-line command waiting to happen. See if you can figure out a better way. All images are 24x24x3 and there’s 10,000 punks. (Supposedly, there will only ever be 10k punks.) When I did this for tensorflow, it required 24x24x3. However, torch wants 3x24x24.</p>
@@ -718,38 +563,53 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(7507, 3, 24, 24), (2493, 3, 24, 24)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(7545, 3, 24, 24), (2455, 3, 24, 24)]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Github user geraldb created a <a class="reference external" href="https://github.com/cryptopunksnotdead/punks.attributes">github repo</a> containing databases of punk attributes. However, they’re stored in a collection of csv files. So, first let’s see if we can download them programmatically and concatenate them.</p>
+<p>We need to figure out which punks have an earring. The Larvalabs website contains information on all of the punks including a search for properties. Thus, one can use our webscraping tools to scrape the page <code class="docutils literal notranslate"><span class="pre">https://cryptopunks.app/cryptopunks/search?query=Earring</span></code>. (However, don’t do this since it would cause too many people to be hitting their website at once. Instead, I put the downloaded file in <code class="docutils literal notranslate"><span class="pre">asssetts</span></code>. Note also that I accidentally misspelled assets, but now have too many links to it to change it.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseUrl</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/&quot;</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
-  <span class="n">url</span> <span class="o">=</span> <span class="n">baseUrl</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">999</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.csv&quot;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-  <span class="k">else</span> <span class="p">:</span>
-    <span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span> <span class="p">([</span><span class="n">dat</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)],</span> 
-                      <span class="n">join</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">,</span>
-                     <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;assetts/cryptopunks_search_results.mhtml&#39;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">html_content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Parse the HTML content using BeautifulSoup</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find all the &lt;a&gt; tags with the specific pattern in the title attribute</span>
+<span class="n">punk_links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract the numbers from the title attribute</span>
+<span class="n">punk_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">punk_links</span><span class="p">:</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\&lt;a \#(\d+)&#39;</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="n">punk_numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">punk_numbers</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># Display the first 10 numbers as a sample</span>
+
+<span class="c1"># for some reason, I got every number twice</span>
+<span class="n">punk_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">punk_numbers</span><span class="p">))</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/0-999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/1000-1999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/2000-2999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/3000-3999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/4000-4999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/5000-5999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/6000-6999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/7000-7999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/8000-8999.csv
-https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/original/9000-9999.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 4, 5, 16, 21, 23, 27, 29, 35, 45]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="n">punk_numbers</span><span class="p">,</span> <span class="s1">&#39;earring&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">))})</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dat1</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -757,7 +617,7 @@ https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/ori
 <p>Let’s see how we did</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,96 +641,6 @@ https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/ori
     <tr style="text-align: right;">
       <th></th>
       <th>id</th>
-      <th>type</th>
-      <th>gender</th>
-      <th>skin tone</th>
-      <th>count</th>
-      <th>accessories</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>Human</td>
-      <td>Female</td>
-      <td>Medium</td>
-      <td>3</td>
-      <td>Green Eye Shadow / Earring / Blonde Bob</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Dark</td>
-      <td>2</td>
-      <td>Smile / Mohawk</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>Human</td>
-      <td>Female</td>
-      <td>Light</td>
-      <td>1</td>
-      <td>Wild Hair</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Dark</td>
-      <td>3</td>
-      <td>Wild Hair / Nerd Glasses / Pipe</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Medium</td>
-      <td>4</td>
-      <td>Big Shades / Wild Hair / Earring / Goat</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Let’s double check to see if the punk has an earring.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">earring</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39; accessories&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Earring&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
-<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>type</th>
-      <th>gender</th>
-      <th>skin tone</th>
-      <th>count</th>
-      <th>accessories</th>
       <th>earring</th>
     </tr>
   </thead>
@@ -878,51 +648,86 @@ https://raw.githubusercontent.com/cryptopunksnotdead/punks.attributes/master/ori
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>Human</td>
-      <td>Female</td>
-      <td>Medium</td>
-      <td>3</td>
-      <td>Green Eye Shadow / Earring / Blonde Bob</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Dark</td>
-      <td>2</td>
-      <td>Smile / Mohawk</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2</td>
-      <td>Human</td>
-      <td>Female</td>
-      <td>Light</td>
-      <td>1</td>
-      <td>Wild Hair</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Dark</td>
-      <td>3</td>
-      <td>Wild Hair / Nerd Glasses / Pipe</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>4</td>
-      <td>Human</td>
-      <td>Male</td>
-      <td>Medium</td>
-      <td>4</td>
-      <td>Big Shades / Wild Hair / Earring / Goat</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>16</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -959,7 +764,7 @@ Name: earring, dtype: float64
 </div>
 </section>
 <section id="pytorch">
-<h2>Pytorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">#</a></h2>
+<h2>Pytorch<a class="headerlink" href="#pytorch" title="Link to this heading">#</a></h2>
 <p>OK, now let’s follow along with <a class="reference external" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">this example</a> and train a classifier. However, they do a lot of the data organization ahead of time. So, first we have to convert our training data and testing data into pytorch tensors. Then convert them into a dataset format. Then, convert them into a dataloader. The dataloader is useful since it will do things like automate the batch creation for us.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -972,11 +777,6 @@ Name: earring, dtype: float64
 
 <span class="n">trainDataset</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
 <span class="n">trainloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">trainDataset</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1">#Actually, not necessary, I found it&#39;s easier to just test out</span>
-<span class="c1">#on the data as a tensor and there&#39;s no reason to convert the y test</span>
-<span class="c1">#testDataset  = TensorDataset(torch.Tensor(x_test ), torch.Tensor(y_test ))</span>
-<span class="c1">#testloader  = torch.utils.data.DataLoader(testDataset , batch_size = 100, shuffle = False, num_workers = 1)</span>
 </pre></div>
 </div>
 </div>
@@ -985,7 +785,7 @@ Name: earring, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">trainloader</span><span class="p">)</span>
-<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">dataiter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dataiter</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
@@ -997,7 +797,7 @@ Name: earring, dtype: float64
 
 <span class="c1"># get some random training images</span>
 <span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">trainloader</span><span class="p">)</span>
-<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">dataiter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dataiter</span><span class="p">)</span>
 
 
 <span class="c1"># show images</span>
@@ -1011,8 +811,8 @@ Name: earring, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/convnet_classifier_pytorch_28_0.png" src="_images/convnet_classifier_pytorch_28_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0., 0., 0., 0., 0., 0., 0., 0.])
+<img alt="_images/761c57da56fc2f406bb6487cad7620ad6b952cf7aa8f26c4349f7641c886613a.png" src="_images/761c57da56fc2f406bb6487cad7620ad6b952cf7aa8f26c4349f7641c886613a.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0., 0., 1., 0., 0., 0., 0., 0.])
 </pre></div>
 </div>
 </div>
@@ -1030,7 +830,7 @@ Name: earring, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([7, 3, 24, 24]), torch.Size([7, 1])]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torch.Size([45, 3, 24, 24]), torch.Size([45, 1])]
 </pre></div>
 </div>
 </div>
@@ -1096,11 +896,7 @@ Name: earring, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
-  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([7, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([45, 1])
 </pre></div>
 </div>
 </div>
@@ -1110,7 +906,7 @@ Name: earring, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 <span class="c1">#criterion = nn.CrossEntropyLoss()</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1176,7 +972,7 @@ Name: earring, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/convnet_classifier_pytorch_36_0.png" src="_images/convnet_classifier_pytorch_36_0.png" />
+<img alt="_images/46ea1cd4b599783df8b40c800411b04ce464d2f47dd180c9d582bd18a1e4e329.png" src="_images/46ea1cd4b599783df8b40c800411b04ce464d2f47dd180c9d582bd18a1e4e329.png" />
 </div>
 </div>
 </section>
@@ -1194,7 +990,7 @@ Name: earring, dtype: float64
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1202,50 +998,104 @@ Name: earring, dtype: float64
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="logistic_regression_pytorch.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Logistic regression in pytorch</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pytorch_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pytorch by example</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="convolutions.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="convolutions.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Convolutions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convnet-example">Convnet example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch">Pytorch</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Brian Caffo<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Brian Caffo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

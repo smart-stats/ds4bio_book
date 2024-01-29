@@ -4,12 +4,13 @@ title: Data science and AI for Bio/medical applications using python
 author: Brian Caffo
 logo: dasl.png
 
+only_build_toc_files: true
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
-  timeout: 200
-#  execute_notebooks: false
+  execute_notebooks: off
+  timeout: 1000
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -34,5 +35,6 @@ html:
 
 sphinx:
   config:
+    suppress_warnings: ["mystnb.unknown_mime_type"]
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js

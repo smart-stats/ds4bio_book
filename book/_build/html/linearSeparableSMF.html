@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Interpretation of linear regression coefficients. &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,54 +18,58 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'linearSeparableSMF';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="DFT" href="dft.html" />
+    <link rel="next" title="Linear models: a classic example" href="regression_examples.html" />
     <link rel="prev" title="Linear separable models" href="linearSeparable.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -80,7 +83,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -120,20 +122,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -167,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -177,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
@@ -194,35 +202,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -420,9 +408,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparableSMF.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparableSMF.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="interpretation-of-linear-regression-coefficients">
-<h1>Interpretation of linear regression coefficients.<a class="headerlink" href="#interpretation-of-linear-regression-coefficients" title="Permalink to this heading">#</a></h1>
+<h1>Interpretation of linear regression coefficients.<a class="headerlink" href="#interpretation-of-linear-regression-coefficients" title="Link to this heading">#</a></h1>
 <p>The module <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> gives a  particularly convenient R-like formula approach to fitting linear models.
 It allows for a model specification of the form <code class="docutils literal notranslate"><span class="pre">outcome</span> <span class="pre">~</span> <span class="pre">predictors</span></code>. We give an example below.</p>
 <div class="cell docutils container">
@@ -456,7 +444,7 @@ It allows for a model specification of the form <code class="docutils literal no
 =================================================================
 Model:              OLS              Adj. R-squared:     0.743   
 Dependent Variable: PD               AIC:                95.4183 
-Date:               2021-09-22 19:54 BIC:                116.2597
+Date:               2024-01-29 06:48 BIC:                116.2597
 No. Observations:   100              Log-Likelihood:     -39.709 
 Df Model:           7                F-statistic:        41.98   
 Df Residuals:       92               Prob (F-statistic): 5.56e-26
@@ -478,6 +466,9 @@ Prob(Omnibus):         0.343        Jarque-Bera (JB):       1.725
 Skew:                  -0.075       Prob(JB):               0.422
 Kurtosis:              3.626        Condition No.:          40   
 =================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the
+errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -501,7 +492,7 @@ Kurtosis:              3.626        Condition No.:          40
 ================================================================
 Model:              OLS              Adj. R-squared:     -0.010 
 Dependent Variable: PD_adjusted      AIC:                83.4183
-Date:               2021-09-22 20:16 BIC:                88.6286
+Date:               2024-01-29 06:48 BIC:                88.6286
 No. Observations:   100              Log-Likelihood:     -39.709
 Df Model:           1                F-statistic:        0.04730
 Df Residuals:       98               Prob (F-statistic): 0.828  
@@ -517,6 +508,9 @@ Prob(Omnibus):        0.343        Jarque-Bera (JB):       1.725
 Skew:                 -0.075       Prob(JB):               0.422
 Kurtosis:             3.626        Condition No.:          2    
 ================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the
+errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -564,11 +558,11 @@ Kurtosis:             3.626        Condition No.:          2
       </div>
     </a>
     <a class="right-next"
-       href="dft.html"
+       href="regression_examples.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">DFT</p>
+        <p class="prev-next-title">Linear models: a classic example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -600,7 +594,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -624,8 +618,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,4 +1,6 @@
 jupyter-book
+# Use conda I've found instead of pip
+jupyter
 matplotlib
 numpy
 pandas
@@ -8,5 +10,14 @@ scipy
 PILLOW
 urllib3
 networkx
-torch
+pytorch
 torchvision
+rpy2
+#r-base r-tidyverse
+r-irkernel
+ipykernel
+bs4
+folium
+streamlit
+lxlm
+statsmodels

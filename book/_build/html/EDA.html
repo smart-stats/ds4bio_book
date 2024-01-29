@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Exploratory data analysis &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,53 +18,57 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'EDA';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="SQL via sqlite" href="sqlite.html" />
@@ -82,7 +85,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,20 +124,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -169,7 +166,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -196,35 +204,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -424,7 +412,7 @@ document.write(`
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/EDA.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis">
-<h1>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this heading">#</a></h1>
+<h1>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Link to this heading">#</a></h1>
 <p>In this lecture, we’ll talk about EDA (exploratory data analysis) using the python framework seaborn. EDA is the process of using graphs to uncover features in your data often interactively. EDA is hard to quantify, but is touted by most applied data scientists as a crucial component of their craft. EDA is often summarized by the famous sayings</p>
 <p><em>A picture is worth a 1,000 words</em></p>
 <p>Or saying how impactful intrer-ocular content is (i.e. when information hits you right between the eyes).</p>
@@ -581,7 +569,7 @@ document.write(`
   Text(6, 0, &#39;Telencephalon_R&#39;)])
 </pre></div>
 </div>
-<img alt="_images/cc8c8fd83a35b9e93189eb58507f9278b324237fd370a854f649eb93aeb53c39.png" src="_images/cc8c8fd83a35b9e93189eb58507f9278b324237fd370a854f649eb93aeb53c39.png" />
+<img alt="_images/796ea4905da793f8817248f7691a3a756bdae4e58bb8c0f791ad680bbd690fc2.png" src="_images/796ea4905da793f8817248f7691a3a756bdae4e58bb8c0f791ad680bbd690fc2.png" />
 </div>
 </div>
 <p>Unfortunately, seaborn doesn’t have a stakced bar chart. However, pandas does have one built in. To do this, however, we have to create a version of the data with ROIs as the columns. This is done with a pivot statement.</p>
@@ -683,10 +671,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x787406f72340&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ba67426d870&gt;
 </pre></div>
 </div>
-<img alt="_images/e37ef4ee57123aa4cc40def105fdfc404999033ddb99d8d17e4762dbfebb7fe8.png" src="_images/e37ef4ee57123aa4cc40def105fdfc404999033ddb99d8d17e4762dbfebb7fe8.png" />
+<img alt="_images/96c2b27873270e91ac9ff275884aeef11005d3843e7c40836f309fa24589a516.png" src="_images/96c2b27873270e91ac9ff275884aeef11005d3843e7c40836f309fa24589a516.png" />
 </div>
 </div>
 <p>Let’s do some scatterplots. Let’s look at bilateral symmetry in the telencephalon.</p>
@@ -703,10 +691,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x787406d03940&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ba67426e6b0&gt;]
 </pre></div>
 </div>
-<img alt="_images/28662ec70bf741537f949598d9e7804a5391a802df9f84d1ad785e3726c7f86a.png" src="_images/28662ec70bf741537f949598d9e7804a5391a802df9f84d1ad785e3726c7f86a.png" />
+<img alt="_images/20b61672cd8dbce52ff5efd1ff310fd216b41cb2ccebe1a5cff80eefcbe9bfc2.png" src="_images/20b61672cd8dbce52ff5efd1ff310fd216b41cb2ccebe1a5cff80eefcbe9bfc2.png" />
 </div>
 </div>
 <p>This plot has the issue that there’s a lot of blank space. This is often addressed via a mean difference plot. This plot shows (X+Y) / 2 versus (X-y). This is basically just rotating the plot above by 45 degrees to get rid of all of the blank space around the diagonal line. Alternatively, you could plot (log(x) + log(y)) / 2 versus log(X) - log(Y). This plots the log of the geometric mean of the two observations versus the log of their ratio. Sometimes people use log base 2 or log base 10.</p>
@@ -736,7 +724,7 @@ document.write(`
   Text(13.3, 0, &#39;13.30&#39;)])
 </pre></div>
 </div>
-<img alt="_images/075b1d6f377b983cd9c10a85f768183fb978642e83514ecf520f98d937590925.png" src="_images/075b1d6f377b983cd9c10a85f768183fb978642e83514ecf520f98d937590925.png" />
+<img alt="_images/74b1cb0bfe2fa1c5bd8c55b47b62c69c55b034cb8673e7c93e5eeca911f24021.png" src="_images/74b1cb0bfe2fa1c5bd8c55b47b62c69c55b034cb8673e7c93e5eeca911f24021.png" />
 </div>
 </div>
 <p>Thus, apparently, the <em>right</em> side is always a little bigger than the <em>left</em> and the scale of the ratio is <span class="math notranslate nohighlight">\(e^{0.02}\)</span> while the scale of the geometric mean is <span class="math notranslate nohighlight">\(e^{13}\)</span>. Note, <span class="math notranslate nohighlight">\(\exp(x) \approx 1 + x\)</span>  for <span class="math notranslate nohighlight">\(x \approx 0\)</span>. So it’s about 2% larger. A note about right versus left in imaging. Often the labels get switched as there are different conventions (is it the right of the subject or the right of the viewer when looking straight at the subject?). Typically, it’s known that some of the areas of subject’s left hemisphere are larger and so it’s probably radiological (right of the viewer) convention here. <a class="reference external" href="https://www.dana.org/uploadedFiles/BAW/Brain_Brief_Right_Brain-Left_Brain_Final.pdf">Here’s</a> a nicely done article about right versus left brain.</p>
@@ -752,10 +740,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7874068783a0&gt;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
 </pre></div>
 </div>
-<img alt="_images/e4dda0c147be9c5de1d94bd151d81cbfa839126d2aab33f8a5f629b9863dc69b.png" src="_images/e4dda0c147be9c5de1d94bd151d81cbfa839126d2aab33f8a5f629b9863dc69b.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ba66be77a60&gt;]
+</pre></div>
+</div>
+<img alt="_images/54890d3319e12def6c6cbc736e8a92dd02ecd4726aad723e8a8a8ee5fddef943.png" src="_images/54890d3319e12def6c6cbc736e8a92dd02ecd4726aad723e8a8a8ee5fddef943.png" />
 </div>
 </div>
 </section>
@@ -836,7 +830,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -860,8 +854,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Linear separable models &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,53 +18,57 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'linearSeparable';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Interpretation of linear regression coefficients." href="linearSeparableSMF.html" />
@@ -82,7 +85,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,20 +124,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -169,7 +166,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -179,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
@@ -196,35 +204,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -432,10 +420,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-<a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearSeparable.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="linear-separable-models">
-<h1>Linear separable models<a class="headerlink" href="#linear-separable-models" title="Permalink to this heading">#</a></h1>
+<h1>Linear separable models<a class="headerlink" href="#linear-separable-models" title="Link to this heading">#</a></h1>
 <p>We’ve now covered two ways to do prediction with a single variable, classification using logistic regression and prediction using a line and least squares. What if we have several predictiors?</p>
 <p>In both the logistic and linear regression models, we had a linear predictor, specifically,</p>
 <div class="math notranslate nohighlight">
@@ -508,30 +495,33 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
 =================================================================
-Model:              OLS              Adj. R-squared:     0.773   
-Dependent Variable: PD               AIC:                72.6331 
-Date:               2019-09-23 19:22 BIC:                91.2790 
-No. Observations:   76               Log-Likelihood:     -28.317 
-Df Model:           7                F-statistic:        37.44   
-Df Residuals:       68               Prob (F-statistic): 6.19e-21
-R-squared:          0.794            Scale:              0.13787 
+Model:              OLS              Adj. R-squared:     0.780   
+Dependent Variable: PD               AIC:                65.4823 
+Date:               2024-01-29 06:47 BIC:                84.0222 
+No. Observations:   75               Log-Likelihood:     -24.741 
+Df Model:           7                F-statistic:        38.48   
+Df Residuals:       67               Prob (F-statistic): 4.34e-21
+R-squared:          0.801            Scale:              0.12678 
 ------------------------------------------------------------------
                Coef.   Std.Err.     t     P&gt;|t|    [0.025   0.975]
 ------------------------------------------------------------------
-Intercept      0.1781    0.1441   1.2366  0.2205  -0.1093   0.4656
-FLAIR         -0.0103    0.0909  -0.1131  0.9103  -0.1917   0.1711
-T1            -0.2067    0.0873  -2.3664  0.0208  -0.3810  -0.0324
-T2             0.6145    0.0825   7.4528  0.0000   0.4500   0.7790
-FLAIR_10      -0.2880    0.3412  -0.8442  0.4015  -0.9688   0.3928
-T1_10          0.2394    0.1694   1.4131  0.1622  -0.0987   0.5775
-T2_10          0.0887    0.3102   0.2861  0.7757  -0.5302   0.7076
-FLAIR_20       2.0992    0.7424   2.8278  0.0062   0.6179   3.5806
+Intercept      0.1001    0.1278   0.7832  0.4362  -0.1549   0.3551
+FLAIR          0.0537    0.0774   0.6934  0.4905  -0.1008   0.2081
+T1            -0.3114    0.0842  -3.6993  0.0004  -0.4794  -0.1434
+T2             0.5366    0.0830   6.4681  0.0000   0.3710   0.7022
+FLAIR_10       0.0698    0.3321   0.2102  0.8341  -0.5931   0.7327
+T1_10          0.3136    0.1531   2.0480  0.0445   0.0080   0.6193
+T2_10          0.2117    0.2849   0.7431  0.4600  -0.3569   0.7803
+FLAIR_20       1.2552    0.7459   1.6827  0.0971  -0.2337   2.7441
 -----------------------------------------------------------------
-Omnibus:               4.022        Durbin-Watson:          2.111
-Prob(Omnibus):         0.134        Jarque-Bera (JB):       3.904
-Skew:                  -0.238       Prob(JB):               0.142
-Kurtosis:              4.003        Condition No.:          41   
+Omnibus:              1.233        Durbin-Watson:           1.844
+Prob(Omnibus):        0.540        Jarque-Bera (JB):        0.763
+Skew:                 0.230        Prob(JB):                0.683
+Kurtosis:             3.179        Condition No.:           42   
 =================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the
+errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -550,12 +540,6 @@ Kurtosis:              4.003        Condition No.:          41
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
-  return ptp(axis=axis, out=out, **kwargs)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -565,7 +549,7 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.253784
+         Current function value: 0.264729
          Iterations 8
 </pre></div>
 </div>
@@ -573,64 +557,35 @@ Kurtosis:              4.003        Condition No.:          41
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="simpletable">
-<caption>Logit Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
-</tr>
-<tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
-</tr>
-<tr>
-  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
-</tr>
-<tr>
-  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
-</tr>
-<tr>
-  <th>Time:</th>                <td>18:22:05</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
-</tr>
-<tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
-</tr>
-<tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>const</th>    <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
-</tr>
-<tr>
-  <th>FLAIR</th>    <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
-</tr>
-<tr>
-  <th>T1</th>       <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
-</tr>
-<tr>
-  <th>T2</th>       <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
-</tr>
-<tr>
-  <th>FLAIR_10</th> <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
-</tr>
-<tr>
-  <th>T1_10</th>    <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
-</tr>
-<tr>
-  <th>T2_10</th>    <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
-</tr>
-<tr>
-  <th>FLAIR_20</th> <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
-</tr>
-</table></div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:           GOLD_Lesions   No. Observations:                   75
+Model:                          Logit   Df Residuals:                       67
+Method:                           MLE   Df Model:                            7
+Date:                Mon, 29 Jan 2024   Pseudo R-squ.:                  0.6176
+Time:                        06:47:16   Log-Likelihood:                -19.855
+converged:                       True   LL-Null:                       -51.926
+Covariance Type:            nonrobust   LLR p-value:                 2.236e-11
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -4.8293      1.876     -2.574      0.010      -8.507      -1.152
+FLAIR          2.2957      1.166      1.969      0.049       0.011       4.580
+T1             2.3580      1.055      2.236      0.025       0.291       4.425
+T2             2.1419      1.084      1.976      0.048       0.017       4.267
+FLAIR_10       7.7567      3.677      2.109      0.035       0.550      14.964
+T1_10          1.2147      1.572      0.773      0.440      -1.866       4.296
+T2_10         -4.9682      3.051     -1.628      0.103     -10.949       1.012
+FLAIR_20     -18.1028      7.771     -2.330      0.020     -33.334      -2.872
+==============================================================================
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now let’s evaluate our prediction. Here, we’re not going to classify as 0 or 1, but rather estimate the prediction. Note, we then would need to pick a threshold to have a classifier. We could use .5 as our threshold. However, it’s often the case that we don’t necessarily want to threshold at specifically that level. A solution for evalution is to plot how the sensitivity and specificity change by the threshold.</p>
 <p>In other words, consider the triplets
@@ -663,80 +618,49 @@ where \)</span>t<span class="math notranslate nohighlight">\( is the threshold, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aaa1f70a243c59a4076aa8283207085bf8a2e69cceb3cc3974e50d1ace6af9db.png" src="_images/aaa1f70a243c59a4076aa8283207085bf8a2e69cceb3cc3974e50d1ace6af9db.png" />
+<img alt="_images/910c4ff9ea265fbb24ae514903904d7ac3daae5dc4778f88bf3f4e2863b6a0ac.png" src="_images/910c4ff9ea265fbb24ae514903904d7ac3daae5dc4778f88bf3f4e2863b6a0ac.png" />
 </div>
 </div>
 <section id="aside-different-python-packages">
-<h2>Aside different python packages<a class="headerlink" href="#aside-different-python-packages" title="Permalink to this heading">#</a></h2>
+<h2>Aside different python packages<a class="headerlink" href="#aside-different-python-packages" title="Link to this heading">#</a></h2>
 <p>So far we’ve explored several plotting libraries including: default pandas methods, matplotlib, seaborn and plotly. We’ve also looked at several fitting libraries including to some extent numpy, but especially scikitlearn and statsmodels. What’s the difference? Well, these packages are all mantained by different people and have different features and goals. For example, scikitlearn is more expansive than statsmodels, but statsmodels functions more like one is used to with statistical output. Matplotlib is very expansive, but seaborn has nicer default options and is a little easier. So, when doing data science with python, one has to get used to trying out a few packages, weighing the cost and benefits of each, and picking one.</p>
 <p>‘statsmodels’, what we’re using above, has multiple methods for fitting binary models including: <code class="docutils literal notranslate"><span class="pre">sm.Logit</span></code>, <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code>, <code class="docutils literal notranslate"><span class="pre">BinaryModel</span></code> and <code class="docutils literal notranslate"><span class="pre">glm</span></code>. Here I’m just going to use <code class="docutils literal notranslate"><span class="pre">Logit</span></code> which does not use the formula syntax of <code class="docutils literal notranslate"><span class="pre">logit</span></code>. Note, by default, this does not add an intercept this way. So, I’m adding a column of ones, which adds an intercept.</p>
 <p>Consider the following which uses the formula API</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions ~ FLAIR + T1 + T2 + FLAIR_10 + T1_10 + T2_10 + FLAIR_20&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trainingDat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
-         Current function value: 0.241546
+         Current function value: 0.264729
          Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:           GOLD_Lesions   No. Observations:                   75
+Model:                          Logit   Df Residuals:                       67
+Method:                           MLE   Df Model:                            7
+Date:                Mon, 29 Jan 2024   Pseudo R-squ.:                  0.6176
+Time:                        06:47:16   Log-Likelihood:                -19.855
+converged:                       True   LL-Null:                       -51.926
+Covariance Type:            nonrobust   LLR p-value:                 2.236e-11
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -4.8293      1.876     -2.574      0.010      -8.507      -1.152
+FLAIR          2.2957      1.166      1.969      0.049       0.011       4.580
+T1             2.3580      1.055      2.236      0.025       0.291       4.425
+T2             2.1419      1.084      1.976      0.048       0.017       4.267
+FLAIR_10       7.7567      3.677      2.109      0.035       0.550      14.964
+T1_10          1.2147      1.572      0.773      0.440      -1.866       4.296
+T2_10         -4.9682      3.051     -1.628      0.103     -10.949       1.012
+FLAIR_20     -18.1028      7.771     -2.330      0.020     -33.334      -2.872
+==============================================================================
 </pre></div>
 </div>
-<div class="output text_html"><table class="simpletable">
-<caption>Logit Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>     <td>GOLD_Lesions</td>   <th>  No. Observations:  </th>  <td>    71</td>  
-</tr>
-<tr>
-  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>    63</td>  
-</tr>
-<tr>
-  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     7</td>  
-</tr>
-<tr>
-  <th>Date:</th>            <td>Mon, 23 Sep 2019</td> <th>  Pseudo R-squ.:     </th>  <td>0.6515</td>  
-</tr>
-<tr>
-  <th>Time:</th>                <td>18:23:47</td>     <th>  Log-Likelihood:    </th> <td> -17.150</td> 
-</tr>
-<tr>
-  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -49.206</td> 
-</tr>
-<tr>
-  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>2.266e-11</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>   -4.7783</td> <td>    1.985</td> <td>   -2.407</td> <td> 0.016</td> <td>   -8.668</td> <td>   -0.888</td>
-</tr>
-<tr>
-  <th>FLAIR</th>     <td>    2.6983</td> <td>    1.353</td> <td>    1.994</td> <td> 0.046</td> <td>    0.046</td> <td>    5.351</td>
-</tr>
-<tr>
-  <th>T1</th>        <td>    3.0484</td> <td>    1.306</td> <td>    2.334</td> <td> 0.020</td> <td>    0.489</td> <td>    5.608</td>
-</tr>
-<tr>
-  <th>T2</th>        <td>    2.1443</td> <td>    1.196</td> <td>    1.793</td> <td> 0.073</td> <td>   -0.199</td> <td>    4.488</td>
-</tr>
-<tr>
-  <th>FLAIR_10</th>  <td>    4.9421</td> <td>    4.256</td> <td>    1.161</td> <td> 0.246</td> <td>   -3.400</td> <td>   13.284</td>
-</tr>
-<tr>
-  <th>T1_10</th>     <td>   -0.3192</td> <td>    2.331</td> <td>   -0.137</td> <td> 0.891</td> <td>   -4.888</td> <td>    4.250</td>
-</tr>
-<tr>
-  <th>T2_10</th>     <td>   -4.9192</td> <td>    4.014</td> <td>   -1.226</td> <td> 0.220</td> <td>  -12.786</td> <td>    2.947</td>
-</tr>
-<tr>
-  <th>FLAIR_20</th>  <td>  -16.6939</td> <td>    9.496</td> <td>   -1.758</td> <td> 0.079</td> <td>  -35.306</td> <td>    1.918</td>
-</tr>
-</table></div></div>
+</div>
 </div>
 </section>
 </section>
@@ -830,7 +754,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -854,8 +778,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Logistic regression &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,53 +18,57 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'logistic';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Maximum Likelihood" href="ml.html" />
@@ -82,7 +85,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,20 +124,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -169,7 +166,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -179,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
@@ -196,35 +204,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -432,11 +420,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/logistic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> <a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/logistic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
-<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
+<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h1>
 <section id="classification-with-one-continuous-variable">
-<h2>Classification with one continuous variable<a class="headerlink" href="#classification-with-one-continuous-variable" title="Permalink to this heading">#</a></h2>
+<h2>Classification with one continuous variable<a class="headerlink" href="#classification-with-one-continuous-variable" title="Link to this heading">#</a></h2>
 <p>Suppose now that we want to predict the gold standard from the FLAIR values. Fitting a line seems weird, since the outcome can only be 0 or 1. A line would allow for arbitrarily small or large predictions. Similiarly, forcing the prediction to be exactly 0 or 1 leads to difficult optimization problems. A clever solution is to instead model</p>
 <div class="math notranslate nohighlight">
 \[
@@ -496,19 +484,12 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the data</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  FutureWarning
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f32b2bc0f10&gt;
-</pre></div>
-</div>
-<img alt="_images/ffdf5cfce74cdc2787b4d4b2dda40ceedf3d7b986dc57935d72530500b085a59.png" src="_images/ffdf5cfce74cdc2787b4d4b2dda40ceedf3d7b986dc57935d72530500b085a59.png" />
+<img alt="_images/cc7dd0af4c6af3ac3eb21b5ee90394dfcdcdb85183b2f4f800c3ac21c91dc5a4.png" src="_images/cc7dd0af4c6af3ac3eb21b5ee90394dfcdcdb85183b2f4f800c3ac21c91dc5a4.png" />
 </div>
 </div>
 <p>Let’s now fit the model. Again we’re going to split into training and test data. But, now we’re not going to do it manually since we have to load a library that has a function to do this.</p>
@@ -530,8 +511,14 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1182: FutureWarning: `penalty=&#39;none&#39;`has been deprecated in 1.2 and will be removed in 1.4. To keep the past behaviour, set `penalty=None`.
+  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -545,7 +532,7 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.352318411894244, 2.054514584553388]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.172226261083505, 2.0243779471793184]
 </pre></div>
 </div>
 </div>
@@ -557,8 +544,8 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 <span class="n">eta</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">xplot</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">))</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">xplot</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;FLAIR&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;GOLD_Lesions&#39;</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xplot</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span>  <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">## Of course, scikit has a predict</span>
 <span class="c1">## function so that you don&#39;t have to do this manually</span>
@@ -568,16 +555,13 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  FutureWarning
-/usr/local/lib/python3.7/dist-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  FutureWarning
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f32b1f4f190&gt;
-</pre></div>
-</div>
-<img alt="_images/9a39d7aeba8adb71a7c6470009d78e04e58217e656c314972ff2f9eb3610249e.png" src="_images/9a39d7aeba8adb71a7c6470009d78e04e58217e656c314972ff2f9eb3610249e.png" />
+<img alt="_images/359c4759cbdba51e786bc3f09368889028f69205c3915521d3b8970bb29cb108.png" src="_images/359c4759cbdba51e786bc3f09368889028f69205c3915521d3b8970bb29cb108.png" />
 </div>
 </div>
 <p>Now let’s evaluate the test set.</p>
@@ -597,7 +581,7 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.69 , 0.667, 0.714])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.793, 0.867, 0.714])
 </pre></div>
 </div>
 </div>
@@ -625,7 +609,7 @@ p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5b1dd51b8587bfaf1e375546299e36a7be1c5888fad2392035fefd5060c78dde.png" src="_images/5b1dd51b8587bfaf1e375546299e36a7be1c5888fad2392035fefd5060c78dde.png" />
+<img alt="_images/3efbc1bba5e95e2b1aad063c90252cef4c80b7d4a5447b80e50f9098b81a77ad.png" src="_images/3efbc1bba5e95e2b1aad063c90252cef4c80b7d4a5447b80e50f9098b81a77ad.png" />
 </div>
 </div>
 </section>
@@ -720,7 +704,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -744,8 +728,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

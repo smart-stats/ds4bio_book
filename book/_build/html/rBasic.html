@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Base R &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,53 +18,57 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'rBasic';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="R tidyverse quick example" href="rTidyverse.html" />
@@ -82,7 +85,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,20 +124,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -169,7 +166,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -196,35 +204,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -435,14 +423,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/rBasic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-<a class="reference external" href="https://mybinder.org/v2/gh/smart-stats/ds4bio_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/rBasic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="base-r">
-<h1>Base R<a class="headerlink" href="#base-r" title="Permalink to this heading">#</a></h1>
+<h1>Base R<a class="headerlink" href="#base-r" title="Link to this heading">#</a></h1>
 <p>R is another data science language more specifically geared towards statistics. R is an implementation of the S language by John Chambers written originally by Ross Ihaka and Robert Gentleman. The R Core Team, R Foundation and almost countless contributors continually improve and maintain R.</p>
 <p>In this course, we’re going to cover very little basic R and focus mainly on the so-called tidyverse. However, a little base R goes a long way. You can install R into jupyter notebooks and then have it as an option. Alternatively, Rstudio is a well known R ide as is ESS in Emacs.</p>
 <section id="r-installation">
-<h2>R installation<a class="headerlink" href="#r-installation" title="Permalink to this heading">#</a></h2>
+<h2>R installation<a class="headerlink" href="#r-installation" title="Link to this heading">#</a></h2>
 <p>You can install R from conda environment or directly from <a class="reference external" href="https://cran.r-project.org/">CRAN</a>. If on Windows, make sure to install Rtools as well. On a mac, I always made sure that I had the developer tools installed. On linux it’s a good idea to have all of the dev version of R system dependencies installed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -468,18 +455,20 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">5</div></div>
 </div>
+<p>List out our variables that we’ve created.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># list out our variables that we&#39;ve created</span>
-<span class="w">    </span><span class="nf">ls</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ls</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><ol class=list-inline>
-	<li>'x'</li>
-	<li>'y'</li>
-</ol>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'x'</li><li>'y'</li></ol>
 </div></div>
 </div>
 <p>Honestly, the <code class="docutils literal notranslate"><span class="pre">c</span></code> function in R is perhaps one of the most important. It concatenates things.</p>
@@ -492,11 +481,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><ol class=list-inline>
-	<li>6</li>
-	<li>30</li>
-	<li>48</li>
-</ol>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>6</li><li>30</li><li>48</li></ol>
 </div></div>
 </div>
 <p>But you have to be careful that R will guess what you want to do.
@@ -508,14 +498,12 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><ol class=list-inline>
-	<li>2</li>
-	<li>10</li>
-	<li>16</li>
-	<li>2</li>
-	<li>10</li>
-	<li>16</li>
-</ol>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>2</li><li>10</li><li>16</li><li>2</li><li>10</li><li>16</li></ol>
 </div></div>
 </div>
 <p>R’s Boolean values are <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> and <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
@@ -531,7 +519,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </section>
 <section id="control-flow">
-<h2>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this heading">#</a></h2>
+<h2>Control flow<a class="headerlink" href="#control-flow" title="Link to this heading">#</a></h2>
 <p>R has for loops, while loops and control flow. The syntax <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">:</span> <span class="pre">b</span></code> creates a vector starting at <code class="docutils literal notranslate"><span class="pre">a</span></code> and ending at <code class="docutils literal notranslate"><span class="pre">b</span></code>. Note R uses functional notation, so indentation doesn’t mean anything and you have to put curly braces for things included in the <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> statements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -559,7 +547,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </section>
 <section id="data-structures">
-<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this heading">#</a></h2>
+<h2>Data structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h2>
 <p>R’s generic structure is a list, which can be made with the command <code class="docutils literal notranslate"><span class="pre">list</span></code>, its generic matrix structure is a matrix, which can be made with the command <code class="docutils literal notranslate"><span class="pre">matrix</span></code> and its generic data frame structure is a data frame, which can be made with the command <code class="docutils literal notranslate"><span class="pre">data.frame</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -579,16 +567,18 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><ol class=list-inline>
-	<li>1</li>
-	<li>2</li>
-	<li>3</li>
-</ol>
-</div><div class="output text_html">'character'</div><div class="output text_html"><ol class=list-inline>
-	<li>1</li>
-	<li>2</li>
-	<li>3</li>
-</ol>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
+</div><div class="output text_html">'character'</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
 </div><div class="output text_html">'character'</div></div>
 </div>
 <p>Brief technicality, <code class="docutils literal notranslate"><span class="pre">x[1]</span></code> returns a list containing the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> whereas <code class="docutils literal notranslate"><span class="pre">x[[1]]</span></code> returns the entity itself. Let’s create a dataframe. Also note R starts counting at 1 (unlike 0 for python).</p>
@@ -600,8 +590,12 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table>
-<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 × 2</caption>
+<thead>
+	<tr><th scope=col>index</th><th scope=col>letter</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
 <tbody>
 	<tr><td>3</td><td>c</td></tr>
 	<tr><td>4</td><td>d</td></tr>
@@ -622,33 +616,24 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><ol class=list-inline>
-	<li>3</li>
-	<li>4</li>
-	<li>5</li>
-	<li>6</li>
-	<li>7</li>
-</ol>
-</div><div class="output text_html"><table>
-<thead><tr><th scope=col>index</th><th scope=col>letter</th></tr></thead>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li></ol>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>index</th><th scope=col>letter</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
 <tbody>
-	<tr><td>3</td><td>c</td></tr>
-	<tr><td>4</td><td>d</td></tr>
+	<tr><th scope=row>1</th><td>3</td><td>c</td></tr>
+	<tr><th scope=row>2</th><td>4</td><td>d</td></tr>
 </tbody>
 </table>
-</div><div class="output text_html">c
-<details>
-	<summary style=display:list-item;cursor:pointer>
-		<strong>Levels</strong>:
-	</summary>
-	<ol class=list-inline>
-		<li>'c'</li>
-		<li>'d'</li>
-		<li>'e'</li>
-		<li>'f'</li>
-		<li>'g'</li>
-	</ol>
-</details></div></div>
+</div><div class="output text_html">'c'</div></div>
 </div>
 <p>Finally, let’s cover matrices.</p>
 <div class="cell docutils container">
@@ -661,14 +646,16 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 × 2 of type int</caption>
 <tbody>
-	<tr><td>1</td><td>2</td></tr>
-	<tr><td>3</td><td>4</td></tr>
-	<tr><td>5</td><td>6</td></tr>
+	<tr><td>1</td><td>4</td></tr>
+	<tr><td>2</td><td>5</td></tr>
+	<tr><td>3</td><td>6</td></tr>
 </tbody>
 </table>
-</div><div class="output text_html"><table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 3 of type int</caption>
 <tbody>
 	<tr><td>1</td><td>3</td><td>5</td></tr>
 	<tr><td>2</td><td>4</td><td>6</td></tr>
@@ -684,10 +671,24 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>4</li></ol>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>2</li><li>3</li></ol>
+</div><div class="output text_html">4</div></div>
 </div>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
 <p>R has functions and uses so-called lexical scoping. Arguments can be named or not in function calls. But, just like in python, don’t get too cute with this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,18 +730,12 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 <span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
 <span class="w">        </span><span class="nf">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">#DOESN&#39;T WORK</span>
+<span class="w">    </span><span class="c1">#print(e)</span>
 <span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;c1&#39;</span> <span class="ow">not</span> <span class="n">found</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="c1">#DOESN&#39;T WORK</span>
+<span class="c1">#print(c1)</span>
 </pre></div>
 </div>
 </div>
@@ -752,14 +747,7 @@ In this case adding a vector of length 3 + a vector of length 6 just repeats the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;e&#39;</span> <span class="ow">not</span> <span class="n">found</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>   <span class="c1"># at line 8 of file &lt;text&gt;</span>
-</pre></div>
-</div>
-</div>
+<div class="output text_html">1</div></div>
 </div>
 </section>
 </section>
@@ -856,7 +844,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -880,8 +868,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

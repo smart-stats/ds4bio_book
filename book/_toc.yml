@@ -15,15 +15,15 @@ chapters:
 - file: rBasic.ipynb
 - file: rTidyverse.ipynb
 - file: rFromPython.ipynb
-- file: data_structures.ipynb
 - file: pythonFromR.ipynb
+#- file: data_structures.ipynb
 - file: html.md
 - file: interactive.ipynb
 - file: webscraping.ipynb
 - file: streamlit.ipynb
 - file: dash.ipynb
 - file: dash2.ipynb
-- file: voila.ipynb
+#- file: voila.ipynb
 - file: binary_classification.ipynb
 - file: regression_through_the_origin.ipynb
 - file: regression.ipynb
@@ -41,7 +41,7 @@ chapters:
 - file: logistic_regression_pytorch.ipynb
 - file: pytorch_regression.ipynb
 - file: convnet_classifier_pytorch.ipynb
-#- file: convolutions.ipynb
+- file: convolutions.ipynb
 - file: autoencoder.ipynb
 - file: gan.ipynb
 - file: gpu.ipynb

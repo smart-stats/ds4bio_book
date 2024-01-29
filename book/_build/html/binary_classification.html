@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction to binary classification &#8212; Data science and AI for Bio/medical applications using python</title>
   
@@ -19,55 +18,59 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'binary_classification';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Regression through the origin" href="regression_through_the_origin.html" />
-    <link rel="prev" title="Jupyterwidgets and voila" href="voila.html" />
+    <link rel="prev" title="Dash callbacks" href="dash2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -80,7 +83,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -120,20 +122,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -167,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -194,35 +202,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to binary classification</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
 </ul>
 
     </div>
@@ -437,7 +425,7 @@ document.write(`
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/binary_classification.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-binary-classification">
-<h1>Introduction to binary classification<a class="headerlink" href="#introduction-to-binary-classification" title="Permalink to this heading">#</a></h1>
+<h1>Introduction to binary classification<a class="headerlink" href="#introduction-to-binary-classification" title="Link to this heading">#</a></h1>
 <p>The data we’re going to be working with for this example is the <code class="docutils literal notranslate"><span class="pre">oasis</span></code> data from Elizabeth Sweeney’s R package. The data contain MR (magnetic resonance) images for lesion segmentation in multiple sclerosis (MS). MS is a disorder primarily caused by whtie matter lesions. This dataset is a collection of voxels from an image with radiologists labeling of whether or not a white matter lesion exists at that location.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -573,12 +561,12 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GOLD_Lesions
-0    AxesSubplot(0.125,0.125;0.775x0.755)
-1    AxesSubplot(0.125,0.125;0.775x0.755)
+0    Axes(0.125,0.11;0.775x0.77)
+1    Axes(0.125,0.11;0.775x0.77)
 Name: FLAIR, dtype: object
 </pre></div>
 </div>
-<img alt="_images/6a3f4045850c719d2f7bc6eaf87cc0d1938d0074317b23a4d4b41954ce10105b.png" src="_images/6a3f4045850c719d2f7bc6eaf87cc0d1938d0074317b23a4d4b41954ce10105b.png" />
+<img alt="_images/207cbf22070f8bcfe6b6e9003f3f07acf80330768ad2bd58339de46761b14a61.png" src="_images/207cbf22070f8bcfe6b6e9003f3f07acf80330768ad2bd58339de46761b14a61.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -588,25 +576,35 @@ Name: FLAIR, dtype: object
 <span class="n">x2</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">FLAIR</span>
 
 
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Marginal&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Marginal&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a81e5b8af036042551a672648f800d80c80d0712ae790a97013b26283eeb2d25.png" src="_images/a81e5b8af036042551a672648f800d80c80d0712ae790a97013b26283eeb2d25.png" />
-<img alt="_images/dc8cb47871929395ff4eb3517468444e867298db8d3f951a80f68631c627f712.png" src="_images/dc8cb47871929395ff4eb3517468444e867298db8d3f951a80f68631c627f712.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+</pre></div>
+</div>
+<img alt="_images/8300df970408c1cef44e8768fb281060db92fdaf0302d8e3d0cd18ed7dd5aa47.png" src="_images/8300df970408c1cef44e8768fb281060db92fdaf0302d8e3d0cd18ed7dd5aa47.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+</pre></div>
+</div>
+<img alt="_images/41632ad2ce2b546fb3b2f7dda32997c6ea03d21193cd3c94efc87a619a08c249.png" src="_images/41632ad2ce2b546fb3b2f7dda32997c6ea03d21193cd3c94efc87a619a08c249.png" />
 </div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="classification">
-<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">#</a></h1>
+<h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
 <p>Let’s try creating the simplest possible classifier, a threshold. So here we want to pick the value of the threshold so that lower values are classified <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">0</span></code> (i.e. no lesion) and higher values are <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">1</span></code> (lesion at this voxel). We want to do this on labeled voxels so that we can pick a meaningful threshold on voxels without a gold standard labeling. That is, for new patients we want to automatically label their images one voxel at a time with a simple thresholding rule. We’re going to use our <strong>training data</strong> where we know the truth to develop the threshold.</p>
 <p><em>Note the idea behind doing this is only useful if the new images without the gold standard are in the same units as the old one, which is not usually the case for MRIs. The technique for trying to make images comparable is called normalization</em>.</p>
 <p>Let’s first just try each of the datapoints itself as a threshold and pick which one does best.
@@ -655,7 +653,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 <p>Now let’s test our our “algorithm”, on the test set. We’ll look at the test set accuracy, but also how it breaks up into the sensisitivity and specificity.</p>
 <section id="definitions">
-<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h2>
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
 <p>test set <strong>accuracy</strong> = proportion of correct classifications on the test data</p>
 <p>test set <strong>sensitivity</strong> = proportion declared diseased among those that are actually diseased. (In this case lesion = disease)</p>
 <p>test set <strong>specificity</strong> = proportion declared not diseased among those that are actually not diseased.</p>
@@ -718,9 +716,9 @@ However, I’m going to break the data into a training and testing set. The reas
     <tr>
       <th>0</th>
       <td>1.4632</td>
-      <td>0.777778</td>
-      <td>0.666667</td>
-      <td>0.866667</td>
+      <td>0.705882</td>
+      <td>0.833333</td>
+      <td>0.636364</td>
     </tr>
   </tbody>
 </table>
@@ -728,8 +726,8 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 0&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Gold Std = 1&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
             
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -737,7 +735,13 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9785c774b57d04da69f1419ce28dc444af84ee1b50cd311955d8c7c2bca5c5a7.png" src="_images/9785c774b57d04da69f1419ce28dc444af84ee1b50cd311955d8c7c2bca5c5a7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+/home/bcaffo/miniconda3/envs/ds4bio_new/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+</pre></div>
+</div>
+<img alt="_images/6f4707a051be464a6a113de3f4850aa8960d1f6c93c6813f7c643099af074edb.png" src="_images/6f4707a051be464a6a113de3f4850aa8960d1f6c93c6813f7c643099af074edb.png" />
 </div>
 </div>
 <p>OK, so out plot has better sensitivity than specificity and a test set accuracy of around 68%. The lower specificity is because there’s a lower percentage of blue below the line than orange above the line. Recall,  we’re saying above the threshold is a lesion and orange is the distribution for voxels with lesions.</p>
@@ -769,7 +773,7 @@ However, I’m going to break the data into a training and testing set. The reas
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a3b63d8dfcb2ef84377ed9ef87b08b26566f16acf97b8cf7d9c03bcd82048191.png" src="_images/a3b63d8dfcb2ef84377ed9ef87b08b26566f16acf97b8cf7d9c03bcd82048191.png" />
+<img alt="_images/4b62366c6ca6702349471ce7184fc2d5d83415a816b91a1007612c9e281d14b4.png" src="_images/4b62366c6ca6702349471ce7184fc2d5d83415a816b91a1007612c9e281d14b4.png" />
 </div>
 </div>
 </section>
@@ -806,12 +810,12 @@ However, I’m going to break the data into a training and testing set. The reas
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="voila.html"
+       href="dash2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Jupyterwidgets and voila</p>
+        <p class="prev-next-title">Dash callbacks</p>
       </div>
     </a>
     <a class="right-next"
@@ -869,7 +873,7 @@ By Brian Caffo
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -893,8 +897,8 @@ By Brian Caffo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

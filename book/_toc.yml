@@ -1,49 +1,74 @@
 format: jb-book
 root: intro.md
-chapters: 
-- file: git.ipynb
-- file: ds_python.md
-- file: basic_python.ipynb
-- file: python_programming.ipynb
-- file: functions.ipynb
-- file: python_practice.ipynb
-- file: virtual_environments.ipynb
-- file: data_cleaning.ipynb
-- file: EDA.ipynb
-- file: sqlite.ipynb
-- file: pysqlite.ipynb
-- file: rBasic.ipynb
-- file: rTidyverse.ipynb
-- file: rFromPython.ipynb
-- file: pythonFromR.ipynb
+parts: 
+  - caption: Coding 
+    chapters: 
+    - file: intro_tools.ipynb
+      sections:
+      - file: git.ipynb
+      - file: intro_markdown.ipynb
+      - file: intro_unix.ipynb
+      - file: html.md
+    - file: ds_python.md
+      sections:
+      - file: basic_python.ipynb
+      - file: python_programming.ipynb
+      - file: functions.ipynb
+      - file: python_practice.ipynb
+      - file: virtual_environments.ipynb
+    - file: data.ipynb
+      sections:
+        - file: data_cleaning.ipynb
+        - file: sqlite.ipynb
+        - file: pysqlite.ipynb
+        - file: data_advanced_databases.ipynb
+        - file: webscraping.ipynb
+        - file: data_advanced_webscraping.ipynb
+    - file: graphics.ipynb
+      sections:
+        - file: EDA.ipynb
+        - file: interactive.ipynb
+        - file: graphics_advanced_interactive.ipynb
+        - file: graphics_theory.ipynb
+        - file: graphics_images.ipynb
+    - file: tooling.ipynb
+      sections:
+        - file: tooling_nlp.ipynb
+        - file: numpy.ipynb
+        - file: voila.ipynb
+        - file: dash.ipynb
+        - file: dash2.ipynb
+        - file: streamlit.ipynb
+        - file: rBasic.ipynb
+        - file: rTidyverse.ipynb
+        - file: rFromPython.ipynb
+        - file: pythonFromR.ipynb
+    - file: statistics.ipynb
+      sections:
+         - file: binary_classification.ipynb
+         - file: regression_through_the_origin.ipynb
+         - file: regression.ipynb
+         - file: logistic.ipynb
+         - file: ml.ipynb
+         - file: linearSeparable.ipynb
+         - file: linearSeparableSMF.ipynb
+         - file: regression_examples.ipynb
+         - file: regression_interpretation.ipynb
+         - file: statistics_optimization.ipynb
+         - file: statistics_causal.ipynb
+         - file: dft.ipynb
+         - file: linearModels_FFTs.ipynb
+    - file: nns.ipynb
+      sections:
+         - file: basic_regression_pytorch.ipynb
+         - file: logistic_regression_pytorch.ipynb
+         - file: pytorch_regression.ipynb
+
 #- file: data_structures.ipynb
-- file: html.md
-- file: interactive.ipynb
-- file: webscraping.ipynb
-- file: streamlit.ipynb
-- file: dash.ipynb
-- file: dash2.ipynb
-#- file: voila.ipynb
-- file: binary_classification.ipynb
-- file: regression_through_the_origin.ipynb
-- file: regression.ipynb
-- file: numpy.ipynb
-- file: logistic.ipynb
-- file: ml.ipynb
-- file: linearSeparable.ipynb
-- file: linearSeparableSMF.ipynb
-- file: regression_examples.ipynb
-- file: regression_interpretation.ipynb
-- file: dft.ipynb
-- file: linearModels_FFTs.ipynb
-- file: nns.ipynb
-- file: basic_regression_pytorch.ipynb
-- file: logistic_regression_pytorch.ipynb
-- file: pytorch_regression.ipynb
-- file: convnet_classifier_pytorch.ipynb
-- file: convolutions.ipynb
-- file: autoencoder.ipynb
-- file: gan.ipynb
-- file: gpu.ipynb
-- file: explainability.ipynb
+#- file: convnet_classifier_pytorch.ipynb
+#- file: convolutions.ipynb
+#- file: autoencoder.ipynb
+#- file: gan.ipynb
+#- file: gpu.ipynb
+#- file: explainability.ipynb
 

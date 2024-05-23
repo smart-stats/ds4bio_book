@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -42,7 +42,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -53,24 +53,16 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'basic_python';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python programming" href="python_programming.html" />
-    <link rel="prev" title="Python background" href="ds_python.html" />
+    <link rel="prev" title="Python" href="ds_python.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,53 +177,81 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_programming.html">Python programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ds_python.html">Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data.html">Working with data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_webscraping.html">Advanced web scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="graphics.html">Graphics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_advanced_interactive.html">Advanced interactive graphics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tooling_nlp.html">Text processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="statistics.html">Regression models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -443,10 +463,10 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/basic_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="python-basics">
+<section id="python-basics">
 <h1>Python basics<a class="headerlink" href="#python-basics" title="Link to this heading">#</a></h1>
 <p>In this section, we will cover some basic python concepts. Python is an extremely quick language to learn, but like most programming languages, can take a long time to master. In this class, we’ll focus on a different style of programming than typical software development, programming with data. This will but less of a burden on us to be expert software developers in python, but some amount of base language knowledge is unavoidable. So, let’s get started learning some of the python programming basics. I’m going to assume you’ve programmed before in some language. If that isn’t the case, consider starting with a basic programming course of study before trying this book.</p>
-<p>A great resource for learning basic python is the <a class="reference external" href="http://python.org">python.org</a> documentation <a class="reference external" href="https://docs.python.org/3/tutorial/index.html">https://docs.python.org/3/tutorial/index.html</a>. My favorite programming resource of all time is the “Learn X in Y” tutorials. Here’s one for python <a class="reference external" href="https://learnxinyminutes.com/docs/python/">https://learnxinyminutes.com/docs/python/</a>.</p>
+<p>A great resource for learning basic python is the python.org documentation <a class="reference external" href="https://docs.python.org/3/tutorial/index.html">https://docs.python.org/3/tutorial/index.html</a>. My favorite programming resource of all time is the “Learn X in Y” tutorials. Here’s one for python <a class="reference external" href="https://learnxinyminutes.com/docs/python/">https://learnxinyminutes.com/docs/python/</a>.</p>
 <p>Some of the basic programming types in python are ints, floats, complex and Boolean.  The command <code class="docutils literal notranslate"><span class="pre">type</span></code> tells us which. Here’s an example with 10 represented in 4 ways (int, float, string and complex)  and the logical value <code class="docutils literal notranslate"><span class="pre">True</span></code>. Note, we’re using <code class="docutils literal notranslate"><span class="pre">print</span></code> to print out the result of the <code class="docutils literal notranslate"><span class="pre">type</span></code> command. If you’re typing directly into the python command line (called the repl, for read, evaluate, print, loop), you won’t need the print statements. But, if you’re using a notebook you probably will.</p>
 <p>If you want an easy repl environment to program in, try <a class="reference external" href="https://replit.com/">https://replit.com/</a>. For an easy notebook solution to try out, look at google colab, <a class="reference external" href="https://colab.research.google.com">https://colab.research.google.com</a> .</p>
 <div class="cell docutils container">
@@ -736,7 +756,7 @@ True
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Python background</p>
+        <p class="prev-next-title">Python</p>
       </div>
     </a>
     <a class="right-next"

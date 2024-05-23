@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -42,7 +42,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -53,20 +53,10 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'linearModels_FFTs';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -187,53 +177,81 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_programming.html">Python programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ds_python.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data.html">Working with data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_webscraping.html">Advanced web scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="graphics.html">Graphics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_advanced_interactive.html">Advanced interactive graphics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numpy.html">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tooling_nlp.html">Text processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="statistics.html">Regression models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Regression and FFTs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -432,43 +450,37 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/linearModels_FFTs.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="regression-and-ffts">
+<section id="regression-and-ffts">
 <h1>Regression and FFTs<a class="headerlink" href="#regression-and-ffts" title="Link to this heading">#</a></h1>
-<p>Recall regression through the origin. If <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span> are <span class="math notranslate nohighlight">\(n\)</span>-vectors of the same length, the minimizer of</p>
-<div class="math notranslate nohighlight">
-\[
+<p>Recall regression through the origin. If $y$ and $x$ are $n$-vectors of the same length, the minimizer of</p>
+<p>$$
 ||y - \beta x ||^2
-\]</div>
-<p>is <span class="math notranslate nohighlight">\(\hat \beta = &lt;x, y&gt; / ||x||^2\)</span>. Note, if <span class="math notranslate nohighlight">\(||x|| = 1\)</span> then the estimate is just <span class="math notranslate nohighlight">\(\hat \beta = &lt;x, y&gt;\)</span>. Now consider a second variable, <span class="math notranslate nohighlight">\(w\)</span>, such that <span class="math notranslate nohighlight">\(&lt;x, w&gt; = 0\)</span> and <span class="math notranslate nohighlight">\(||w|| = 1\)</span>. Consider now the least squares model</p>
-<div class="math notranslate nohighlight">
-\[
+$$</p>
+<p>is $\hat \beta = &lt;x, y&gt; / ||x||^2$. Note, if $||x|| = 1$ then the estimate is just $\hat \beta = &lt;x, y&gt;$. Now consider a second variable, $w$, such that $&lt;x, w&gt; = 0$ and $||w|| = 1$. Consider now the least squares model</p>
+<p>$$
 ||y - \beta x - \gamma w||^2.
-\]</div>
-<p>We argued that the best estimate for <span class="math notranslate nohighlight">\(\beta\)</span> now first gets rid of <span class="math notranslate nohighlight">\(w\)</span> be regressing it out of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span>. So, consider that</p>
-<div class="math notranslate nohighlight">
-\[
+$$</p>
+<p>We argued that the best estimate for $\beta$ now first gets rid of $w$ be regressing it out of $y$ and $x$. So, consider that</p>
+<p>$$
 ||y - &lt;w, y&gt; w - \beta (x - &lt;w, x&gt; w)||^2 =
-||y - &lt;w, y&gt; w - \beta x||^2. 
-\]</div>
-<p>Thus, now the best estimate of <span class="math notranslate nohighlight">\(\beta\)</span> is</p>
-<div class="math notranslate nohighlight">
-\[
+||y - &lt;w, y&gt; w - \beta x||^2.
+$$</p>
+<p>Thus, now the best estimate of $\beta$ is</p>
+<p>$$
 &lt;y - &lt;w, y&gt; w, x&gt; = &lt;y, x&gt;.
-\]</div>
-<p>Or, in other words, if <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(w\)</span> are orthogonal then the coefficient estimate for <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(w\)</span> included is the same as the coefficient of <span class="math notranslate nohighlight">\(x\)</span> by itself. This extends to more than two regressors.</p>
-<p>If you have a collection of <span class="math notranslate nohighlight">\(n\)</span> mutually orthogonal vectors of norm one, they are called an orthonormal basis. For an orthonomal basis, 1. the coefficients are just the inner products between the regressors and the outcome and 2. inclusion or exclusion of other elemenents of the basis doesn’t change a basis elements estimated coefficients.</p>
-<p>It’s important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(e^{-2\pi i m k / n}\)</span> for <span class="math notranslate nohighlight">\(m=0,\ldots, n-1\)</span> for a particular value of <span class="math notranslate nohighlight">\(k\)</span>. Vectors like this are orthogonal for different values of <span class="math notranslate nohighlight">\(k\)</span> and all have norm 1. We have already seen that the Fourier coefficient is</p>
-<div class="math notranslate nohighlight">
-\[
-f_k = &lt;y, x&gt; = \sum_{m=0}^{n-1} y_m e^{-2\pi i m k / n} = 
-\sum_{m=0}^{n-1} y_m \cos(-2\pi m k / n) + i \sum_{m=0}^{n-1} y_m \sin(-2\pi m k / n) 
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(y_m\)</span> is element <span class="math notranslate nohighlight">\(m\)</span> of <span class="math notranslate nohighlight">\(y\)</span>. Thus, the Fourier coefficients are exactly just least squares coefficients applied in the complex space.  Thus we have that</p>
-<div class="math notranslate nohighlight">
-\[
+$$</p>
+<p>Or, in other words, if $x$ and $w$ are orthogonal then the coefficient estimate for $x$ with $w$ included is the same as the coefficient of $x$ by itself. This extends to more than two regressors.</p>
+<p>If you have a collection of $n$ mutually orthogonal vectors of norm one, they are called an orthonormal basis. For an orthonomal basis, 1. the coefficients are just the inner products between the regressors and the outcome and 2. inclusion or exclusion of other elemenents of the basis doesn’t change a basis elements estimated coefficients.</p>
+<p>It’s important to note, that this works quite generally. For example, for complex numbers as well as real. So, for example, consider the possibility that $x$ is $e^{-2\pi i m k / n}$ for $m=0,\ldots, n-1$ for a particular value of $k$. Vectors like this are orthogonal for different values of $k$ and all have norm 1. We have already seen that the Fourier coefficient is</p>
+<p>$$
+f_k = &lt;y, x&gt; = \sum_{m=0}^{n-1} y_m e^{-2\pi i m k / n} =
+\sum_{m=0}^{n-1} y_m \cos(-2\pi m k / n) + i \sum_{m=0}^{n-1} y_m \sin(-2\pi m k / n)
+$$</p>
+<p>where $y_m$ is element $m$ of $y$. Thus, the Fourier coefficients are exactly just least squares coefficients applied in the complex space.  Thus we have that</p>
+<p>$$
 f_k = a_k + i b_k
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(a_k\)</span> and <span class="math notranslate nohighlight">\(b_k\)</span> are the coefficients from linear models with just the sine and cosine terms. Of course, we don’t actually fit Fourier transforms this way, since there’s a much faster way to do, aptly named the fast Fourier transform (FFT). However, knowing how fast discrete Fourier transforms relate to linear models allows us to use them in creative ways, like putting them into models with other covariates, or in logistic regression models.</p>
+$$</p>
+<p>where $a_k$ and $b_k$ are the coefficients from linear models with just the sine and cosine terms. Of course, we don’t actually fit Fourier transforms this way, since there’s a much faster way to do, aptly named the fast Fourier transform (FFT). However, knowing how fast discrete Fourier transforms relate to linear models allows us to use them in creative ways, like putting them into models with other covariates, or in logistic regression models.</p>
 <p>Let’s numerically look at FFTs and linear models using covid case counts in Italy as an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -739,7 +751,7 @@ f_k = a_k + i b_k
 <img alt="_images/53b5e94cefb790d4349d59c60f119e25f075694c69dd0412361078f711ee77a9.png" src="_images/53b5e94cefb790d4349d59c60f119e25f075694c69dd0412361078f711ee77a9.png" />
 </div>
 </div>
-<p>Let’s verify that they are indeed orthonormal. That is, we want to show that <span class="math notranslate nohighlight">\(&lt;x_i, x_j&gt; = I(i =j)\)</span>. We also show that they are all mean 0.</p>
+<p>Let’s verify that they are indeed orthonormal. That is, we want to show that $&lt;x_i, x_j&gt; = I(i =j)$. We also show that they are all mean 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Verify that they are orthonormal mean 0, round to 6 decimal places</span>

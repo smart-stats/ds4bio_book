@@ -1,23 +1,25 @@
+bs4
+h5py
+folium
+ipykernel
 jupyter-book
-# Use conda I've found instead of pip
 jupyter
 matplotlib
+networkx
 numpy
 pandas
+PILLOW
+rpy2
 scikit-learn
 seaborn
 scipy
-PILLOW
-urllib3
-networkx
-pytorch
-torchvision
-rpy2
-#r-base r-tidyverse
-r-irkernel
-ipykernel
-bs4
-folium
-streamlit
-lxlm
 statsmodels
+streamlit
+torchvision
+urllib3
+## The following are also needed but installed by default in colab
+## Use conda I've found instead of pip
+#pytorch
+#lxlm
+#r-base r-tidyverse
+#r-irkernel

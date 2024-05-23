@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -42,7 +42,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -53,26 +53,16 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numpy';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Logistic regression" href="logistic.html" />
-    <link rel="prev" title="Continuous prediction with regression" href="regression.html" />
+    <link rel="next" title="Jupyterwidgets and voila" href="voila.html" />
+    <link rel="prev" title="Text processing" href="tooling_nlp.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,53 +177,81 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="git.html">Git, github</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ds_python.html">Python background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_python.html">Python basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_programming.html">Python programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ds_python.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data.html">Working with data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rBasic.html">Base R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rFromPython.html">R from python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash.html">Dash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_webscraping.html">Advanced web scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="graphics.html">Graphics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_advanced_interactive.html">Advanced interactive graphics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nns.html">Neural networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoencoder.html">Autoencoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">Parallelism and GPU computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="explainability.html">Explainability</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tooling_nlp.html">Text processing</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="statistics.html">Regression models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -431,7 +449,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numpy">
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/numpy.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="numpy">
 <h1>Numpy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h1>
 <p>Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let’s load in some data and work with it a bit. Here we’re going to be downloading the cumulative daily case counts of Covid-19 for Italy. (Modify the code in the obvious way to pick another country. The data is from the JHU Covid-19 dashboard, a fantastic data science project from the Center for Systems Science Engineering at JHU.)</p>
 <div class="cell docutils container">
@@ -451,7 +470,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## convert from tuple to array</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Italy</span><span class="p">)</span>  
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Italy</span><span class="p">)</span>
 <span class="c1">## get case counts instead of cumulative counts</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
 </pre></div>
@@ -459,16 +478,14 @@ document.write(`
 </div>
 </div>
 <p>Let’s get some basic statistical summaries. Note the default is that the standard deviations uses the formula</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 \sqrt{\frac{1}{N} \sum_{i=1}^N (X_i - \bar X)^2}
-\]</div>
+$$</p>
 <p>rather than</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
-\]</div>
-<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer <span class="math notranslate nohighlight">\(N\)</span> as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.) To described the code below:</p>
+$$</p>
+<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer $N$ as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.) To described the code below:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">X.mean()</span></code> gives the mean; since <code class="docutils literal notranslate"><span class="pre">X</span></code> is a numpy object, it has statistical methods defined in the class</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X.std()</span></code> gives the (biased version of the) standard deviation</p></li>
@@ -477,7 +494,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean         : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean         : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Std (biased) : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -490,10 +507,9 @@ Std (biased) : 36890.56
 </div>
 </div>
 <p>Numpy has a linear algebra library. Let’s calculate a distributed lag model using numpy (typically you would use this with regression software). A distributed lag model is of the form:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
-\]</div>
+$$</p>
 <p>First, let’s create the lagged matrix considering 3 lags.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -552,20 +568,18 @@ Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
 </div>
 </div>
 <p>The matrix formula for minimizing the least squares regression model,</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 || Y - X \beta||^2
-\]</div>
+$$</p>
 <p>is given by</p>
-<div class="math notranslate nohighlight">
-\[
-\hat \beta = (X' X)^{-1} X' Y
-\]</div>
+<p>$$
+\hat \beta = (X’ X)^{-1} X’ Y
+$$</p>
 <p>Let’s do this in numpy. Let’s find the estimated regression coefficients using the formula above. We’ll use the following functions</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matmul(A,B)</span></code> is the matrix multiplication of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">A.T</span></code> is the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as <span class="math notranslate nohighlight">\(A'\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inv(A)</span></code> is the matrix inverse of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as <span class="math notranslate nohighlight">\(A^{-1}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A.T</span></code> is the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as $A’$</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inv(A)</span></code> is the matrix inverse of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as $A^{-1}$</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,20 +656,20 @@ Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="regression.html"
+       href="tooling_nlp.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Continuous prediction with regression</p>
+        <p class="prev-next-title">Text processing</p>
       </div>
     </a>
     <a class="right-next"
-       href="logistic.html"
+       href="voila.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Logistic regression</p>
+        <p class="prev-next-title">Jupyterwidgets and voila</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

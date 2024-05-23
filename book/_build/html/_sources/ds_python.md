@@ -1,4 +1,6 @@
-# Python background
+# Python
+
+## Python background
 
 First, you'll need a place to program python for data analysis. Python has a dizzying array of options for its use. 
 A first choice is whether you'll use python locally (installed on your computer) or in the cloud. The cloud options

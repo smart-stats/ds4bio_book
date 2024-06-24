@@ -1,9 +1,6 @@
 # ds4bio_book
 Files for the Data Science in Python for Biomedical Applications book.
 
-The newer version of the book is live
-[here](https://smart-stats.github.io/ds4bio_book/qbook/_book/index.html)
-
 The book files are in
 [book](https://github.com/smart-stats/ds4bio_book/tree/main/book)
 

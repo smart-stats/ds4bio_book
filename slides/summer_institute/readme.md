@@ -11,3 +11,4 @@ This is a directory of slides for the Summer Institute class titled AI Programmi
 8. [Neural networks](https://smart-stats.github.io/ds4bio_book/slides/summer_institute/output/26_nns_tmp_pyglide.html#/)
 9. [Basic regression in PyTorch](https://smart-stats.github.io/ds4bio_book/slides/summer_institute/output/27_basic_regression_pytorch_tmp_pyglide.html#/)
 10. [Logistic regression in PyTorch](https://smart-stats.github.io/ds4bio_book/slides/summer_institute/output/28_logistic_regression_pytorch_tmp_pyglide.html#/)
+11. [LLMS](https://smart-stats.github.io/ds4bio_book/slides/summer_institute/output/Lecture_Outline_LLM_tmp_pyglide.html#/)

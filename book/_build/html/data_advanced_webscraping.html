@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced web scraping &#8212; Data science and AI for Bio/medical applications using python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data_advanced_webscraping';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphics" href="graphics.html" />
+    <link rel="prev" title="Webscraping" href="webscraping.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dasl.png" class="logo__image only-light" alt="Data science and AI for Bio/medical applications using python - Home"/>
+    <script>document.write(`<img src="_static/dasl.png" class="logo__image only-dark" alt="Data science and AI for Bio/medical applications using python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ds_python.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="data.html">Working with data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced web scraping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="graphics.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_advanced_interactive.html">Advanced interactive graphics</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tooling_nlp.html">Text processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="statistics.html">Regression models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fdata_advanced_webscraping.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/data_advanced_webscraping.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced web scraping</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-begin">Before you begin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-web-scraping">Basic web scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#form-filling">Form filling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmatically-web-browsing">Programmatically web browsing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-it-in-colab">Doing it in colab</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="advanced-web-scraping">
+<h1>Advanced web scraping<a class="headerlink" href="#advanced-web-scraping" title="Link to this heading">#</a></h1>
+<section id="before-you-begin">
+<h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Link to this heading">#</a></h2>
+<p>Before you start webscraping make sure to consider what you’re
+doing. Does your scraping violate a terms of service? Will it inconvenience the site, other users? Per Uncle Ben: WGPCGR.</p>
+<p>Also, before you begin web scraping, look for a download data option
+or existing solution. Probably someone has run up against the same
+problem and worked it out. For example, we’re going to scrape some
+wikipedia tables, which there’s a million other solutions for,
+including a wikipedia
+<a class="reference external" href="https://www.mediawiki.org/wiki/API:Main_page">api</a>.</p>
+</section>
+<section id="basic-web-scraping">
+<h2>Basic web scraping<a class="headerlink" href="#basic-web-scraping" title="Link to this heading">#</a></h2>
+<p>We covered this last chapter. However, let’s do an example of static page parsing just to get
+started.  Consider scraping the table of top 10 heat waves from
+<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_natural_disasters_by_death_toll">wikipedia</a>. First,
+we open the url, then parse it using BeautifulSoup, then load it into
+a pandas dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/List_of_natural_disasters_by_death_toll&quot;</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">parsed</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&quot;table&quot;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">parsed</span><span class="p">))[</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-48024194-eb3d-4987-86df-edc45cfde9cf" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rank</th>
+      <th>Death toll</th>
+      <th>Event</th>
+      <th>Location</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1300</td>
+      <td>The Daulatpur–Saturia tornado</td>
+      <td>Manikganj, Bangladesh</td>
+      <td>1989</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>751</td>
+      <td>The Tri-State tornado outbreak</td>
+      <td>United States (Missouri–Illinois–Indiana)</td>
+      <td>1925</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>681</td>
+      <td>1973 Dhaka tornado</td>
+      <td>Bangladesh</td>
+      <td>1973</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>660</td>
+      <td>1969 East Pakistan tornado</td>
+      <td>East Pakistan (now Bangladesh)</td>
+      <td>1969</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>600</td>
+      <td>The Valletta, Malta tornado</td>
+      <td>Malta</td>
+      <td>1551 or 1556</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6.0</td>
+      <td>500</td>
+      <td>The 1851 Sicily tornadoes</td>
+      <td>Sicily, Two Sicilies (now Italy)</td>
+      <td>1851</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6.0</td>
+      <td>500</td>
+      <td>Narail-Magura tornado</td>
+      <td>Jessore, East Pakistan, Pakistan (now Bangladesh)</td>
+      <td>1964</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6.0</td>
+      <td>500</td>
+      <td>Madaripur-Shibchar tornado</td>
+      <td>Bangladesh</td>
+      <td>1977</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9.0</td>
+      <td>400</td>
+      <td>The 1984 Soviet Union tornado outbreak</td>
+      <td>Soviet Union (Volga Federal District, Central ...</td>
+      <td>1984</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10.0</td>
+      <td>317</td>
+      <td>The Great Natchez Tornado</td>
+      <td>United States (Mississippi–Louisiana)</td>
+      <td>1840</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-48024194-eb3d-4987-86df-edc45cfde9cf')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-48024194-eb3d-4987-86df-edc45cfde9cf button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-48024194-eb3d-4987-86df-edc45cfde9cf');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-7ee094ca-6b72-48e9-8bf4-8bade75b4a2f">
+  <button class="colab-df-quickchart" onclick="quickchart('df-7ee094ca-6b72-48e9-8bf4-8bade75b4a2f')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-7ee094ca-6b72-48e9-8bf4-8bade75b4a2f button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>The workflow as as follows:</p>
+<ul class="simple">
+<li><p>We used the developer console on the webpage to inspect the page and its properties.</p></li>
+<li><p>We opened the url with <code class="docutils literal notranslate"><span class="pre">urlopen</span></code></p></li>
+<li><p>We parsed the webpage with <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> then used the method <code class="docutils literal notranslate"><span class="pre">findAll</span></code> on that to search for every table</p></li>
+<li><p>Pandas has a utility that converts a html tables into a dataframe. In this case it creates a list of tables, where the 12th one is the heatwaves. Note it needs the data to be converted to a string before proceeding.</p></li>
+</ul>
+<p>This variation of web scraping couldn’t be easier. However, what if the content we’re interested in only exists after interacting with the page? Then we need a more sophisticated solution.</p>
+</section>
+<section id="form-filling">
+<h2>Form filling<a class="headerlink" href="#form-filling" title="Link to this heading">#</a></h2>
+<p>Web scraping can require posting to forms, such as logins. This can be
+done directly with python / R without elaborate programming, for
+example using the <code class="docutils literal notranslate"><span class="pre">requests</span></code> library. However, make sure you aren’t
+violating a web site’s TOS and also make sure you’re not posting your
+password to github as you commit scraping code. In general, don’t
+create a security hole for your account by web scraping it. Again,
+also check to make sure that the site doesn’t have an API with an
+authentication solution already before writing the code to post
+authentication. Many websites that want you to programmatically grab
+the data build an API.</p>
+</section>
+<section id="programmatically-web-browsing">
+<h2>Programmatically web browsing<a class="headerlink" href="#programmatically-web-browsing" title="Link to this heading">#</a></h2>
+<p>Some web scraping requires us to interact with the webpage. This
+requires a much more advanced solution where we programmatically use a
+web browser to interact with the page. I’m using selenium and
+chromedriver. To do this, I had to download
+<a class="reference external" href="https://chromedriver.chromium.org/downloads">chromedriver</a> and set it
+so that it was in my unix <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>Then, the following code opened up a browser then closed it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If all went well, a chrome window appeared then closed. That’s the
+browser we’re going to program. If you look closely at the browser
+before you close it, there’s a banner up to that says “Chrome is being
+controlled by automated test software.” Let’s go through the example
+on the selenium docs
+<a class="reference external" href="https://www.selenium.dev/documentation/webdriver/getting_started/first_script/">here</a>. First
+let’s vist a few pages. We’ll go to my totally awesome web page that I
+meticulously maintain every day then duckduckgo. We’ll wait a few
+seconds in between.  My site is created and hosted by google sites,
+which seems reasonable that they would store a cookie so that I can
+log in and edit my site (which I almost never do). Duckduckgo is a
+privacy browser, so let’s check to see if they create a cookie. (Hint,
+I noticed that selenium doesn’t like redirects, so use the actual page
+url.)</p>
+<p>Let’s go to my website and get the cookies that it saves.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://sites.google.com/view/bcaffo/home&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">get_cookies</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>You should see the browser go to my web page. Now let’s enter in a web form.
+First, let’s go to duckduck go. (Note it appears duckduckgo changed it’s page so that this no longer works.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Let&#39;s get rid of all cookies before we visit duckduckgo</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">delete_all_cookies</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://duckduckgo.com/&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">get_cookies</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Now let’s find the page elements that we’d like to interact
+with. There’s a text box that we want to submit a search command into
+and a button that we’ll need to press. When I go to duckduckgo and press
+CTRL-I, I find that the search box is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;search_form_input_homepage&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;js-search-input search__input--adv&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">autocomplete</span><span class="o">=</span><span class="s2">&quot;off&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span> <span class="n">tabindex</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="n">autocapitalize</span><span class="o">=</span><span class="s2">&quot;off&quot;</span> <span class="n">autocorrect</span><span class="o">=</span><span class="s2">&quot;off&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Search the web without being tracked&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Notice, the <code class="docutils literal notranslate"><span class="pre">name=&quot;q&quot;</span></code> html name for the search form. When I dig around and find the submit button, it’s code is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;search_button_homepage&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;search__button  js-search-button&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">tabindex</span><span class="o">=</span><span class="s2">&quot;2&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Notice its <code class="docutils literal notranslate"><span class="pre">id</span></code> is <code class="docutils literal notranslate"><span class="pre">search_button_homepage</span></code>. Let’s find these elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
+<span class="n">search_button</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;search_button_homepage&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s send the info and press submit.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;Selenium&quot;</span><span class="p">)</span>
+<span class="n">search_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="s2">&quot;assets/images/webscraping.png&quot;</span><span class="p">)</span>
+<span class="n">page_source</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here, we saved the page_source as a variable that then can be parsed
+with other html parses (like bs4). Play around with the methods
+associated with <code class="docutils literal notranslate"><span class="pre">driver</span></code> and navigate the web. You’ll see that
+selenium is pretty incredible.</p>
+<p>Since I wrote this, duckduckgo changed their page, so the code no longer works.</p>
+</section>
+<section id="doing-it-in-colab">
+<h2>Doing it in colab<a class="headerlink" href="#doing-it-in-colab" title="Link to this heading">#</a></h2>
+<p>Getting this to work on Colab is a little harder, since we can’t launch a browser. I found the instructures <a class="reference external" href="https://nariyoo.com/python-how-to-run-selenium-in-google-colab/">here</a> useful (https://nariyoo.com/python-how-to-run-selenium-in-google-colab/)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="webscraping.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Webscraping</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="graphics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Graphics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-begin">Before you begin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-web-scraping">Basic web scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#form-filling">Form filling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmatically-web-browsing">Programmatically web browsing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-it-in-colab">Doing it in colab</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Brian Caffo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

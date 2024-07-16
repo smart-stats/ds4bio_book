@@ -1,0 +1,970 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Text processing &#8212; Data science and AI for Bio/medical applications using python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tooling_nlp';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Numpy" href="numpy.html" />
+    <link rel="prev" title="Extra python tooling" href="tooling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dasl.png" class="logo__image only-light" alt="Data science and AI for Bio/medical applications using python - Home"/>
+    <script>document.write(`<img src="_static/dasl.png" class="logo__image only-dark" alt="Data science and AI for Bio/medical applications using python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ds_python.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data.html">Working with data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_webscraping.html">Advanced web scraping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="graphics.html">Graphics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_advanced_interactive.html">Advanced interactive graphics</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Text processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="statistics.html">Regression models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Ftooling_nlp.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tooling_nlp.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Text processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-text-encoding">On text encoding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-tool-kit">Natural language tool kit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiment">Sentiment</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/tooling_nlp.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="text-processing">
+<h1>Text processing<a class="headerlink" href="#text-processing" title="Link to this heading">#</a></h1>
+<section id="on-text-encoding">
+<h2>On text encoding<a class="headerlink" href="#on-text-encoding" title="Link to this heading">#</a></h2>
+<p>Computers represent characters via character encodings. Basically, a
+mapping from a binary representation to a character symbol
+value. There’s many character encodings and most often our text system
+autodetects them.</p>
+<p>Character encodings existed a long time before computers, since people
+seem to always want to represent letters as numbers. On a computer,
+the program has to interpret the character code and display it in a
+way that we want. ASCII represents characters as 7 bits, (unicode)
+UTF-8, UTF-16 and UTF-32 represent characters as 8, 16, and 32
+bits. Of course the greater the bit representation, the larger the
+character set that can be represented. ASCII contains only the usual
+keyboard characters whereas Unicode contains much more.</p>
+<p><a class="reference external" href="https://docs.python.org/3/howto/unicode.html#the-unicode-type">Here’s</a>
+some info about python unicode. For example, python’s default
+character encoding is UTF-8. So strings automatically allow UTF-8
+characters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;😉&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\N{WINKING FACE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\U0001F609</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>😉
+😉
+😉
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unicode characters can be variable names, but emojis can’t.  (However,
+see
+<a class="reference external" href="https://betterprogramming.pub/emojis-as-python-variables-sure-why-not-96ce955dada1">here</a>
+where they magically do <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">🐼</span></code>). Greek letters are fair
+game.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5.0, 3.1622776601683795)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is annoying for programming. But, useful for labeling plot axes and whatnot.</p>
+</section>
+<section id="regular-expressions">
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Link to this heading">#</a></h2>
+<p>Regular expressions (regexes) are simply advanced pattern matching
+tools. Regular expressions represent regular characters, a, b, …, z,
+A, B, …, Z exactly like you’d think. But, some other characters, .,
++, and others are metacharacters that are used to help us match
+things. A backslash, , can be used to directly reference a
+metacharacter, so “\+”, references the character “+”. It can also be
+used to escape a regular character. So “\d” references the set of
+digits rather than the character <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
+<p>Honestly, I have to look up regex definitions everytime I use
+them. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Here’s</a> a
+table from wikipedia
+reduced. <a class="reference external" href="https://docs.python.org/3/library/re.html">Here’s</a> the
+python regex docs.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metacharacter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>^</p></td>
+<td><p>Matches the starting position within the string.</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>Matches any single character.</p></td>
+</tr>
+<tr class="row-even"><td><p>[ ]</p></td>
+<td><p>Matches a single character that is contained within the brackets.</p></td>
+</tr>
+<tr class="row-odd"><td><p>[^ ]</p></td>
+<td><p>Matches a single character that is not contained within the brackets.</p></td>
+</tr>
+<tr class="row-even"><td><p>$</p></td>
+<td><p>Matches the ending position of the string or the position just before a string-ending newline.</p></td>
+</tr>
+<tr class="row-odd"><td><p>( )</p></td>
+<td><p>Defines a marked subexpression.</p></td>
+</tr>
+<tr class="row-even"><td><p>\n</p></td>
+<td><p>Matches what the nth marked subexpression matched, where n is a digit from 1 to 9</p></td>
+</tr>
+<tr class="row-odd"><td><p>*</p></td>
+<td><p>Matches the preceding element zero or more times.</p></td>
+</tr>
+<tr class="row-even"><td><p>{m,n}</p></td>
+<td><p>Matches the preceding element at least m and not more than n times.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Many search functions in R and python allow for regexes. Especially,
+the <code class="docutils literal notranslate"><span class="pre">re</span></code> python module. Try these simple examples and look at the
+methods associated with the output. It contains methods for where the
+regex occurs in the string, the whole input string itself etc. It
+returns nil if there’s no match.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[hcb]a&#39;</span><span class="p">,</span> <span class="s1">&#39;hat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[hcb]a&#39;</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[hcb]a&#39;</span><span class="p">,</span> <span class="s1">&#39;rat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;ha&#39;, &#39;hat&#39;)
+(&#39;ha&#39;, &#39;phat&#39;)
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;[hcb]a&#39;</span><span class="p">,</span> <span class="s1">&#39;hatcathat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ha&#39;, &#39;ca&#39;, &#39;ha&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can match any letter with “.”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;.a&#39;</span><span class="p">,</span> <span class="s1">&#39;rat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;.a&#39;</span><span class="p">,</span> <span class="s1">&#39;phat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;ra&#39;, &#39;rat&#39;)
+(&#39;ha&#39;, &#39;phat&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can search for things like any number using a dash.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject[0-9].txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject3.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject[0-9][0-9][0-9].txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject015.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;subject3.txt&#39;, &#39;subject3.txt&#39;)
+(&#39;subject015.txt&#39;, &#39;subject015.txt&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>‘CHARACTER*’ will match any number of the character, inncluding 0,
+whereas <code class="docutils literal notranslate"><span class="pre">CHAR+</span></code> matches one or more times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0*.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0*.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject000.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0*.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject123.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0+.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0+.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject000.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0+.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject123.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;subject.txt&#39;, &#39;subject.txt&#39;)
+(&#39;subject000.txt&#39;, &#39;subject000.txt&#39;)
+None
+None
+(&#39;subject000.txt&#39;, &#39;subject000.txt&#39;)
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CHARACTER?</span></code> matches one or zero times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0?.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0?.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject0.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;subject0?.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject00.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;subject.txt&#39;, &#39;subject.txt&#39;)
+(&#39;subject0.txt&#39;, &#39;subject0.txt&#39;)
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can string together regexes to obtain more complex searches. For example, the following searches for <code class="docutils literal notranslate"><span class="pre">subject[GREATER</span> <span class="pre">THAN</span> <span class="pre">ONE</span> <span class="pre">NUMBER].txt</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;[0-9]+.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;subject501.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;501.txt&#39;, &#39;subject501.txt&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">re</span></code> library has several other methods than search including:
+<code class="docutils literal notranslate"><span class="pre">match</span></code>, <code class="docutils literal notranslate"><span class="pre">findall()</span></code>, <code class="docutils literal notranslate"><span class="pre">finditer()</span></code> (see <a class="reference internal" href="#"><span class="xref myst">here</span></a>).</p>
+<p>That’s enough regexes. My typical workflow for regexes is to simply
+relearn them every time I need them, since I don’t use them enough to
+get terribly fluent.</p>
+</section>
+<section id="natural-language-tool-kit">
+<h2>Natural language tool kit<a class="headerlink" href="#natural-language-tool-kit" title="Link to this heading">#</a></h2>
+<p>nltk is probably the most widely used natural language toolkit.
+To install nltk, just use conda or pip. However, I also had to run <code class="docutils literal notranslate"><span class="pre">nltk.download()</span></code> to download the extra stuff required for the package to run. I found <a class="reference external" href="https://realpython.com/nltk-nlp-python/">this</a> tutorial helpful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="c1">## Download the language libraries</span>
+<span class="c1">## this will walk you through it. I just did</span>
+<span class="c1">## all-nltk</span>
+<span class="c1">##nltk.download()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tokenizing words and sentences. Consider this history and physical exam note from <a class="reference external" href="https://www.med.unc.edu/medclerk/education/grading/history-and-physical-examination-h-p-examples/">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;HPI is a 76 yo man with h/o HTN, DM, and sleep apnea who presented to the ED complaining of chest pain. He states that the pain began the day before and consisted of a sharp pain that lasted around 30 seconds, followed by a dull pain that would last around 2 minutes. The pain was located over his left chest area somewhat near his shoulder. The onset of pain came while the patient was walking in his home. He did not sit and rest during the pain, but continued to do household chores. Later on in the afternoon he went to the gym where he walked 1 mile on the treadmill, rode the bike for 5 minutes, and swam in the pool. After returning from the gym he did some work out in the yard, cutting back some vines. He did not have any reoccurrences of chest pain while at the gym or later in the evening. The following morning (of his presentation to the ED) he noticed the pain as he was getting out of bed. Once again it was a dull pain, preceded by a short interval of a sharp pain. The patient did experience some tingling in his right arm after the pain ceased. He continued to have several episodes of the pain throughout the morning, so his daughter-in-law decided to take him to the ED around 12:30pm. The painful episodes did not increase in intensity or severity during this time. At the ED the patient was given nitroglycerin, which he claims helped alleviate the pain somewhat. HPI has not experienced any shortness of breath, nausea, or diaphoresis during these episodes of pain. He has never had chest pain in the past. He has been told “years ago” that he has a right bundle branch block and premature heart beats.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s tokenize this note by sentence and word.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HPI is a 76 yo man with h/o HTN, DM, and sleep apnea who presented to the ED complaining of chest pain.
+He states that the pain began the day before and consisted of a sharp pain that lasted around 30 seconds, followed by a dull pain that would last around 2 minutes.
+The pain was located over his left chest area somewhat near his shoulder.
+[&#39;HPI&#39;, &#39;is&#39;, &#39;a&#39;, &#39;76&#39;, &#39;yo&#39;, &#39;man&#39;, &#39;with&#39;, &#39;h/o&#39;, &#39;HTN&#39;, &#39;,&#39;, &#39;DM&#39;, &#39;,&#39;, &#39;and&#39;, &#39;sleep&#39;, &#39;apnea&#39;, &#39;who&#39;, &#39;presented&#39;, &#39;to&#39;, &#39;the&#39;, &#39;ED&#39;, &#39;complaining&#39;, &#39;of&#39;, &#39;chest&#39;, &#39;pain&#39;, &#39;.&#39;, &#39;He&#39;, &#39;states&#39;, &#39;that&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;began&#39;, &#39;the&#39;, &#39;day&#39;, &#39;before&#39;, &#39;and&#39;, &#39;consisted&#39;, &#39;of&#39;, &#39;a&#39;, &#39;sharp&#39;, &#39;pain&#39;, &#39;that&#39;, &#39;lasted&#39;, &#39;around&#39;, &#39;30&#39;, &#39;seconds&#39;, &#39;,&#39;, &#39;followed&#39;, &#39;by&#39;, &#39;a&#39;, &#39;dull&#39;, &#39;pain&#39;, &#39;that&#39;, &#39;would&#39;, &#39;last&#39;, &#39;around&#39;, &#39;2&#39;, &#39;minutes&#39;, &#39;.&#39;, &#39;The&#39;, &#39;pain&#39;, &#39;was&#39;, &#39;located&#39;, &#39;over&#39;, &#39;his&#39;, &#39;left&#39;, &#39;chest&#39;, &#39;area&#39;, &#39;somewhat&#39;, &#39;near&#39;, &#39;his&#39;, &#39;shoulder&#39;, &#39;.&#39;, &#39;The&#39;, &#39;onset&#39;, &#39;of&#39;, &#39;pain&#39;, &#39;came&#39;, &#39;while&#39;, &#39;the&#39;, &#39;patient&#39;, &#39;was&#39;, &#39;walking&#39;, &#39;in&#39;, &#39;his&#39;, &#39;home&#39;, &#39;.&#39;, &#39;He&#39;, &#39;did&#39;, &#39;not&#39;, &#39;sit&#39;, &#39;and&#39;, &#39;rest&#39;, &#39;during&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;,&#39;, &#39;but&#39;, &#39;continued&#39;, &#39;to&#39;, &#39;do&#39;, &#39;household&#39;, &#39;chores&#39;, &#39;.&#39;, &#39;Later&#39;, &#39;on&#39;, &#39;in&#39;, &#39;the&#39;, &#39;afternoon&#39;, &#39;he&#39;, &#39;went&#39;, &#39;to&#39;, &#39;the&#39;, &#39;gym&#39;, &#39;where&#39;, &#39;he&#39;, &#39;walked&#39;, &#39;1&#39;, &#39;mile&#39;, &#39;on&#39;, &#39;the&#39;, &#39;treadmill&#39;, &#39;,&#39;, &#39;rode&#39;, &#39;the&#39;, &#39;bike&#39;, &#39;for&#39;, &#39;5&#39;, &#39;minutes&#39;, &#39;,&#39;, &#39;and&#39;, &#39;swam&#39;, &#39;in&#39;, &#39;the&#39;, &#39;pool&#39;, &#39;.&#39;, &#39;After&#39;, &#39;returning&#39;, &#39;from&#39;, &#39;the&#39;, &#39;gym&#39;, &#39;he&#39;, &#39;did&#39;, &#39;some&#39;, &#39;work&#39;, &#39;out&#39;, &#39;in&#39;, &#39;the&#39;, &#39;yard&#39;, &#39;,&#39;, &#39;cutting&#39;, &#39;back&#39;, &#39;some&#39;, &#39;vines&#39;, &#39;.&#39;, &#39;He&#39;, &#39;did&#39;, &#39;not&#39;, &#39;have&#39;, &#39;any&#39;, &#39;reoccurrences&#39;, &#39;of&#39;, &#39;chest&#39;, &#39;pain&#39;, &#39;while&#39;, &#39;at&#39;, &#39;the&#39;, &#39;gym&#39;, &#39;or&#39;, &#39;later&#39;, &#39;in&#39;, &#39;the&#39;, &#39;evening&#39;, &#39;.&#39;, &#39;The&#39;, &#39;following&#39;, &#39;morning&#39;, &#39;(&#39;, &#39;of&#39;, &#39;his&#39;, &#39;presentation&#39;, &#39;to&#39;, &#39;the&#39;, &#39;ED&#39;, &#39;)&#39;, &#39;he&#39;, &#39;noticed&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;as&#39;, &#39;he&#39;, &#39;was&#39;, &#39;getting&#39;, &#39;out&#39;, &#39;of&#39;, &#39;bed&#39;, &#39;.&#39;, &#39;Once&#39;, &#39;again&#39;, &#39;it&#39;, &#39;was&#39;, &#39;a&#39;, &#39;dull&#39;, &#39;pain&#39;, &#39;,&#39;, &#39;preceded&#39;, &#39;by&#39;, &#39;a&#39;, &#39;short&#39;, &#39;interval&#39;, &#39;of&#39;, &#39;a&#39;, &#39;sharp&#39;, &#39;pain&#39;, &#39;.&#39;, &#39;The&#39;, &#39;patient&#39;, &#39;did&#39;, &#39;experience&#39;, &#39;some&#39;, &#39;tingling&#39;, &#39;in&#39;, &#39;his&#39;, &#39;right&#39;, &#39;arm&#39;, &#39;after&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;ceased&#39;, &#39;.&#39;, &#39;He&#39;, &#39;continued&#39;, &#39;to&#39;, &#39;have&#39;, &#39;several&#39;, &#39;episodes&#39;, &#39;of&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;throughout&#39;, &#39;the&#39;, &#39;morning&#39;, &#39;,&#39;, &#39;so&#39;, &#39;his&#39;, &#39;daughter-in-law&#39;, &#39;decided&#39;, &#39;to&#39;, &#39;take&#39;, &#39;him&#39;, &#39;to&#39;, &#39;the&#39;, &#39;ED&#39;, &#39;around&#39;, &#39;12:30pm&#39;, &#39;.&#39;, &#39;The&#39;, &#39;painful&#39;, &#39;episodes&#39;, &#39;did&#39;, &#39;not&#39;, &#39;increase&#39;, &#39;in&#39;, &#39;intensity&#39;, &#39;or&#39;, &#39;severity&#39;, &#39;during&#39;, &#39;this&#39;, &#39;time&#39;, &#39;.&#39;, &#39;At&#39;, &#39;the&#39;, &#39;ED&#39;, &#39;the&#39;, &#39;patient&#39;, &#39;was&#39;, &#39;given&#39;, &#39;nitroglycerin&#39;, &#39;,&#39;, &#39;which&#39;, &#39;he&#39;, &#39;claims&#39;, &#39;helped&#39;, &#39;alleviate&#39;, &#39;the&#39;, &#39;pain&#39;, &#39;somewhat&#39;, &#39;.&#39;, &#39;HPI&#39;, &#39;has&#39;, &#39;not&#39;, &#39;experienced&#39;, &#39;any&#39;, &#39;shortness&#39;, &#39;of&#39;, &#39;breath&#39;, &#39;,&#39;, &#39;nausea&#39;, &#39;,&#39;, &#39;or&#39;, &#39;diaphoresis&#39;, &#39;during&#39;, &#39;these&#39;, &#39;episodes&#39;, &#39;of&#39;, &#39;pain&#39;, &#39;.&#39;, &#39;He&#39;, &#39;has&#39;, &#39;never&#39;, &#39;had&#39;, &#39;chest&#39;, &#39;pain&#39;, &#39;in&#39;, &#39;the&#39;, &#39;past&#39;, &#39;.&#39;, &#39;He&#39;, &#39;has&#39;, &#39;been&#39;, &#39;told&#39;, &#39;“&#39;, &#39;years&#39;, &#39;ago&#39;, &#39;”&#39;, &#39;that&#39;, &#39;he&#39;, &#39;has&#39;, &#39;a&#39;, &#39;right&#39;, &#39;bundle&#39;, &#39;branch&#39;, &#39;block&#39;, &#39;and&#39;, &#39;premature&#39;, &#39;heart&#39;, &#39;beats&#39;, &#39;.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s filter out some common English filler words.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filter_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">filter_words</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filtered</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;is&#39;, &#39;a&#39;, &#39;with&#39;, &#39;and&#39;, &#39;who&#39;, &#39;to&#39;, &#39;the&#39;, &#39;of&#39;, &#39;that&#39;, &#39;the&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also reduce words to their stems, i.e. grammatical root form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stemmer</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">(</span><span class="s2">&quot;Diagnosed&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">(</span><span class="s2">&quot;Diagnosing&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">(</span><span class="s2">&quot;diagnosed&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>diagnos
+diagnos
+diagnos
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lemmatization reduces words to an underlying meaing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="n">lemmatize</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span>
+<span class="c1">## Here v for verb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;am&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="s2">&quot;v&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;are&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="s2">&quot;v&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;worst&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="s2">&quot;n&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;worst&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>be
+be
+worst
+bad
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sentiment">
+<h2>Sentiment<a class="headerlink" href="#sentiment" title="Link to this heading">#</a></h2>
+<p>Sentiment is predicting a score about the tone of a text. The compound value is a numeric sentiment score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.sentiment</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+<span class="n">sentiment</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span><span class="o">.</span><span class="n">polarity_scores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment</span><span class="p">(</span><span class="s2">&quot;Sentiment analysis is great!&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment</span><span class="p">(</span><span class="s2">&quot;The world is doomed.&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neg&#39;: 0.214, &#39;neu&#39;: 0.786, &#39;pos&#39;: 0.0, &#39;compound&#39;: -0.9971}
+{&#39;neg&#39;: 0.0, &#39;neu&#39;: 0.406, &#39;pos&#39;: 0.594, &#39;compound&#39;: 0.6588}
+{&#39;neg&#39;: 0.583, &#39;neu&#39;: 0.417, &#39;pos&#39;: 0.0, &#39;compound&#39;: -0.6369}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tooling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Extra python tooling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="numpy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Numpy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-text-encoding">On text encoding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-tool-kit">Natural language tool kit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiment">Sentiment</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Brian Caffo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

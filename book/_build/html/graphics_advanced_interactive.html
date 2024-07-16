@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced interactive graphics &#8212; Data science and AI for Bio/medical applications using python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'graphics_advanced_interactive';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Theory of graphics" href="graphics_theory.html" />
+    <link rel="prev" title="Interactive graphics" href="interactive.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dasl.png" class="logo__image only-light" alt="Data science and AI for Bio/medical applications using python - Home"/>
+    <script>document.write(`<img src="_static/dasl.png" class="logo__image only-dark" alt="Data science and AI for Bio/medical applications using python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro_tools.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git, github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_unix.html">Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML, CSS and javascript</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ds_python.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_python.html">Python basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_programming.html">Python programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_practice.html">Python in practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtual_environments.html">Virtual Environments</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data.html">Working with data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_cleaning.html">Data cleaning by example</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="sqlite.html">SQL via sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysqlite.html">sqlite in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_databases.html">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webscraping.html">Webscraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_advanced_webscraping.html">Advanced web scraping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="graphics.html">Graphics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="EDA.html">Exploratory data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Interactive graphics</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced interactive graphics</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="graphics_theory.html">Theory of graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics_images.html">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convolutions.html">Convolutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tooling.html">Extra python tooling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tooling_nlp.html">Text processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voila.html">Jupyterwidgets and voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash.html">Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dash2.html">Dash callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rBasic.html">Base R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rTidyverse.html">R tidyverse quick example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rFromPython.html">R from python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pythonFromR.html">Python from R</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="statistics.html">Regression models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_classification.html">Introduction to binary classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="regression_through_the_origin.html">Regression through the origin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">Continuous prediction with regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml.html">Maximum Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparable.html">Linear separable models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearSeparableSMF.html">Interpretation of linear regression coefficients.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_examples.html">Linear models: a classic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_interpretation.html">Regression interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_optimization.html">Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics_causal.html">Causality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linearModels_FFTs.html">Regression and FFTs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nns.html">Neural networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_regression_pytorch.html">Basic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logistic_regression_pytorch.html">Logistic regression in pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch_regression.html">Pytorch by example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convnet_classifier_pytorch.html">Convnet classifier example</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/smart-stats/ds4bio_book/issues/new?title=Issue%20on%20page%20%2Fgraphics_advanced_interactive.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/graphics_advanced_interactive.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced interactive graphics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Advanced interactive graphics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-through-a-realistic-example">Working through a realistic example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observable">Observable</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#links">Links</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="advanced-interactive-graphics">
+<h1>Advanced interactive graphics<a class="headerlink" href="#advanced-interactive-graphics" title="Link to this heading">#</a></h1>
+<p>In your other DS courses, you’ve learned how to create static graphics
+uses R, ggplot, matplotlib, seaborn … You’ve probably also learned
+how to create client side interactive graphics using libraries like
+plotly and maybe also learned client-server interactivity with shiny,
+dash, streamlet, etcetera.</p>
+<p>In this section we’re going to dig deeper into client side graphics,
+which are almost always done via html, css, javascript and a
+javascript plotting library. We’re going to focus on d3.js, a well
+known javascript library for creating interactive data
+visulalizations.</p>
+<p>Tools like d3 are mostly for creating professional data web
+graphics. So, most of our daily graphics use will just use
+python/R/julia/matlab … or plotting libraries like plotly. Usually,
+you want to prototype graphics outside of d3. Here, we’ll give you a
+smidge of using d3 to get you started if your goal is to become a
+graphics expert.</p>
+<p>Let’s get started. I’m going to assume that you have a basic knowledge
+of html, css and a little bit of javascript. D3 works by manipulating
+html elements. Let’s select every paragraph element in a document. Try uncommenting each of the three <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">pselect</span></code> lines (and commenting the others) to see what they do.</p>
+<div class="admonition note" name="html-admonition" style="background: white; padding: 10px">
+<iframe src="https://smart-stats.github.io/advanced_ds4bio_book//qbook/d3/basic.html" width="300px" height="220px"></iframe>
+</div><p>Note, working with <code class="docutils literal notranslate"><span class="pre">%%html</span></code> in a jupyter notebook is a little wonky. So, if you really want to see this in action, save it to a file and open it in a web browser.</p>
+<ul class="simple">
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">&lt;script</span> <span class="pre">src=&quot;https://d3js.org/d3.v5.min.js&quot;&gt;&lt;/script&gt;</span></code> loads d3 from a CDN. You could also download it locally if you’d like.</p></li>
+<li><p>The script <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">pselect</span> <span class="pre">=</span> <span class="pre">d3.selectAll(&quot;p&quot;).style(&quot;color&quot;,</span> <span class="pre">&quot;green&quot;);</span></code> creates a variable <code class="docutils literal notranslate"><span class="pre">pselect</span></code> that is all of the html paragraph elements</p></li>
+<li><p>Try doing this, loading the web page, then try uncommenting each other script line in turn and refreshing</p></li>
+<li><p>In chrome do Ctrl-shift-i to get the developer console and inspect the variable pselect.</p></li>
+<li><p>Nesting <code class="docutils literal notranslate"><span class="pre">select</span></code> or <code class="docutils literal notranslate"><span class="pre">selectAll</span></code> will select elements within the selected elements.</p></li>
+<li><p>You can also select by id or class.</p></li>
+</ul>
+</section>
+<section id="a-simple-example">
+<h1>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h1>
+<p>Let’s go through an example where we plot brain volumetric ROI data on the log scale using D3. (Note from here on hout we’re omitting the html basics of the web page and we’re not putting them in a jupyter code block.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+    <span class="o">.</span><span class="n">bar</span> <span class="p">{</span>
+        <span class="n">background</span><span class="p">:</span> <span class="c1">#f5b634;</span>
+        <span class="n">border</span><span class="p">:</span> <span class="mi">4</span><span class="n">px</span> <span class="n">solid</span> <span class="c1">#0769ad;</span>
+        <span class="n">height</span><span class="p">:</span> <span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+            <span class="n">let</span> <span class="n">roiData</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Telencephalon_L&quot;</span><span class="p">,</span> <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">531111</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Telencephalon_R&quot;</span><span class="p">,</span> <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">543404</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Diencephalon_L&quot;</span><span class="p">,</span>  <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">9683</span>  <span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Diencephalon_R&quot;</span><span class="p">,</span>  <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">9678</span>  <span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Mesencephalon&quot;</span><span class="p">,</span>   <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">10268</span> <span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Metencephalon&quot;</span><span class="p">,</span>   <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">159402</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;Myelencephalon&quot;</span><span class="p">,</span>  <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">4973</span>  <span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;roi&quot;</span><span class="p">:</span> <span class="s2">&quot;CSF&quot;</span><span class="p">,</span>             <span class="s2">&quot;volume&quot;</span> <span class="p">:</span> <span class="mi">109776</span><span class="p">}</span>
+            <span class="p">];</span>
+
+            <span class="n">let</span> <span class="n">divSelection</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">selectAll</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">roiData</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">enter</span><span class="p">()</span>
+                    <span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">;</span> <span class="p">})</span>
+                    <span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">roi</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;mouseover&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(){</span>
+                        <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+                    <span class="p">})</span>
+                    <span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;mouseout&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(){</span>
+                        <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span><span class="s2">&quot;#33A2FF&quot;</span> <span class="p">)</span>
+                    <span class="p">})</span>        <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data(roiDat)</span></code> selects our dataset</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">enter()</span></code> and <code class="docutils literal notranslate"><span class="pre">append('div')</span></code> commands add <code class="docutils literal notranslate"><span class="pre">div</span></code> elements to the html document, one per data element.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">attr</span></code> method considers our <code class="docutils literal notranslate"><span class="pre">bar</span></code> stylesheet style</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">style</span></code> method changes the style so that the bars have the width of our data.
+The notation <code class="docutils literal notranslate"><span class="pre">(d)</span> <span class="pre">=&gt;</span> <span class="pre">{return</span> <span class="pre">d.volume</span> <span class="pre">*</span> <span class="pre">.001</span> <span class="pre">+</span> <span class="pre">&quot;px&quot;}</span></code> is a function that selects the
+ROI element of the data, multiplies it by .001 then converts it to text with  <code class="docutils literal notranslate"><span class="pre">px</span></code> at the end.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">text</span></code> method at the end appends the text to our plot</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">on</span></code> methods say what to do when one mouses over and off the bars. You can see now that
+they turn orange then back. Remove the mouseout <code class="docutils literal notranslate"><span class="pre">.on</span></code> call and see what happens.</p></li>
+</ul>
+<p>The output looks like this. Hover over a bar to test. (Look at the file in <a class="reference external" href="https://github.com/smart-stats/advanced_ds4bio_book/blob/main/qbook/d3/roi1.html">d3/roi1.html</a>)</p>
+<div class="admonition note" name="html-admonition" style="background: white; padding: 10px">
+<iframe src="https://smart-stats.github.io/advanced_ds4bio_book//qbook/d3/roi1.html" width="300px" height="220px"></iframe>
+</div></section>
+<section id="working-through-a-realistic-example">
+<h1>Working through a realistic example<a class="headerlink" href="#working-through-a-realistic-example" title="Link to this heading">#</a></h1>
+<p>Under <code class="docutils literal notranslate"><span class="pre">assets/kirby_pivot.csv</span></code> is a dataset with the kirby 21 data pivoted to have regions as columns. Let’s work through a d3 example of ploting right versus left asymmetry in the telencephalon (the largest area of the brain including the cortex and central white matter).</p>
+<p>Here’s the scatterplot that I’ve got so far. For HW, add text labels to the point, or a tooltip that gives point information when you hover over it. The file rendered below is <a class="reference external" href="https://github.com/smart-stats/advanced_ds4bio_book/blob/main/qbook/d3/roi2.html">here</a>.</p>
+<div class="admonition note" name="html-admonition" style="background: white; padding: 10px">
+<iframe src="https://smart-stats.github.io/advanced_ds4bio_book//qbook/d3/roi2.html" width="500px" height="500px"></iframe>
+</div><p>Let’s go over some of the main parts of the d3 code here. First, we set up the graphic</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">const</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="o">//</span> <span class="n">create</span> <span class="n">the</span> <span class="n">background</span>
+<span class="n">let</span> <span class="n">svg</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span> <span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next we load in the data. First, we create a function that does a little row processing for us. Honestly, it’s probably better to just do this in python/R/julia … beforehand, but it’s worth showing here. We create variables for the log ratio between the right and left hemispheres and the log of the geometric mean. We’ll use this to create a Tukey mean/difference plot of the log of the volumes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">create</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">we</span><span class="s1">&#39;re interested in</span>
+<span class="n">let</span> <span class="n">rowConverter</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nb">id</span> <span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="o">//</span><span class="n">y</span> <span class="ow">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">log</span> <span class="n">difference</span> <span class="n">R</span><span class="o">-</span><span class="n">L</span>
+        <span class="n">logratio</span> <span class="p">:</span> <span class="n">Math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="p">))</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="p">)),</span>
+        <span class="o">//</span><span class="n">x</span> <span class="ow">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">average</span> <span class="n">log</span>
+        <span class="n">loggm</span> <span class="p">:</span> <span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">Telencephalon_L</span><span class="p">))</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">Telencephalon_R</span><span class="p">)))</span> <span class="o">*</span> <span class="mf">.5</span>
+    <span class="p">};</span>
+    <span class="p">}</span>
+
+<span class="o">//</span><span class="n">the</span> <span class="n">location</span> <span class="n">where</span> <span class="n">I</span><span class="s1">&#39;m pulling the csv from</span>
+<span class="n">let</span> <span class="n">dataloc</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/smart-stats/advanced_ds4bio_book/main/qbook/assets/kirby_pivot.csv&quot;</span>
+
+<span class="o">//</span><span class="n">read</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">parse</span> <span class="n">the</span> <span class="n">rows</span>
+<span class="n">kirby_pivot</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">dataloc</span><span class="p">,</span> <span class="n">rowConverter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Modern js uses something called ‘promises’, which alllows for asynchronous evaluation. When we read in our csv file, it gets created as a promise and not an array like we need. The result is that our plotting commands need to then be called as a method from the promise object. The reason for this is so that it only uses the data when the data is actually loaded (i.e. promise fulfilled.) So, the plotting commmands for us look like this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kirby_pivot</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">dat</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">PLOTTING</span> <span class="n">COMMANDS</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Just a reminder that the notation <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=&gt;</span> <span class="pre">g(d)</span></code> is JS shorthand for <code class="docutils literal notranslate"><span class="pre">function(d)</span> <span class="pre">{return</span> <span class="pre">g(d);}</span></code> and is used heavily in d3 coding. Now let’s fill in <code class="docutils literal notranslate"><span class="pre">PLOTTING</span> <span class="pre">COMMANDS</span></code>. First, let’s fill in some utility functions. We get the range of our x and y values to help set up our axes. d3 <code class="docutils literal notranslate"><span class="pre">scales</span></code> map our function values to a range we want. So let’s create scale maps for x, y and color and then also set up axes using those scales. We’ll also go ahead on plot our axes so they’re on the bottom.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">maxx</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">loggm</span><span class="p">)</span>
+<span class="n">minx</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">loggm</span><span class="p">)</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">)</span>
+<span class="n">miny</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">)</span>
+
+<span class="o">//</span><span class="n">fudge</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">boundary</span> <span class="n">otherwise</span> <span class="n">points</span> <span class="n">get</span> <span class="n">chopped</span> <span class="n">off</span>
+<span class="n">let</span> <span class="n">fudge</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">let</span> <span class="n">yScale</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scaleLinear</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">domain</span><span class="p">([</span><span class="n">miny</span><span class="p">,</span> <span class="n">maxy</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="n">h</span><span class="o">-</span><span class="n">fudge</span><span class="p">,</span> <span class="n">fudge</span><span class="p">])</span>
+
+<span class="n">let</span> <span class="n">pointScale</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scaleLinear</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">domain</span><span class="p">([</span><span class="n">miny</span><span class="p">,</span> <span class="n">maxy</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">let</span> <span class="n">colorScale</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scaleLinear</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">domain</span><span class="p">([</span><span class="n">miny</span><span class="p">,</span> <span class="n">maxy</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">let</span> <span class="n">xScale</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scaleLinear</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">domain</span><span class="p">([</span><span class="n">minx</span><span class="p">,</span> <span class="n">maxx</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="n">w</span><span class="o">-</span><span class="n">fudge</span><span class="p">,</span> <span class="n">fudge</span><span class="p">]);</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">axes</span>
+<span class="n">let</span> <span class="n">xaxis</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">axisBottom</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">xScale</span><span class="p">)</span>
+<span class="n">let</span> <span class="n">yaxis</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">axisLeft</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">yScale</span><span class="p">)</span>
+<span class="n">svg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">fudge</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">xaxis</span><span class="p">)</span>
+
+<span class="n">svg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="n">fudge</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">yaxis</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s create the plot. We’re going to add circles at each location, which is attributes <code class="docutils literal notranslate"><span class="pre">cx</span></code> and <code class="docutils literal notranslate"><span class="pre">cy</span></code>. Notice we use our previous defined scales to give their locations. Also, we’ll set the color and size relative to the logratio. Finally, when we mouseover a point, let’s change the radius then change it back when we mouseoff.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svg</span><span class="o">.</span><span class="n">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">enter</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">yScale</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">xScale</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">loggm</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>  <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">pointScale</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">d3</span><span class="o">.</span><span class="n">interpolateWarm</span><span class="p">(</span><span class="n">colorScale</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">)))</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;mouseover&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;mouseout&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>  <span class="n">d</span> <span class="o">=&gt;</span> <span class="n">pointScale</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">logratio</span><span class="p">))</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+<p>Obviously, this is a lot of work for a simple scatterplot. The difference is that here you have total control over plotting and interactivity elements.</p>
+</section>
+<section id="observable">
+<h1>Observable<a class="headerlink" href="#observable" title="Link to this heading">#</a></h1>
+<p>Observerable is a notebook for working with d3. It’s quite neat since mixing javascript coding in a web notebook, which itself is written in javascript, makes for an interesting setup. Typically, one would do the data preprocessing in R, python, julia … then do the advanced graphing in d3. In addition to accepting d3 as inputs, observable has a slightly higher set of utility functions called observable plot.</p>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://observablehq.com/&#64;observablehq/observables-not-javascript">Observable is not javascript</a></p></li>
+<li><p><a class="reference external" href="https://www.tutorialsteacher.com/d3js/select-dom-element-using-d3js">d3 tutorial</a>.</p></li>
+<li><p><a class="reference external" href="https://observablehq.com/&#64;d3/gallery">d3 gallery</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="interactive.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interactive graphics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="graphics_theory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Theory of graphics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Advanced interactive graphics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-through-a-realistic-example">Working through a realistic example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observable">Observable</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#links">Links</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Brian Caffo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

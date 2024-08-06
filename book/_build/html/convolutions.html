@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -471,7 +471,7 @@ document.write(`
 <h1>Convolutions<a class="headerlink" href="#convolutions" title="Link to this heading">#</a></h1>
 <section id="d-transforms">
 <h2>1D transforms<a class="headerlink" href="#d-transforms" title="Link to this heading">#</a></h2>
-<p>Convolutions are an important topic  in mathematics, statistics, signal processing … Let’s discuss 1D convolutions first. A real valued convolution of two continuous signals, $X(t)$ and $K(t)$ is defined as $X* K$</p>
+<p>Convolutions are an important topic  in mathematics, statistics, signal processing … Let’s discuss 1D convolutions first. A real valued convolution of two continuous signals, $X(t)$ and $K(t)$ is defined as $X * K$</p>
 <p>$$
 (X* K)(t) = \int_{-\infty}^{\infty} X(u) K(t-u) du
 = \int_{-\infty}^{\infty} X(t-v) K(v) dv,
@@ -507,7 +507,7 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
 <span class="c1">## Get Italy, drop everyrthing except dates, convert to long (unstack converts to tuple)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;Country/Region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Italy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;Province/State&quot;</span><span class="p">,</span> <span class="s2">&quot;Country/Region&quot;</span><span class="p">,</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="s2">&quot;Long&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 <span class="c1">## convert from tuple to array</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="c1">## get case counts instead of cumulative counts</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="c1">## get the first non zero entry</span>
@@ -545,7 +545,7 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
 <span class="c1">## Plot the convolution with the argument &#39;full&#39;</span>
 <span class="c1">## which gives N+M-1 total pionts</span>
 <span class="n">XC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">)</span>
-<span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">)</span> 
+<span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">XC</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temp</span><span class="o">-</span> <span class="n">XC</span><span class="p">)</span>
 
@@ -575,7 +575,7 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
   <span class="c1"># the last convolution point (temp[N-1]) and the average of the</span>
   <span class="c1"># the last (M-1) / 2 X points and (M-1)/2 + 1 zeros</span>
   <span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">:</span> <span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">M</span><span class="p">]</span>
- 
+
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -614,14 +614,14 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.4</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">])</span>
 
-<span class="c1">## Pad the X with zeros in the back, need at least M-1 </span>
+<span class="c1">## Pad the X with zeros in the back, need at least M-1</span>
 <span class="n">pad_width</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">Xpadded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pad_width</span><span class="p">,</span> <span class="s2">&quot;constant&quot;</span><span class="p">)</span>
 <span class="c1">## Pad the kernel in the back with N-1, so both the kernel</span>
 <span class="c1">## and the X are of length, N+M-1</span>
 <span class="n">Kpadded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="c1">## Note we take the real part b/c the complex part is all effectively </span>
+<span class="c1">## Note we take the real part b/c the complex part is all effectively</span>
 <span class="c1">## machine 0</span>
 <span class="n">convolution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">Xpadded</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">Kpadded</span><span class="p">))</span><span class="o">.</span><span class="n">real</span>
 
@@ -760,7 +760,7 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
 <span class="c1">## I normalized it this way so that the convolution</span>
 <span class="c1">## numbers wouldn&#39;t be so big</span>
-<span class="c1">## Also, I put it to the 4th power, so it exactly finds </span>
+<span class="c1">## Also, I put it to the 4th power, so it exactly finds</span>
 <span class="c1">## the eye.</span>
 <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">**</span> <span class="mi">4</span>
 <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">/</span> <span class="n">K</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>

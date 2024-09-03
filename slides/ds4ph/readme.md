@@ -28,3 +28,4 @@
 + [Streamlit](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/streamlit.slides.html)
 + [Lecture 29, convolutions](https://docs.google.com/presentation/d/1y6yY3rdHZDxEn-ZwMqt-EYPf-EaCeR3Cso63-u_vEQs/edit?usp=sharing)
 + [Lecture 30, CNN example](https://docs.google.com/presentation/d/1t-TezAHmIVbJVAwOicAhlPPSB2AgFlsv0gSxaKVpROo/edit?usp=sharing)
++ [Lecture 31, GPU computing](https://docs.google.com/presentation/d/103ZnJdMKhjd7bEaw_FWeECtyDl8HOz5XvPLkoIx_hNo/edit?usp=sharing)

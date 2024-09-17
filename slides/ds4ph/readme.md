@@ -30,3 +30,5 @@
 + [Lecture 30, CNN example](https://docs.google.com/presentation/d/1t-TezAHmIVbJVAwOicAhlPPSB2AgFlsv0gSxaKVpROo/edit?usp=sharing)
 + [Lecture 31, GPU computing](https://docs.google.com/presentation/d/103ZnJdMKhjd7bEaw_FWeECtyDl8HOz5XvPLkoIx_hNo/edit?usp=sharing)
 + [Lecture 32, explainability](https://docs.google.com/presentation/d/1_UjmmL5lbnDQbFeWQA0fRboTGOVuZCKteiJcbVGit_A/edit?usp=sharing)
++ [Lecture 33, working with images](https://docs.google.com/presentation/d/1-p8l4IUeKxCoCmAjd0Sdp8rJN20ZEkF2GF4zTq0y2Zw/edit?usp=sharing)
++ 

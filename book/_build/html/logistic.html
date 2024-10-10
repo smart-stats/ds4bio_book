@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'logistic';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -469,43 +471,49 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/logistic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="logistic-regression">
+<section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
 <h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h1>
 <section id="classification-with-one-continuous-variable">
 <h2>Classification with one continuous variable<a class="headerlink" href="#classification-with-one-continuous-variable" title="Link to this heading">#</a></h2>
 <p>Suppose now that we want to predict the gold standard from the FLAIR values. Fitting a line seems weird, since the outcome can only be 0 or 1. A line would allow for arbitrarily small or large predictions. Similiarly, forcing the prediction to be exactly 0 or 1 leads to difficult optimization problems. A clever solution is to instead model</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 P(Y_i = 1 ~|~ X_i)
-$$</p>
-<p>where $Y_i$ is the gold standard value (0 or 1 for no lesion or lesion at that voxel, respectively) and $X_i$ is the FLAIR value for voxel $i$. This solves the problem somewhat nicely, but it still leaves some issues unresolved. For example, what does probability even mean in this context? And also probabilities are between 0 and 1, that’s better than exactly 0 or 1, but still would create problems.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Y_i\)</span> is the gold standard value (0 or 1 for no lesion or lesion at that voxel, respectively) and <span class="math notranslate nohighlight">\(X_i\)</span> is the FLAIR value for voxel <span class="math notranslate nohighlight">\(i\)</span>. This solves the problem somewhat nicely, but it still leaves some issues unresolved. For example, what does probability even mean in this context? And also probabilities are between 0 and 1, that’s better than exactly 0 or 1, but still would create problems.</p>
 <p>For the probability, it’s generally a good idea to think about what you’re modeling as random in the context. In this case, we’re thinking of our voxels as a random sample of FLAIR and gold standard voxel values from some population. This is a meaningful benchmark even if it’s not true. We’ll find that often in statistics we model data as if it comes from a probability distribution when we know it didn’t. We simply know that the probability distribution is a useful model for thinking about the problem.</p>
-<p>As for getting the probabilities from $[0,1]$ to $(-\infty, \infty)$, we need a function, preferably a monotonic one. The generally agreed upon choice is the logit (natural log of the odds) function. The logit function of a probability is defined as</p>
-<p>$$
-\eta = \mathrm{logit}(p) = \log{p / (1 - p)}
-$$</p>
-<p>where $p$ is the probability and $O = p/(1-p)$ is called the <strong>odds</strong>. Note, you can go backwards from odds to probability with the function $p = O / (1 + O)$. Odds are exactly as used in gambling. If the odds of bet at 1 to 99, then you are saying the probability is $1 / (99 + 1) = 1%$.</p>
+<p>As for getting the probabilities from <span class="math notranslate nohighlight">\([0,1]\)</span> to <span class="math notranslate nohighlight">\((-\infty, \infty)\)</span>, we need a function, preferably a monotonic one. The generally agreed upon choice is the logit (natural log of the odds) function. The logit function of a probability is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\eta = \mathrm{logit}(p) = \log\{p / (1 - p)\}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the probability and <span class="math notranslate nohighlight">\(O = p/(1-p)\)</span> is called the <strong>odds</strong>. Note, you can go backwards from odds to probability with the function <span class="math notranslate nohighlight">\(p = O / (1 + O)\)</span>. Odds are exactly as used in gambling. If the odds of bet at 1 to 99, then you are saying the probability is <span class="math notranslate nohighlight">\(1 / (99 + 1) = 1\%\)</span>.</p>
 <p>Why use odds? There’s a couple of reasons why odds are uniquely interprettable. First, there are specific study designs where odds make more sense than probabilities, particularly retrospective ones. Secondly, odds are unique in binomial models where they work out to be particularly tractible to work with. Finally, odds have a unique gambling interpretation. That is, it gives the ratio of a  one dollar risk to the return in a fair bet. (A fair bet is where the expected return is 0.) So, when a horse track gives the odds on a horse to be 99 to 1, they are saying that you would get $99 dollars if you bet one dollar and the horse won. This is an implied probability of 99 / (99 + 1) = 99% that the horse loses and 1% probability that the horse wins. Note they don’t usually express it as a fraction, they usually espress it as value to 1 or 1 to value. So they would say 99 to 1 (odds against) or 1 to 99 (odds for) so you can easily see how much you’d win for a dollar bet.</p>
-<p>You can go backwards from the logit function to the probability with the expit function. That is, if $\eta$ is defined as above, then</p>
-<p>$$
+<p>You can go backwards from the logit function to the probability with the expit function. That is, if <span class="math notranslate nohighlight">\(\eta\)</span> is defined as above, then</p>
+<div class="math notranslate nohighlight">
+\[
 p = \frac{e^{\eta}}{1 + e^\eta} = \frac{1}{1 + e^{-\eta}}.
-$$</p>
+\]</div>
 <p>This is sometimes called the <strong>expit</strong> function or <strong>sigmoid</strong>.</p>
 <p>We model the log of the odds as linear. This is called <strong>logistic regression</strong>.</p>
-<p>$$
-\eta = \mathrm{logit}\left{ P(Y = 1 ~|~ X) \right}
+<div class="math notranslate nohighlight">
+\[
+\eta = \mathrm{logit}\left\{ P(Y = 1 ~|~ X) \right\}
 = \beta_0 + \beta_1 X.
-$$</p>
-<p>The nice part about this model is that $e^\beta_1$ has the nice interpretation of the odds ratio associated with a one unit change in $X$.</p>
+\]</div>
+<p>The nice part about this model is that <span class="math notranslate nohighlight">\(e^\beta_1\)</span> has the nice interpretation of the odds ratio associated with a one unit change in <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>This is great, but we still need a function of the probabilities to optimize. We’ll use the <strong>cross entropy</strong>.</p>
-<p>$$
--\sum_{i=1}^n \left[Y_i \log{P(Y_i = 1 ~|~ X_i)} + (1 - Y_i) \log{1 - P(Y_i = 1 ~|~ X_i)}\right].
-$$</p>
-<p>This function has the interpretation of being the negative of the log of the probabilities assuming the $Y_i$ are independent. This model doesn’t have to hold for the minimization to be useful.</p>
+<div class="math notranslate nohighlight">
+\[
+-\sum_{i=1}^n \left[Y_i \log\{P(Y_i = 1 ~|~ X_i)\} + (1 - Y_i) \log\{1 - P(Y_i = 1 ~|~ X_i)\}\right].
+\]</div>
+<p>This function has the interpretation of being the negative of the log of the probabilities assuming the <span class="math notranslate nohighlight">\(Y_i\)</span> are independent. This model doesn’t have to hold for the minimization to be useful.</p>
 <p>Plugging our logit model in, the cross entropy now looks like</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 -\sum_{i=1}^n \left[
-Y_i \eta_i + \log\left{\frac{1}{1 + e^\eta_i} \right} \right].
-$$</p>
+  Y_i \eta_i + \log\left\{\frac{1}{1 + e^\eta_i} \right\} \right].
+\]</div>
 <p>This is the function that we minimize to perform logistic regression. Later on, we’ll worry about how to minimize this function. However, today, let’s fit logistic regression to some data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

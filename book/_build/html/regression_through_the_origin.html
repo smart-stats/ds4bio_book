@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'regression_through_the_origin';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -459,26 +461,30 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression_through_the_origin.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="regression-through-the-origin">
+<section class="tex2jax_ignore mathjax_ignore" id="regression-through-the-origin">
 <h1>Regression through the origin<a class="headerlink" href="#regression-through-the-origin" title="Link to this heading">#</a></h1>
-<p>In this notebook, we investigate a simple poblem where we’d like to use one scaled regressor to predict another. That is, let $Y_1, \ldots Y_n$ be a collection of variables we’d like to predict and $X_1, \ldots, X_n$ be predictors. Consider minimizing</p>
-<p>$$
+<p>In this notebook, we investigate a simple poblem where we’d like to use one scaled regressor to predict another. That is, let <span class="math notranslate nohighlight">\(Y_1, \ldots Y_n\)</span> be a collection of variables we’d like to predict and <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)</span> be predictors. Consider minimizing</p>
+<div class="math notranslate nohighlight">
+\[
 l = \sum_i ( Y_i - \beta X_i)^2 = || Y - \beta X||^2.
-$$</p>
-<p>Taking a derivative of $l$ with respect to $\beta$ yields</p>
-<p>$$
-l’ = - \sum_i 2 (Y_i - \beta X_i) X_i.
-$$</p>
+\]</div>
+<p>Taking a derivative of <span class="math notranslate nohighlight">\(l\)</span> with respect to <span class="math notranslate nohighlight">\(\beta\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[
+l' = - \sum_i 2 (Y_i - \beta X_i) X_i.
+\]</div>
 <p>If we set this equal to zero and solve for beta we obtain the classic solution:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \hat \beta = \frac{\sum_i Y_i X_i}{\sum_i X_i^2} = \frac{&lt;Y, X&gt;}{||X||^2}.
-$$</p>
+\]</div>
 <p>Note further, if we take a second derivative we get</p>
-<p>$$
-l’’ = \sum_i 2 x_i^2<br />
-$$</p>
-<p>which is strictly positive unless all of the $x_i$ are zero (a case of zero variation in the predictor where regresssion is uninteresting). Regression through the origin is a very useful version of regression, but it’s quite limited in its application. Rarely do we want to fit a line that is forced to go through the origin, or stated equivalently, rarely do we want a prediction algorithm for
-$Y$ that is simply a scale change of $X$. Typically, we at least also want an intercept. In the example that follows, we’ll address this by centering the data so that the origin is the mean of the $Y$ and the mean of the $X$. As it turns out, this is the same as fitting the intercept, but we’ll do that more formally in the next section.</p>
+<div class="math notranslate nohighlight">
+\[
+l'' = \sum_i 2 x_i^2  
+\]</div>
+<p>which is strictly positive unless all of the <span class="math notranslate nohighlight">\(x_i\)</span> are zero (a case of zero variation in the predictor where regresssion is uninteresting). Regression through the origin is a very useful version of regression, but it’s quite limited in its application. Rarely do we want to fit a line that is forced to go through the origin, or stated equivalently, rarely do we want a prediction algorithm for
+<span class="math notranslate nohighlight">\(Y\)</span> that is simply a scale change of <span class="math notranslate nohighlight">\(X\)</span>. Typically, we at least also want an intercept. In the example that follows, we’ll address this by centering the data so that the origin is the mean of the <span class="math notranslate nohighlight">\(Y\)</span> and the mean of the <span class="math notranslate nohighlight">\(X\)</span>. As it turns out, this is the same as fitting the intercept, but we’ll do that more formally in the next section.</p>
 <p>First let’s load the necessary packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,7 +638,7 @@ $Y$ that is simply a scale change of $X$. Typically, we at least also want an in
 <img alt="_images/ab529240d7e132d7ec99202924dd121996f20e23f5020a0ae3019e5d062738f8.png" src="_images/ab529240d7e132d7ec99202924dd121996f20e23f5020a0ae3019e5d062738f8.png" />
 </div>
 </div>
-<p>Now, let’s center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both $Y$ and $X$, is right at (0, 0).</p>
+<p>Now, let’s center the data as we mentioned so that it seems more reasonable to have the line go through the origin. Notice here, the middle of the data, both <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span>, is right at (0, 0).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>

@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'regression';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -469,11 +471,11 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/regression.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="continuous-prediction-with-regression">
+<section class="tex2jax_ignore mathjax_ignore" id="continuous-prediction-with-regression">
 <h1>Continuous prediction with regression<a class="headerlink" href="#continuous-prediction-with-regression" title="Link to this heading">#</a></h1>
-<p>Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  $\sum_{i=1}^n (Y_i - \hat \mu_i)^2.$</p>
-<p>If we were to dived this by $n$, it would be the average of the squared errors, or the <em>mean squared error</em> (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.</p>
-<p>What’s left is to figure out how to come up with $\hat \mu_i$, our predictions for the observation $Y_i$. We previously considered just a rescaled version of $X$, our predictor, using regression through the origin. In this module, we’ll try a slightly more complex model that includes a location (intercept) shift and a scale factor (slope). The consequence will be to fit the best line, in a certain sense, through our $X$, $Y$ paired data.</p>
+<p>Recall, we discussed a strict threshold classifier with accuracy as the loss function. Now consider continuous prediction, we need a loss function. A reasonable strategy would be to minimize the squared distances between our predictions and the observed values. In other words,  <span class="math notranslate nohighlight">\(\sum_{i=1}^n (Y_i - \hat \mu_i)^2.\)</span></p>
+<p>If we were to dived this by <span class="math notranslate nohighlight">\(n\)</span>, it would be the average of the squared errors, or the <em>mean squared error</em> (MSE). We can use minimizing the squared error both as a rule for finding a good prediction and as our evaluation strategy for held out data.</p>
+<p>What’s left is to figure out how to come up with <span class="math notranslate nohighlight">\(\hat \mu_i\)</span>, our predictions for the observation <span class="math notranslate nohighlight">\(Y_i\)</span>. We previously considered just a rescaled version of <span class="math notranslate nohighlight">\(X\)</span>, our predictor, using regression through the origin. In this module, we’ll try a slightly more complex model that includes a location (intercept) shift and a scale factor (slope). The consequence will be to fit the best line, in a certain sense, through our <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> paired data.</p>
 <p>To tie ourselves down with an example, consider the previous lecture’s example, consider trying to get the FLAIR value from the other, non-FLAIR, imaging values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -616,37 +618,42 @@ document.write(`
 </div>
 </div>
 <p>T2 and PD (proton density) look pretty linearly related. Imagine a study where a researcher collected T2 but did not collect PD. Let’s try to predict their PD values from the T2 values using a line. We’ll use least squares as the loss function. Specifically</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \sum_{v=1}^V (PD_v - \beta_0 - \beta_1 T2_v)^2
-$$</p>
-<p>where $v$ stands for voxel and $PD_v$ for the PD value at voxel $v$, $T2_v$ as the T2 value at voxel $v$ and $\beta_0$ and $\beta_1$ are parameters that we have to learn.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(v\)</span> stands for voxel and <span class="math notranslate nohighlight">\(PD_v\)</span> for the PD value at voxel <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(T2_v\)</span> as the T2 value at voxel <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> are parameters that we have to learn.</p>
 <p>A general equation for fitting a line to data is</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \sum_{i=1}^n (Y_i - \beta_0 - \beta_1 X_i)^2
-$$</p>
-<p>where we want to use $X_i$ to predict $Y_i$.</p>
-<p>It turns out that $\beta_0$ and $\beta_1$ have optimal solutions that we can write down. We get</p>
-<p>$$
+\]</div>
+<p>where we want to use <span class="math notranslate nohighlight">\(X_i\)</span> to predict <span class="math notranslate nohighlight">\(Y_i\)</span>.</p>
+<p>It turns out that <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> have optimal solutions that we can write down. We get</p>
+<div class="math notranslate nohighlight">
+\[
 \hat \beta_1 = Cor(X, Y) \frac{SD_Y}{SD_X}
-$$</p>
-<p>where $Cor(X, Y)$ is the (Pearson) <strong>correlation</strong> between $X$ and $Y$ and $SD_X$ is the <strong>standard deviation</strong> of $X$ (and $SD_Y$ is for $Y$). The intercept satisfies</p>
-<p>$$
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Cor(X, Y)\)</span> is the (Pearson) <strong>correlation</strong> between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(SD_X\)</span> is the <strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(X\)</span> (and <span class="math notranslate nohighlight">\(SD_Y\)</span> is for <span class="math notranslate nohighlight">\(Y\)</span>). The intercept satisfies</p>
+<div class="math notranslate nohighlight">
+\[
 \hat \beta_0 = \bar Y - \bar X \hat \beta_1
-$$</p>
-<p>where $\bar X$ and $\bar Y$ are the means.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar X\)</span> and <span class="math notranslate nohighlight">\(\bar Y\)</span> are the means.</p>
 <p>Notice this latter equation reorganized is just</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \bar Y = \hat \beta_0 + \bar X \hat \beta_1
-$$</p>
-<p>pointing out that the fitted line has to go through the point $(\bar X, \bar Y)$.</p>
+\]</div>
+<p>pointing out that the fitted line has to go through the point <span class="math notranslate nohighlight">\((\bar X, \bar Y)\)</span>.</p>
 <section id="some-definitions">
 <h2>Some definitions<a class="headerlink" href="#some-definitions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>The <strong>covariance</strong> is defined as  $Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)$</p></li>
-<li><p>The <strong>standard deviation</strong> of $X$ is $SD_X$, $\sqrt{Cov(X, X)}$</p></li>
-<li><p>The Pearson <strong>correlation</strong> is defined as $\frac{Cov(X, Y)}{SD_X \times SD_Y}$</p></li>
+<li><p>The <strong>covariance</strong> is defined as  <span class="math notranslate nohighlight">\(Cov(X,Y) = \sum_{i=1}^n (Y_i - \bar Y) (X_i - \bar X) / (N-1)\)</span></p></li>
+<li><p>The <strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(SD_X\)</span>, <span class="math notranslate nohighlight">\(\sqrt{Cov(X, X)}\)</span></p></li>
+<li><p>The Pearson <strong>correlation</strong> is defined as <span class="math notranslate nohighlight">\(\frac{Cov(X, Y)}{SD_X \times SD_Y}\)</span></p></li>
 </ul>
-<p>The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say “correlation” without further context, it’s understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, $Cov(X, X)$, is simply the square of the standard deviation and has units of X squared.</p>
+<p>The Pearson correlation measures the degree of linear association between two variables where neither is thought of as an outcome or predictor. It is a unit free quantity. If you just say “correlation” without further context, it’s understood to mean the Pearson correlation. The covariance measures the same thing, though it has the units of the units X times the units of Y. The sample standard deviation of X has the units of X and measures the spread, or variability, of X. The variance, <span class="math notranslate nohighlight">\(Cov(X, X)\)</span>, is simply the square of the standard deviation and has units of X squared.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;T2&#39;</span><span class="p">]</span>
@@ -697,7 +704,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>Let’s now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of $\beta_0$ and $\beta_1$. We’ll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.</p>
+<p>Let’s now calculate our predictions on the test set. Recall, the test set was not used to come up with estimates of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>. We’ll show the training MSE and the testing MSE as well as a plot of the test set actual Ys versus the predicted ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat_test</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">xtest</span>

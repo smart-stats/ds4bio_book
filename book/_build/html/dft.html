@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dft';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -478,7 +480,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/dft.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="dft">
+<section class="tex2jax_ignore mathjax_ignore" id="dft">
 <h1>DFT<a class="headerlink" href="#dft" title="Link to this heading">#</a></h1>
 <section id="abstract-notations">
 <h2>Abstract notations<a class="headerlink" href="#abstract-notations" title="Link to this heading">#</a></h2>
@@ -489,28 +491,31 @@ document.write(`
 </section>
 <section id="some-notation">
 <h3>Some notation<a class="headerlink" href="#some-notation" title="Link to this heading">#</a></h3>
-<p>Let $&lt;,&gt;$ be a so-called inner product. For example $&lt;a, b&gt; = \sum_{m=1}^n a_m b_m$ if $a$ and $b$ are two vectors. But, $&lt;a, b&gt;=\int_0^1 a(t)b(t)dt$ if $a$ and $b$ are two functions on $[0,1]$. (There is a nice generality between Fourier results on data and Fourier results on functions and other spaces. However, we’ll largely focus on discrete data, so think of the first definition.) We can define the norm as $&lt;a, a&gt; = ||a||^2$, so that, the distance between two vectors is $||a-b||$.</p>
-<p>Consider a basis, that is a set of vectors, $b_k$ so that $||b_k|| = 1$ and $&lt;b_k, b_j&gt;= I(k=j)$ and the set of vectors, ${\cal H}$, that can be written as $\sum_{k=1}^k b_k c_k$ for some constants $c_k$, then for any element $x\in H$ we have that the best approximation using any subset of the indices, $S$, is of the form</p>
-<p>$$
+<p>Let <span class="math notranslate nohighlight">\(&lt;,&gt;\)</span> be a so-called inner product. For example <span class="math notranslate nohighlight">\(&lt;a, b&gt; = \sum_{m=1}^n a_m b_m\)</span> if <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are two vectors. But, <span class="math notranslate nohighlight">\(&lt;a, b&gt;=\int_0^1 a(t)b(t)dt\)</span> if <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are two functions on <span class="math notranslate nohighlight">\([0,1]\)</span>. (There is a nice generality between Fourier results on data and Fourier results on functions and other spaces. However, we’ll largely focus on discrete data, so think of the first definition.) We can define the norm as <span class="math notranslate nohighlight">\(&lt;a, a&gt; = ||a||^2\)</span>, so that, the distance between two vectors is <span class="math notranslate nohighlight">\(||a-b||\)</span>.</p>
+<p>Consider a basis, that is a set of vectors, <span class="math notranslate nohighlight">\(b_k\)</span> so that <span class="math notranslate nohighlight">\(||b_k|| = 1\)</span> and <span class="math notranslate nohighlight">\(&lt;b_k, b_j&gt;= I(k=j)\)</span> and the set of vectors, <span class="math notranslate nohighlight">\({\cal H}\)</span>, that can be written as <span class="math notranslate nohighlight">\(\sum_{k=1}^k b_k c_k\)</span> for some constants <span class="math notranslate nohighlight">\(c_k\)</span>, then for any element <span class="math notranslate nohighlight">\(x\in H\)</span> we have that the best approximation using any subset of the indices, <span class="math notranslate nohighlight">\(S\)</span>, is of the form</p>
+<div class="math notranslate nohighlight">
+\[
 \sum_{k\in S} b_k &lt;b_k, x&gt;.
-$$</p>
+\]</div>
 <p>For real vectors and the basis we consider, every vector can be written as a sum of the basis elements. You can have weird functions that can’t be written out as sums of the basis elements, but they’re weird functions.</p>
 </section>
 </section>
 <section id="more-practically">
 <h2>More practically<a class="headerlink" href="#more-practically" title="Link to this heading">#</a></h2>
-<p>The basis we’re interested in is $b_k$ which has element $m$ equal to $e^{-2\pi i m k/n} = \cos(2\pi mk/n) + i \sin (2\pi mk / n)$ for $k=0,…, n-1$. Here, notice, we quit using the index $i$ since now it stands for the complex unit.
-This basis satisfies our rules of $&lt;b_k, b_j&gt; = I(j=k)$ and having norm 1. So that, given any vector $x$, our best approximation to it is</p>
-<p>$$
+<p>The basis we’re interested in is <span class="math notranslate nohighlight">\(b_k\)</span> which has element <span class="math notranslate nohighlight">\(m\)</span> equal to <span class="math notranslate nohighlight">\(e^{-2\pi i m k/n} = \cos(2\pi mk/n) + i \sin (2\pi mk / n)\)</span> for <span class="math notranslate nohighlight">\(k=0,..., n-1\)</span>. Here, notice, we quit using the index <span class="math notranslate nohighlight">\(i\)</span> since now it stands for the complex unit.
+This basis satisfies our rules of <span class="math notranslate nohighlight">\(&lt;b_k, b_j&gt; = I(j=k)\)</span> and having norm 1. So that, given any vector <span class="math notranslate nohighlight">\(x\)</span>, our best approximation to it is</p>
+<div class="math notranslate nohighlight">
+\[
 \sum_{k=0}^{n-1} b_k &lt;b_k, x&gt; = \sum_{k=0}^{n-1} b_k F_k
-$$</p>
+\]</div>
 <p>where</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 F_k = \sum_{m=0}^{n-1} x_m e^{-2\pi i m k / n}
 = \sum_{m=0}^{n-1} x_m [\cos(2\pi m k / n) + i \sin(2\pi m k / n)].
-$$</p>
-<p>The collection of elements, $F = (F_0, \ldots F_{n-1})$ are called the (discrete) Fourier coeficients and the operation that takes $x$ and converts it into $F$ is called the (discrete) Fourier transform.</p>
-<p>Let’s consider  the case where $x=(1 ~4 ~9 ~16)’$. So then</p>
+\]</div>
+<p>The collection of elements, <span class="math notranslate nohighlight">\(F = (F_0, \ldots F_{n-1})\)</span> are called the (discrete) Fourier coeficients and the operation that takes <span class="math notranslate nohighlight">\(x\)</span> and converts it into <span class="math notranslate nohighlight">\(F\)</span> is called the (discrete) Fourier transform.</p>
+<p>Let’s consider  the case where <span class="math notranslate nohighlight">\(x=(1 ~4 ~9 ~16)'\)</span>. So then</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -600,7 +605,7 @@ $$</p>
 </div>
 <section id="some-notes">
 <h3>Some notes<a class="headerlink" href="#some-notes" title="Link to this heading">#</a></h3>
-<p>We can go backwards from the Fourier coefficients to the signal using the inverse transform. Also, for real signals sometimes people will multiply the signal by $(-1)^t$ in order for the plot of the norm of the coeficients (the power spectrum as its called) to look nicer.</p>
+<p>We can go backwards from the Fourier coefficients to the signal using the inverse transform. Also, for real signals sometimes people will multiply the signal by <span class="math notranslate nohighlight">\((-1)^t\)</span> in order for the plot of the norm of the coeficients (the power spectrum as its called) to look nicer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plotting the spectrum so that it&#39;s in the middle</span>

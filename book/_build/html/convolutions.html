@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'convolutions';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -471,32 +473,35 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/convolutions.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="convolutions">
+<section class="tex2jax_ignore mathjax_ignore" id="convolutions">
 <h1>Convolutions<a class="headerlink" href="#convolutions" title="Link to this heading">#</a></h1>
 <section id="d-transforms">
 <h2>1D transforms<a class="headerlink" href="#d-transforms" title="Link to this heading">#</a></h2>
-<p>Convolutions are an important topic  in mathematics, statistics, signal processing … Let’s discuss 1D convolutions first. A real valued convolution of two continuous signals, $X(t)$ and $K(t)$ is defined as $X * K$</p>
-<p>$$
+<p>Convolutions are an important topic  in mathematics, statistics, signal processing … Let’s discuss 1D convolutions first. A real valued convolution of two continuous signals, <span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(K(t)\)</span> is defined as <span class="math notranslate nohighlight">\(X * K\)</span></p>
+<div class="math notranslate nohighlight">
+\[
 (X* K)(t) = \int_{-\infty}^{\infty} X(u) K(t-u) du
 = \int_{-\infty}^{\infty} X(t-v) K(v) dv,
-$$</p>
+\]</div>
 <p>where the equality is determined by a simple change of variable argument. The discrete analog is</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 (X* K)(t) = \sum_{u = -\infty}^{\infty} X(u) K(t-u)
 = \sum_{v = -\infty}^{\infty} X(t-v) K(v)
-$$</p>
-<p>The convolution has many, many uses in data science and statistics. For example, the convolution of densities or mass functions is the respective density or mass function for the sum of random variables from those distributions. In applied data analysis, you can think of the convolution between $X$ and $K$ as <em>smearing</em> the function $K$ over the function $X$. Thus, it plays a key role in smoothing. Let’s try an example using the covid data and a box kernel.  We take $K(t) = I{0 \leq t &lt; M} / M$ (i.e. is 1 for times 0 to $M-1$, then rescaled so it sums to 1). Assume that $N\geq M$ and that $X(t)$ and $K(t)$ are $0$ and for $t &lt; 0$ or $t &gt; N$. Then, our convolution works out to be</p>
-<p>$$
+\]</div>
+<p>The convolution has many, many uses in data science and statistics. For example, the convolution of densities or mass functions is the respective density or mass function for the sum of random variables from those distributions. In applied data analysis, you can think of the convolution between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(K\)</span> as <em>smearing</em> the function <span class="math notranslate nohighlight">\(K\)</span> over the function <span class="math notranslate nohighlight">\(X\)</span>. Thus, it plays a key role in smoothing. Let’s try an example using the covid data and a box kernel.  We take <span class="math notranslate nohighlight">\(K(t) = I\{0 \leq t &lt; M\} / M\)</span> (i.e. is 1 for times 0 to <span class="math notranslate nohighlight">\(M-1\)</span>, then rescaled so it sums to 1). Assume that <span class="math notranslate nohighlight">\(N\geq M\)</span> and that <span class="math notranslate nohighlight">\(X(t)\)</span> and <span class="math notranslate nohighlight">\(K(t)\)</span> are <span class="math notranslate nohighlight">\(0\)</span> and for <span class="math notranslate nohighlight">\(t &lt; 0\)</span> or <span class="math notranslate nohighlight">\(t &gt; N\)</span>. Then, our convolution works out to be</p>
+<div class="math notranslate nohighlight">
+\[
 (X* K)(t)
 = \sum_{u = -\infty}^{\infty} X(u) K(t-u)
 = \sum_{u = 0}^{N} X(u) K(t-u)
 = \sum_{u = t}^{t + M - 1} X(u) K(t -u)
 = \sum_{u = t}^{t + M - 1} X(u) / M
-$$</p>
-<p>That is, our convolution is a moving average of $X$ where the convolution at point $t$ is the average of the points between $t$ and $t + M - 1$. So, the convolution, as we’ve defined it, at point $t$ is the moving average at point $t + (M-1)/2$ (ie. it’s shifted by $(M-1)/2$). Also, at the end ($t \geq N - M + 1$), we’re averaging in the assumed zero values of the $X$. This might be reasonable to do, or maybe not. The fact that we’re padding the end and not the beginning is just because of the range of index values we defined the kernel on. We’d have the same problem only on the other end if $K(t) = I(-M &lt; t \leq 0)/M$. Of course, the computer will start summing things at index 0 regardless. However, it can shift the kernel relative to the signal arbitrarily by zero padding one end or the other or both. A reasonable strategy is to set it so that
-it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the range of $N - M$ middle values where this isn’t an issue  (argument <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;valid&quot;</span></code>).</p>
+\]</div>
+<p>That is, our convolution is a moving average of <span class="math notranslate nohighlight">\(X\)</span> where the convolution at point <span class="math notranslate nohighlight">\(t\)</span> is the average of the points between <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t + M - 1\)</span>. So, the convolution, as we’ve defined it, at point <span class="math notranslate nohighlight">\(t\)</span> is the moving average at point <span class="math notranslate nohighlight">\(t + (M-1)/2\)</span> (ie. it’s shifted by <span class="math notranslate nohighlight">\((M-1)/2\)</span>). Also, at the end (<span class="math notranslate nohighlight">\(t \geq N - M + 1\)</span>), we’re averaging in the assumed zero values of the <span class="math notranslate nohighlight">\(X\)</span>. This might be reasonable to do, or maybe not. The fact that we’re padding the end and not the beginning is just because of the range of index values we defined the kernel on. We’d have the same problem only on the other end if <span class="math notranslate nohighlight">\(K(t) = I(-M &lt; t \leq 0)/M\)</span>. Of course, the computer will start summing things at index 0 regardless. However, it can shift the kernel relative to the signal arbitrarily by zero padding one end or the other or both. A reasonable strategy is to set it so that
+it averages in <span class="math notranslate nohighlight">\((M-1)/2\)</span> on both ends. Numpy allows you to only look at the range of <span class="math notranslate nohighlight">\(N - M\)</span> middle values where this isn’t an issue  (argument <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;valid&quot;</span></code>).</p>
 <p>Note we could make the kernel weight points differently than just a box kernel. A popular choice is a Gaussian distribution.</p>
-<p>Also, the convolution has $N+M-1$ points. So, it has more time points than the original signal. Numpy has options to shift the convolution back into the same space as the original signal for you (i.e. has $N$ points, <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;same&quot;</span></code>). Or, you can just do it yourself if you do <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;full&quot;</span></code>, just shift by $(M-1)/2$. Similarly shift for <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;valid&quot;</span></code> (but the convolution has fewer points in this case, so it won’t have corresponding points with $X$ at the very beginning and end).</p>
+<p>Also, the convolution has <span class="math notranslate nohighlight">\(N+M-1\)</span> points. So, it has more time points than the original signal. Numpy has options to shift the convolution back into the same space as the original signal for you (i.e. has <span class="math notranslate nohighlight">\(N\)</span> points, <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;same&quot;</span></code>). Or, you can just do it yourself if you do <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;full&quot;</span></code>, just shift by <span class="math notranslate nohighlight">\((M-1)/2\)</span>. Similarly shift for <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;valid&quot;</span></code> (but the convolution has fewer points in this case, so it won’t have corresponding points with <span class="math notranslate nohighlight">\(X\)</span> at the very beginning and end).</p>
 <p>Here’s an example using Italy’s daily covid case count data. We plot the data and the convolution smoothed data. In the bottom panels, we show the residuals to highlight the difference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -568,7 +573,7 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
 <img alt="_images/bee3cf0a11cd762de324c61ffc6b6ce8a5ebbc059a75b4864bc998e7a4c14d41.png" src="_images/bee3cf0a11cd762de324c61ffc6b6ce8a5ebbc059a75b4864bc998e7a4c14d41.png" />
 </div>
 </div>
-<p>Let’s show that the first point and end point of the convolution are the averages of $(M-1)/2$ points and and $(M-1)/2+1$ zeros at the beginning or end of the original signal just to show that our intuition is correct.</p>
+<p>Let’s show that the first point and end point of the convolution are the averages of <span class="math notranslate nohighlight">\((M-1)/2\)</span> points and and <span class="math notranslate nohighlight">\((M-1)/2+1\)</span> zeros at the beginning or end of the original signal just to show that our intuition is correct.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
@@ -654,21 +659,24 @@ it averages in $(M-1)/2$ on both ends. Numpy allows you to only look at the rang
 <section id="id1">
 <h2>2D transforms<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>For two dimensions, the convolution is similar</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 (X ** K)(i,j) = \sum_{u=-\infty}^{\infty} \sum_{v=-\infty}^{\infty}
 X(u, v)  K(i -u, k - v) = \sum_{u=-\infty}^{\infty} \sum_{v=-\infty}^{\infty}
-K(u, v)  X(i -u, k - v)<br />
-$$</p>
-<p>Once again, let’s think where $X$ is of dimension $(N_1, N_2)$ and 0 outside of that range, and</p>
-<p>$$
+K(u, v)  X(i -u, k - v)  
+\]</div>
+<p>Once again, let’s think where <span class="math notranslate nohighlight">\(X\)</span> is of dimension <span class="math notranslate nohighlight">\((N_1, N_2)\)</span> and 0 outside of that range, and</p>
+<div class="math notranslate nohighlight">
+\[
 K(u, v) = I(0 \leq u &lt; M_1, 0 \leq v &lt; M_2) / (M_1 M_2)
-$$</p>
-<p>(i.e. $K$ is a box on $M_1 \leq N_1$, $M_2 &lt; N_2$). Then, applying the exact same argument as before,  the convolution is:</p>
-<p>$$
+\]</div>
+<p>(i.e. <span class="math notranslate nohighlight">\(K\)</span> is a box on <span class="math notranslate nohighlight">\(M_1 \leq N_1\)</span>, <span class="math notranslate nohighlight">\(M_2 &lt; N_2\)</span>). Then, applying the exact same argument as before,  the convolution is:</p>
+<div class="math notranslate nohighlight">
+\[
 (X ** K)(i,j) = \sum_{u=i}^{M_1 + i - 1} \sum_{v=j}^{M_2 + j - 1}
 X(u, v) / (M_1 M_2)
-$$</p>
-<p>That is, the convolution at point $(i,j)$ is the average of the neighboring points. Also, all of the same bookkeeping, zero padding and Fourier transform stuff apply (using the 2D FFT).</p>
+\]</div>
+<p>That is, the convolution at point <span class="math notranslate nohighlight">\((i,j)\)</span> is the average of the neighboring points. Also, all of the same bookkeeping, zero padding and Fourier transform stuff apply (using the 2D FFT).</p>
 <p>For regular kernels (box kernels, 2D Gaussians), convolution smooths the image, which has the efffect of making it blurrier. The kernel width determines how blurry the image will then be. This is typically done to denoise an image (to blur out the noise). Let’s try it on a cartoon image of Brian. We’ll just stick to a black and white image so that it’s 2D. A color image has 3 color channels, so is a 3D array. (However, you see the patten; you should be able to extend this to 3D with little problem.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,15 +752,16 @@ $$</p>
 <p>Of course, your kernel doesn’t have to be a box, or a truncated, discretized bivariate Gaussian density or even be non-negative. It’s helpful for smoothers to have non-negative kernels, since they’re just taking a generalized variation of a moving average that way. But, we want to use convolutions</p>
 <p>more generally.  Here, let’s take a kernel that is part of the image (left eye) and convolve it. I’ll make the kernel super peaked at eye features by extracting the eye and raising it to the 4th power.</p>
 <p>So a relu activation function plus a bias term would then be able to highlight different thresheld variations of this convolution image. For example, here I add a bias term to the convolution then apply a leaky relu. You can see it just highlights the one area where the eye is. A leaky relu is</p>
-<p>$$
-lrelu(x, c) = \left{
-\begin{array}{ll}
-x &amp; \text{if $x &gt; 0$} \
-x * c &amp; \text{otherwise}
-\end{array}
-\right.
-$$</p>
-<p>where $c$ is usually set to a small value. If $c=0$ the leaky relu is just the relu. I set $c$ to be 0.05 so that we can see the background image.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+lrelu(x, c) = \left\{
+  \begin{array}{ll}
+  x &amp; \text{if $x &gt; 0$} \\
+  x * c &amp; \text{otherwise}
+  \end{array}
+  \right.
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is usually set to a small value. If <span class="math notranslate nohighlight">\(c=0\)</span> the leaky relu is just the relu. I set <span class="math notranslate nohighlight">\(c\)</span> to be 0.05 so that we can see the background image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mf">12.4</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">])</span>

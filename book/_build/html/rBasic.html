@@ -57,7 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'rBasic';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -473,7 +474,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/rBasic.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="base-r">
+<section class="tex2jax_ignore mathjax_ignore" id="base-r">
 <h1>Base R<a class="headerlink" href="#base-r" title="Link to this heading">#</a></h1>
 <p>R is another data science language more specifically geared towards statistics. R is an implementation of the S language by John Chambers written originally by Ross Ihaka and Robert Gentleman. The R Core Team, R Foundation and almost countless contributors continually improve and maintain R.</p>
 <p>In this course, we’re going to cover very little basic R and focus mainly on the so-called tidyverse. However, a little base R goes a long way. You can install R into jupyter notebooks and then have it as an option. Alternatively, Rstudio is a well known R ide as is ESS in Emacs.</p>

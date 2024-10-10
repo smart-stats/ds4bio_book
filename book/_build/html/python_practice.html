@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'python_practice';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -470,7 +472,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/python_practice.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="python-in-practice">
+<section class="tex2jax_ignore mathjax_ignore" id="python-in-practice">
 <h1>Python in practice<a class="headerlink" href="#python-in-practice" title="Link to this heading">#</a></h1>
 <p>The kind of programming we’ve seen so far in python isn’t how typical data programmming in python goes. Instead, we tend to rely a lot of modules that add methods to our complex data science objects. Most python objects are class objects that come with a variety of convenient methods associated with them. If you’re working in a good coding environment, then it should have some method autocompletion for your objects, which helps prevent typos and can speed up work. Let’s look at methods associated with a list object. Note that some methods change the object itself while others return things without changing the object.</p>
 <div class="cell docutils container">
@@ -504,10 +506,10 @@ document.write(`
 <p>Let’s create our own version of a complex number, adapted from <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">here</a>. Complex numbers have two parts, the real part and the “imaginary” part.
 (Note I put imaginary in quotes, since, IMHO, complex numbers and the associated operations are simply an algebraic system, no more or less imaginary than most other algebraic systems. They simply lack the direct real world counting analogy of squaring a whole number. But there are countless algenbraic systems created for a variety of uses, most lacking the direct analogy to counting whole numbers.)
 There’s two popular representations of complex numbers, Cartesian and polar. We’ll use Cartesian and not discuss polar.</p>
-<p>A complex number is represented as $a + bi$ where $a$ and $b$ are numbers and $i$ is the symbol for the complex root of -1, i.e. $i^2 = -1$. If $a + b i $ is a complex number, $a - bi$ is its so-called conjugate. Conjugates are useful since
-$$
+<p>A complex number is represented as <span class="math notranslate nohighlight">\(a + bi\)</span> where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are numbers and <span class="math notranslate nohighlight">\(i\)</span> is the symbol for the complex root of -1, i.e. <span class="math notranslate nohighlight">\(i^2 = -1\)</span>. If <span class="math notranslate nohighlight">\(a + b i \)</span> is a complex number, <span class="math notranslate nohighlight">\(a - bi\)</span> is its so-called conjugate. Conjugates are useful since
+$<span class="math notranslate nohighlight">\(
 (a+bi)(a-bi) = a^2 + abi - abi - b^2 i^2 = a^2 + b^2
-$$</p>
+\)</span>$</p>
 <p>Let’s create an object called <code class="docutils literal notranslate"><span class="pre">mycomplex</span></code> and give it a conjugation method and some other stuff.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

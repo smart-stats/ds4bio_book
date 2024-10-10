@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'EDA';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -459,7 +461,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/EDA.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="exploratory-data-analysis">
+<section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis">
 <h1>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Link to this heading">#</a></h1>
 <p>In this lecture, we’ll talk about EDA (exploratory data analysis) using the python framework seaborn. EDA is the process of using graphs to uncover features in your data often interactively. EDA is hard to quantify, but is touted by most applied data scientists as a crucial component of their craft. EDA is often summarized by the famous sayings</p>
 <p><em>A picture is worth a 1,000 words</em></p>
@@ -775,8 +777,8 @@ document.write(`
 <img alt="_images/74b1cb0bfe2fa1c5bd8c55b47b62c69c55b034cb8673e7c93e5eeca911f24021.png" src="_images/74b1cb0bfe2fa1c5bd8c55b47b62c69c55b034cb8673e7c93e5eeca911f24021.png" />
 </div>
 </div>
-<p>Thus, apparently, the <em>right</em> side is always a little bigger than the <em>left</em> and the scale of the ratio is $e^{0.02}$ while the scale of the geometric mean is $e^{13}$. Note, $\exp(x) \approx 1 + x$  for $x \approx 0$. So it’s about 2% larger. A note about right versus left in imaging. Often the labels get switched as there are different conventions (is it the right of the subject or the right of the viewer when looking straight at the subject?). Typically, it’s known that some of the areas of subject’s left hemisphere are larger and so it’s probably radiological (right of the viewer) convention here. <a class="reference external" href="https://www.dana.org/uploadedFiles/BAW/Brain_Brief_Right_Brain-Left_Brain_Final.pdf">Here’s</a> a nicely done article about right versus left brain.</p>
-<p>Also, in case you don’t believe me, here’s a plot of $e^x$ versus $1+x$ for values up to 0.1. This is obtained as the Taylor expasion for $e^x$ around 0.</p>
+<p>Thus, apparently, the <em>right</em> side is always a little bigger than the <em>left</em> and the scale of the ratio is <span class="math notranslate nohighlight">\(e^{0.02}\)</span> while the scale of the geometric mean is <span class="math notranslate nohighlight">\(e^{13}\)</span>. Note, <span class="math notranslate nohighlight">\(\exp(x) \approx 1 + x\)</span>  for <span class="math notranslate nohighlight">\(x \approx 0\)</span>. So it’s about 2% larger. A note about right versus left in imaging. Often the labels get switched as there are different conventions (is it the right of the subject or the right of the viewer when looking straight at the subject?). Typically, it’s known that some of the areas of subject’s left hemisphere are larger and so it’s probably radiological (right of the viewer) convention here. <a class="reference external" href="https://www.dana.org/uploadedFiles/BAW/Brain_Brief_Right_Brain-Left_Brain_Final.pdf">Here’s</a> a nicely done article about right versus left brain.</p>
+<p>Also, in case you don’t believe me, here’s a plot of <span class="math notranslate nohighlight">\(e^x\)</span> versus <span class="math notranslate nohighlight">\(1+x\)</span> for values up to 0.1. This is obtained as the Taylor expasion for <span class="math notranslate nohighlight">\(e^x\)</span> around 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.001</span><span class="p">)</span>

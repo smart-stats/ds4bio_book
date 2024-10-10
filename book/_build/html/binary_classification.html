@@ -474,7 +474,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/binary_classification.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="introduction-to-binary-classification">
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-binary-classification">
 <h1>Introduction to binary classification<a class="headerlink" href="#introduction-to-binary-classification" title="Link to this heading">#</a></h1>
 <p>The data we’re going to be working with for this example is the <code class="docutils literal notranslate"><span class="pre">oasis</span></code> data from Elizabeth Sweeney’s R package. The data contain MR (magnetic resonance) images for lesion segmentation in multiple sclerosis (MS). MS is a disorder primarily caused by whtie matter lesions. This dataset is a collection of voxels from an image with radiologists labeling of whether or not a white matter lesion exists at that location.</p>
 <div class="cell docutils container">
@@ -653,7 +653,7 @@ Name: FLAIR, dtype: object
 </div>
 </div>
 </section>
-<section id="classification">
+<section class="tex2jax_ignore mathjax_ignore" id="classification">
 <h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
 <p>Let’s try creating the simplest possible classifier, a threshold. So here we want to pick the value of the threshold so that lower values are classified <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">0</span></code> (i.e. no lesion) and higher values are <code class="docutils literal notranslate"><span class="pre">GOLD_Lesion</span> <span class="pre">==</span> <span class="pre">1</span></code> (lesion at this voxel). We want to do this on labeled voxels so that we can pick a meaningful threshold on voxels without a gold standard labeling. That is, for new patients we want to automatically label their images one voxel at a time with a simple thresholding rule. We’re going to use our <strong>training data</strong> where we know the truth to develop the threshold.</p>
 <p><em>Note the idea behind doing this is only useful if the new images without the gold standard are in the same units as the old one, which is not usually the case for MRIs. The technique for trying to make images comparable is called normalization</em>.</p>

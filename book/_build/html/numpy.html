@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numpy';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -459,7 +461,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/numpy.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="numpy">
+<section class="tex2jax_ignore mathjax_ignore" id="numpy">
 <h1>Numpy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h1>
 <p>Numpy is an essential core component of doing statistics in python. Numpy basically contains all of the basic mathematical functions that you need. Let’s load in some data and work with it a bit. Here we’re going to be downloading the cumulative daily case counts of Covid-19 for Italy. (Modify the code in the obvious way to pick another country. The data is from the JHU Covid-19 dashboard, a fantastic data science project from the Center for Systems Science Engineering at JHU.)</p>
 <div class="cell docutils container">
@@ -487,14 +489,16 @@ document.write(`
 </div>
 </div>
 <p>Let’s get some basic statistical summaries. Note the default is that the standard deviations uses the formula</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \sqrt{\frac{1}{N} \sum_{i=1}^N (X_i - \bar X)^2}
-$$</p>
+\]</div>
 <p>rather than</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar X)^2}.
-$$</p>
-<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer $N$ as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.) To described the code below:</p>
+\]</div>
+<p>To get the latter (the unbiased version), set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Personally, I prefer <span class="math notranslate nohighlight">\(N\)</span> as a divisor, though that’s a minority opinion. (Between bias or variance of the standard deviation estimate, I’d rather rather have lower variance.) To described the code below:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">X.mean()</span></code> gives the mean; since <code class="docutils literal notranslate"><span class="pre">X</span></code> is a numpy object, it has statistical methods defined in the class</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X.std()</span></code> gives the (biased version of the) standard deviation</p></li>
@@ -516,9 +520,10 @@ Std (biased) : 36890.56
 </div>
 </div>
 <p>Numpy has a linear algebra library. Let’s calculate a distributed lag model using numpy (typically you would use this with regression software). A distributed lag model is of the form:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 Y_t = \alpha + \sum_{i=1}^p \beta_i Y_{t-i} + \epsilon_i
-$$</p>
+\]</div>
 <p>First, let’s create the lagged matrix considering 3 lags.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -577,18 +582,20 @@ $$</p>
 </div>
 </div>
 <p>The matrix formula for minimizing the least squares regression model,</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 || Y - X \beta||^2
-$$</p>
+\]</div>
 <p>is given by</p>
-<p>$$
-\hat \beta = (X’ X)^{-1} X’ Y
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+\hat \beta = (X' X)^{-1} X' Y
+\]</div>
 <p>Let’s do this in numpy. Let’s find the estimated regression coefficients using the formula above. We’ll use the following functions</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matmul(A,B)</span></code> is the matrix multiplication of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">A.T</span></code> is the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as $A’$</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inv(A)</span></code> is the matrix inverse of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as $A^{-1}$</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A.T</span></code> is the transpose of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as <span class="math notranslate nohighlight">\(A'\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inv(A)</span></code> is the matrix inverse of <code class="docutils literal notranslate"><span class="pre">A</span></code>, labeled above as <span class="math notranslate nohighlight">\(A^{-1}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

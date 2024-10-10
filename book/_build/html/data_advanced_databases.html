@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_advanced_databases';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -469,7 +471,7 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a href="https://colab.research.google.com/github/smart-stats/ds4bio_book/blob/main/book/data_advanced_databases.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section id="hdf5">
+<section class="tex2jax_ignore mathjax_ignore" id="hdf5">
 <h1>HDF5<a class="headerlink" href="#hdf5" title="Link to this heading">#</a></h1>
 <p>You’ve probably already learned about some variation of databases
 either sql, nosql, spark, a cloud db, … We covered sqlite last chapter.  Often,
@@ -553,10 +555,11 @@ mean 0, variance 1 and uncorrelated. After our calculations, they will
 have empirical mean 0 and variance 1 and the empirical correlation
 between the residual and sensor 2 will be 0.</p>
 <p>Let’s consider a block variation of the inner product.</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 &lt;a, b&gt; = \sum_{i=0}^{n-1} a_i b_i = \sum_{i=0}^{n/B} \sum_{j=0}^{B-1} a_{j + i B} b_{j + i B}
-$$</p>
-<p>(if $n$ is divisible by $B$. Otherwise you have to figure out what to do with the final block, which isn’t hard but makes the notation messier.) So, for example, the (sample) mean is then $&lt;x, J&gt;/n$ where $J$ is a vector of ones.</p>
+\]</div>
+<p>(if <span class="math notranslate nohighlight">\(n\)</span> is divisible by <span class="math notranslate nohighlight">\(B\)</span>. Otherwise you have to figure out what to do with the final block, which isn’t hard but makes the notation messier.) So, for example, the (sample) mean is then <span class="math notranslate nohighlight">\(&lt;x, J&gt;/n\)</span> where <span class="math notranslate nohighlight">\(J\)</span> is a vector of ones.</p>
 <p>Let’s calculate the mean using blockwise calculations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,7 +594,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>Now the (unbiased, sample) variance of centered vector $a$ is simply $&lt;a, a&gt;/(n-1)$.</p>
+<p>Now the (unbiased, sample) variance of centered vector <span class="math notranslate nohighlight">\(a\)</span> is simply <span class="math notranslate nohighlight">\(&lt;a, a&gt;/(n-1)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
@@ -622,7 +625,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>Now that our vectors are centered and scaled, the empirical correlation is simply $&lt;a, b&gt;/(n-1)$. Let’s do that</p>
+<p>Now that our vectors are centered and scaled, the empirical correlation is simply <span class="math notranslate nohighlight">\(&lt;a, b&gt;/(n-1)\)</span>. Let’s do that</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="mi">0</span>
@@ -639,7 +642,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>Finally, we want to “regress out” s2 from s1. Since we normalized our series, the correlation is slope coefficient from linear regression (regardless of the outcome and dependent variable) and the intercept is zero (since we centered). Thus, the residual we want is $e_{12} = s_1 - \rho s_2$ where $\rho$ is the correlation.</p>
+<p>Finally, we want to “regress out” s2 from s1. Since we normalized our series, the correlation is slope coefficient from linear regression (regardless of the outcome and dependent variable) and the intercept is zero (since we centered). Thus, the residual we want is <span class="math notranslate nohighlight">\(e_{12} = s_1 - \rho s_2\)</span> where <span class="math notranslate nohighlight">\(\rho\)</span> is the correlation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;processed/resid_s1_s2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>

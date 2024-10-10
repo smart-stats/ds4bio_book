@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'statistics_optimization';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -470,34 +472,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="optimization">
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization">
 <h1>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h1>
 <p>Not all problems have closed form opimization results. Instead, we have to rely on algorithms to numerically optmize our parameteris.
-To fix our discussion, let $l(\theta)$ be a negative log likelihood or loss function that we want to minimize. Equivalently, they
+To fix our discussion, let <span class="math notranslate nohighlight">\(l(\theta)\)</span> be a negative log likelihood or loss function that we want to minimize. Equivalently, they
 could be the log likelihood or the negative of a loss function (gain function) that we want to optimize. Since we’ll be focusing
 on machine learning, we’ll characterize the problem in the terms of minimization, since most ML algoirthms are focused on minmizing
 loss functions.</p>
 <p>Consider how we would normally minimize a function. We would typically find the root of the derivative. That is, solving
-$l’(\theta) = 0$. However, finding the root simply creates an equally hard problem. What about approximating
-$l’(\theta)$ with a line at the current estimate? That is,
-$$
-l’(\theta) \approx l’\left(\theta^{(0)}\right) + \left(\theta - \theta^{(0)}\right)l’’\left(\theta^{(0)}\right)  = 0,
-$$
-with the approximation being motivated by Taylor’s theorem, where $l’’$ is the Hessian (second derivative matrix). Solving the right hand equality implies
-$$
-\theta^{(1)} = \theta^{(0)} - l’’\left(\theta^{(0)}\right)^{-1} l’\left(\theta^{(0)}\right).
-$$
-The algorithm that then recenters the approximation at $\theta^{(1)}$ and performs another update and so on, is called Newton’s algorithm,
+<span class="math notranslate nohighlight">\(l'(\theta) = 0\)</span>. However, finding the root simply creates an equally hard problem. What about approximating
+<span class="math notranslate nohighlight">\(l'(\theta)\)</span> with a line at the current estimate? That is,
+$<span class="math notranslate nohighlight">\(
+l'(\theta) \approx l'\left(\theta^{(0)}\right) + \left(\theta - \theta^{(0)}\right)l''\left(\theta^{(0)}\right)  = 0,
+\)</span><span class="math notranslate nohighlight">\(
+with the approximation being motivated by Taylor's theorem, where \)</span>l’’<span class="math notranslate nohighlight">\( is the Hessian (second derivative matrix). Solving the right hand equality implies
+\)</span><span class="math notranslate nohighlight">\(
+\theta^{(1)} = \theta^{(0)} - l''\left(\theta^{(0)}\right)^{-1} l'\left(\theta^{(0)}\right).
+\)</span><span class="math notranslate nohighlight">\(
+The algorithm that then recenters the approximation at \)</span>\theta^{(1)}<span class="math notranslate nohighlight">\( and performs another update and so on, is called Newton's algorithm,
 which, as its name implies is a very old technique. This algorithm takes the form of heading in the opposite direction of the
-gradient ($- l’\left(\theta^{(0)}\right)$) where the scale of the move is governed by the inverse of the second derivative.</p>
-<p>As an example, consider the function $l(\theta) = \theta^p$  for $p$ an even number $\geq 2$. Then $l’(\theta) = p\theta^{p-1}$ and $l’’(\theta) = p(p-1) \theta^{p-2}$. Then,
+gradient (\)</span>- l’\left(\theta^{(0)}\right)$) where the scale of the move is governed by the inverse of the second derivative.</p>
+<p>As an example, consider the function <span class="math notranslate nohighlight">\(l(\theta) = \theta^p\)</span>  for <span class="math notranslate nohighlight">\(p\)</span> an even number <span class="math notranslate nohighlight">\(\geq 2\)</span>. Then <span class="math notranslate nohighlight">\(l'(\theta) = p\theta^{p-1}\)</span> and <span class="math notranslate nohighlight">\(l''(\theta) = p(p-1) \theta^{p-2}\)</span>. Then,
 the update is
-$$
+$<span class="math notranslate nohighlight">\(
 \theta^{(1)} = \theta^{(0)} - \theta^{(0)} / (p - 1) = \theta^{(0)} (p-2)/(p-1)
-$$
-implying $\theta^{(n)} = \theta^{(0)} [(p-2)/ (p - 1)]^n$, which clearly converges to 0, the minimum. It converges in one iteration at $p=2$. The size of the jump at which one moves along the linear
-approximation is the inverse of the second derivative, i.e. $1 / [p(p-1) \theta^{p-2}]$.  Thus, one moves more the less convex $l$ is around the minimum. In this case, this results in a convergence rate of $[(p-2) / (p - 1)]^{n}$.</p>
-<p>Let’s try it out for $p=4$. Here’s the core of the code:</p>
+\)</span><span class="math notranslate nohighlight">\(
+implying \)</span>\theta^{(n)} = \theta^{(0)} [(p-2)/ (p - 1)]^n<span class="math notranslate nohighlight">\(, which clearly converges to 0, the minimum. It converges in one iteration at \)</span>p=2<span class="math notranslate nohighlight">\(. The size of the jump at which one moves along the linear
+approximation is the inverse of the second derivative, i.e. \)</span>1 / [p(p-1) \theta^{p-2}]<span class="math notranslate nohighlight">\(.  Thus, one moves more the less convex \)</span>l<span class="math notranslate nohighlight">\( is around the minimum. In this case, this results in a convergence rate of \)</span>[(p-2) / (p - 1)]^{n}$.</p>
+<p>Let’s try it out for <span class="math notranslate nohighlight">\(p=4\)</span>. Here’s the core of the code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">theta</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -595,29 +597,31 @@ The downloaded source packages are in
 </div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
-<p>Poisson regression makes for a good example. Consider a model where $Y_i \sim \mbox{Poisson}(\mu_i)$ where
-$\log(\mu_i) = x_i^t \theta$ for covariate vector $x_i$. Then the negative log-likelihood associated with the data up to additive constants in $\theta$ is:</p>
-<p>$$
+<p>Poisson regression makes for a good example. Consider a model where <span class="math notranslate nohighlight">\(Y_i \sim \mbox{Poisson}(\mu_i)\)</span> where
+<span class="math notranslate nohighlight">\(\log(\mu_i) = x_i^t \theta\)</span> for covariate vector <span class="math notranslate nohighlight">\(x_i\)</span>. Then the negative log-likelihood associated with the data up to additive constants in <span class="math notranslate nohighlight">\(\theta\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
 l(\theta) = -\sum_{i=1}^n \left[
-y_i x_i^t \theta - e^{x_i^t \theta} \right]
-$$</p>
+  y_i x_i^t \theta - e^{x_i^t \theta} \right]
+\]</div>
 <p>Thus,
-$$
-l’(\theta) = -\sum_{i=1}^n \left[y_i x_i -  e^{x_i^t \theta} x_i\right]
+$<span class="math notranslate nohighlight">\(
+l'(\theta) = -\sum_{i=1}^n \left[y_i x_i -  e^{x_i^t \theta} x_i\right]
 = - \mathbf{X}^t \mathbf{y} + \mathbf{X}^t e^{\mathbf{X}^t \theta}
-$$
-$$
-l’’(\theta) = \sum_{i=1}^n e^{x_i^t \theta} x_i x_i^t = \mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}
-$$
-where $\mathbf{X}$ contains rows $x_i^t$ and $e^{\mathbf{X}^t \theta}$ is a vector with elements
-$\mathbf{X}^t \theta$. Therefore, the update function to go from the current value of $\theta$ to the next is:</p>
-<p>$$
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+l''(\theta) = \sum_{i=1}^n e^{x_i^t \theta} x_i x_i^t = \mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mathbf{X}<span class="math notranslate nohighlight">\( contains rows \)</span>x_i^t<span class="math notranslate nohighlight">\( and \)</span>e^{\mathbf{X}^t \theta}<span class="math notranslate nohighlight">\( is a vector with elements
+\)</span>\mathbf{X}^t \theta<span class="math notranslate nohighlight">\(. Therefore, the update function to go from the current value of \)</span>\theta$ to the next is:</p>
+<div class="math notranslate nohighlight">
+\[
 U(\theta) = \theta +
 \left[\mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}\right ]^{-1} \mathbf{X}^t \left[ \mathbf{y} - e^{\mathbf{X}^t \theta}\right].
-$$
-Thus, our update shifts the current value by a fit from a weighted linear model. In this case, the linear
-model has outcome $\mathbf{y} - e^{\mathbf{X}^t \theta}$ (which is $\mathbf{y} - E_\theta[\mathbf{y}]$) design matrix $\mathbf{X}$ and weights
-$e^{\mathbf{X}^t \theta}$ (which are $\mathrm{Var}_\theta(\mathbf{Y})$).</p>
+\]</div>
+<p>Thus, our update shifts the current value by a fit from a weighted linear model. In this case, the linear
+model has outcome <span class="math notranslate nohighlight">\(\mathbf{y} - e^{\mathbf{X}^t \theta}\)</span> (which is <span class="math notranslate nohighlight">\(\mathbf{y} - E_\theta[\mathbf{y}]\)</span>) design matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and weights
+<span class="math notranslate nohighlight">\(e^{\mathbf{X}^t \theta}\)</span> (which are <span class="math notranslate nohighlight">\(\mathrm{Var}_\theta(\mathbf{Y})\)</span>).</p>
 <p>Consider an example using the Prussian Horse Kick data. We’ll use <code class="docutils literal notranslate"><span class="pre">rpy2</span></code> to
 load the data in from R and plot it. We’ll group the data over other variables and simply
 fit a Poisson loglinear model with just an intercept and slope term.</p>
@@ -640,9 +644,10 @@ fit a Poisson loglinear model with just an intercept and slope term.</p>
 </div>
 </div>
 <p>First let’s fit the model using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> and print out the coeficients. We normalize the year variable as</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \frac{\mbox{Year} - \min(\mbox{Year})}{\max(\mbox{Year}) - \min(\mbox{Year})}.
-$$</p>
+\]</div>
 <p>So our slope coefficient is the proprotion of the total years under study rather than the raw year. This is done for several reasons. It helps us visualize the likelihood for one. Secondly, this is normal practice in deep learning to put coefficients on a common scale to help the algorithms have more unit-free starting points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -706,7 +711,7 @@ x1             0.3565      0.236      1.509      0.131      -0.106       0.819
 </div>
 </div>
 <p>Notice we get the same answer as the optimization routine in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. In this
-setting, the second derivative is more than just useful for fast optimization. Specifically, we can get the standard error of the coefficients witht the square root of the diagonal  of the $\left[\mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}\right ]^{-1}$ term on convergence. This is the empirical estimate of the asymptotic standard error for the MLE.</p>
+setting, the second derivative is more than just useful for fast optimization. Specifically, we can get the standard error of the coefficients witht the square root of the diagonal  of the <span class="math notranslate nohighlight">\(\left[\mathbf{X}^t \mathrm{Diag}\left(e^{\mathbf{X}^t \theta}\right) \mathbf{X}\right ]^{-1}\)</span> term on convergence. This is the empirical estimate of the asymptotic standard error for the MLE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">var</span><span class="p">)))</span>
@@ -762,21 +767,21 @@ setting, the second derivative is more than just useful for fast optimization. S
 <h2>Gradient descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
 <p>Often, we can’t calculate a second derivative, as will be the case with neural networks.
 We then replace the step size in Newton’s algorithm with a less optimal step size:
-$$
-\theta^{(1)} = \theta^{(0)} - \epsilon \times l’\left(\theta^{(0)}\right)
-$$
-where $\epsilon$ is the so-called ``learning rate’’.</p>
-<p>Consider our example of trying to minimize $\theta^p$. Then, our update is
-$$
+$<span class="math notranslate nohighlight">\(
+\theta^{(1)} = \theta^{(0)} - \epsilon \times l'\left(\theta^{(0)}\right)
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\epsilon$ is the so-called ``learning rate’’.</p>
+<p>Consider our example of trying to minimize <span class="math notranslate nohighlight">\(\theta^p\)</span>. Then, our update is
+$<span class="math notranslate nohighlight">\(
 \theta^{(1)} = \theta^{(0)} - \epsilon \times p \left[\theta^{(0)}\right]^{p-1}.
-$$</p>
-<p>Let’s try it out for a few different values of $\epsilon$. The core of the code is simply:</p>
+\)</span>$</p>
+<p>Let’s try it out for a few different values of <span class="math notranslate nohighlight">\(\epsilon\)</span>. The core of the code is simply:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.01</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">noiter</span><span class="p">):</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">theta</span> <span class="o">**</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here we show the convergence for $\epsilon = .1$ (blue line), $\epsilon = .01$ (red line) and $\epsilon = .001$ (green line).</p>
+<p>Here we show the convergence for <span class="math notranslate nohighlight">\(\epsilon = .1\)</span> (blue line), <span class="math notranslate nohighlight">\(\epsilon = .01\)</span> (red line) and <span class="math notranslate nohighlight">\(\epsilon = .001\)</span> (green line).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>

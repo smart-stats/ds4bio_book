@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'statistics_causal';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -500,7 +502,7 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="causality">
+<section class="tex2jax_ignore mathjax_ignore" id="causality">
 <h1>Causality<a class="headerlink" href="#causality" title="Link to this heading">#</a></h1>
 <section id="associational-models-versus-causal-models">
 <h2>Associational models versus causal models<a class="headerlink" href="#associational-models-versus-causal-models" title="Link to this heading">#</a></h2>
@@ -508,17 +510,17 @@ document.write(`
 <p>Causal graphs take a different approach, even if they wind up at the same place. Here, the goal is to postulate hyptothetical causal relationships and use those hypothetical relationships to estimate causal effects.</p>
 <section id="graphs-and-graphical-models">
 <h3>Graphs and graphical models<a class="headerlink" href="#graphs-and-graphical-models" title="Link to this heading">#</a></h3>
-<p>A graph, $G$ is a collection of nodes, say $V={1,\ldots, p}$ and a set edges between the nodes, i.e. a set of elements $(i,j)$. The graph is directed if $(i,j)$ is considered different then $(j,i)$.</p>
-<p>Node $i$ is a parent of node $j$ if $(i,j) \in E$ and $(j,i)\notin E$. Similarly,  node $i$ is a <strong>child</strong> of node $j$ if $(j,i) \in E$ and $(i,j)\notin E$. A node
+<p>A graph, <span class="math notranslate nohighlight">\(G\)</span> is a collection of nodes, say <span class="math notranslate nohighlight">\(V=\{1,\ldots, p\}\)</span> and a set edges between the nodes, i.e. a set of elements <span class="math notranslate nohighlight">\((i,j)\)</span>. The graph is directed if <span class="math notranslate nohighlight">\((i,j)\)</span> is considered different then <span class="math notranslate nohighlight">\((j,i)\)</span>.</p>
+<p>Node <span class="math notranslate nohighlight">\(i\)</span> is a parent of node <span class="math notranslate nohighlight">\(j\)</span> if <span class="math notranslate nohighlight">\((i,j) \in E\)</span> and <span class="math notranslate nohighlight">\((j,i)\notin E\)</span>. Similarly,  node <span class="math notranslate nohighlight">\(i\)</span> is a <strong>child</strong> of node <span class="math notranslate nohighlight">\(j\)</span> if <span class="math notranslate nohighlight">\((j,i) \in E\)</span> and <span class="math notranslate nohighlight">\((i,j)\notin E\)</span>. A node
 is a <strong>descendant</strong> of another if it is a child, or a child of a child and so on.</p>
 </section>
 <section id="dag-and-scms">
 <h3>DAG and SCMs<a class="headerlink" href="#dag-and-scms" title="Link to this heading">#</a></h3>
-<p>DAGs define a unique factorization (set of independence relationships) with compatible probability models.  I find it useful to think of causal DAGs in the terms of structural causal models (SCMs). Such models demonstrate an example of a generative models that statisfy the DAG and the have clear connections with the probabability models. An SCM over a collection of variables, $X=(X_1, \ldots, X_p)$, postulates a set of functional relationships
-$$
+<p>DAGs define a unique factorization (set of independence relationships) with compatible probability models.  I find it useful to think of causal DAGs in the terms of structural causal models (SCMs). Such models demonstrate an example of a generative models that statisfy the DAG and the have clear connections with the probabability models. An SCM over a collection of variables, <span class="math notranslate nohighlight">\(X=(X_1, \ldots, X_p)\)</span>, postulates a set of functional relationships
+$<span class="math notranslate nohighlight">\(
 X_j = f(P_j, \epsilon_j)
-$$
-where $P_j$ are the antecedent causes of $X_j$, called the parents of $X_j$, and $\epsilon_j$ is an accumulation of variables treated as mutally independent. This defines a directed graph, $G$ say, where a graph is collection of vertices corresponding to our variables, $V={1,\ldots, p}$, corresponding to the $X_i$, and edges, $E$, which is a set of ordered pairs of nodes.</p>
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>P_j<span class="math notranslate nohighlight">\( are the antecedent causes of \)</span>X_j<span class="math notranslate nohighlight">\(, called the parents of \)</span>X_j<span class="math notranslate nohighlight">\(, and \)</span>\epsilon_j<span class="math notranslate nohighlight">\( is an accumulation of variables treated as mutally independent. This defines a directed graph, \)</span>G<span class="math notranslate nohighlight">\( say, where a graph is collection of vertices corresponding to our variables, \)</span>V={1,\ldots, p}<span class="math notranslate nohighlight">\(, corresponding to the \)</span>X_i<span class="math notranslate nohighlight">\(, and edges, \)</span>E$, which is a set of ordered pairs of nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -551,23 +553,23 @@ where $P_j$ are the antecedent causes of $X_j$, called the parents of $X_j$, and
 <img alt="_images/08d49036540c9957200d6f34395f42b7d1a310ea09bbbaa72b27c489b812c8df.png" src="_images/08d49036540c9957200d6f34395f42b7d1a310ea09bbbaa72b27c489b812c8df.png" />
 </div>
 </div>
-<p>In this case, $P_1 = {}$, $P_2 = {1}$ and $P_3 = {1,2}$. DAGs in general define the independence assumptions associated with compatible probability models. SCMs are such an example that clearly define compatible probability models.   Of course, given a large enough cross-sectional sample, we can estimate the joint distribution of $P(X_1,\ldots, X_p)$ and all of its conditionals. Disregarding statistical variation, which can be accounted for using traditional inferential methods, these conditionals should agree with the independence relationships from the DAG, if the DAG is correct. This yields a fruitful way to consider probability models. For example one could use DAGs as a heuristic and see how the observed data agrees with the independence relationships in compatible probability models implied by the DAG.</p>
+<p>In this case, <span class="math notranslate nohighlight">\(P_1 = \{\}\)</span>, <span class="math notranslate nohighlight">\(P_2 = \{1\}\)</span> and <span class="math notranslate nohighlight">\(P_3 = \{1,2\}\)</span>. DAGs in general define the independence assumptions associated with compatible probability models. SCMs are such an example that clearly define compatible probability models.   Of course, given a large enough cross-sectional sample, we can estimate the joint distribution of <span class="math notranslate nohighlight">\(P(X_1,\ldots, X_p)\)</span> and all of its conditionals. Disregarding statistical variation, which can be accounted for using traditional inferential methods, these conditionals should agree with the independence relationships from the DAG, if the DAG is correct. This yields a fruitful way to consider probability models. For example one could use DAGs as a heuristic and see how the observed data agrees with the independence relationships in compatible probability models implied by the DAG.</p>
 <p>By itself, this does not create any causal claims. However, the following strategy could. Postulate a causal model, like the SCM, consider the independence relationships implied by the SCM, compares those indepnence relationships with those seen in the observed data. This gives us a method to falsify causal models using the data.</p>
-<p>One specific way in which we use the assumptions is to investigate how the graph changes when we fix a node at a specific value, like an intevention, thus breaking its association with its parents. This operation is conceptual, but at times we can relate probabilities associated with interventions that were not realized. Consider an instrance where  where $X_1$ is a collection of confounders, $X_2$ is an exposure and $X_3$ is an outcome. Ideally, we’d like to know
-$$
+<p>One specific way in which we use the assumptions is to investigate how the graph changes when we fix a node at a specific value, like an intevention, thus breaking its association with its parents. This operation is conceptual, but at times we can relate probabilities associated with interventions that were not realized. Consider an instrance where  where <span class="math notranslate nohighlight">\(X_1\)</span> is a collection of confounders, <span class="math notranslate nohighlight">\(X_2\)</span> is an exposure and <span class="math notranslate nohighlight">\(X_3\)</span> is an outcome. Ideally, we’d like to know
+$<span class="math notranslate nohighlight">\(
 P(X_3 ~|~ do(X_2) = x_2)
-$$
-That is, the impact on the response if we were to set the exposure to $e_0$.</p>
+\)</span><span class="math notranslate nohighlight">\(
+That is, the impact on the response if we were to set the exposure to \)</span>e_0$.</p>
 </section>
 <section id="blocking-and-d-separation">
 <h3>Blocking and d-separation<a class="headerlink" href="#blocking-and-d-separation" title="Link to this heading">#</a></h3>
 <p>Before we talk about interventions, let’s consider discussing compatibility of the hypothetical directed graph and our observed data. Return to our previous diagram.</p>
 <ul class="simple">
-<li><p>$X1$ is a <em>confounder</em> betweend $X2$ and $X3$</p></li>
-<li><p>$X2$ is a <em>mediator</em> between $X1$ and $X3$</p></li>
-<li><p>$X3$ is a <em>collider</em> between $X1$ and $X2$</p></li>
+<li><p><span class="math notranslate nohighlight">\(X1\)</span> is a <em>confounder</em> betweend <span class="math notranslate nohighlight">\(X2\)</span> and <span class="math notranslate nohighlight">\(X3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X2\)</span> is a <em>mediator</em> between <span class="math notranslate nohighlight">\(X1\)</span> and <span class="math notranslate nohighlight">\(X3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X3\)</span> is a <em>collider</em> between <span class="math notranslate nohighlight">\(X1\)</span> and <span class="math notranslate nohighlight">\(X2\)</span></p></li>
 </ul>
-<p>Consider an example. $X1$ is having a BMI &gt; 35, $X2$ is sleep disordered breathing and $X3$ is hypertension.</p>
+<p>Consider an example. <span class="math notranslate nohighlight">\(X1\)</span> is having a BMI &gt; 35, <span class="math notranslate nohighlight">\(X2\)</span> is sleep disordered breathing and <span class="math notranslate nohighlight">\(X3\)</span> is hypertension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -603,24 +605,24 @@ That is, the impact on the response if we were to set the exposure to $e_0$.</p>
 <p>Here if we’re studying whether SDB causes HTN, BMI35 confounds the relationship as a possible common cause of both.  We would need to adjust for BMI35 to make sure the association between SDB and HTN isn’t just due to this common cause.</p>
 <p>If we were studying whether BMI35 causes HTN, we might be interested in how much of that effect is mediated (indirectly) through  SDB and how much is directly from BMI35.</p>
 <p>If we are studying the relationship between BMI35 and SDB directly, adjusting for HTN may cause an association. Consider the (fictitious) case where there is a large number of people who have SDB who are not obese, yet all have hypertension, for whatever the reason. Then, among the HTN, there could be a negative association between BMI35 and SDB, because of the large collection of patients would who have SDB and are not obese and the same for obese and not hyptertensive. That is, adjusting for HTN created an association. This is an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Berkson%27s_paradox">Berkson’s paradox</a>. This is a somewhat contrived example, but hopefully you get the point.
-The wikipedia article has a funny example where they consider $X_1$ is whether or not the hamburger is good at a fast food restaurant, $X_2$ is whether or not the fries are good and $X_3$ is whether or not people eat there. Since few people would eat at a place where both the hamburger and fries are bad, conditioning on $X_3$ can create a negative association.</p>
+The wikipedia article has a funny example where they consider <span class="math notranslate nohighlight">\(X_1\)</span> is whether or not the hamburger is good at a fast food restaurant, <span class="math notranslate nohighlight">\(X_2\)</span> is whether or not the fries are good and <span class="math notranslate nohighlight">\(X_3\)</span> is whether or not people eat there. Since few people would eat at a place where both the hamburger and fries are bad, conditioning on <span class="math notranslate nohighlight">\(X_3\)</span> can create a negative association.</p>
 <p>The main point here is that adjusting for colliders may open up a pathway between the nodes.</p>
-<p>A <strong>path</strong> between two nodes $n_1$ and $n_k$ is a sequence of nodes, $v_1, v_2,\ldots v_{k}$, where  $v_{i}$ and $v_{i+1}$ are connected. The path is <strong>directed</strong> if $v_{i}$ points to $v_{i+1}$ for $i=1,\ldots,k$. A graph is a Directed Acyclic Graph (DAG) if all edges are directed and there are no two nodes $v_i$ and $v_j$ with a directed path in both directions.</p>
-<p>A path between $v_1$ and $v_k$, $v_1,\ldots, v_k$, is blocked by a set of nodes, $S$, if for some $v_j$ in $S$</p>
+<p>A <strong>path</strong> between two nodes <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_k\)</span> is a sequence of nodes, <span class="math notranslate nohighlight">\(v_1, v_2,\ldots v_{k}\)</span>, where  <span class="math notranslate nohighlight">\(v_{i}\)</span> and <span class="math notranslate nohighlight">\(v_{i+1}\)</span> are connected. The path is <strong>directed</strong> if <span class="math notranslate nohighlight">\(v_{i}\)</span> points to <span class="math notranslate nohighlight">\(v_{i+1}\)</span> for <span class="math notranslate nohighlight">\(i=1,\ldots,k\)</span>. A graph is a Directed Acyclic Graph (DAG) if all edges are directed and there are no two nodes <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_j\)</span> with a directed path in both directions.</p>
+<p>A path between <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_k\)</span>, <span class="math notranslate nohighlight">\(v_1,\ldots, v_k\)</span>, is blocked by a set of nodes, <span class="math notranslate nohighlight">\(S\)</span>, if for some <span class="math notranslate nohighlight">\(v_j\)</span> in <span class="math notranslate nohighlight">\(S\)</span></p>
 <ol class="arabic simple">
-<li><p>$v_j\in S$ and $v_k$ is a mediator or confounder between $v_{j-1}$ and $v_{j+1}$ in either direction <strong>or</strong></p></li>
-<li><p>$v_j\notin S$ and all of the descendants of $v_j \notin S$ and $v_{j}$ is a collider between $v_{j-1}$ and $v_{j+1}$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_j\in S\)</span> and <span class="math notranslate nohighlight">\(v_k\)</span> is a mediator or confounder between <span class="math notranslate nohighlight">\(v_{j-1}\)</span> and <span class="math notranslate nohighlight">\(v_{j+1}\)</span> in either direction <strong>or</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_j\notin S\)</span> and all of the descendants of <span class="math notranslate nohighlight">\(v_j \notin S\)</span> and <span class="math notranslate nohighlight">\(v_{j}\)</span> is a collider between <span class="math notranslate nohighlight">\(v_{j-1}\)</span> and <span class="math notranslate nohighlight">\(v_{j+1}\)</span>.</p></li>
 </ol>
-<p>In other words, a path is <strong>blocked</strong> if a mediator or confounder is included in $S$ or a collider and all of its descendants is excluded from $S$.</p>
+<p>In other words, a path is <strong>blocked</strong> if a mediator or confounder is included in <span class="math notranslate nohighlight">\(S\)</span> or a collider and all of its descendants is excluded from <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <p>For 1. this is equivalent to saying one of</p>
 <ul class="simple">
-<li><p>$v_{j-1}\rightarrow v_{j} \rightarrow v_{j+1}$</p></li>
-<li><p>$v_{j-1}\leftarrow v_{j} \leftarrow v_{j+1}$</p></li>
-<li><p>$v_{j-1}\leftarrow v_{j} \rightarrow v_{j+1}$</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_{j-1}\rightarrow v_{j} \rightarrow v_{j+1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_{j-1}\leftarrow v_{j} \leftarrow v_{j+1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v_{j-1}\leftarrow v_{j} \rightarrow v_{j+1}\)</span></p></li>
 </ul>
-<p>holds. For 2. recall a collider is $v_{j-1}\rightarrow v_{j} \leftarrow v_{j+1}$.</p>
+<p>holds. For 2. recall a collider is <span class="math notranslate nohighlight">\(v_{j-1}\rightarrow v_{j} \leftarrow v_{j+1}\)</span>.</p>
 <p>This could be translated into the following statistical statement. Conditioning on a mediator or confounder or <strong>not</strong> conditioning on a collider blocks a path, conditioning on a collider opens a path.</p>
-<p>We say that two nodes or groups of nodes are <strong>d-separated</strong> by a set of nodes, $S$, if every path between nodes in the two groups is blocked by $S$. d-separation is useful because it gives us conditional independence relationships in the sense that if $X_i$ is d-separated with $X_j$ given $S$ then $X_i \perp X_j ~|~ S$ on all probability distribution compatible with the graph.</p>
+<p>We say that two nodes or groups of nodes are <strong>d-separated</strong> by a set of nodes, <span class="math notranslate nohighlight">\(S\)</span>, if every path between nodes in the two groups is blocked by <span class="math notranslate nohighlight">\(S\)</span>. d-separation is useful because it gives us conditional independence relationships in the sense that if <span class="math notranslate nohighlight">\(X_i\)</span> is d-separated with <span class="math notranslate nohighlight">\(X_j\)</span> given <span class="math notranslate nohighlight">\(S\)</span> then <span class="math notranslate nohighlight">\(X_i \perp X_j ~|~ S\)</span> on all probability distribution compatible with the graph.</p>
 <p>Consider the following graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -661,40 +663,41 @@ The wikipedia article has a funny example where they consider $X_1$ is whether o
 <img alt="_images/7b6d84c9e893082bb708830ee867d64ba5bcdb021ce1b32dfb4d0b2111e046cc.png" src="_images/7b6d84c9e893082bb708830ee867d64ba5bcdb021ce1b32dfb4d0b2111e046cc.png" />
 </div>
 </div>
-<p>$X_1$ and $X_5$ are conditionally indepndent given $X_2$ and $X_3$. Why? Conditioning on $X_2$ blocks the paths $X_1 \leftarrow X_2 \rightarrow X_3 \leftarrow X_5$ even despite the part $X_2 \rightarrow X_3 \leftarrow X_5$ is opened by conditioning on the collider, $X_3$. Furthermore, conditioning on $X_2$ or $X_3$ blocks the path $X_1 \leftarrow X_2 \rightarrow X_3 \rightarrow X_4 \rightarrow X_6 \leftarrow X_5$. Finally, conditioning on $X_3$ blocks the path $X_1 \leftarrow X_3 \leftarrow X_5$.</p>
-<p>Another interesting one is that $X_2$ and $X_5$ are marginally independent. This is because <strong>not</strong> conditioining on $X_3$ blocks the path $X_2 \rightarrow X_3 \leftarrow X_5$ and <strong>not</strong> conditioning on $X_6$ blocks the path $X_2 \rightarrow X_3 \rightarrow X_4 \rightarrow X_6 \leftarrow X_5$.</p>
+<p><span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are conditionally indepndent given <span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_3\)</span>. Why? Conditioning on <span class="math notranslate nohighlight">\(X_2\)</span> blocks the paths <span class="math notranslate nohighlight">\(X_1 \leftarrow X_2 \rightarrow X_3 \leftarrow X_5\)</span> even despite the part <span class="math notranslate nohighlight">\(X_2 \rightarrow X_3 \leftarrow X_5\)</span> is opened by conditioning on the collider, <span class="math notranslate nohighlight">\(X_3\)</span>. Furthermore, conditioning on <span class="math notranslate nohighlight">\(X_2\)</span> or <span class="math notranslate nohighlight">\(X_3\)</span> blocks the path <span class="math notranslate nohighlight">\(X_1 \leftarrow X_2 \rightarrow X_3 \rightarrow X_4 \rightarrow X_6 \leftarrow X_5\)</span>. Finally, conditioning on <span class="math notranslate nohighlight">\(X_3\)</span> blocks the path <span class="math notranslate nohighlight">\(X_1 \leftarrow X_3 \leftarrow X_5\)</span>.</p>
+<p>Another interesting one is that <span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are marginally independent. This is because <strong>not</strong> conditioining on <span class="math notranslate nohighlight">\(X_3\)</span> blocks the path <span class="math notranslate nohighlight">\(X_2 \rightarrow X_3 \leftarrow X_5\)</span> and <strong>not</strong> conditioning on <span class="math notranslate nohighlight">\(X_6\)</span> blocks the path <span class="math notranslate nohighlight">\(X_2 \rightarrow X_3 \rightarrow X_4 \rightarrow X_6 \leftarrow X_5\)</span>.</p>
 <p>Here’s the complete set of conditional independence relationships.</p>
 <ol class="arabic simple">
-<li><p>$X_1$ and $X_4$ are d-separated by ${X_3}$</p></li>
-<li><p>$X_1$ and $X_5$ are d-separated by ${X_2, X_3}$</p></li>
-<li><p>$X_1$ and $X_6$ are d-separated by ${X_4, X_5}$, ${X_3, X_5}$, ${X_2, X_3}$</p></li>
-<li><p>$X_2$ and $X_4$ are d-separated by ${X_3}$</p></li>
-<li><p>$X_2$ and $X_5$ are d-separated by ${}$ (the null set, i.e. they’re marginally independent).</p></li>
-<li><p>$X_2$ and $X_6$ are d-separated by ${X_4, X_5}$, ${X_3, X_5}$</p></li>
-<li><p>$X_3$ and $X_6$ are d-separated by ${X_4, X_5}$</p></li>
-<li><p>$X_4$ and $X_5$ are d-separated by $X_3$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_4\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_3\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_2, X_3\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_6\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_4, X_5\}\)</span>, <span class="math notranslate nohighlight">\(\{X_3, X_5\}\)</span>, <span class="math notranslate nohighlight">\(\{X_2, X_3\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_4\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_3\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{\}\)</span> (the null set, i.e. they’re marginally independent).</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_2\)</span> and <span class="math notranslate nohighlight">\(X_6\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_4, X_5\}\)</span>, <span class="math notranslate nohighlight">\(\{X_3, X_5\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_3\)</span> and <span class="math notranslate nohighlight">\(X_6\)</span> are d-separated by <span class="math notranslate nohighlight">\(\{X_4, X_5\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X_4\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are d-separated by <span class="math notranslate nohighlight">\(X_3\)</span>.</p></li>
 </ol>
 <p>These all imply the independence relationships, such as
-$X_1 \perp X_4 ~|~ X_3$.</p>
+<span class="math notranslate nohighlight">\(X_1 \perp X_4 ~|~ X_3\)</span>.</p>
 </section>
 </section>
 <section id="do-calculus-and-backdoor-criterion">
 <h2>Do calculus and backdoor criterion<a class="headerlink" href="#do-calculus-and-backdoor-criterion" title="Link to this heading">#</a></h2>
-<p>Recall that specifying a causal graph implies the independence relationships of a probability distribution under assumptions such as the SCM. Sometimes, we’re interested in the causal relationship between an exposure, $X$ and an outcome, $Y$.  Consider a theoretical intervention obtained by setting $X = a$, which we write as $do(X) = a$. We want to estimate $P(Y ~|~ do(X) = a)$.</p>
-<p>A set $Z$ satisfies the <strong>back door</strong> criterion with respect
-to nodes $X$ and $Y$ if</p>
+<p>Recall that specifying a causal graph implies the independence relationships of a probability distribution under assumptions such as the SCM. Sometimes, we’re interested in the causal relationship between an exposure, <span class="math notranslate nohighlight">\(X\)</span> and an outcome, <span class="math notranslate nohighlight">\(Y\)</span>.  Consider a theoretical intervention obtained by setting <span class="math notranslate nohighlight">\(X = a\)</span>, which we write as <span class="math notranslate nohighlight">\(do(X) = a\)</span>. We want to estimate <span class="math notranslate nohighlight">\(P(Y ~|~ do(X) = a)\)</span>.</p>
+<p>A set <span class="math notranslate nohighlight">\(Z\)</span> satisfies the <strong>back door</strong> criterion with respect
+to nodes <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> if</p>
 <ol class="arabic simple">
-<li><p>No descendant of $X$ is in $Z$.</p></li>
-<li><p>$Z$ blocks every path $X$ and $Y$ that contains an arrow pointing to $X$.</p></li>
+<li><p>No descendant of <span class="math notranslate nohighlight">\(X\)</span> is in <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z\)</span> blocks every path <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> that contains an arrow pointing to <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
 </ol>
-<p>The back door criteria is similar to d-separation. However, we only focus on arrows pointing into $X$ and don’t allow for descendants of $X$.</p>
+<p>The back door criteria is similar to d-separation. However, we only focus on arrows pointing into <span class="math notranslate nohighlight">\(X\)</span> and don’t allow for descendants of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>The magic of the back door adjustment comes from the relationship, the adjustment formula:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 P(Y ~|~ do(X) = x) = \sum_{z\in S} P(y ~ | x, z) p(z)
-$$</p>
-<p>where $S$ satisfies the back door criterion. If the $z$ are all observed variables, then the RHS of this equation is estimable. Note the interesting statement that not all variables need to be observed, just $y$, $x$ and $z$.</p>
-<p>So, in our previous example, adjusting for $S = {X_2, X_3}$ allows us to estimate the causal effect of $X$ on $Y$, even if $X_4$ and $X_5$ are not measured.</p>
-<p>It’s important to emphasize, that every aspect of the adjustment formula is theoretically estimable if $Y$, $X$ and the nodes in $S$ are observed.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(S\)</span> satisfies the back door criterion. If the <span class="math notranslate nohighlight">\(z\)</span> are all observed variables, then the RHS of this equation is estimable. Note the interesting statement that not all variables need to be observed, just <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>So, in our previous example, adjusting for <span class="math notranslate nohighlight">\(S = \{X_2, X_3\}\)</span> allows us to estimate the causal effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>, even if <span class="math notranslate nohighlight">\(X_4\)</span> and <span class="math notranslate nohighlight">\(X_5\)</span> are not measured.</p>
+<p>It’s important to emphasize, that every aspect of the adjustment formula is theoretically estimable if <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(X\)</span> and the nodes in <span class="math notranslate nohighlight">\(S\)</span> are observed.</p>
 <p>Consider the following graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -736,32 +739,32 @@ $$</p>
 <img alt="_images/995ce92628a22b641900518889b0ca04d82329a6e8c5a7d7cb7016e8358ccbbc.png" src="_images/995ce92628a22b641900518889b0ca04d82329a6e8c5a7d7cb7016e8358ccbbc.png" />
 </div>
 </div>
-<p>Here are the minimal backdoor adjustment variables between $X$ and $Y$:</p>
+<p>Here are the minimal backdoor adjustment variables between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>:</p>
 <ol class="arabic simple">
-<li><p>$S = {X_2, X_3}$</p></li>
-<li><p>$S = {X_3, X_5}$</p></li>
-<li><p>$S = {X_4, X_5}$</p></li>
+<li><p><span class="math notranslate nohighlight">\(S = \{X_2, X_3\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S = \{X_3, X_5\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S = \{X_4, X_5\}\)</span></p></li>
 </ol>
 <p>Here are some <strong>invalid</strong> backdoor sets of variables.</p>
 <ol class="arabic simple">
-<li><p>$S$ equal to any single node.</p>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> equal to any single node.</p>
 <ol class="arabic simple">
-<li><p>$S={X_3}$ does not block the path $X\leftarrow X_2 \rightarrow X_3 \leftarrow X_5 \rightarrow Y$.</p></li>
-<li><p>$S={X_4}$ or $S={X_2}$ does not block the path $X \leftarrow X_3 \leftarrow X_5 \rightarrow Y$.</p></li>
-<li><p>$S={X_5}$ does not block the path $X \leftarrow X_3 \leftarrow X_4 \rightarrow Y$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S=\{X_3\}\)</span> does not block the path <span class="math notranslate nohighlight">\(X\leftarrow X_2 \rightarrow X_3 \leftarrow X_5 \rightarrow Y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S=\{X_4\}\)</span> or <span class="math notranslate nohighlight">\(S=\{X_2\}\)</span> does not block the path <span class="math notranslate nohighlight">\(X \leftarrow X_3 \leftarrow X_5 \rightarrow Y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S=\{X_5\}\)</span> does not block the path <span class="math notranslate nohighlight">\(X \leftarrow X_3 \leftarrow X_4 \rightarrow Y\)</span>.</p></li>
 </ol>
 </li>
-<li><p>$S={X_3, X_4}$ does not block the path
-$X \leftarrow X_2 \rightarrow X_3 \leftarrow X_5 \rightarrow Y$.</p></li>
-<li><p>$S={X_2, X_4}$ does not block the path $X\leftarrow X_3 \leftarrow X_5 \rightarrow Y$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S=\{X_3, X_4\}\)</span> does not block the path
+<span class="math notranslate nohighlight">\(X \leftarrow X_2 \rightarrow X_3 \leftarrow X_5 \rightarrow Y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S=\{X_2, X_4\}\)</span> does not block the path <span class="math notranslate nohighlight">\(X\leftarrow X_3 \leftarrow X_5 \rightarrow Y\)</span>.</p></li>
 </ol>
 <section id="example-graphs">
 <h3>Example graphs<a class="headerlink" href="#example-graphs" title="Link to this heading">#</a></h3>
-<p>In all the following, we’re interested in the causal effect of $X$ and $Y$. $Z$ variables are observed and $U$ variables
+<p>In all the following, we’re interested in the causal effect of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. <span class="math notranslate nohighlight">\(Z\)</span> variables are observed and <span class="math notranslate nohighlight">\(U\)</span> variables
 are unobserved. Every variable is binary to make the discussion easier.</p>
 <section id="randomization">
 <h4>Randomization<a class="headerlink" href="#randomization" title="Link to this heading">#</a></h4>
-<p>If $X$ is randomized <strong>and everyone takes the treatment assigned to them</strong> (left plot) then $X$ has no parents other than the randomization mechanism,$R$.  We’re omitting any descendants of $X$ since we don’t have to worray about them. Regardless of the complexity of  the relationship between the collection of observed, unobserved, known and unknown variables, $Z, U$, and $Y$
+<p>If <span class="math notranslate nohighlight">\(X\)</span> is randomized <strong>and everyone takes the treatment assigned to them</strong> (left plot) then <span class="math notranslate nohighlight">\(X\)</span> has no parents other than the randomization mechanism,<span class="math notranslate nohighlight">\(R\)</span>.  We’re omitting any descendants of <span class="math notranslate nohighlight">\(X\)</span> since we don’t have to worray about them. Regardless of the complexity of  the relationship between the collection of observed, unobserved, known and unknown variables, <span class="math notranslate nohighlight">\(Z, U\)</span>, and <span class="math notranslate nohighlight">\(Y\)</span>
 we can estimate the causal effect simply without conditioning on anything.</p>
 <p>In contrast, if some people ignore their randomized treatment status and elect to choose a different treatment one may have opened a backdoor path (right plot). For example, if the treatment can’t be blinded and those randomized to the control with the worst baseline symptoms elect to obtain the treatment elsewhere.</p>
 <div class="cell docutils container">
@@ -834,7 +837,7 @@ we can estimate the causal effect simply without conditioning on anything.</p>
 </section>
 <section id="simple-confounding">
 <h4>Simple confounding<a class="headerlink" href="#simple-confounding" title="Link to this heading">#</a></h4>
-<p>The diagram below shows classic confounding. Conditioning in $Z$ allows for the estimation of the causal effect.</p>
+<p>The diagram below shows classic confounding. Conditioning in <span class="math notranslate nohighlight">\(Z\)</span> allows for the estimation of the causal effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -867,10 +870,11 @@ we can estimate the causal effect simply without conditioning on anything.</p>
 </div>
 </div>
 <p>Now the estimate of the adjusted effect (under our assumptions) is</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 P(Y ~|~ do(X) = x) = P(Y ~|~ X=x, z = 0)P(z = 0) + P(Y ~|~ X=x, Z=1)P(Z=1)
-$$</p>
-<p>In the following two examples, the unmeasured confounder $U$ can be controlled for by conditioning on $Z$ and exactly the same estimate can be used as in the simple confounding model.</p>
+\]</div>
+<p>In the following two examples, the unmeasured confounder <span class="math notranslate nohighlight">\(U\)</span> can be controlled for by conditioning on <span class="math notranslate nohighlight">\(Z\)</span> and exactly the same estimate can be used as in the simple confounding model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -937,7 +941,7 @@ $$</p>
 </section>
 <section id="mediation">
 <h4>Mediation<a class="headerlink" href="#mediation" title="Link to this heading">#</a></h4>
-<p>In mediation, all or part of the effect of $X$ on $Y$ flows through yet another variable $Z$.</p>
+<p>In mediation, all or part of the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> flows through yet another variable <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -969,8 +973,8 @@ $$</p>
 <img alt="_images/f9c1f3f801cbd76c970e2a47aa555d983cc493d6f1621521253bbf9657d16ae2.png" src="_images/f9c1f3f801cbd76c970e2a47aa555d983cc493d6f1621521253bbf9657d16ae2.png" />
 </div>
 </div>
-<p>The backdoor criteria does not apply here, since $Z$ is a descendant of $X$. To answer the question “What is the causal effect of $X$ on $Y$?” one need not adjust. However, mediation is typically studied in a different way. Instead, one asks questions such as “How much of the effect of $X$ on $Y$ flows or doesn’t flow through $Z$?”. To answer this question, one usually conditions on $Z$ for a different goal than the backdoor adjustment is accomplishing.</p>
-<p>&#64;cinelli2021crash shows an interesting example of mediation where one would want to adjust for $Z$ (left plot below).</p>
+<p>The backdoor criteria does not apply here, since <span class="math notranslate nohighlight">\(Z\)</span> is a descendant of <span class="math notranslate nohighlight">\(X\)</span>. To answer the question “What is the causal effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span>?” one need not adjust. However, mediation is typically studied in a different way. Instead, one asks questions such as “How much of the effect of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(Y\)</span> flows or doesn’t flow through <span class="math notranslate nohighlight">\(Z\)</span>?”. To answer this question, one usually conditions on <span class="math notranslate nohighlight">\(Z\)</span> for a different goal than the backdoor adjustment is accomplishing.</p>
+<p>&#64;cinelli2021crash shows an interesting example of mediation where one would want to adjust for <span class="math notranslate nohighlight">\(Z\)</span> (left plot below).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -1039,16 +1043,16 @@ $$</p>
 <img alt="_images/e8dcdd0a61f2081d3ede20553e2f95abfbf65359ef4b67e507db942192f72e0e.png" src="_images/e8dcdd0a61f2081d3ede20553e2f95abfbf65359ef4b67e507db942192f72e0e.png" />
 </div>
 </div>
-<p>In this case, $M$ still mediates the relationship between $X$ and $Y$. However, $Z$ is in a backdoor path to $M$. So, some of the variation in $M$ that impacts $Y$ could be due to $Z$ rather than $X$. The right plot is similar and makes the point more explicit. $Z$ confounds the relationship between $X$ and $Y$ through $M$. Without adjusting for $Z$, the path $X\leftarrow Z \rightarrow M \rightarrow Y$ remains unblocked.</p>
+<p>In this case, <span class="math notranslate nohighlight">\(M\)</span> still mediates the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. However, <span class="math notranslate nohighlight">\(Z\)</span> is in a backdoor path to <span class="math notranslate nohighlight">\(M\)</span>. So, some of the variation in <span class="math notranslate nohighlight">\(M\)</span> that impacts <span class="math notranslate nohighlight">\(Y\)</span> could be due to <span class="math notranslate nohighlight">\(Z\)</span> rather than <span class="math notranslate nohighlight">\(X\)</span>. The right plot is similar and makes the point more explicit. <span class="math notranslate nohighlight">\(Z\)</span> confounds the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> through <span class="math notranslate nohighlight">\(M\)</span>. Without adjusting for <span class="math notranslate nohighlight">\(Z\)</span>, the path <span class="math notranslate nohighlight">\(X\leftarrow Z \rightarrow M \rightarrow Y\)</span> remains unblocked.</p>
 </section>
 <section id="bad-controls">
 <h4>Bad controls<a class="headerlink" href="#bad-controls" title="Link to this heading">#</a></h4>
-<p>The following are all unhelpful for conditioning on $Z$ using the backdoor criteria.</p>
-<p>Upper left. Adjusting for colliders is the standard bad control. Below adjusting for $Z$ open ups a backdoor path that was closed. From a common sense perspective, why would you want to adjust for a consequence of $X$ and $Y$ when exploring their relationship?</p>
-<p>In the upper right diagram below, $Z$ is a so-called <strong>instrumental</strong> variable. A good example is $Z$ being the randomization indicator and $X$ being the treatment the person actually took. It is important in this example to emphasize that use of the instrumental variable is often a very fruitful method of analysis. However, it’s not a useful backdoor adjustment and conditioning on $Z$ simply removes most of the relevant variation in $X$. If one wants to use $Z$ as an instrumental variable in this setting, then specific methods taylored to instrumental variable use need to be employed.</p>
-<p>In the lower left plot, $Z$ is a descendant of $X$. Conditioning on $Z$ removes relevant pathway information regarding the relationship between $X$ and $Y$&gt;</p>
-<p>The lower right plot is similar. Conditioning on $Z$ removes variation in $M$ which hinders our
-ability to study the relationship between $X$ and $Y$ through $M$.</p>
+<p>The following are all unhelpful for conditioning on <span class="math notranslate nohighlight">\(Z\)</span> using the backdoor criteria.</p>
+<p>Upper left. Adjusting for colliders is the standard bad control. Below adjusting for <span class="math notranslate nohighlight">\(Z\)</span> open ups a backdoor path that was closed. From a common sense perspective, why would you want to adjust for a consequence of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> when exploring their relationship?</p>
+<p>In the upper right diagram below, <span class="math notranslate nohighlight">\(Z\)</span> is a so-called <strong>instrumental</strong> variable. A good example is <span class="math notranslate nohighlight">\(Z\)</span> being the randomization indicator and <span class="math notranslate nohighlight">\(X\)</span> being the treatment the person actually took. It is important in this example to emphasize that use of the instrumental variable is often a very fruitful method of analysis. However, it’s not a useful backdoor adjustment and conditioning on <span class="math notranslate nohighlight">\(Z\)</span> simply removes most of the relevant variation in <span class="math notranslate nohighlight">\(X\)</span>. If one wants to use <span class="math notranslate nohighlight">\(Z\)</span> as an instrumental variable in this setting, then specific methods taylored to instrumental variable use need to be employed.</p>
+<p>In the lower left plot, <span class="math notranslate nohighlight">\(Z\)</span> is a descendant of <span class="math notranslate nohighlight">\(X\)</span>. Conditioning on <span class="math notranslate nohighlight">\(Z\)</span> removes relevant pathway information regarding the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>&gt;</p>
+<p>The lower right plot is similar. Conditioning on <span class="math notranslate nohighlight">\(Z\)</span> removes variation in <span class="math notranslate nohighlight">\(M\)</span> which hinders our
+ability to study the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> through <span class="math notranslate nohighlight">\(M\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
@@ -1159,8 +1163,8 @@ ability to study the relationship between $X$ and $Y$ through $M$.</p>
 </section>
 <section id="conditioning-may-help">
 <h4>Conditioning may help<a class="headerlink" href="#conditioning-may-help" title="Link to this heading">#</a></h4>
-<p>In the upper left plot, adjusting for $Z$ may reduce variability in $Y$ to help focus on the relationship between $X$ and $Y$.</p>
-<p>In the upper left plot, adjusting for $Z$ may reduce variation in the mediator unrelated to the relationship between $X$ and $Y$.</p>
+<p>In the upper left plot, adjusting for <span class="math notranslate nohighlight">\(Z\)</span> may reduce variability in <span class="math notranslate nohighlight">\(Y\)</span> to help focus on the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>In the upper left plot, adjusting for <span class="math notranslate nohighlight">\(Z\)</span> may reduce variation in the mediator unrelated to the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -1226,7 +1230,7 @@ ability to study the relationship between $X$ and $Y$ through $M$.</p>
 <h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="graphs">
 <h3>Graphs<a class="headerlink" href="#graphs" title="Link to this heading">#</a></h3>
-<p>Consider the following graph where we want to answer the question: what is $P(Y ~|~ do(X) = x)$ where
+<p>Consider the following graph where we want to answer the question: what is <span class="math notranslate nohighlight">\(P(Y ~|~ do(X) = x)\)</span> where
 every variable is binary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1269,9 +1273,9 @@ every variable is binary.</p>
 </div>
 <ol class="arabic simple">
 <li><p>What are the minimal set of adjustment variables for the backdoor criteria?</p></li>
-<li><p>Is $X \perp Y ~|~ Z_1, Z_2$?</p></li>
-<li><p>Is $X \perp Y ~|~ Z_2, Z_3$?</p></li>
-<li><p>Given a cross sectional sample, if $Z_3$ is unobserved, give a formula for the estimation of $P(Y ~|~ do(X) = x)$ that only requires observed variables.</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(X \perp Y ~|~ Z_1, Z_2\)</span>?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(X \perp Y ~|~ Z_2, Z_3\)</span>?</p></li>
+<li><p>Given a cross sectional sample, if <span class="math notranslate nohighlight">\(Z_3\)</span> is unobserved, give a formula for the estimation of <span class="math notranslate nohighlight">\(P(Y ~|~ do(X) = x)\)</span> that only requires observed variables.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1309,7 +1313,7 @@ every variable is binary.</p>
 </div>
 <ol class="arabic simple">
 <li><p>What are the minimal set of adjustment variables for the backdoor criteria?</p></li>
-<li><p>Given a cross sectional sample, give a formula for the estimation of $P(Y ~|~ do(X) = x)$ that only requires observed variables.</p></li>
+<li><p>Given a cross sectional sample, give a formula for the estimation of <span class="math notranslate nohighlight">\(P(Y ~|~ do(X) = x)\)</span> that only requires observed variables.</p></li>
 </ol>
 </section>
 <section id="data-exercise">
@@ -1369,8 +1373,8 @@ $$
 P(Success ~|~ Do(Treatment) = B)</p>
 <ul class="simple">
 <li><p>P(Success ~|~ Do(Treatment) = A)
-$$
-under the following graphical models where $X$ is treatment, $Y$ is success and $Z$ is stone size:</p></li>
+$<span class="math notranslate nohighlight">\(
+under the following graphical models where \)</span>X<span class="math notranslate nohighlight">\( is treatment, \)</span>Y<span class="math notranslate nohighlight">\( is success and \)</span>Z$ is stone size:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

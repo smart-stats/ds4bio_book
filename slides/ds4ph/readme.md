@@ -13,6 +13,7 @@
 + [Lecture 14, R from python](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/14_rFromPython.slides.html)
 + [Lecture 15, Interactive](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/15_interactive.slides.html)
 + [Lecture 16, Webscraping](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/16_webscraping.slides.html)
++ [Lecture 16.5 Streamlit](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/streamlit.slides.html)
 + [Lecture 17, Binary classification](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/17_binary_classification.slides.html)
 + [Lecture 18, Regression origin](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/18_regression_through_the_origin.slides.html)
 + [Lecture 19, Regression](https://smart-stats.github.io/ds4bio_book/slides/ds4ph/19_regression.slides.html)

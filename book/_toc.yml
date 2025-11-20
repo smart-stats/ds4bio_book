@@ -44,6 +44,8 @@ parts:
         - file: rTidyverse.ipynb
         - file: rFromPython.ipynb
         - file: pythonFromR.ipynb
+  - caption: Statistics, Machine Learning and AI   
+    chapters: 
     - file: statistics.ipynb
       sections:
          - file: binary_classification.ipynb
@@ -68,9 +70,12 @@ parts:
     - file: unsupervised.ipynb
       sections:
          - file: unsupervised_pca_ica.ipynb
-#- file: data_structures.ipynb
-#- file: autoencoder.ipynb
+         - file: autoencoder.ipynb
+    - file: llms.ipynb 
+      sections:
+         - file: llms_apis.ipynb
 #- file: gan.ipynb
 #- file: gpu.ipynb
 #- file: explainability.ipynb
+#- file: data_structures.ipynb
 

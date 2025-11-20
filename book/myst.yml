@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 070dea79-af2e-4366-b0d2-938b85dedf95
+  title: Data science and AI for Bio/medical applications using python
+  description: A book for the DS4BME and DS4PH courses at Johns Hopkins University
+  keywords: [data science, python, neural networks, deep learning]
+  authors: [Brian Caffo]
+  github: https://github.com/smart-stats/ds4bio_book
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+site:
+  template: book-theme
+  options:
+    logo: dasl.png
+    

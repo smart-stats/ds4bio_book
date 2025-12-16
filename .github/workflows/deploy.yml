@@ -43,7 +43,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './book/_build/html'
+          path: './_build/html'
+      - name: Move content to subdirectory
+        run: |
+          mkdir -p deployment/subdir-name
+          cp -r book/_build/html/* deployment/subdir-name/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

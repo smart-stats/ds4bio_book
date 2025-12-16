@@ -10,7 +10,7 @@ env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
   # E.g., if your site lives at `https://mydomain.org/myproject`, set `BASE_URL=/myproject`.
   # If, instead, your site lives at the root of the domain, at `https://mydomain.org`, set `BASE_URL=''`.
-  BASE_URL: /${{ github.event.repository.name }}
+  BASE_URL: "/${{ github.event.repository.name }}/book/"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -44,10 +44,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './book/_build/html'
-      - name: Move content to subdirectory
-        run: |
-          mkdir -p deployment/book
-          cp -r ./book/_build/html/* deployment/book/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

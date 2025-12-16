@@ -46,7 +46,7 @@ jobs:
           path: './book/_build/html'
       - name: Move content to subdirectory
         run: |
-          mkdir -p deployment/subdir-name
+          mkdir -p deployment/book
           cp -r ./book/_build/html/* deployment/book/
       - name: Deploy to GitHub Pages
         id: deployment

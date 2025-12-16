@@ -36,6 +36,7 @@ parts:
       sections:
         - file: tooling_nlp.ipynb
         - file: numpy.ipynb
+        - file: pytorch.ipynb
         - file: voila.ipynb
         - file: dash.ipynb
         - file: dash2.ipynb
@@ -44,7 +45,7 @@ parts:
         - file: rTidyverse.ipynb
         - file: rFromPython.ipynb
         - file: pythonFromR.ipynb
-  - caption: Statistics, Machine Learning and AI   
+  - caption: Regression, Machine Learning and AI   
     chapters: 
     - file: statistics.ipynb
       sections:
@@ -66,7 +67,10 @@ parts:
          - file: basic_regression_pytorch.ipynb
          - file: logistic_regression_pytorch.ipynb
          - file: pytorch_regression.ipynb
-         - file: convnet_classifier_pytorch.ipynb  
+         - file: convnet_classifier_pytorch.ipynb
+         - file: explainability.ipynb  
+         - file: gan.ipynb
+         - file: gpu.ipynb
     - file: unsupervised.ipynb
       sections:
          - file: unsupervised_pca_ica.ipynb
@@ -74,8 +78,5 @@ parts:
     - file: llms.ipynb 
       sections:
          - file: llms_apis.ipynb
-#- file: gan.ipynb
-#- file: gpu.ipynb
-#- file: explainability.ipynb
-#- file: data_structures.ipynb
-
+         - file: llms_huggingface.ipynb
+         

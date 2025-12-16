@@ -12,4 +12,5 @@ site:
   template: book-theme
   options:
     logo: dasl.png
+  nav: []
     

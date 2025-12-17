@@ -47,8 +47,4 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # CRITICAL: Upload the PARENT folder ('artifact_staging'), not the child.
-          # This forces GitHub to keep the 'textbook' folder structure.
           path: 'artifact_staging
-
-

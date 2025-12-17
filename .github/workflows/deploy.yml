@@ -42,7 +42,7 @@ jobs:
         working-directory: book
       - name: Create Subdirectory Structure
         run: |
-          mkdir -p artifact_staging/textbook
+          mkdir -p artifact_staging/book
           cp -r book/_build/html/* artifact_staging/book/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

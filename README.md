@@ -5,7 +5,7 @@ The book files are in
 [book](https://github.com/smart-stats/ds4bio_book/tree/main/book)
 
 The live version of the book is
-[here](https://smart-stats.github.io/ds4bio_book/book/_build/html/intro.html).
+[here](https://smart-stats.github.io/ds4bio_book/).
 
 To set up the space to run this you need the requirements in
 [requirements.txt](https://github.com/smart-stats/ds4bio_book/blob/main/book/requirements.txt).

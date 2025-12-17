@@ -47,4 +47,4 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'artifact_staging
+          path: 'artifact_staging'

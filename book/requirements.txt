@@ -19,7 +19,8 @@ torchvision
 urllib3
 ## The following are also needed but installed by default in colab
 ## Use conda I've found instead of pip
-#pytorch
-#lxlm
-#r-base r-tidyverse
-#r-irkernel
+pytorch
+lxml
+r-base 
+r-tidyverse
+r-irkernel

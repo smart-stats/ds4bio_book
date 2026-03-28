@@ -68,7 +68,7 @@ parts:
          - file: logistic_regression_pytorch.ipynb
          - file: pytorch_regression.ipynb
          - file: convnet_classifier_pytorch.ipynb
-	 - file: convnet_example.ipynb
+         - file: convnet_example.ipynb
          - file: explainability.ipynb  
          - file: gan.ipynb
          - file: gpu.ipynb
